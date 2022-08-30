@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Formula One</string>
+
+    <string name="selected_item">Selected item:</string>
+    <string-array name="countries">
+        <item>please select country</item>
+        <item>Georgia</item>
+        <item>Italy</item>
+        <item>Usa</item>
+        <item>Mars</item>
+        <item>Jupiter</item>
+        <item>Saturn</item>
+        <item>Uranus</item>
+        <item>Neptune</item>
+    </string-array>
+</resources>

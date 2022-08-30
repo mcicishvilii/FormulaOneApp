@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <View
+        android:id="@+id/lastRaceContainer"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:background="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="61dp"
+        android:layout_marginTop="32dp"
+        android:elevation="10dp"
+        android:text="BELGIUM 2022"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/tv1stDriver"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:background="@color/white"
+        android:text="max verstappen"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/tv3rdDriver"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/tv2ndDriver"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="@color/white"
+        android:text="sergio perez"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/tvViewResults"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/tv3rdDriver"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:background="@color/white"
+        android:text="carlos sainz"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/tv2ndDriver"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/tvViewResults"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginBottom="9dp"
+        android:background="#FF0000"
+        android:text="view results"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/lastRaceContainer"
+        app:layout_constraintStart_toStartOf="@+id/lastRaceContainer"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/tvViewReplay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="55dp"
+        android:layout_marginBottom="9dp"
+        android:background="#FF0000"
+        android:text="view replay"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/lastRaceContainer"
+        app:layout_constraintEnd_toEndOf="@+id/lastRaceContainer"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/tvTeamListHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="5dp"
+        android:text="Team Name"
+        app:layout_constraintBottom_toTopOf="@+id/rvStories"
+        app:layout_constraintEnd_toStartOf="@+id/tvTeamCountryHeader"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lastRaceContainer" />
+
+    <TextView
+        android:id="@+id/tvTeamCountryHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="5dp"
+        android:text="Country"
+        app:layout_constraintBottom_toTopOf="@+id/rvStories"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tvTeamListHeader"
+        app:layout_constraintTop_toBottomOf="@id/lastRaceContainer" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvStories"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lastRaceContainer" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

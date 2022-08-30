@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tvWelcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="welcome"
+        android:textAlignment="center"
+        android:textSize="60sp"
+        app:layout_constraintBottom_toTopOf="@+id/tvSignIn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/tvSignIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="already have an account? sign in!"
+        app:layout_constraintBottom_toTopOf="@+id/btnCreateAccount"
+        app:layout_constraintTop_toBottomOf="@+id/tvWelcome"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="103dp" />
+
+    <Button
+        android:id="@+id/btnCreateAccount"
+        android:layout_width="313dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="50dp"
+        android:text="create account"
+        app:layout_constraintBottom_toTopOf="@+id/tvNotNow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvSignIn"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/tvNotNow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="not now"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnCreateAccount"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="181dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

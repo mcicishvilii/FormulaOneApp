@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.formulaone.databinding.SingleMovieLayoutBinding
-import com.example.formulaone.models.teamsResponse.Teams
+import com.example.formulaone.models.teams.Teams
 
 
 class ConstructorsAdapter: ListAdapter<Teams.MRdata.ConstructorsTable.Constructor, ConstructorsAdapter.ConstructorsViewHolder>(TeamsDiffCallBack()) {

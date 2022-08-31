@@ -1,12 +1,10 @@
 package com.example.formulaone.network.apis
 
-import com.example.formulaone.models.driversResponse.CurrentDriversStandingsResponse
-import com.example.formulaone.models.driversResponse.fromPlugin.*
-import com.example.formulaone.models.teamsResponse.Teams
+import com.example.formulaone.models.drivers.plugin.PluginStandings
 import retrofit2.http.GET
 
 interface CurrentDriversStandingsApi {
     @GET("current/driverStandings.json")
     suspend fun getCurrentStandings(
-    ): United
+    ): PluginStandings.MRDataX.StandingsTableX.StandingsListsX.DriverStanding
 }

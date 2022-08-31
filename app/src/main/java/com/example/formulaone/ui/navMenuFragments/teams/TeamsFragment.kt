@@ -26,7 +26,6 @@ class TeamsFragment : BaseFragment<FragmentTeamsBinding>(FragmentTeamsBinding::i
         teamsViewModel.getPopularMoviesLiveData()
         teamsViewModel.getPopularMoviesLiveData().observe(viewLifecycleOwner){
             constructorsAdapter.submitList(it)
-            Log.d("tag","misho")
         }
     }
 

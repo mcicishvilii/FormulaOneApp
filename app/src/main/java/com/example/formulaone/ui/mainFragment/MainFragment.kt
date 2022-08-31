@@ -1,7 +1,11 @@
 package com.example.formulaone.ui.mainFragment
 
+import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.formulaone.ConstructorsAdapter
+//import com.example.formulaone.DriversAdapter
 import com.example.formulaone.R
 import com.example.formulaone.databinding.FragmentMainBinding
 import com.example.formulaone.ui.BaseFragment
@@ -13,9 +17,20 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::inflate) {
 
     private val mainViewModel: MainViewModel by viewModels()
+//    private val driversAdapter: DriversAdapter by lazy { DriversAdapter() }
+
 
 
     override fun viewCreated() {
+
+//        setupRecycler()
+
+        mainViewModel.getCurrentStandingsLivedata()
+        mainViewModel.getCurrentStandingsLivedata().observe(viewLifecycleOwner){
+            binding.tvTeamCountryHeader.text = it
+
+        }
+
 
         val bottomNav: BottomNavigationView = binding.navbar
 
@@ -41,6 +56,16 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
         fragmentTransaction.replace(R.id.mainContainer,fragment)
         fragmentTransaction.commit()
     }
+
+//    private fun setupRecycler() {
+//        binding.rvDrivers.apply {
+//            adapter = driversAdapter
+//            layoutManager =
+//                LinearLayoutManager(requireContext(),
+//                    LinearLayoutManager.VERTICAL,
+//                    false)
+//        }
+//    }
 
 
 }

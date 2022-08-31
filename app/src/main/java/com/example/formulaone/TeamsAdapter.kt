@@ -10,7 +10,7 @@ import com.example.formulaone.databinding.SingleMovieLayoutBinding
 import com.example.formulaone.models.teamsResponse.Teams
 
 
-class ConstructorsAdapter: ListAdapter<Teams.MRdata.ConstructorsTable.Constructor, ConstructorsAdapter.ConstructorsViewHolder>(DiffCallBack()) {
+class ConstructorsAdapter: ListAdapter<Teams.MRdata.ConstructorsTable.Constructor, ConstructorsAdapter.ConstructorsViewHolder>(TeamsDiffCallBack()) {
 
 //    private lateinit var itemClickListener: (PopularResponse.Result1, Int) -> Unit
 
@@ -46,7 +46,7 @@ class ConstructorsAdapter: ListAdapter<Teams.MRdata.ConstructorsTable.Constructo
 //    }
 }
 }
-class DiffCallBack : DiffUtil.ItemCallback<Teams.MRdata.ConstructorsTable.Constructor>() {
+class TeamsDiffCallBack : DiffUtil.ItemCallback<Teams.MRdata.ConstructorsTable.Constructor>() {
     override fun areItemsTheSame(oldItem: Teams.MRdata.ConstructorsTable.Constructor, newItem: Teams.MRdata.ConstructorsTable.Constructor): Boolean {
         return oldItem.constructorId == newItem.constructorId
     }

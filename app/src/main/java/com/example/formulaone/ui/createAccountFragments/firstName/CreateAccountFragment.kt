@@ -27,5 +27,4 @@ class CreateAccountFragment : BaseFragment<FragmentCreateAccountBinding>(Fragmen
             findNavController().navigate(R.id.action_createAccountFragment_to_createAccountFragmentStepTwo)
         }
     }
-
 }

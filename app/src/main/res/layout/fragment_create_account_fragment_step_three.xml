@@ -7,16 +7,11 @@
 
     <TextView
         android:id="@+id/tvWelcome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="34dp"
-        android:layout_marginTop="103dp"
-        android:text="Create f1 account"
-        android:textAlignment="center"
-        android:textSize="40sp"
+        android:text="@string/create_f1_account"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        style="@style/tvWelcomeStyle" />
 
     <TextView
         android:id="@+id/textView5"
@@ -56,14 +51,9 @@
 
     <Button
         android:id="@+id/btnNext"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:text="next"
-        android:visibility="invisible"
+        android:text="@string/next"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints" />
-
+        style="@style/nextButtonStyle" />
 </androidx.constraintlayout.widget.ConstraintLayout>

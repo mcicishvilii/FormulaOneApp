@@ -5,17 +5,17 @@
     <string name="next">Next</string>
     <string name="first_name">First Name</string>
     <string name="have_account_sign_in">have account? sign in!</string>
-    <string name="create_f1_account">Create f1 account</string>
+    <string name="create_f1_account">Create F1 account</string>
     <string name="last_name">Last Name</string>
     <string-array name="countries">
         <item>please select country</item>
         <item>Georgia</item>
         <item>Italy</item>
         <item>Usa</item>
-        <item>Mars</item>
-        <item>Jupiter</item>
-        <item>Saturn</item>
-        <item>Uranus</item>
-        <item>Neptune</item>
+        <item>Romania</item>
+        <item>Russia</item>
+        <item>France</item>
+        <item>Germany</item>
+        <item>Netherlands</item>
     </string-array>
 </resources>

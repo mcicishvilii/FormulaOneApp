@@ -2,21 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <TextView
-        android:id="@+id/tvWelcome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="17dp"
-        android:layout_marginBottom="62dp"
-        android:text="Sign in"
-        android:textAlignment="center"
-        android:textSize="60sp"
-        app:layout_constraintBottom_toTopOf="@+id/tvEmail"
-        app:layout_constraintStart_toEndOf="@+id/tvEmail"
-        tools:ignore="MissingConstraints" />
+    style="@style/signInFragmentsStyle"
+    android:background="@drawable/sign_in_background">
 
     <TextView
         android:id="@+id/tvEmail"
@@ -24,7 +11,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="9dp"
-        android:text="Email Adress"
+        android:text="EMAIL ADDRESS"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/etEmail"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints" />
@@ -33,12 +21,13 @@
         android:id="@+id/etEmail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="300dp"
-        android:text="Email Adress"
+        android:layout_marginTop="200dp"
+        android:paddingVertical="10dp"
+        android:background="@drawable/outline"
+        android:layout_marginHorizontal="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnSignIn"

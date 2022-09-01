@@ -14,12 +14,14 @@ import com.example.formulaone.R
 import com.example.formulaone.databinding.FragmentTeamsBinding
 import com.example.formulaone.ui.BaseFragment
 import com.example.formulaone.ui.mainFragment.MainViewModel
+import com.example.formulaone.ui.navMenuFragments.drivers.DriversViewModel
 
 class TeamsFragment : BaseFragment<FragmentTeamsBinding>(FragmentTeamsBinding::inflate) {
 
 
     private val constructorsAdapter: ConstructorsAdapter by lazy { ConstructorsAdapter() }
     private val teamsViewModel: TeamsViewModel by viewModels()
+    private val driversViewModel: DriversViewModel by viewModels()
     override fun viewCreated() {
 
         setupRecycler()

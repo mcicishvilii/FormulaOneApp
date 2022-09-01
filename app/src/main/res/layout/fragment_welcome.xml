@@ -25,9 +25,11 @@
         android:layout_height="wrap_content"
         android:text="already have an account? sign in!"
         app:layout_constraintBottom_toTopOf="@+id/btnCreateAccount"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvWelcome"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="103dp" />
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/btnCreateAccount"
@@ -35,6 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="50dp"
         android:text="create account"
+        android:textSize="23sp"
         app:layout_constraintBottom_toTopOf="@+id/tvNotNow"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -47,9 +50,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="not now"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnCreateAccount"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="181dp" />
+        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

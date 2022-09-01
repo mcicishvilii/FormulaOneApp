@@ -2,6 +2,11 @@
     <string name="app_name">Formula One</string>
 
     <string name="selected_item">Selected item:</string>
+    <string name="next">Next</string>
+    <string name="first_name">First Name</string>
+    <string name="have_account_sign_in">have account? sign in!</string>
+    <string name="create_f1_account">Create f1 account</string>
+    <string name="last_name">Last Name</string>
     <string-array name="countries">
         <item>please select country</item>
         <item>Georgia</item>

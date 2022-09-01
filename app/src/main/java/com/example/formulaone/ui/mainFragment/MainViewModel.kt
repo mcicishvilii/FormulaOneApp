@@ -14,7 +14,7 @@ class MainViewModel : ViewModel() {
 
     init {
         viewModelScope.launch {
-            currentDriversLiveData.postValue(listOf(RetrofitHelper.driversService.getCurrentStandings().Driver))
+            currentDriversLiveData.postValue(listOf(RetrofitHelper.driversService.getCurrentStandings().MRData.StandingsTable.StandingsLists[0].DriverStandings[0].Driver))
         }
     }
 

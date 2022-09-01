@@ -9,11 +9,11 @@
         android:id="@+id/tvWelcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="34dp"
         android:layout_marginTop="103dp"
-        android:text="Create f1 account"
+        android:text="@string/create_f1_account"
         android:textAlignment="center"
         android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="13dp"
-        android:text="have acount? sign in!"
+        android:text="@string/have_account_sign_in"
         app:layout_constraintEnd_toEndOf="@+id/tvWelcome"
         app:layout_constraintStart_toStartOf="@+id/tvWelcome"
         app:layout_constraintTop_toBottomOf="@+id/tvWelcome"
@@ -33,35 +33,34 @@
         android:id="@+id/tvFirstName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="15dp"
         android:layout_marginBottom="9dp"
-        android:text="First Name"
-        app:layout_constraintBottom_toTopOf="@+id/etEmail"
+        android:text="@string/first_name"
+        app:layout_constraintBottom_toTopOf="@+id/etFirstName"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints" />
 
 
     <EditText
-        android:id="@+id/etEmail"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="300dp"
-        android:hint="first name"
+        android:id="@+id/etFirstName"
+        android:inputType="textPersonName"
+        android:labelFor="@id/etFirstName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        style="@style/RegistrationEditText" />
 
     <Button
         android:id="@+id/btnNext"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
         android:layout_marginBottom="16dp"
-        android:text="next"
-        android:visibility="visible"
+        android:text="@string/next"
+        android:textSize="23sp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

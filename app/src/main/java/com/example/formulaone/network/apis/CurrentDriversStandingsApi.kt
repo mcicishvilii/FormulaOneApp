@@ -6,5 +6,5 @@ import retrofit2.http.GET
 interface CurrentDriversStandingsApi {
     @GET("current/driverStandings.json")
     suspend fun getCurrentStandings(
-    ): PluginStandings.MRDataX.StandingsTableX.StandingsListsX.DriverStanding
+    ): PluginStandings
 }

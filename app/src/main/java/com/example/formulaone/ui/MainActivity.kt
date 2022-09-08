@@ -23,5 +23,6 @@ class MainActivity : AppCompatActivity() {
         binding= ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        var misho = "test"
     }
 }

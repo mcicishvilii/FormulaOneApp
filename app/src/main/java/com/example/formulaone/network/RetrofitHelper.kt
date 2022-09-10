@@ -18,9 +18,10 @@ object RetrofitHelper {
             .addConverterFactory(GsonConverterFactory.create()).build()
     }
 
-    val constructorsService by lazy {
-        RetrofitBuilder.create(ConstructorsApi::class.java)
-    }
+    //old implementation without dependency injection
+//    val constructorsService by lazy {
+//        RetrofitBuilder.create(ConstructorsApi::class.java)
+//    }
 
     val driversService by lazy {
         RetrofitBuilder.create(CurrentDriversStandingsApi::class.java)

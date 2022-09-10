@@ -54,6 +54,9 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth-ktx:21.0.8'
     def nav_version = "2.5.0"
 
+    kapt "org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.4.2"
+
+
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.6.1'
@@ -84,11 +87,11 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.9.1'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
-    def room_version = "2.4.2"
-    implementation "androidx.room:room-ktx:2.4.3"
-    implementation "androidx.room:room-runtime:$room_version"
-    annotationProcessor "androidx.room:room-compiler:$room_version"
-    kapt "androidx.room:room-compiler:$room_version"
+//    def room_version = "2.4.2"
+//    implementation "androidx.room:room-ktx:2.4.3"
+//    implementation "androidx.room:room-runtime:$room_version"
+//    annotationProcessor "androidx.room:room-compiler:$room_version"
+//    kapt "androidx.room:room-compiler:$room_version"
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
 
     def lifecycle_version = "2.4.1"

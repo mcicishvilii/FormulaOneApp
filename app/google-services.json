@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "372043244001",
+    "project_id": "formula-one-bae6f",
+    "storage_bucket": "formula-one-bae6f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:372043244001:android:7fd659ba12c6fb847e72a0",
+        "android_client_info": {
+          "package_name": "com.example.formulaone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "372043244001-4ru0nf87iuiaub8svmhr98rhal5is8dp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGsy79yVOyBLizxhw5RZQ1RAeDY1r83PQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "372043244001-4ru0nf87iuiaub8svmhr98rhal5is8dp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

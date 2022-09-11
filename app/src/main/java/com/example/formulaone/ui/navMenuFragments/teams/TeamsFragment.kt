@@ -1,5 +1,6 @@
 package com.example.formulaone.ui.navMenuFragments.teams
 
+import android.graphics.Color
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.util.Log
@@ -57,10 +58,9 @@ class TeamsFragment : BaseFragment<FragmentTeamsBinding>(FragmentTeamsBinding::i
                     when(it){
                         is Resource.Error -> {
 
-
                         }
                         is Resource.Loading -> {
-                            binding
+                            
                         }
                         is Resource.Success -> {
                             constructorsAdapter.submitList(it.data.MRData.ConstructorTable.Constructors)

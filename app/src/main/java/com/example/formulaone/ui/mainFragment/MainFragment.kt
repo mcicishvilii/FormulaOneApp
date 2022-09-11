@@ -3,38 +3,30 @@ package com.example.formulaone.ui.mainFragment
 import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.LinearLayoutManager
-//import com.example.formulaone.DriversAdapter
-//import com.example.formulaone.DriversAdapter
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.example.formulaone.R
+import com.example.formulaone.Resource
 import com.example.formulaone.databinding.FragmentMainBinding
 import com.example.formulaone.ui.BaseFragment
 import com.example.formulaone.ui.navMenuFragments.drivers.DriversFragment
 import com.example.formulaone.ui.navMenuFragments.settings.SettingsFragment
 import com.example.formulaone.ui.navMenuFragments.teams.TeamsFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import kotlin.math.log
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
+
+@AndroidEntryPoint
 class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::inflate) {
 
     private val mainViewModel: MainViewModel by viewModels()
-//    private val driversAdapter: DriversAdapter by lazy { DriversAdapter() }
 
 
     override fun viewCreated() {
-
-//        setupRecycler()
-
-        mainViewModel.getCurrentStandingsLivedata()
-        mainViewModel.getCurrentStandingsLivedata().observe(viewLifecycleOwner) {
-            binding.tv1stDriver.text = buildString {
-                append(it?.get(0)?.code ?: "")
-                append(" ")
-                append(it?.get(0)?.givenName)
-                append(" ")
-                append(it?.get(0)?.familyName)
-            }
-        }
+        observe()
 
 
         val bottomNav: BottomNavigationView = binding.navbar
@@ -62,15 +54,32 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
         fragmentTransaction.commit()
     }
 
-//    private fun setupRecycler() {
-//        binding.rvDrivers.apply {
-//            adapter = driversAdapter
-//            layoutManager =
-//                LinearLayoutManager(requireContext(),
-//                    LinearLayoutManager.VERTICAL,
-//                    false)
-//        }
-//    }
 
+    private fun observe() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                mainViewModel.state.collectLatest {
+                    when (it) {
+                        is Resource.Error -> {
+
+
+                        }
+                        is Resource.Loading -> {
+
+                        }
+                        is Resource.Success -> {
+                            binding.tv1stDriver.text = buildString {
+                                append(it.data.MRData.StandingsTable.StandingsLists[0].DriverStandings[0].Driver.givenName)
+                                append(" ")
+                            } +
+                                    "${it.data.MRData.StandingsTable.StandingsLists[0].DriverStandings[0].Driver.familyName} " +
+                                    "${it.data.MRData.StandingsTable.StandingsLists[0].DriverStandings[0].Driver.code}"
+                        }
+                    }
+                }
+            }
+        }
+    }
 
 }
+

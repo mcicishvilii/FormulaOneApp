@@ -28,7 +28,6 @@ class TeamsFragment : BaseFragment<FragmentTeamsBinding>(FragmentTeamsBinding::i
 
     private val constructorsAdapter: ConstructorsAdapter by lazy { ConstructorsAdapter() }
     private val teamsViewModel: TeamsViewModel by viewModels()
-    private val driversViewModel: DriversViewModel by viewModels()
 
     override fun viewCreated() {
         observe()
@@ -57,14 +56,13 @@ class TeamsFragment : BaseFragment<FragmentTeamsBinding>(FragmentTeamsBinding::i
                 teamsViewModel.state.collectLatest {
                     when(it){
                         is Resource.Error -> {
-                            Log.d("misho","erorzea")
+
 
                         }
                         is Resource.Loading -> {
-                            Log.d("misho","loadingia")
+                            binding
                         }
                         is Resource.Success -> {
-                            Log.d("misho","mushaobs")
                             constructorsAdapter.submitList(it.data.MRData.ConstructorTable.Constructors)
                         }
                     }

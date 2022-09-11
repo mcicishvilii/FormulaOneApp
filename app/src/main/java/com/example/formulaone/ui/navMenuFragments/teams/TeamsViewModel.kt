@@ -1,17 +1,12 @@
 package com.example.formulaone.ui.navMenuFragments.teams
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.formulaone.Resource
-import com.example.formulaone.domain.TeamsState
-import com.example.formulaone.domain.repository.Repository
 import com.example.formulaone.domain.useCase.GetTeamsListUseCase
 import com.example.formulaone.models.teams.Teams
-import com.example.formulaone.network.RetrofitHelper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel

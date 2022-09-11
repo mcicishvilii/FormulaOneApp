@@ -1,20 +1,14 @@
 package com.example.formulaone.di
 
-import android.app.Application
 import com.example.formulaone.Constants
-import com.example.formulaone.domain.repository.Repository
-import com.example.formulaone.network.RetrofitHelper
 import com.example.formulaone.network.apis.ConstructorsApi
-import com.example.formulaone.ui.navMenuFragments.teams.TeamsRepository
+import com.example.formulaone.network.apis.CurrentDriversStandingsApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
-import java.lang.reflect.Constructor
-import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
@@ -28,6 +22,16 @@ object AppModule {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(ConstructorsApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideLastWinningDriver():CurrentDriversStandingsApi{
+        return Retrofit.Builder()
+            .baseUrl(Constants.BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(CurrentDriversStandingsApi::class.java)
     }
 
 }

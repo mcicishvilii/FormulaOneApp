@@ -5,16 +5,21 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.formulaone.R
 import com.example.formulaone.databinding.FragmentCreateAccountFragmentStepFiveBinding
 import com.example.formulaone.ui.BaseFragment
+import com.example.formulaone.ui.createAccountFragments.password.CreateAccountFragmentStepSixArgs
 
 class CreateAccountFragmentStepFive : BaseFragment<FragmentCreateAccountFragmentStepFiveBinding>(
     FragmentCreateAccountFragmentStepFiveBinding::inflate) {
+//
+//    private val args: CreateAccountFragmentStepFiveArgs by navArgs()
+//    private val email = args
+
 
     override fun viewCreated() {
-
-
+//        Log.d("tag",email.toString())
     }
 
     override fun listeners() {

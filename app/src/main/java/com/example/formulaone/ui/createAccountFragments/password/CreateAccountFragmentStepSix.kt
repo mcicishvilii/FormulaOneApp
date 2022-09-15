@@ -24,7 +24,6 @@ class CreateAccountFragmentStepSix : BaseFragment<FragmentCreateAccountFragmentS
     override fun viewCreated() {
         auth = FirebaseAuth.getInstance()
 
-        loginWithUser()
 
         binding.tvWelcome.text = args.countryName
         binding.etPassword.doOnTextChanged { text, start, before, count ->
@@ -39,34 +38,6 @@ class CreateAccountFragmentStepSix : BaseFragment<FragmentCreateAccountFragmentS
     }
 
 
-    private fun loginWithUser(){
-        val email = "mcicishvilii@gmail.com"
-        val password = "12345678"
 
-        if(email.isNotEmpty() && password.isNotEmpty()){
-            CoroutineScope(Dispatchers.IO).launch {
-                try {
-                    auth.signInWithEmailAndPassword(email,password).await()
-                    withContext(Dispatchers.Main){
-                        checkLoggedInState()
-                        findNavController().navigate(CreateAccountFragmentStepSixDirections.actionCreateAccountFragmentStepSixToMainFragment())
-                    }
-                }catch (e:Exception){
-                    withContext(Dispatchers.Main){
-                        Toast.makeText(requireContext(),"wrong", Toast.LENGTH_SHORT).show()
-                    }
-                }
-            }
-        }
-    }
-
-    private fun checkLoggedInState() {
-        val user = auth.currentUser
-        if (user == null) {
-
-        } else {
-
-        }
-    }
 
 }

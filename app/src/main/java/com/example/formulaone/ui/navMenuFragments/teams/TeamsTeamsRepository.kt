@@ -18,5 +18,4 @@ class TeamsTeamsRepository @Inject constructor(
         return api.getDriversList()
     }
 
-
 }

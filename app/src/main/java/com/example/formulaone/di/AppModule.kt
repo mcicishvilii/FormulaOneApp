@@ -3,6 +3,7 @@ package com.example.formulaone.di
 import com.example.formulaone.Constants
 import com.example.formulaone.network.apis.ConstructorsApi
 import com.example.formulaone.network.apis.CurrentDriversStandingsApi
+import com.example.formulaone.network.apis.LastRaceAPi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,7 +15,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
-
 
     @Provides
     @Singleton
@@ -28,12 +28,22 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideLastWinningDriver():CurrentDriversStandingsApi{
+    fun provideStandingsApi():CurrentDriversStandingsApi{
         return Retrofit.Builder()
             .baseUrl(Constants.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(CurrentDriversStandingsApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideLastRaceInfoApi():LastRaceAPi{
+        return Retrofit.Builder()
+            .baseUrl(Constants.BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(LastRaceAPi::class.java)
     }
 
 }

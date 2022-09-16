@@ -1,8 +1,8 @@
-package com.example.formulaone.domain.useCase
+package com.example.formulaone.domain.use_case
 
 import com.example.formulaone.Resource
 import com.example.formulaone.domain.repository.TeamsRepository
-import com.example.formulaone.models.teams.Teams
+import com.example.formulaone.data.teams.Teams
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException

@@ -68,12 +68,8 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
 
                         }
                         is Resource.Success -> {
-                            binding.tv1stDriver.text = buildString {
-                                append(it.data.MRData.StandingsTable.StandingsLists[0].DriverStandings[0].Driver.givenName)
-                                append(" ")
-                            } +
-                                    "${it.data.MRData.StandingsTable.StandingsLists[0].DriverStandings[0].Driver.familyName} " +
-                                    "${it.data.MRData.StandingsTable.StandingsLists[0].DriverStandings[0].Driver.code}"
+                            binding.tv1stDriver.text = it.data.MRData.StandingsTable.StandingsLists[0].DriverStandings[0].Driver.familyName
+
                         }
                     }
                 }

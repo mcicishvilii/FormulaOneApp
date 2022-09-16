@@ -1,6 +1,6 @@
 package com.example.formulaone.network.apis
 
-import com.example.formulaone.models.teams.Teams
+import com.example.formulaone.data.teams.Teams
 import retrofit2.http.GET
 
 interface ConstructorsApi {

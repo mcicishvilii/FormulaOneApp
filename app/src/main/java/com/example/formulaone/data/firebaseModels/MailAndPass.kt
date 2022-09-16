@@ -1,4 +1,4 @@
-package com.example.formulaone.models.firebaseModels
+package com.example.formulaone.data.firebaseModels
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

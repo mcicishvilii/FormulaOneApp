@@ -1,22 +1,21 @@
-package com.example.formulaone.domain.useCase
+package com.example.formulaone.domain.use_case
 
 import com.example.formulaone.Resource
-import com.example.formulaone.domain.repository.LastWinningDriverRepository
-import com.example.formulaone.domain.repository.TeamsRepository
-import com.example.formulaone.models.drivers.plugin.PluginStandings
+import com.example.formulaone.domain.repository.CurrentDriversStandingsRepository
+import com.example.formulaone.data.drivers.plugin.DriverStandingsDto
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 
-class GetWinningDriverUseCase @Inject constructor(
-    private val repository: LastWinningDriverRepository
+class CurrentDriversStandingsUseCase @Inject constructor(
+    private val repository: CurrentDriversStandingsRepository
 ){
-    operator fun invoke(): Flow<Resource<PluginStandings>> = flow {
+    operator fun invoke(): Flow<Resource<DriverStandingsDto>> = flow {
         try {
             emit(Resource.Loading(true))
-            val winningDriver = repository.getLastWinningDriver()
+            val winningDriver = repository.getCurrentDriversStanding()
             emit(Resource.Success(winningDriver))
         }
         catch (e: HttpException){

@@ -1,18 +1,14 @@
-package com.example.formulaone.ui.navMenuFragments.teams
+package com.example.formulaone.data.repository_impl
 
 import android.util.Log
 import com.example.formulaone.domain.repository.TeamsRepository
-import com.example.formulaone.models.teams.Teams
+import com.example.formulaone.data.teams.Teams
 import com.example.formulaone.network.apis.ConstructorsApi
 import javax.inject.Inject
 
-class TeamsTeamsRepository @Inject constructor(
+class TeamsRepositoryImpl @Inject constructor(
     private val api:ConstructorsApi
 ) : TeamsRepository {
-
-    init{
-        Log.d("tag","misho")
-    }
 
     override suspend fun getTeamsData(): Teams {
         return api.getDriversList()

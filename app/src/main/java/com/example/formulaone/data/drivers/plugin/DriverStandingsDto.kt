@@ -1,6 +1,6 @@
-package com.example.formulaone.models.drivers.plugin
+package com.example.formulaone.data.drivers.plugin
 
-data class PluginStandings(
+data class DriverStandingsDto(
     val MRData: MRDataX)
 {
     data class MRDataX(

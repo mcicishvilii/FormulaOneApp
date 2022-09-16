@@ -1,4 +1,4 @@
-package com.example.formulaone.models.teams
+package com.example.formulaone.data.teams
 
 data class Teams(
     val MRData: MRdata

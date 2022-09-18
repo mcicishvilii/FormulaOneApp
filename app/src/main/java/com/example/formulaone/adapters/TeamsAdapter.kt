@@ -6,8 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.formulaone.databinding.SingleMovieLayoutBinding
 import com.example.formulaone.data.teams.Teams
+import com.example.formulaone.databinding.SingleTeamLayoutBinding
 
 
 class ConstructorsAdapter: ListAdapter<Teams.MRdata.ConstructorsTable.Constructor, ConstructorsAdapter.ConstructorsViewHolder>(TeamsDiffCallBack()) {
@@ -18,7 +18,7 @@ class ConstructorsAdapter: ListAdapter<Teams.MRdata.ConstructorsTable.Constructo
         parent: ViewGroup, viewType: Int
     ): ConstructorsViewHolder {
         val binding =
-            SingleMovieLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            SingleTeamLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ConstructorsViewHolder(binding)
     }
 
@@ -27,7 +27,7 @@ class ConstructorsAdapter: ListAdapter<Teams.MRdata.ConstructorsTable.Constructo
     }
 
 
-    inner class ConstructorsViewHolder(private val binding: SingleMovieLayoutBinding) :
+    inner class ConstructorsViewHolder(private val binding: SingleTeamLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
         private var model: Teams.MRdata.ConstructorsTable.Constructor? = null
         fun bindData() {

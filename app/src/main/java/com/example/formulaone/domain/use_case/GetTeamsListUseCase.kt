@@ -9,6 +9,8 @@ import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 
+
+// using to display all the teams in teams fragment
 class GetTeamsListUseCase @Inject constructor(
     private val repository: TeamsRepository
 ){

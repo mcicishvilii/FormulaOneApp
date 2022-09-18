@@ -20,18 +20,21 @@ abstract class RepositoryModule {
 
     @Binds
     @Singleton
+    // using
     abstract fun bindTeamsRepository(
         teamsRepository: TeamsRepositoryImpl
     ): TeamsRepository
 
     @Binds
     @Singleton
+    //not using yet
     abstract fun bindWinningDriverRepository(
         driverStandingsRepositoryImpl: DriverStandingsRepositoryImpl
     ): CurrentDriversStandingsRepository
 
     @Binds
     @Singleton
+    //using for two usecases
     abstract fun bindCircuitRepository(
         lastRaceRepoImpl: LastRaceImpl
     ): LastRaceRepository

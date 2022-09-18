@@ -10,6 +10,7 @@ import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 
+// using as the name suggests
 class GetLastRaceWinnerUseCase @Inject constructor(
     private val repository: LastRaceRepository
 ) {

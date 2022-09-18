@@ -9,6 +9,8 @@ import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 
+
+// not using yet
 class CurrentDriversStandingsUseCase @Inject constructor(
     private val repository: CurrentDriversStandingsRepository
 ){

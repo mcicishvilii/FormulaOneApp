@@ -10,40 +10,40 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.create
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
 
-    @Provides
+
     @Singleton
-    fun provideConstructorsApi():ConstructorsApi{
-        return Retrofit.Builder()
+    @Provides
+    fun provideRetrofit():Retrofit{
+        return Retrofit
+            .Builder()
             .baseUrl(Constants.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-            .create(ConstructorsApi::class.java)
     }
 
     @Provides
     @Singleton
-    fun provideStandingsApi():CurrentDriversStandingsApi{
-        return Retrofit.Builder()
-            .baseUrl(Constants.BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-            .create(CurrentDriversStandingsApi::class.java)
+    fun provideConstructorsApi(retrofit: Retrofit):ConstructorsApi{
+        return retrofit.create(ConstructorsApi::class.java)
     }
 
     @Provides
     @Singleton
-    fun provideLastRaceInfoApi():LastRaceAPi{
-        return Retrofit.Builder()
-            .baseUrl(Constants.BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-            .create(LastRaceAPi::class.java)
+    fun provideStandingsApi(retrofit: Retrofit):CurrentDriversStandingsApi{
+        return retrofit.create(CurrentDriversStandingsApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideLastRaceInfoApi(retrofit: Retrofit):LastRaceAPi{
+        return retrofit.create(LastRaceAPi::class.java)
     }
 
 }

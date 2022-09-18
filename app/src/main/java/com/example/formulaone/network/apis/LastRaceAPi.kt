@@ -6,6 +6,6 @@ import retrofit2.http.GET
 
 interface LastRaceAPi {
     @GET("current/last/results.json")
-    suspend fun getLastRaceCircuit(
+    suspend fun getLastRaceInfo(
     ): LastRaceDto
 }

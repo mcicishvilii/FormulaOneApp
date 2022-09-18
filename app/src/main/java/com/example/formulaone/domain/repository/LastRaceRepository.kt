@@ -5,6 +5,8 @@ import com.example.formulaone.data.drivers.plugin.DriverStandingsDto
 
 interface LastRaceRepository {
 
-    suspend fun getLastRaceInfo(): LastRaceDto
+    suspend fun getLastRaceCictuit(): LastRaceDto
+
+    suspend fun getLastRaceWinner(): LastRaceDto
 
 }

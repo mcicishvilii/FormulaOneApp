@@ -10,6 +10,7 @@ import com.example.formulaone.data.drivers.last_race.RaceTable
 import com.example.formulaone.domain.use_case.CurrentDriversStandingsUseCase
 import com.example.formulaone.data.drivers.plugin.DriverStandingsDto
 import com.example.formulaone.domain.use_case.last_race.GetLastRaceCircuitUseCase
+import com.example.formulaone.domain.use_case.last_race.GetLastRaceWinnerUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -21,7 +22,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val currentDriversStandingsUseCase: CurrentDriversStandingsUseCase,
+    private val getLastRaceWinnerUseCase: GetLastRaceWinnerUseCase,
     private val getLastRaceCircuitUseCase: GetLastRaceCircuitUseCase
 
 ) : ViewModel() {
@@ -36,10 +37,10 @@ class MainViewModel @Inject constructor(
 
             viewModelScope.launch {
 
-                getLastRaceCircuitUseCase().onEach { it
-                    when (it){
+                getLastRaceCircuitUseCase().onEach { circuit ->
+                    when (circuit){
                         is Resource.Success -> {
-                            uiModelHashMap[1] = it.data.MRData.RaceTable.Races[0].raceName
+                            uiModelHashMap[1] = circuit.data.MRData.RaceTable.Races[0].raceName
                             apiCount += 1
                             submitState()
                         }
@@ -55,11 +56,11 @@ class MainViewModel @Inject constructor(
                     }
                 }.launchIn(viewModelScope)
 
-                currentDriversStandingsUseCase().onEach { result ->
-                    when (result){
+                getLastRaceWinnerUseCase().onEach { winner ->
+                    when (winner){
                         is Resource.Success -> {
-                            uiModelHashMap[0] = result.data.MRData.StandingsTable.StandingsLists[0].DriverStandings[0].Driver.givenName + " " +
-                                    result.data.MRData.StandingsTable.StandingsLists[0].DriverStandings[0].Driver.familyName
+                            uiModelHashMap[0] = winner.data.MRData.RaceTable.Races[0].Results[0].Driver.givenName + " " +
+                                    winner.data.MRData.RaceTable.Races[0].Results[0].Driver.familyName
                             apiCount += 1
                             submitState()
                         }

@@ -1,5 +1,6 @@
 package com.example.formulaone.ui.navMenuFragments.drivers
 
+import android.graphics.Color
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -60,10 +61,11 @@ class DriversFragment : BaseFragment<FragmentDriversBinding>(FragmentDriversBind
 
                         }
                         is Resource.Loading -> {
-
+                            binding.tvNowLoading.visibility = View.VISIBLE
                         }
                         is Resource.Success -> {
                             driversAdapter.submitList(it.data.MRData.StandingsTable.StandingsLists[0].DriverStandings)
+                            binding.tvNowLoading.visibility = View.INVISIBLE
                         }
                     }
                 }

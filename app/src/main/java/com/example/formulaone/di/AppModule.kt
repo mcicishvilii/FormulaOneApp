@@ -18,6 +18,7 @@ object AppModule {
 
     @Provides
     @Singleton
+    // gundebis chamonatvali
     fun provideConstructorsApi():ConstructorsApi{
         return Retrofit.Builder()
             .baseUrl(Constants.BASE_URL)
@@ -28,6 +29,7 @@ object AppModule {
 
     @Provides
     @Singleton
+    // verstapens ro wers
     fun provideStandingsApi():CurrentDriversStandingsApi{
         return Retrofit.Builder()
             .baseUrl(Constants.BASE_URL)
@@ -38,6 +40,7 @@ object AppModule {
 
     @Provides
     @Singleton
+    // es wers qveynis saxels
     fun provideLastRaceInfoApi():LastRaceAPi{
         return Retrofit.Builder()
             .baseUrl(Constants.BASE_URL)

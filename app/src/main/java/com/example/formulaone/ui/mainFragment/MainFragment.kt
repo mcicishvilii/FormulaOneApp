@@ -1,6 +1,5 @@
 package com.example.formulaone.ui.mainFragment
 
-import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -26,8 +25,9 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
 
 
     override fun viewCreated() {
-        observe()
 
+        mainViewModel.getData()
+        observe()
 
         val bottomNav: BottomNavigationView = binding.navbar
 
@@ -62,20 +62,21 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
                     when (it) {
                         is Resource.Error -> {
 
-
                         }
                         is Resource.Loading -> {
 
                         }
                         is Resource.Success -> {
-                            binding.tv1stDriver.text = it.data.MRData.StandingsTable.StandingsLists[0].DriverStandings[0].Driver.familyName
-
+                            binding.tv1stDriver.text = it.data.winner
+                            binding.lastRaceLocation.text = "The winner of the ${it.data.country}"
                         }
                     }
                 }
             }
         }
     }
+
+
 
 }
 

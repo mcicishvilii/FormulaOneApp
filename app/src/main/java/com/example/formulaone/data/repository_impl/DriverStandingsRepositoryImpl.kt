@@ -6,7 +6,7 @@ import com.example.formulaone.network.apis.CurrentDriversStandingsApi
 import javax.inject.Inject
 
 class DriverStandingsRepositoryImpl @Inject constructor(
-    private val api: CurrentDriversStandingsApi,
+    private val api: CurrentDriversStandingsApi
 ) : CurrentDriversStandingsRepository {
 
 

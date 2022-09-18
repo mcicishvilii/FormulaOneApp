@@ -3,7 +3,9 @@ package com.example.formulaone.di
 import com.example.formulaone.domain.repository.CurrentDriversStandingsRepository
 import com.example.formulaone.domain.repository.TeamsRepository
 import com.example.formulaone.data.repository_impl.DriverStandingsRepositoryImpl
+import com.example.formulaone.data.repository_impl.LastRaceImpl
 import com.example.formulaone.data.repository_impl.TeamsRepositoryImpl
+import com.example.formulaone.domain.repository.LastRaceRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -16,7 +18,6 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 abstract class RepositoryModule {
 
-
     @Binds
     @Singleton
     abstract fun bindTeamsRepository(
@@ -28,4 +29,11 @@ abstract class RepositoryModule {
     abstract fun bindWinningDriverRepository(
         driverStandingsRepositoryImpl: DriverStandingsRepositoryImpl
     ): CurrentDriversStandingsRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindCircuitRepository(
+        lastRaceRepoImpl: LastRaceImpl
+    ): LastRaceRepository
+
 }

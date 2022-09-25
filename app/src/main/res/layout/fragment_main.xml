@@ -16,8 +16,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-
-
         <View
             android:id="@+id/lastRaceContainer"
             android:layout_width="0dp"
@@ -62,37 +60,36 @@
             android:id="@+id/tvViewResults"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:background="#FF0000"
             android:padding="5dp"
-            android:layout_marginTop="10dp"
             android:text="view results"
-            app:layout_constraintTop_toBottomOf="@id/tv1stDriver"
             android:textColor="@color/white"
             app:layout_constraintEnd_toStartOf="@+id/tvViewReplay"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv1stDriver"
             tools:layout_editor_absoluteY="101dp" />
 
         <TextView
             android:id="@+id/tvViewReplay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:background="#FF0000"
             android:padding="5dp"
-            android:layout_marginTop="10dp"
-            app:layout_constraintTop_toBottomOf="@id/tv1stDriver"
             android:text="view replay"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/tvViewResults"
+            app:layout_constraintTop_toBottomOf="@id/tv1stDriver"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteY="101dp" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvStories"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginTop="30dp"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="40dp"
+            android:text="aq unda iyos siaxleebis chamonavali an rame msgavsi main screenistvis damaxasitabeli kontenti. magalitad sheidzleba amindis prognozic momdevno trasistvis"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

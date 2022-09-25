@@ -4,7 +4,7 @@ import android.view.View
 import androidx.core.widget.doOnTextChanged
 import androidx.navigation.fragment.findNavController
 import com.example.formulaone.databinding.FragmentCreateAccountFragmentStepFourBinding
-import com.example.formulaone.ui.BaseFragment
+import com.example.formulaone.common.bases.BaseFragment
 
 class CreateAccountFragmentStepFour : BaseFragment<FragmentCreateAccountFragmentStepFourBinding>(FragmentCreateAccountFragmentStepFourBinding::inflate) {
 

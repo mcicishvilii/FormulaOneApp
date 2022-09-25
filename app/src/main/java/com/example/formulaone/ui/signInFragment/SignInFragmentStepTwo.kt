@@ -1,18 +1,11 @@
 package com.example.formulaone.ui.signInFragment
 
-import androidx.lifecycle.ViewModelProvider
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
 import androidx.navigation.fragment.findNavController
-import com.example.formulaone.R
 import com.example.formulaone.databinding.FragmentSignInFragmentStepTwoBinding
-import com.example.formulaone.ui.BaseFragment
-import com.example.formulaone.ui.createAccountFragments.password.CreateAccountFragmentStepSixDirections
+import com.example.formulaone.common.bases.BaseFragment
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

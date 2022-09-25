@@ -5,11 +5,9 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.example.formulaone.R
 import com.example.formulaone.databinding.FragmentCreateAccountFragmentStepFiveBinding
-import com.example.formulaone.ui.BaseFragment
-import com.example.formulaone.ui.createAccountFragments.password.CreateAccountFragmentStepSixArgs
+import com.example.formulaone.common.bases.BaseFragment
 
 class CreateAccountFragmentStepFive : BaseFragment<FragmentCreateAccountFragmentStepFiveBinding>(
     FragmentCreateAccountFragmentStepFiveBinding::inflate) {

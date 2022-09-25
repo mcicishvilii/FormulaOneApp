@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.formulaone.data.drivers.plugin.DriverStandingsDto
+import com.example.formulaone.data.remote.drivers.plugin.DriverStandingsDto
 import com.example.formulaone.databinding.SingleDriverLayoutBinding
 
 class DriversAdapter: ListAdapter<DriverStandingsDto.MRDataX.StandingsTableX.StandingsListsX.DriverStanding, DriversAdapter.DriversViewHolder>(DriversDiffCallBack()) {

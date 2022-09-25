@@ -6,13 +6,16 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.formulaone.data.teams.Teams
+import com.example.formulaone.data.remote.teams.Teams
 import com.example.formulaone.databinding.SingleTeamLayoutBinding
 
 
-class ConstructorsAdapter: ListAdapter<Teams.MRdata.ConstructorsTable.Constructor, ConstructorsAdapter.ConstructorsViewHolder>(TeamsDiffCallBack()) {
+class ConstructorsAdapter :
+    ListAdapter<Teams.MRdata.ConstructorsTable.Constructor, ConstructorsAdapter.ConstructorsViewHolder>(
+        TeamsDiffCallBack()
+    ) {
 
-//    private lateinit var itemClickListener: (PopularResponse.Result1, Int) -> Unit
+    private lateinit var itemClickListener: (Teams.MRdata.ConstructorsTable.Constructor, Int) -> Unit
 
     override fun onCreateViewHolder(
         parent: ViewGroup, viewType: Int
@@ -37,23 +40,35 @@ class ConstructorsAdapter: ListAdapter<Teams.MRdata.ConstructorsTable.Constructo
                 tvTeamNationality.text = model?.nationality
 
                 binding.root.setBackgroundResource(R.drawable.outline)
+            }
+
+            binding.tvTeamName.setOnClickListener {
+                itemClickListener.invoke(model!!, absoluteAdapterPosition)
+            }
 
         }
+
     }
 
-//    fun setOnItemClickListener(clickListener: (PopularResponse.Result1, Int) -> Unit) {
-//        itemClickListener = clickListener
-//    }
+    fun setOnItemClickListener(clickListener: (Teams.MRdata.ConstructorsTable.Constructor, Int) -> Unit) {
+        itemClickListener = clickListener
+    }
 }
-}
+
+
+
 class TeamsDiffCallBack : DiffUtil.ItemCallback<Teams.MRdata.ConstructorsTable.Constructor>() {
-    override fun areItemsTheSame(oldItem: Teams.MRdata.ConstructorsTable.Constructor, newItem: Teams.MRdata.ConstructorsTable.Constructor): Boolean {
+    override fun areItemsTheSame(
+        oldItem: Teams.MRdata.ConstructorsTable.Constructor,
+        newItem: Teams.MRdata.ConstructorsTable.Constructor
+    ): Boolean {
         return oldItem.constructorId == newItem.constructorId
     }
 
     @SuppressLint("DiffUtilEquals")
     override fun areContentsTheSame(
-        oldItem: Teams.MRdata.ConstructorsTable.Constructor, newItem: Teams.MRdata.ConstructorsTable.Constructor
+        oldItem: Teams.MRdata.ConstructorsTable.Constructor,
+        newItem: Teams.MRdata.ConstructorsTable.Constructor
     ): Boolean {
         return oldItem == newItem
     }

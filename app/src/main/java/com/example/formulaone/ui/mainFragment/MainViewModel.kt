@@ -1,14 +1,8 @@
 package com.example.formulaone.ui.mainFragment
 
-import android.util.Log.d
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.formulaone.Resource
-import com.example.formulaone.data.drivers.last_race.LastRaceDto
-import com.example.formulaone.data.drivers.last_race.MRData
-import com.example.formulaone.data.drivers.last_race.RaceTable
-import com.example.formulaone.domain.use_case.CurrentDriversStandingsUseCase
-import com.example.formulaone.data.drivers.plugin.DriverStandingsDto
 import com.example.formulaone.domain.use_case.last_race.GetLastRaceCircuitUseCase
 import com.example.formulaone.domain.use_case.last_race.GetLastRaceWinnerUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel

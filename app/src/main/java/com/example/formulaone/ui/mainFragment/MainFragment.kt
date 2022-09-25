@@ -8,7 +8,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.example.formulaone.R
 import com.example.formulaone.Resource
 import com.example.formulaone.databinding.FragmentMainBinding
-import com.example.formulaone.ui.BaseFragment
+import com.example.formulaone.common.bases.BaseFragment
 import com.example.formulaone.ui.navMenuFragments.drivers.DriversFragment
 import com.example.formulaone.ui.navMenuFragments.settings.SettingsFragment
 import com.example.formulaone.ui.navMenuFragments.teams.TeamsFragment

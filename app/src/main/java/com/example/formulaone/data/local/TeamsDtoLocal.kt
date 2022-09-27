@@ -3,13 +3,24 @@ package com.example.formulaone.data.local
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.example.formulaone.domain.model.local.TeamRoom
+import com.example.formulaone.domain.model.remote.TeamsDomain
 
 @Entity(tableName = "gundebi")
 data class TeamsDtoLocal(
-    @PrimaryKey(autoGenerate = true)
-    val teamId:Int? = null,
+    @PrimaryKey(autoGenerate = false)
+    val teamId:String,
     @ColumnInfo(name="team_name")
-    val teamName:String,
+    val teamName:String?,
     @ColumnInfo(name="team_nationality")
-    val teamNationality:String
+    val teamNationality:String?,
+    @ColumnInfo(name="url")
+    val url:String?
+
 )
+
+fun TeamsDtoLocal.toModel(): TeamsDomain = TeamsDomain(
+    teamId, teamName, teamNationality, url
+)
+
+

@@ -1,5 +1,6 @@
 package com.example.formulaone.ui.navMenuFragments.teams
 
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -17,7 +18,7 @@ import kotlinx.coroutines.launch
 class TeamsFragment : BaseFragment<FragmentTeamsBinding>(FragmentTeamsBinding::inflate) {
 
     private val constructorsAdapter: ConstructorsAdapter by lazy { ConstructorsAdapter() }
-    private val teamsViewModel: TeamsViewModel by viewModels()
+    private val viewModel: TeamsViewModel by viewModels()
 
     override fun viewCreated() {
         observe()
@@ -30,10 +31,12 @@ class TeamsFragment : BaseFragment<FragmentTeamsBinding>(FragmentTeamsBinding::i
     private fun addToFavourites(){
         constructorsAdapter.apply {
             setOnItemClickListener{team,_ ->
-
+                viewModel.insertTeam(team)
+                Toast.makeText(requireContext(),"${team.name} added to db",Toast.LENGTH_SHORT).show()
             }
         }
     }
+
 
 
 
@@ -51,7 +54,7 @@ class TeamsFragment : BaseFragment<FragmentTeamsBinding>(FragmentTeamsBinding::i
         setupRecycler()
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                teamsViewModel.state.collectLatest {
+                viewModel.state.collectLatest {
                     when(it){
                         is Resource.Error -> {
 
@@ -60,7 +63,7 @@ class TeamsFragment : BaseFragment<FragmentTeamsBinding>(FragmentTeamsBinding::i
                             
                         }
                         is Resource.Success -> {
-                            constructorsAdapter.submitList(it.data.MRData.ConstructorTable.Constructors)
+                            constructorsAdapter.submitList(it.data)
                         }
                     }
                 }

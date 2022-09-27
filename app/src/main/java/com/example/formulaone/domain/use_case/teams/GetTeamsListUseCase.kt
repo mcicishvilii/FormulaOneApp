@@ -3,6 +3,7 @@ package com.example.formulaone.domain.use_case.teams
 import com.example.formulaone.Resource
 import com.example.formulaone.domain.repository.remote.TeamsRepository
 import com.example.formulaone.data.remote.teams.Teams
+import com.example.formulaone.domain.model.remote.TeamsDomain
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
@@ -14,7 +15,7 @@ import javax.inject.Inject
 class GetTeamsListUseCase @Inject constructor(
     private val repository: TeamsRepository
 ){
-    operator fun invoke(): Flow<Resource<Teams>> = flow {
+    operator fun invoke(): Flow<Resource<List<TeamsDomain>>> = flow {
         try {
             emit(Resource.Loading(true))
             val teams = repository.getTeamsData()

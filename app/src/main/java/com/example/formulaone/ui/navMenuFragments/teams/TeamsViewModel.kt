@@ -6,6 +6,7 @@ import com.example.formulaone.Resource
 import com.example.formulaone.data.remote.teams.Teams
 import com.example.formulaone.domain.use_case.teams.*
 import com.example.formulaone.data.local.TeamsDtoLocal
+import com.example.formulaone.domain.model.remote.TeamsDomain
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -17,12 +18,12 @@ import javax.inject.Inject
 class TeamsViewModel @Inject constructor(
     private val getTeamsListUseCase: GetTeamsListUseCase,
     private val insertTeamUseCase: InsertTeamUseCase,
-    private val getTeamsFromDBUseCase: GetTeamsFromDBUseCase,
+//    private val getTeamsFromDBUseCase: GetTeamsFromDBUseCase,
     private val deleteUseCase: DeleteTeamUseCase,
     private val deleteAllUseCase: DeleteAllUseCase
 ) : ViewModel() {
 
-    private val _state = MutableStateFlow<Resource<Teams>>(Resource.Loading(false))
+    private val _state = MutableStateFlow<Resource<List<TeamsDomain>>>(Resource.Loading(false))
     val state = _state.asStateFlow()
 
 
@@ -40,7 +41,7 @@ class TeamsViewModel @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
-    fun insertTeam(team: TeamsDtoLocal){
+    fun insertTeam(team: TeamsDomain){
         CoroutineScope(Dispatchers.IO).launch {
             insertTeamUseCase(team)
         }

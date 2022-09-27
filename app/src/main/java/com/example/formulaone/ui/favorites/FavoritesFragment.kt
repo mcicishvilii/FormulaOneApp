@@ -6,27 +6,58 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.formulaone.ConstructorsAdapter
 import com.example.formulaone.R
+import com.example.formulaone.Resource
+import com.example.formulaone.common.bases.BaseFragment
+import com.example.formulaone.databinding.FragmentFavoritesBinding
+import com.example.formulaone.ui.navMenuFragments.teams.TeamsViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
-class FavoritesFragment : Fragment() {
+@AndroidEntryPoint
+class FavoritesFragment : BaseFragment<FragmentFavoritesBinding>(FragmentFavoritesBinding::inflate) {
 
-    companion object {
-        fun newInstance() = FavoritesFragment()
+    private val favsAdapter: ConstructorsAdapter by lazy { ConstructorsAdapter() }
+    private val viewModel: FavoritesViewModel by viewModels()
+
+    override fun viewCreated() {
+        getTeams()
     }
 
-    private lateinit var viewModel: FavoritesViewModel
+    override fun listeners() {
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_favorites, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(FavoritesViewModel::class.java)
-        // TODO: Use the ViewModel
+    fun getTeams(){
+        setupRecycler()
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.getTeam().collectLatest {
+                    favsAdapter.submitList(it)
+                }
+            }
+        }
+
     }
+
+    private fun setupRecycler() {
+        binding.rvFavTeams.apply {
+            adapter = favsAdapter
+            layoutManager =
+                LinearLayoutManager(requireContext(),
+                    LinearLayoutManager.VERTICAL,
+                    false)
+        }
+    }
+
+
 
 }

@@ -1,5 +1,7 @@
 package com.example.formulaone.data.remote.teams
 
+import com.example.formulaone.domain.model.remote.TeamsDomain
+
 data class Teams(
     val MRData: MRdata
 ){
@@ -14,13 +16,19 @@ data class Teams(
     ){
         data class ConstructorsTable(
             val Constructors: List<Constructor>?
-        ) {
-            data class Constructor(
-                val constructorId: String?,
-                val name: String?,
-                val nationality: String?,
-                val url: String?
-            )
-        }
+        )
     }
+}
+
+data class Constructor(
+    val constructorId: String,
+    val name: String?,
+    val nationality: String?,
+    val url: String?
+)
+
+fun Constructor.ToTeamsDomain():TeamsDomain{
+    return TeamsDomain(
+        constructorId, name, nationality, url
+    )
 }

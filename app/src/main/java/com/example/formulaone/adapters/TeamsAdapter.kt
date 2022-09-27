@@ -8,14 +8,15 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.formulaone.data.remote.teams.Teams
 import com.example.formulaone.databinding.SingleTeamLayoutBinding
+import com.example.formulaone.domain.model.remote.TeamsDomain
 
 
 class ConstructorsAdapter :
-    ListAdapter<Teams.MRdata.ConstructorsTable.Constructor, ConstructorsAdapter.ConstructorsViewHolder>(
+    ListAdapter<TeamsDomain, ConstructorsAdapter.ConstructorsViewHolder>(
         TeamsDiffCallBack()
     ) {
 
-    private lateinit var itemClickListener: (Teams.MRdata.ConstructorsTable.Constructor, Int) -> Unit
+    private lateinit var itemClickListener: (TeamsDomain, Int) -> Unit
 
     override fun onCreateViewHolder(
         parent: ViewGroup, viewType: Int
@@ -32,7 +33,7 @@ class ConstructorsAdapter :
 
     inner class ConstructorsViewHolder(private val binding: SingleTeamLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        private var model: Teams.MRdata.ConstructorsTable.Constructor? = null
+        private var model: TeamsDomain? = null
         fun bindData() {
             model = getItem(bindingAdapterPosition)
             binding.apply {
@@ -50,25 +51,25 @@ class ConstructorsAdapter :
 
     }
 
-    fun setOnItemClickListener(clickListener: (Teams.MRdata.ConstructorsTable.Constructor, Int) -> Unit) {
+    fun setOnItemClickListener(clickListener: (TeamsDomain, Int) -> Unit) {
         itemClickListener = clickListener
     }
 }
 
 
 
-class TeamsDiffCallBack : DiffUtil.ItemCallback<Teams.MRdata.ConstructorsTable.Constructor>() {
+class TeamsDiffCallBack : DiffUtil.ItemCallback<TeamsDomain>() {
     override fun areItemsTheSame(
-        oldItem: Teams.MRdata.ConstructorsTable.Constructor,
-        newItem: Teams.MRdata.ConstructorsTable.Constructor
+        oldItem: TeamsDomain,
+        newItem: TeamsDomain
     ): Boolean {
         return oldItem.constructorId == newItem.constructorId
     }
 
     @SuppressLint("DiffUtilEquals")
     override fun areContentsTheSame(
-        oldItem: Teams.MRdata.ConstructorsTable.Constructor,
-        newItem: Teams.MRdata.ConstructorsTable.Constructor
+        oldItem: TeamsDomain,
+        newItem: TeamsDomain
     ): Boolean {
         return oldItem == newItem
     }

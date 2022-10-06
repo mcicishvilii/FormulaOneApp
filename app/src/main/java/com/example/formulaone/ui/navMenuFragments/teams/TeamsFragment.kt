@@ -5,8 +5,10 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.formulaone.ConstructorsAdapter
+import com.example.formulaone.R
 import com.example.formulaone.Resource
 import com.example.formulaone.databinding.FragmentTeamsBinding
 import com.example.formulaone.common.bases.BaseFragment
@@ -26,6 +28,9 @@ class TeamsFragment : BaseFragment<FragmentTeamsBinding>(FragmentTeamsBinding::i
 
     override fun listeners() {
         addToFavourites()
+        binding.tvTeamListHeader.setOnClickListener {
+            findNavController().navigate(R.id.favoritesFragment)
+        }
     }
 
     private fun addToFavourites(){
@@ -36,8 +41,6 @@ class TeamsFragment : BaseFragment<FragmentTeamsBinding>(FragmentTeamsBinding::i
             }
         }
     }
-
-
 
 
     private fun setupRecycler() {

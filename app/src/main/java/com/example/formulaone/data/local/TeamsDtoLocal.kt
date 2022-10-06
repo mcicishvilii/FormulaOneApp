@@ -19,8 +19,10 @@ data class TeamsDtoLocal(
 
 )
 
-fun TeamsDtoLocal.toModel(): TeamsDomain = TeamsDomain(
-    teamId, teamName, teamNationality, url
-)
+fun TeamsDtoLocal.toModel(): TeamsDomain {
+    return TeamsDomain(
+        teamId, teamName, teamNationality, url
+    )
+}
 
 

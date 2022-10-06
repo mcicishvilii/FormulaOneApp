@@ -1,6 +1,6 @@
 package com.example.formulaone.network.apis
 
-import com.example.formulaone.data.remote.drivers.plugin.DriverStandingsDto
+import com.example.formulaone.data.remote.drivers.drivers_standings.DriverStandingsDto
 import retrofit2.http.GET
 
 

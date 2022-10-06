@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/favoritesFragment">
+    app:startDestination="@id/welcomeFragment">
 
     <fragment
         android:id="@+id/welcomeFragment"
@@ -121,9 +121,6 @@
         android:name="com.example.formulaone.ui.navMenuFragments.teams.TeamsFragment"
         android:label="fragment_teams"
         tools:layout="@layout/fragment_teams" >
-        <argument
-            android:name="ShowAppBar"
-            android:defaultValue="true" />
         <action
             android:id="@+id/action_teamsFragment_to_favoritesFragment"
             app:destination="@id/favoritesFragment" />

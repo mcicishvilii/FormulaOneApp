@@ -1,4 +1,4 @@
-package com.example.formulaone.data.remote.drivers.plugin
+package com.example.formulaone.data.remote.drivers.drivers_standings
 
 data class DriverStandingsDto(
     val MRData: MRDataX

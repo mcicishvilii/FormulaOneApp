@@ -1,6 +1,7 @@
 package com.example.formulaone.data.local
 
 import androidx.room.*
+import com.example.formulaone.data.local.models.TeamsDtoLocal
 import kotlinx.coroutines.flow.Flow
 
 @Dao

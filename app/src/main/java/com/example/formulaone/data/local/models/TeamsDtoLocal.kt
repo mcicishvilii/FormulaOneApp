@@ -1,4 +1,4 @@
-package com.example.formulaone.data.local
+package com.example.formulaone.data.local.models
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

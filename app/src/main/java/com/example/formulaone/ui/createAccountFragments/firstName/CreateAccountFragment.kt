@@ -26,8 +26,4 @@ class CreateAccountFragment : BaseFragment<FragmentCreateAccountBinding>(Fragmen
             binding.btnNext.visibility = View.VISIBLE
         }
     }
-
-
-
-
 }

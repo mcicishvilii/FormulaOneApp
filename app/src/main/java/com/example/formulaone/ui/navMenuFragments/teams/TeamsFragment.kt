@@ -1,6 +1,7 @@
 package com.example.formulaone.ui.navMenuFragments.teams
 
 import android.util.Log
+import android.widget.Filterable
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.fragment.app.viewModels
@@ -24,7 +25,7 @@ import kotlinx.coroutines.launch
 import java.util.*
 
 @AndroidEntryPoint
-class TeamsFragment : BaseFragment<FragmentTeamsBinding>(FragmentTeamsBinding::inflate) {
+class TeamsFragment : BaseFragment<FragmentTeamsBinding>(FragmentTeamsBinding::inflate),Filterable {
 
     private val constructorsAdapter: ConstructorsAdapter by lazy { ConstructorsAdapter() }
     private val viewModel: TeamsViewModel by viewModels()
@@ -92,16 +93,15 @@ class TeamsFragment : BaseFragment<FragmentTeamsBinding>(FragmentTeamsBinding::i
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                if(query.isNullOrEmpty()){
-                    poplist()
+                if(query == "misho"){
                     constructorsAdapter.submitList(Bitch)
                 }
                 return false
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                if(newText.isNullOrEmpty()){
-                    constructorsAdapter.submitList(constructorsAdapter.currentList)
+                if(newText == "misho"){
+                    constructorsAdapter.submitList(Bitch)
                 }else{
                     for (team in constructorsAdapter.currentList){
                         if(newText == team.nationality){

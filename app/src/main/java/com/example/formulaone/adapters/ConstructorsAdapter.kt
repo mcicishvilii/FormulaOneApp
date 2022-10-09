@@ -1,4 +1,4 @@
-package com.example.formulaone
+package com.example.formulaone.adapters
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.formulaone.data.remote.teams.Teams
+import com.example.formulaone.R
 import com.example.formulaone.databinding.SingleTeamLayoutBinding
 import com.example.formulaone.domain.model.remote.TeamsDomain
 

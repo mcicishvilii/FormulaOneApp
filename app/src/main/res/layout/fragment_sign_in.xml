@@ -14,8 +14,7 @@
         android:text="EMAIL ADDRESS"
         android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/etEmail"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/etEmail"

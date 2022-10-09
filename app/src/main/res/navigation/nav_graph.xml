@@ -26,8 +26,8 @@
         android:label="fragment_create_account"
         tools:layout="@layout/fragment_create_account" >
         <action
-            android:id="@+id/action_createAccountFragment_to_createAccountFragmentStepTwo"
-            app:destination="@id/createAccountFragmentStepTwo" />
+            android:id="@+id/action_createAccountFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
     </fragment>
     <fragment
         android:id="@+id/mainFragment"
@@ -63,55 +63,6 @@
             app:destination="@id/mainFragment" />
     </fragment>
     <fragment
-        android:id="@+id/createAccountFragmentStepTwo"
-        android:name="com.example.formulaone.ui.createAccountFragments.lastName.CreateAccountFragmentStepTwo"
-        android:label="fragment_create_account_fragment_step_two"
-        tools:layout="@layout/fragment_create_account_fragment_step_two" >
-        <action
-            android:id="@+id/action_createAccountFragmentStepTwo_to_createAccountFragmentStepThree"
-            app:destination="@id/createAccountFragmentStepThree" />
-    </fragment>
-    <fragment
-        android:id="@+id/createAccountFragmentStepThree"
-        android:name="com.example.formulaone.ui.createAccountFragments.dob.CreateAccountFragmentStepThree"
-        android:label="fragment_create_account_fragment_step_three"
-        tools:layout="@layout/fragment_create_account_fragment_step_three" >
-        <action
-            android:id="@+id/action_createAccountFragmentStepThree_to_createAccountFragmentStepFour"
-            app:destination="@id/createAccountFragmentStepFour" />
-    </fragment>
-    <fragment
-        android:id="@+id/createAccountFragmentStepFour"
-        android:name="com.example.formulaone.ui.createAccountFragments.email.CreateAccountFragmentStepFour"
-        android:label="fragment_create_account_fragment_step_four"
-        tools:layout="@layout/fragment_create_account_fragment_step_four" >
-        <action
-            android:id="@+id/action_createAccountFragmentStepFour_to_createAccountFragmentStepFive"
-            app:destination="@id/createAccountFragmentStepFive" />
-    </fragment>
-    <fragment
-        android:id="@+id/createAccountFragmentStepFive"
-        android:name="com.example.formulaone.ui.createAccountFragments.country.CreateAccountFragmentStepFive"
-        android:label="fragment_create_account_fragment_step_five"
-        tools:layout="@layout/fragment_create_account_fragment_step_five" >
-        <action
-            android:id="@+id/action_createAccountFragmentStepFive_to_createAccountFragmentStepSix"
-            app:destination="@id/createAccountFragmentStepSix" />
-    </fragment>
-    <fragment
-        android:id="@+id/createAccountFragmentStepSix"
-        android:name="com.example.formulaone.ui.createAccountFragments.password.CreateAccountFragmentStepSix"
-        android:label="fragment_create_account_fragment_step_six"
-        tools:layout="@layout/fragment_create_account_fragment_step_six" >
-        <argument
-            android:name="countryName"
-            app:argType="string"
-            app:nullable="true" />
-        <action
-            android:id="@+id/action_createAccountFragmentStepSix_to_mainFragment"
-            app:destination="@id/mainFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/driversFragment"
         android:name="com.example.formulaone.ui.navMenuFragments.drivers.DriversFragment"
         android:label="fragment_drivers"
@@ -138,5 +89,9 @@
         android:id="@+id/favoritesFragment"
         android:name="com.example.formulaone.ui.favorites.FavoritesFragment"
         android:label="fragment_favorites"
-        tools:layout="@layout/fragment_favorites" />
+        tools:layout="@layout/fragment_favorites" >
+        <action
+            android:id="@+id/action_favoritesFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
 </navigation>

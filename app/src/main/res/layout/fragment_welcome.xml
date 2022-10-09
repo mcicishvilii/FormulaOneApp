@@ -3,59 +3,67 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/welcome">
 
     <TextView
         android:id="@+id/tvWelcome"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/quan_rounded_bold"
         android:text="welcome"
         android:textAlignment="center"
-        android:textSize="60sp"
-        app:layout_constraintBottom_toTopOf="@+id/tvSignIn"
+        android:textSize="70sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toBottomOf="@id/tvGuideline" />
 
     <TextView
         android:id="@+id/tvSignIn"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/quan_rounded_bold"
         android:text="already have an account? sign in!"
-        app:layout_constraintBottom_toTopOf="@+id/btnCreateAccount"
+        android:textAlignment="center"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvWelcome"
         tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/btnCreateAccount"
-        android:layout_width="313dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="50dp"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/button_outline"
+        android:fontFamily="@font/quan_rounded_bold"
         android:text="create account"
-        android:textSize="23sp"
+        android:textSize="28sp"
         app:layout_constraintBottom_toTopOf="@+id/tvNotNow"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvSignIn"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/tvGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.50" />
 
     <TextView
         android:id="@+id/tvNotNow"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/quan_rounded_bold"
         android:text="not now"
-        android:textSize="20sp"
+        android:textAlignment="center"
+        android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnCreateAccount"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

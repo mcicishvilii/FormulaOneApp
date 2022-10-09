@@ -16,13 +16,13 @@ class CreateAccountFragment : BaseFragment<FragmentCreateAccountBinding>(Fragmen
 
     override fun listeners() {
         binding.btnNext.setOnClickListener {
-            findNavController().navigate(CreateAccountFragmentDirections.actionCreateAccountFragmentToCreateAccountFragmentStepTwo())
+            findNavController().navigate(CreateAccountFragmentDirections.actionCreateAccountFragmentToMainFragment())
         }
     }
 
 
     private fun checkVisibility(){
-        binding.etFirstName.doOnTextChanged { text, start, before, count ->
+        binding.etFirstNameImpl.doOnTextChanged { text, start, before, count ->
             binding.btnNext.visibility = View.VISIBLE
         }
     }

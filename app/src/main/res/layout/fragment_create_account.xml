@@ -3,24 +3,33 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/teal_700">
 
     <TextView
         android:id="@+id/tvWelcome"
+        style="@style/tvWelcomeStyle"
         android:text="@string/create_f1_account"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        style="@style/tvWelcomeStyle" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/tvGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.36" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="13dp"
         android:text="@string/have_account_sign_in"
-        app:layout_constraintEnd_toEndOf="@+id/tvWelcome"
-        app:layout_constraintStart_toStartOf="@+id/tvWelcome"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvWelcome"
         tools:ignore="MissingConstraints" />
 
@@ -28,30 +37,78 @@
         android:id="@+id/tvFirstName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginBottom="9dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/quan_rounded_bold"
         android:text="@string/first_name"
-        app:layout_constraintBottom_toTopOf="@+id/etFirstName"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvGuideline"
         tools:ignore="MissingConstraints" />
 
-
-    <EditText
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/etFirstName"
-        android:inputType="textPersonName"
-        android:labelFor="@id/etFirstName"
+        style="@style/RegistrationEditText"
+        android:background="@drawable/outline"
+        android:hint="enter_email"
+        app:endIconMode="clear_text"
+        android:textColorHint="@color/black"
+        android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        style="@style/RegistrationEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/tvFirstName">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etFirstNameImpl"
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+    <TextView
+        android:id="@+id/tvLastName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/quan_rounded_bold"
+        android:text="@string/last_name"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etFirstName"
+        tools:ignore="MissingConstraints" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/etLastName"
+        style="@style/RegistrationEditText"
+        android:background="@drawable/outline"
+        android:hint="enter_email"
+        android:textColorHint="@color/black"
+        app:endIconMode="clear_text"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvLastName">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etLastNameImpl"
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/btnNext"
+        style="@style/nextButtonStyle"
         android:text="@string/next"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:visibility="invisible"
-        app:layout_constraintStart_toStartOf="parent"
-        style="@style/nextButtonStyle" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

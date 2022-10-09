@@ -41,6 +41,8 @@ android {
 }
 
 dependencies {
+    implementation 'com.google.firebase:firebase-messaging-ktx:23.0.8'
+
 
     //room
 

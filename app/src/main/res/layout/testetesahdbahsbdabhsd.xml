@@ -3,110 +3,66 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:layout_margin="2dp"
+    android:background="@drawable/outline"
+    android:padding="10dp">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/mainContainer"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/navbar"
-        app:layout_constraintEnd_toEndOf="parent"
+
+    <ImageView
+        android:layout_marginStart="5dp"
+        android:id="@+id/ivTeamIndicator"
+        android:layout_width="10dp"
+        android:layout_height="40dp"
+        android:src="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tvDriverName"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tvPosition"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <TextView
+        android:id="@+id/tvPosition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="5dp"
+        android:text="1"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5" />
 
-        <View
-            android:id="@+id/lastRaceContainer"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="@color/black"
-            app:layout_constraintDimensionRatio="2.7"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints" />
-
-        <TextView
-            android:id="@+id/lastRaceLocation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="32dp"
-            android:elevation="10dp"
-            android:text="WINNER OF THE LAST RACE:"
-            android:textColor="@color/white"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints" />
-
-        <TextView
-            android:id="@+id/tv1stDriver"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="40dp"
-            android:layout_marginTop="10dp"
-            android:background="@color/white"
-            android:padding="10dp"
-            android:text="last race winner"
-            android:textColor="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lastRaceLocation"
-            tools:ignore="MissingConstraints" />
-
-
-        <TextView
-            android:id="@+id/tvViewResults"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#FF0000"
-            android:padding="5dp"
-            android:layout_marginTop="10dp"
-            android:text="view results"
-            app:layout_constraintTop_toBottomOf="@id/tv1stDriver"
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toStartOf="@+id/tvViewReplay"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="101dp" />
-
-        <TextView
-            android:id="@+id/tvViewReplay"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#FF0000"
-            android:padding="5dp"
-            android:layout_marginTop="10dp"
-            app:layout_constraintTop_toBottomOf="@id/tv1stDriver"
-            android:text="view replay"
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/tvViewResults"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteY="101dp" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvStories"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginTop="30dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lastRaceContainer" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/navbar"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
+    <TextView
+        android:id="@+id/tvDriverName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:text="driver name"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintDimensionRatio="6.5"
+        app:layout_constraintEnd_toStartOf="@+id/tvPoints"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/ivTeamIndicator"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <TextView
+        android:id="@+id/tvPoints"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:text="999"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/menu" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tvDriverName"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

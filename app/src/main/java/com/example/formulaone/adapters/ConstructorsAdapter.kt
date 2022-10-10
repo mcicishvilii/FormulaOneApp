@@ -40,6 +40,17 @@ class ConstructorsAdapter :
                 tvTeamName.text = model?.name
                 tvTeamNationality.text = model?.nationality
 
+                when (model?.nationality) {
+                    "Swiss" -> ivTeamIndicator.setImageResource(R.color.red)
+                    "German" -> ivTeamIndicator.setImageResource(R.color.black)
+                    "American" -> ivTeamIndicator.setImageResource(R.color.Blue)
+                    "French" -> ivTeamIndicator.setImageResource(R.color.DarkBlue)
+                    "Italian" -> ivTeamIndicator.setImageResource(R.color.green)
+                    "British" -> ivTeamIndicator.setImageResource(R.color.OrangeRed)
+                    "Dutch" -> ivTeamIndicator.setImageResource(R.color.YellowGreen)
+                }
+
+
                 binding.root.setBackgroundResource(R.drawable.outline)
             }
 

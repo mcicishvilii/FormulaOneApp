@@ -30,11 +30,29 @@ class DriversAdapter: ListAdapter<DriverStandingsDto.MRDataX.StandingsTableX.Sta
         fun bindData() {
             model = getItem(bindingAdapterPosition)
             binding.apply {
-                tvDriverName.text = model?.Driver?.givenName + model?.Driver?.familyName
-                tvPosition.text = "${model?.position})"
+                tvDriverName.text = model?.Driver?.givenName
+                tvDriverLastName.text = model?.Driver?.familyName
+                tvPosition.text = "${model?.position}"
                 tvPoints.text = "${model?.points} pts"
 
-                binding.root.setBackgroundResource(R.drawable.outline)
+
+                when (model?.Driver?.nationality) {
+                    "Thai" -> ivTeamIndicator.setImageResource(R.color.Blue)
+                    "German" -> ivTeamIndicator.setImageResource(R.color.black)
+                    "Canadian" -> ivTeamIndicator.setImageResource(R.color.Blue)
+                    "French" -> ivTeamIndicator.setImageResource(R.color.DarkBlue)
+                    "Italian" -> ivTeamIndicator.setImageResource(R.color.green)
+                    "British" -> ivTeamIndicator.setImageResource(R.color.OrangeRed)
+                    "Dutch" -> ivTeamIndicator.setImageResource(R.color.YellowGreen)
+                    "Finnish" -> ivTeamIndicator.setImageResource(R.color.CadetBlue)
+                    "Monegasque" -> ivTeamIndicator.setImageResource(R.color.Bisque)
+                    "Danish" -> ivTeamIndicator.setImageResource(R.color.Chocolate)
+                    "Mexican" -> ivTeamIndicator.setImageResource(R.color.DodgerBlue)
+                    "Australian" -> ivTeamIndicator.setImageResource(R.color.Gold)
+                    "Chinese" -> ivTeamIndicator.setImageResource(R.color.Maroon)
+                }
+
+//                binding.root.setBackgroundResource(R.drawable.outline)
 
             }
         }

@@ -89,32 +89,44 @@ class TeamsFragment : BaseFragment<FragmentTeamsBinding>(FragmentTeamsBinding::i
         }
     }
 
-
     private fun search() {
-        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
-            androidx.appcompat.widget.SearchView.OnQueryTextListener {
-
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                if(query == "asdas"){
-                    println("misho")
-                }
-                return false
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                if(newText == ""){
-                    observe()
-                }else{
-                    for (team in constructorsAdapter.currentList){
-                        if(newText == team.nationality){
-                            filteredList.add(team)
-                            constructorsAdapter.submitList(filteredList)
-                        }
+        binding.tvTeamCountryHeader.setOnClickListener {
+            if(binding.searchView.text.toString().isNotEmpty()){
+                for (team in constructorsAdapter.currentList) {
+                    if (binding.searchView.text.toString() == team.nationality) {
+                        filteredList.add(team)
+                        constructorsAdapter.submitList(filteredList)
                     }
                 }
-                return false
+            }else{
+                observe()
+                    if(filteredList.isNotEmpty()){
+                        filteredList.clear()
+                    }else{
+                        println("misho")
+                    }
             }
-        })
-    }
 
+        }
+
+
+//                if(newText.isNullOrEmpty()){
+//                    observe()
+//                    if(filteredList.isNotEmpty()){
+//                        filteredList.clear()
+//                    }else{
+//                        println("misho")
+//                    }
+//
+//                }else{
+//                    for (team in constructorsAdapter.currentList){
+//                        if((newText == team.nationality)) {
+//                            filteredList.add(team)
+//                            constructorsAdapter.submitList(filteredList)
+//                        }
+//                    }
+//                }
+
+    }
 }
+

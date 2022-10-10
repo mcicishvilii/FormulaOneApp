@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <androidx.appcompat.widget.SearchView
+    <EditText
         android:id="@+id/searchView"
         android:layout_width="0dp"
         android:hint="search here"

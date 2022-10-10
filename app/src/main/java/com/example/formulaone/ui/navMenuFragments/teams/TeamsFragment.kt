@@ -25,17 +25,18 @@ import kotlinx.coroutines.launch
 import java.util.*
 
 @AndroidEntryPoint
-class TeamsFragment : BaseFragment<FragmentTeamsBinding>(FragmentTeamsBinding::inflate),Filterable {
+class TeamsFragment : BaseFragment<FragmentTeamsBinding>(FragmentTeamsBinding::inflate) {
 
     private val constructorsAdapter: ConstructorsAdapter by lazy { ConstructorsAdapter() }
     private val viewModel: TeamsViewModel by viewModels()
-    private var filteredList = (mutableListOf<TeamsDomain>())
-    private var Bitch = (mutableListOf<TeamsDomain>())
+    private var filteredList = mutableListOf<TeamsDomain>()
+    private var Bitch = mutableListOf<TeamsDomain>()
 
 
     override fun viewCreated() {
         observe()
         search()
+
     }
 
     override fun listeners() {
@@ -92,16 +93,17 @@ class TeamsFragment : BaseFragment<FragmentTeamsBinding>(FragmentTeamsBinding::i
     private fun search() {
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
+
             override fun onQueryTextSubmit(query: String?): Boolean {
-                if(query == "misho"){
-                    constructorsAdapter.submitList(Bitch)
+                if(query == "asdas"){
+                    println("misho")
                 }
                 return false
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                if(newText == "misho"){
-                    constructorsAdapter.submitList(Bitch)
+                if(newText == ""){
+                    observe()
                 }else{
                     for (team in constructorsAdapter.currentList){
                         if(newText == team.nationality){
@@ -113,17 +115,6 @@ class TeamsFragment : BaseFragment<FragmentTeamsBinding>(FragmentTeamsBinding::i
                 return false
             }
         })
-    }
-
-    private fun poplist(){
-        Bitch.add(
-            TeamsDomain(
-                "misho",
-                "misho",
-                "misho",
-                "misho",
-            )
-        )
     }
 
 }

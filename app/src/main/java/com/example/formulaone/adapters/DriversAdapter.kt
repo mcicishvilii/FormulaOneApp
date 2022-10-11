@@ -20,6 +20,7 @@ class DriversAdapter: ListAdapter<DriverStandingsDto.MRDataX.StandingsTableX.Sta
         return DriversViewHolder(binding)
     }
 
+
     override fun onBindViewHolder(holder: DriversViewHolder, position: Int) {
         holder.bindData()
     }
@@ -27,9 +28,11 @@ class DriversAdapter: ListAdapter<DriverStandingsDto.MRDataX.StandingsTableX.Sta
     inner class DriversViewHolder(private val binding: SingleDriverLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
         private var model: DriverStandingsDto.MRDataX.StandingsTableX.StandingsListsX.DriverStanding? = null
+
         fun bindData() {
             model = getItem(bindingAdapterPosition)
             binding.apply {
+
                 tvDriverName.text = model?.Driver?.givenName
                 tvDriverLastName.text = model?.Driver?.familyName
                 tvPosition.text = "${model?.position}"

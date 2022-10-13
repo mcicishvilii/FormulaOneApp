@@ -79,8 +79,9 @@
             android:name="ShowAppBar"
             android:defaultValue="true" />
         <action
-            android:id="@+id/action_settingsFragment_to_signInFragment"
-            app:destination="@id/signInFragment" />
+            android:id="@+id/action_settingsFragment_to_favoritesFragment"
+            app:destination="@id/favoritesFragment" />
+
 
     </fragment>
     <fragment

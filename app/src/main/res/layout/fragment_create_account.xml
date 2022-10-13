@@ -4,43 +4,64 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/teal_700">
+    android:background="@color/backgroundColor">
+
+    <ImageView
+        android:id="@+id/ivF1Logo"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/ic_f1_logo"
+        app:layout_constraintDimensionRatio="2.5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvWelcome"
         style="@style/tvWelcomeStyle"
+        android:textColor="@color/black"
+        android:fontFamily="@font/quan_rounded_bold"
         android:text="@string/create_f1_account"
+        android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/ivF1Logo" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/tvGuideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.36" />
+        app:layout_constraintGuide_percent="0.23" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bttomGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.23" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/black"
         android:text="@string/have_account_sign_in"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvWelcome"
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/tvFirstName"
+        android:id="@+id/tvEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
+        android:textColor="@color/gray"
         android:fontFamily="@font/quan_rounded_bold"
-        android:text="@string/first_name"
+        android:text="@string/e_mail"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tvGuideline"
@@ -49,23 +70,21 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/etFirstName"
         style="@style/RegistrationEditText"
-        android:background="@drawable/outline"
-        android:hint="enter_email"
-        app:endIconMode="clear_text"
-        android:textColorHint="@color/black"
         android:layout_marginTop="10dp"
+        app:endIconMode="clear_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvFirstName">
+        app:layout_constraintTop_toBottomOf="@+id/tvEmail">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etFirstNameImpl"
-            android:textColor="@color/black"
+            android:id="@+id/etEmailImpl"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:inputType="textEmailAddress"
+            android:layout_height="wrap_content"
+            android:background="@drawable/outline"
+            android:textColor="@color/black" />
 
     </com.google.android.material.textfield.TextInputLayout>
-
 
 
     <TextView
@@ -74,8 +93,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
+        android:textColor="@color/gray"
         android:fontFamily="@font/quan_rounded_bold"
-        android:text="@string/last_name"
+        android:text="@string/password"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etFirstName"
@@ -84,20 +104,19 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/etLastName"
         style="@style/RegistrationEditText"
-        android:background="@drawable/outline"
-        android:hint="enter_email"
-        android:textColorHint="@color/black"
-        app:endIconMode="clear_text"
         android:layout_marginTop="10dp"
+        app:endIconMode="clear_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvLastName">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etLastNameImpl"
-            android:textColor="@color/black"
+            android:id="@+id/etPasswordImpl"
+            android:inputType="textPassword"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:background="@drawable/outline"
+            android:textColor="@color/black" />
 
     </com.google.android.material.textfield.TextInputLayout>
 

@@ -30,7 +30,7 @@
             android:resource="@color/black" />
 
         <activity
-            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
+            android:windowSoftInputMode="adjustResize"
             android:name=".ui.MainActivity"
             android:exported="true">
             <intent-filter>

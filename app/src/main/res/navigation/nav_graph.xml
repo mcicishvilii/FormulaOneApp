@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/mainFragment">
+    app:startDestination="@id/welcomeFragment">
 
     <fragment
         android:id="@+id/welcomeFragment"
@@ -28,6 +28,9 @@
         <action
             android:id="@+id/action_createAccountFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_createAccountFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
     </fragment>
     <fragment
         android:id="@+id/mainFragment"
@@ -50,16 +53,7 @@
         android:label="fragment_sign_in"
         tools:layout="@layout/fragment_sign_in" >
         <action
-            android:id="@+id/action_signInFragment_to_signInFragmentStepTwo"
-            app:destination="@id/signInFragmentStepTwo" />
-    </fragment>
-    <fragment
-        android:id="@+id/signInFragmentStepTwo"
-        android:name="com.example.formulaone.ui.signInFragment.SignInFragmentStepTwo"
-        android:label="fragment_sign_in_fragment_step_two"
-        tools:layout="@layout/fragment_sign_in_fragment_step_two" >
-        <action
-            android:id="@+id/action_signInFragmentStepTwo_to_mainFragment"
+            android:id="@+id/action_signInFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
     </fragment>
     <fragment
@@ -84,6 +78,10 @@
         <argument
             android:name="ShowAppBar"
             android:defaultValue="true" />
+        <action
+            android:id="@+id/action_settingsFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/favoritesFragment"

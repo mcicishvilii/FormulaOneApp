@@ -47,6 +47,7 @@
     <color name="DarkSlateBlue">#483D8B</color>
     <color name="DarkSlateGray">#2F4F4F</color>
     <color name="DarkTurquoise">#00CED1</color>
+    <color name="backgroundColor">#f7f4f1</color>
     <color name="DarkViolet">#9400D3</color>
     <color name="DeepPink">#FF1493</color>
     <color name="DeepSkyBlue">#00BFFF</color>

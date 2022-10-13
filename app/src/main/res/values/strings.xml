@@ -7,6 +7,10 @@
     <string name="have_account_sign_in">have account? sign in!</string>
     <string name="create_f1_account">Create F1 account</string>
     <string name="last_name">Last Name</string>
+    <string name="password">Password</string>
+    <string name="e_mail">E-mail</string>
+    <string name="passwordCaps">PASSWORD</string>
+    <string name="email_address_caps">EMAIL ADDRESS</string>
     <string-array name="countries">
         <item>please select country</item>
         <item>Georgia</item>

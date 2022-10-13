@@ -20,6 +20,7 @@
             android:id="@+id/action_welcomeFragment_to_signInFragment"
             app:destination="@id/signInFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/createAccountFragment"
         android:name="com.example.formulaone.ui.createAccountFragments.firstName.CreateAccountFragment"
@@ -32,6 +33,7 @@
             android:id="@+id/action_createAccountFragment_to_signInFragment"
             app:destination="@id/signInFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.example.formulaone.ui.mainFragment.MainFragment"
@@ -46,7 +48,19 @@
         <action
             android:id="@+id/action_mainFragment_to_settingsFragment"
             app:destination="@id/settingsFragment" />
+
+<!--        amis gamo iqrasheboda-->
+        <action
+            android:id="@+id/action_settingsFragment_to_welcomeFragment"
+            app:destination="@id/welcomeFragment" />
+
+        <action
+            android:id="@+id/action_settingsFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
+
+
     </fragment>
+
     <fragment
         android:id="@+id/signInFragment"
         android:name="com.example.formulaone.ui.signInFragment.SignInFragment"
@@ -56,11 +70,13 @@
             android:id="@+id/action_signInFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/driversFragment"
         android:name="com.example.formulaone.ui.navMenuFragments.drivers.DriversFragment"
         android:label="fragment_drivers"
         tools:layout="@layout/fragment_drivers"/>
+
     <fragment
         android:id="@+id/teamsFragment"
         android:name="com.example.formulaone.ui.navMenuFragments.teams.TeamsFragment"
@@ -70,20 +86,20 @@
             android:id="@+id/action_teamsFragment_to_favoritesFragment"
             app:destination="@id/favoritesFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.example.formulaone.ui.navMenuFragments.settings.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" >
-        <argument
-            android:name="ShowAppBar"
-            android:defaultValue="true" />
         <action
-            android:id="@+id/action_settingsFragment_to_favoritesFragment"
-            app:destination="@id/favoritesFragment" />
-
-
+            android:id="@+id/action_settingsFragment_to_welcomeFragment"
+            app:destination="@id/welcomeFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/favoritesFragment"
         android:name="com.example.formulaone.ui.favorites.FavoritesFragment"
@@ -93,4 +109,8 @@
             android:id="@+id/action_favoritesFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
     </fragment>
+    <action
+        android:id="@+id/action_global_welcomeFragment"
+        app:popUpTo="@id/welcomeFragment" />
+
 </navigation>

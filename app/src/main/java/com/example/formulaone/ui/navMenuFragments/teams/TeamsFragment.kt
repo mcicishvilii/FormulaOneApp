@@ -30,7 +30,7 @@ class TeamsFragment : BaseFragment<FragmentTeamsBinding>(FragmentTeamsBinding::i
     private val constructorsAdapter: ConstructorsAdapter by lazy { ConstructorsAdapter() }
     private val viewModel: TeamsViewModel by viewModels()
     private var filteredList = mutableListOf<TeamsDomain>()
-    private var Bitch = mutableListOf<TeamsDomain>()
+
 
 
     override fun viewCreated() {
@@ -110,22 +110,6 @@ class TeamsFragment : BaseFragment<FragmentTeamsBinding>(FragmentTeamsBinding::i
         }
 
 
-//                if(newText.isNullOrEmpty()){
-//                    observe()
-//                    if(filteredList.isNotEmpty()){
-//                        filteredList.clear()
-//                    }else{
-//                        println("misho")
-//                    }
-//
-//                }else{
-//                    for (team in constructorsAdapter.currentList){
-//                        if((newText == team.nationality)) {
-//                            filteredList.add(team)
-//                            constructorsAdapter.submitList(filteredList)
-//                        }
-//                    }
-//                }
 
     }
 }

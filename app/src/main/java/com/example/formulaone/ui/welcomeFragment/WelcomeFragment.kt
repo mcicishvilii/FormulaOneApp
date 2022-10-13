@@ -43,7 +43,6 @@ class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>(FragmentWelcomeBind
         val user = auth.currentUser
         if (user == null) {
             Log.d("mcici","not logged in")
-            findNavController().navigate(WelcomeFragmentDirections.actionWelcomeFragmentToSignInFragment())
         } else {
             Log.d("mcici", "logged in")
             findNavController().navigate(WelcomeFragmentDirections.actionWelcomeFragmentToMainFragment())

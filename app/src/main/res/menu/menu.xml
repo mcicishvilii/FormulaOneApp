@@ -14,6 +14,9 @@
         android:id="@+id/thirdFragment"
         android:icon="@color/black"
         android:title="Settingsebi" />
-
+    <item
+        android:id="@+id/fourthFragment"
+        android:icon="@drawable/ic_f1_logo"
+        android:title="Races" />
 
 </menu>

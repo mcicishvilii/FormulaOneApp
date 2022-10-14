@@ -57,6 +57,9 @@
         <action
             android:id="@+id/action_settingsFragment_to_signInFragment"
             app:destination="@id/signInFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_scheduleFragment"
+            app:destination="@id/scheduleFragment" />
 
 
     </fragment>
@@ -112,5 +115,28 @@
     <action
         android:id="@+id/action_global_welcomeFragment"
         app:popUpTo="@id/welcomeFragment" />
+    <fragment
+        android:id="@+id/scheduleFragment"
+        android:name="com.example.formulaone.ui.navMenuFragments.schedule.ScheduleFragment"
+        android:label="fragment_schedule"
+        tools:layout="@layout/fragment_schedule" >
+        <action
+            android:id="@+id/action_scheduleFragment_to_recentRacesFragment"
+            app:destination="@id/recentRacesFragment" />
+        <action
+            android:id="@+id/action_scheduleFragment_to_upcomingRacesFragment"
+            app:destination="@id/upcomingRacesFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/recentRacesFragment"
+        android:name="com.example.formulaone.ui.navMenuFragments.schedule.recent.RecentRacesFragment"
+        android:label="fragment_recent_races"
+        tools:layout="@layout/fragment_recent_races" />
+    <fragment
+        android:id="@+id/upcomingRacesFragment"
+        android:name="com.example.formulaone.ui.navMenuFragments.schedule.upcoming.UpcomingRacesFragment"
+        android:label="fragment_upcoming_races"
+        tools:layout="@layout/fragment_upcoming_races" />
 
 </navigation>

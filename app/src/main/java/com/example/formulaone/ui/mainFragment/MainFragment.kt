@@ -10,6 +10,7 @@ import com.example.formulaone.Resource
 import com.example.formulaone.databinding.FragmentMainBinding
 import com.example.formulaone.common.bases.BaseFragment
 import com.example.formulaone.ui.navMenuFragments.drivers.DriversFragment
+import com.example.formulaone.ui.navMenuFragments.schedule.ScheduleFragment
 import com.example.formulaone.ui.navMenuFragments.settings.SettingsFragment
 import com.example.formulaone.ui.navMenuFragments.teams.TeamsFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -36,6 +37,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
                 R.id.firstFragment -> replaceFragment(DriversFragment())
                 R.id.secondFragment -> replaceFragment(TeamsFragment())
                 R.id.thirdFragment -> replaceFragment(SettingsFragment())
+                R.id.fourthFragment -> replaceFragment(ScheduleFragment())
                 else -> {}
             }
             true

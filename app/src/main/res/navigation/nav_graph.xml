@@ -61,6 +61,13 @@
             android:id="@+id/action_mainFragment_to_scheduleFragment"
             app:destination="@id/scheduleFragment" />
 
+        <action
+            android:id="@+id/action_scheduleFragment_to_recentRacesFragment"
+            app:destination="@id/recentRacesFragment" />
+        <action
+            android:id="@+id/action_scheduleFragment_to_upcomingRacesFragment"
+            app:destination="@id/upcomingRacesFragment" />
+
 
     </fragment>
 

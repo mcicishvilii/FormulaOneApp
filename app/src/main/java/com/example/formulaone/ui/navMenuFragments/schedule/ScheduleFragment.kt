@@ -9,12 +9,22 @@ import android.view.ViewGroup
 import android.widget.TableLayout
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager.widget.ViewPager
+import androidx.viewpager2.widget.ViewPager2
+import com.example.formulaone.DriversAdapter
 import com.example.formulaone.R
+import com.example.formulaone.adapters.ViewPagerAdapter
 import com.example.formulaone.common.bases.BaseFragment
+import com.example.formulaone.data.Recyclers
 import com.example.formulaone.databinding.FragmentScheduleBinding
 import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 
 class ScheduleFragment : BaseFragment<FragmentScheduleBinding>(FragmentScheduleBinding::inflate) {
+
+    private lateinit var viewPager: ViewPager2
+    private lateinit var tabLayout: TabLayout
     override fun viewCreated() {
         setupTabLayout()
     }
@@ -24,26 +34,18 @@ class ScheduleFragment : BaseFragment<FragmentScheduleBinding>(FragmentScheduleB
     }
 
 
-    private fun setupTabLayout(){
-
-        binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
-
-            override fun onTabSelected(tab: TabLayout.Tab?) {
-                findNavController().navigate(ScheduleFragmentDirections.actionScheduleFragmentToRecentRacesFragment())
-//                Toast.makeText(requireContext(),"misho",Toast.LENGTH_SHORT).show()
+    private fun setupTabLayout() {
+        viewPager = binding.viewPager2
+        tabLayout = binding.tabLayout
+        viewPager.adapter = ViewPagerAdapter(requireActivity())
+        TabLayoutMediator(tabLayout,viewPager){tab,index ->
+            tab.text = when(index){
+                0 -> {"Recent Races"}
+                1 -> {"Upcoming Races"}
+                else -> {"Tab Not Found"}
             }
-
-            override fun onTabUnselected(tab: TabLayout.Tab?) {
-//                Toast.makeText(requireContext(),"unselect",Toast.LENGTH_SHORT).show()
-            }
-
-            override fun onTabReselected(tab: TabLayout.Tab?) {
-//                Toast.makeText(requireContext(),"reselect",Toast.LENGTH_SHORT).show()
-            }
-        })
+        }.attach()
     }
-
-
 
 
 }

@@ -2,6 +2,7 @@ package com.example.formulaone.ui.navMenuFragments.schedule.upcoming
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -20,15 +21,16 @@ import com.example.formulaone.adapters.UpcomingRaceAdapter
 import com.example.formulaone.common.bases.BaseFragment
 import com.example.formulaone.databinding.FragmentUpcomingRacesBinding
 import com.example.formulaone.ui.navMenuFragments.teams.TeamsViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class UpcomingRacesFragment : BaseFragment<FragmentUpcomingRacesBinding>(FragmentUpcomingRacesBinding::inflate) {
     private val upcomingRaceAdapter: UpcomingRaceAdapter by lazy { UpcomingRaceAdapter() }
-    private val viewModel: UpcomingRacesViewModel by viewModels()
+    private val upcomingRacesViewModel: UpcomingRacesViewModel by viewModels()
     override fun viewCreated() {
         observe()
-
     }
 
     override fun listeners() {
@@ -50,16 +52,16 @@ class UpcomingRacesFragment : BaseFragment<FragmentUpcomingRacesBinding>(Fragmen
         setupRecycler()
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.state.collectLatest {
+                upcomingRacesViewModel.state.collectLatest {
                     when (it) {
                         is Resource.Error -> {
-
+                            Log.d("misho","misho")
                         }
                         is Resource.Loading -> {
 
                         }
                         is Resource.Success -> {
-                            constructorsAdapter.submitList(it.data)
+                            upcomingRaceAdapter.submitList(it.data)
                         }
                     }
                 }

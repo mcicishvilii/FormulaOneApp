@@ -22,25 +22,23 @@ import javax.inject.Inject
 
 @HiltViewModel
 class UpcomingRacesViewModel @Inject constructor(
-
-private val getRaceScheduleUseCase: RaceScheduleUseCase
-
+    private val getRaceScheduleUseCase: RaceScheduleUseCase
 ) : ViewModel() {
 
-    private val _state = MutableStateFlow<Resource<List<RaceScheduleDomain>>>(Resource.Loading(false))
-    val state = _state.asStateFlow()
-
+    private val _state1 =
+        MutableStateFlow<Resource<List<RaceScheduleDomain>>>(Resource.Loading(false))
+    val state = _state1.asStateFlow()
 
     init {
         getSchedule()
     }
 
-    private fun getSchedule(){
+    private fun getSchedule() {
         getRaceScheduleUseCase().onEach { result ->
-            when (result){
-                is Resource.Success -> _state.value = Resource.Success(result.data)
-                is Resource.Error -> _state.value = Resource.Error("woops!")
-                is Resource.Loading -> _state.value = Resource.Loading(true)
+            when (result) {
+                is Resource.Success -> _state1.value = Resource.Success(result.data)
+                is Resource.Error -> _state1.value = Resource.Error("woops!")
+                is Resource.Loading -> _state1.value = Resource.Loading(true)
             }
         }.launchIn(viewModelScope)
     }

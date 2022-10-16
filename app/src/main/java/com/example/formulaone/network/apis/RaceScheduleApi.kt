@@ -6,7 +6,7 @@ import com.example.formulaone.data.remote.raceSchedule.RaceScheduleDto
 import retrofit2.http.GET
 
 interface RaceScheduleApi {
-    @GET("2022.json")
+    @GET("current.json")
     suspend fun getLastRacesSchedule(
     ): RaceScheduleDto
 }

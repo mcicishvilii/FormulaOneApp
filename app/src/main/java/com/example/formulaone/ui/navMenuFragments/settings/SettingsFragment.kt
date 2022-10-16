@@ -8,7 +8,6 @@ import com.example.formulaone.R
 import com.example.formulaone.adapters.settings.HasButton
 import com.example.formulaone.databinding.FragmentSettingsBinding
 import com.example.formulaone.common.bases.BaseFragment
-import com.example.formulaone.ui.models.Settings
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase

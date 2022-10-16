@@ -5,18 +5,18 @@
     <item
         android:id="@+id/firstFragment"
         android:icon="@drawable/racing_helmet_svgrepo_com"
-        android:title="Drivers" />
+        android:title="@string/drivers" />
     <item
         android:id="@+id/secondFragment"
         android:icon="@drawable/racing_flag_formula_1_svgrepo_com"
-        android:title="Teams" />
+        android:title="@string/teams" />
     <item
         android:id="@+id/thirdFragment"
         android:icon="@drawable/ic_baseline_settings_24"
-        android:title="Settingsebi" />
+        android:title="@string/settings" />
     <item
         android:id="@+id/fourthFragment"
         android:icon="@drawable/ic_baseline_calendar_today_24"
-        android:title="Races" />
+        android:title="@string/races" />
 
 </menu>

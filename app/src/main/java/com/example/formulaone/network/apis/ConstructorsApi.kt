@@ -5,7 +5,7 @@ import retrofit2.http.GET
 
 // using
 interface ConstructorsApi {
-    @GET("constructors.json")
+    @GET("constructors.json?limit=211")
     suspend fun getDriversList(
     ): Teams
 }

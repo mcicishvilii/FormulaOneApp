@@ -16,7 +16,6 @@ import com.example.formulaone.R
 import com.example.formulaone.data.Recyclers
 import com.example.formulaone.data.remote.drivers.drivers_standings.DriverStandingsDto
 import com.example.formulaone.databinding.SingleDriverLayoutBinding
-import com.example.formulaone.databinding.SingleRecyclerViewBinding
 import com.example.formulaone.ui.navMenuFragments.schedule.recent.RecentRacesFragment
 import com.example.formulaone.ui.navMenuFragments.schedule.upcoming.UpcomingRacesFragment
 

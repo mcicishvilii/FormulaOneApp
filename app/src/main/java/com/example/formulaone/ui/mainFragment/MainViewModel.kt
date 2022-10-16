@@ -79,29 +79,4 @@ class MainViewModel @Inject constructor(
             _state.value = Resource.Success(UiModel(uiModelHashMap[0],uiModelHashMap[1]))
         }
     }
-
-
-
-
-//    fun getData(){
-//        currentDriversStandingsUseCase().onEach { result ->
-//            when (result){
-//                is Resource.Success -> _driverState.value = Resource.Success(result.data)
-//                is Resource.Error -> _driverState.value = Resource.Error("woops!")
-//                is Resource.Loading -> _driverState.value = Resource.Loading(true)
-//            }
-//        }.launchIn(viewModelScope)
-//
-//        getLastRaceCircuitUseCase().onEach { result ->
-//            when (result){
-//                is Resource.Success -> _circuitState.value = Resource.Success(result.data)
-//                is Resource.Error -> _circuitState.value = Resource.Error("woops!")
-//                is Resource.Loading -> _circuitState.value = Resource.Loading(true)
-//            }
-//        }.launchIn(viewModelScope)
-//    }
-//
-
-
-
 }

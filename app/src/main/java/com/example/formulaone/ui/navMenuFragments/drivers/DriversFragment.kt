@@ -28,8 +28,6 @@ class DriversFragment : BaseFragment<FragmentDriversBinding>(FragmentDriversBind
 
     }
 
-
-
     private fun setupRecycler() {
         binding.rvDrivers.apply {
             adapter = driversAdapter

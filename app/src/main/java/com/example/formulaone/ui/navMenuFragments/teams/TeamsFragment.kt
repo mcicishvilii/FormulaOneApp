@@ -4,6 +4,8 @@ import android.util.Log
 import android.widget.Filterable
 import android.widget.SearchView
 import android.widget.Toast
+import androidx.core.widget.doAfterTextChanged
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -13,11 +15,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.formulaone.adapters.ConstructorsAdapter
 import com.example.formulaone.R
 import com.example.formulaone.Resource
-import com.example.formulaone.databinding.FragmentTeamsBinding
 import com.example.formulaone.common.bases.BaseFragment
 import com.example.formulaone.data.remote.teams.Teams
+import com.example.formulaone.databinding.FragmentTeamsBinding
 import com.example.formulaone.domain.model.remote.TeamsDomain
 import com.google.android.material.snackbar.Snackbar
+import com.squareup.moshi.subtypeOf
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.flow.collectLatest
@@ -30,7 +33,6 @@ class TeamsFragment : BaseFragment<FragmentTeamsBinding>(FragmentTeamsBinding::i
     private val constructorsAdapter: ConstructorsAdapter by lazy { ConstructorsAdapter() }
     private val viewModel: TeamsViewModel by viewModels()
     private var filteredList = mutableListOf<TeamsDomain>()
-
 
 
     override fun viewCreated() {
@@ -82,6 +84,7 @@ class TeamsFragment : BaseFragment<FragmentTeamsBinding>(FragmentTeamsBinding::i
                         }
                         is Resource.Success -> {
                             constructorsAdapter.submitList(it.data)
+                            filteredList = it.data.toMutableList()
                         }
                     }
                 }
@@ -90,27 +93,34 @@ class TeamsFragment : BaseFragment<FragmentTeamsBinding>(FragmentTeamsBinding::i
     }
 
     private fun search() {
-        binding.tvTeamCountryHeader.setOnClickListener {
-            if(binding.searchView.text.toString().isNotEmpty()){
-                for (team in constructorsAdapter.currentList) {
-                    if (binding.searchView.text.toString() == team.nationality) {
-                        filteredList.add(team)
-                        constructorsAdapter.submitList(filteredList)
-                    }
-                }
-            }else{
-                observe()
-                    if(filteredList.isNotEmpty()){
-                        filteredList.clear()
-                    }else{
-                        println("misho")
-                    }
+        binding.searchView.doOnTextChanged { text, _, _, _ ->
+            Log.d("mcicishvili", text.toString())
+            if (!text.isNullOrEmpty()) {
+                viewModel.searh(text.toString())
             }
-
+            else{
+                constructorsAdapter.submitList(filteredList)
+            }
         }
-
-
-
     }
+
+
 }
 
+//binding.tvTeamCountryHeader.setOnClickListener {
+//    if (binding.searchView.text.toString().isNotEmpty()) {
+//        for (team in constructorsAdapter.currentList) {
+//            if (binding.searchView.text.toString() == team.nationality) {
+//                filteredList.add(team)
+//                constructorsAdapter.submitList(filteredList)
+//            }
+//        }
+//    } else {
+//        observe()
+//        if (filteredList.isNotEmpty()) {
+//            filteredList.clear()
+//        } else {
+//            println("misho")
+//        }
+//    }
+//}

@@ -29,6 +29,7 @@ import kotlinx.coroutines.launch
 class UpcomingRacesFragment : BaseFragment<FragmentUpcomingRacesBinding>(FragmentUpcomingRacesBinding::inflate) {
     private val upcomingRaceAdapter: UpcomingRaceAdapter by lazy { UpcomingRaceAdapter() }
     private val upcomingRacesViewModel: UpcomingRacesViewModel by viewModels()
+
     override fun viewCreated() {
         observe()
     }

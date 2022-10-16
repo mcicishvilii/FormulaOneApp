@@ -1,5 +1,6 @@
 package com.example.formulaone.ui.navMenuFragments.teams
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.formulaone.Resource
@@ -17,10 +18,8 @@ import javax.inject.Inject
 class TeamsViewModel @Inject constructor(
     private val getTeamsListUseCase: GetTeamsListUseCase,
     private val insertTeamUseCase: InsertTeamUseCase,
-//    private val getTeamsFromDBUseCase: GetTeamsFromDBUseCase,
-    private val deleteUseCase: DeleteTeamUseCase,
-    private val deleteAllUseCase: DeleteAllUseCase
 ) : ViewModel() {
+    private var filteredList = listOf<TeamsDomain>()
 
     private val _state = MutableStateFlow<Resource<List<TeamsDomain>>>(Resource.Loading(false))
     val state = _state.asStateFlow()
@@ -33,7 +32,10 @@ class TeamsViewModel @Inject constructor(
     private fun getTeams(){
         getTeamsListUseCase().onEach { result ->
             when (result){
-                is Resource.Success -> _state.value = Resource.Success(result.data)
+                is Resource.Success -> {
+                    filteredList = result.data
+                    _state.value = Resource.Success(result.data)
+                }
                 is Resource.Error -> _state.value = Resource.Error("woops!")
                 is Resource.Loading -> _state.value = Resource.Loading(true)
             }
@@ -44,6 +46,14 @@ class TeamsViewModel @Inject constructor(
         CoroutineScope(Dispatchers.IO).launch {
             insertTeamUseCase(team)
         }
+    }
+
+    fun searh(query:String) {
+        val searchedList = filteredList.filter {
+            it.nationality.toString().lowercase().contains(query.lowercase())
+        }
+        _state.value = Resource.Success(searchedList)
+
     }
 
 

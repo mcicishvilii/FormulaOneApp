@@ -1,5 +1,7 @@
 package com.example.formulaone.data.remote.raceSchedule
 
+import com.example.formulaone.domain.model.remote.RaceScheduleDomain
+
 data class Race(
     val Circuit: Circuit,
     val FirstPractice: FirstPractice,
@@ -13,4 +15,11 @@ data class Race(
     val season: String,
     val time: String,
     val url: String
+
 )
+
+fun Race.ToRaceScheduleDomain(): RaceScheduleDomain {
+    return RaceScheduleDomain(
+        Circuit,raceName,round,date,season
+    )
+}

@@ -22,8 +22,7 @@ import java.util.*
 class UpcomingRaceAdapter :
     ListAdapter<RaceScheduleDomain, UpcomingRaceAdapter.UpcomingRaceViewHolder>(
         UpcomingDiffCallBack()
-    ){
-
+    ) {
 
 
     inner class UpcomingRaceViewHolder(private val binding: SingleUpcomingRaceBinding) :
@@ -34,14 +33,21 @@ class UpcomingRaceAdapter :
         fun bindData() {
             model = getItem(bindingAdapterPosition)
 
-                binding.apply {
-                    tvCountry.text = model?.Circuit?.circuitName
-                    tvDate.text = model?.date
-                    tvRound.text = model?.round
-                    tvGrandPrixName.text = model?.raceName
-                    binding.root.setBackgroundResource(R.drawable.outline)
-                }
+            val dateFromModel = model!!.date
+            val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+            val date = LocalDate.parse(dateFromModel, formatter)
+            val splittedDate = date.month.name.split("")
+            val accronymDate = "${splittedDate[1]}${splittedDate[2]}${splittedDate[3]}"
 
+            val droppedDays = date.toString().drop(8)
+
+            binding.apply {
+                tvCountry.text = model?.Circuit?.Location?.country
+                tvDate.text = "$droppedDays\n$accronymDate"
+                tvRound.text = "Round ${model?.round}"
+                tvGrandPrixName.text = model?.raceName
+                binding.root.setBackgroundResource(R.drawable.outline)
+            }
         }
     }
 

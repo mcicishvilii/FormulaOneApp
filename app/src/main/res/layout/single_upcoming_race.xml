@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="3dp"
     android:background="@drawable/outline">
 
     <androidx.constraintlayout.widget.Guideline
@@ -11,14 +12,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.19" />
+        app:layout_constraintGuide_percent="0.18" />
 
+    <!--    <TextView-->
+    <!--        android:id="@+id/tv_dateDays"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        -->
+    <!--    -->
+    <!--    -->
     <TextView
         android:id="@+id/tv_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="12-14"
+        android:text="oct"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guidelinePosColor"
@@ -31,36 +39,36 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="bahreingrapri saswaulebii"
+        android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        android:fontFamily="@font/quan_rounded_bold"
         app:layout_constraintStart_toEndOf="@+id/guidelinePosColor"
-        app:layout_constraintTop_toBottomOf="@+id/tv_country"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_country" />
 
     <TextView
+        android:fontFamily="@font/quan_rounded_bold"
         android:id="@+id/tv_round"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="raund ragaca"
-        android:textSize="25sp"
+        android:textAllCaps="true"
+        android:textSize="15sp"
+        android:textColor="@color/red"
         app:layout_constraintBottom_toTopOf="@+id/tv_country"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/guidelinePosColor"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_country"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/black"
         android:fontFamily="@font/quan_rounded_bold"
         android:text="bahreinif"
-        android:textSize="35sp"
+        android:textSize="40sp"
         app:layout_constraintBottom_toTopOf="@+id/tv_grandPrixName"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/guidelinePosColor"
-        app:layout_constraintTop_toBottomOf="@+id/tv_round"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_round" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -45,9 +45,9 @@ class RecentRacesAdapter :
 
             binding.apply {
 
-                tvCountry.text = model?.Circuit?.circuitName
+                tvCountry.text = model?.Circuit?.Location?.country
                 tvDate.text = "$droppedDays\n$accronymDate"
-                tvRound.text = model?.round
+                tvRound.text = "Round ${model?.round}"
                 tvGrandPrixName.text = model?.raceName
                 binding.root.setBackgroundResource(R.drawable.outline)
             }

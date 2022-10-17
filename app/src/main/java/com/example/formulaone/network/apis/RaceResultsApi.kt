@@ -6,7 +6,7 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface RaceResultsApi {
-    @GET("current/last/results.json")
+    @GET("current/results.json")
     suspend fun getLastRaceDetails(
         @Query("limit")
         limit: String,

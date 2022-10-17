@@ -1,22 +1,18 @@
 package com.example.formulaone.ui.navMenuFragments.schedule.recent
 
 import android.os.Build
+import android.widget.Toast
 import androidx.annotation.RequiresApi
-import com.example.formulaone.ui.navMenuFragments.schedule.upcoming.UpcomingRacesViewModel
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.formulaone.Resource
-import com.example.formulaone.adapters.ConstructorsAdapter
-import com.example.formulaone.adapters.RecentRacesAdapter
-import com.example.formulaone.adapters.UpcomingRaceAdapter
+import com.example.formulaone.adapters.SchedulesAdapter.RecentRacesAdapter
 import com.example.formulaone.common.bases.BaseFragment
 import com.example.formulaone.databinding.FragmentRecentRacesBinding
-import com.example.formulaone.databinding.FragmentUpcomingRacesBinding
-import com.example.formulaone.ui.navMenuFragments.teams.TeamsViewModel
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -55,15 +51,16 @@ class RecentRacesFragment : BaseFragment<FragmentRecentRacesBinding>(FragmentRec
         setupRecycler()
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                recentRacesViewModel.state.collectLatest {
+                recentRacesViewModel.state1.collectLatest {
                     when (it) {
                         is Resource.Error -> {
-
+                            Toast.makeText(requireContext(),"error",Toast.LENGTH_SHORT).show()
                         }
                         is Resource.Loading -> {
 
                         }
                         is Resource.Success -> {
+//                            myAdapter.submitList(it.data)
                             val filteredList = it.data.filter {
                                 val time = Calendar.getInstance().time
                                 val formatterCurrentTime = SimpleDateFormat("yyyy-MM-dd")
@@ -75,7 +72,7 @@ class RecentRacesFragment : BaseFragment<FragmentRecentRacesBinding>(FragmentRec
                                 val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
                                 val date = LocalDate.parse(dateFromModel, formatter)
 
-                                dateNow < date
+                                dateNow > date
                             }
                             myAdapter.submitList(filteredList)
                         }

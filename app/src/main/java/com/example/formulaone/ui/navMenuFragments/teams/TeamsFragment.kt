@@ -106,21 +106,3 @@ class TeamsFragment : BaseFragment<FragmentTeamsBinding>(FragmentTeamsBinding::i
 
 
 }
-
-//binding.tvTeamCountryHeader.setOnClickListener {
-//    if (binding.searchView.text.toString().isNotEmpty()) {
-//        for (team in constructorsAdapter.currentList) {
-//            if (binding.searchView.text.toString() == team.nationality) {
-//                filteredList.add(team)
-//                constructorsAdapter.submitList(filteredList)
-//            }
-//        }
-//    } else {
-//        observe()
-//        if (filteredList.isNotEmpty()) {
-//            filteredList.clear()
-//        } else {
-//            println("misho")
-//        }
-//    }
-//}

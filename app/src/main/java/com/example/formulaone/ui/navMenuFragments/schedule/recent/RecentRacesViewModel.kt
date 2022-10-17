@@ -3,7 +3,9 @@ package com.example.formulaone.ui.navMenuFragments.schedule.recent
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.formulaone.Resource
+import com.example.formulaone.domain.model.remote.RaceDomain
 import com.example.formulaone.domain.model.remote.RaceScheduleDomain
+import com.example.formulaone.domain.use_case.schedule.RaceDetailsUseCase
 import com.example.formulaone.domain.use_case.schedule.RaceScheduleUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -14,19 +16,20 @@ import javax.inject.Inject
 
 @HiltViewModel
 class RecentRacesViewModel @Inject constructor(
-    private val getRaceScheduleUseCase: RaceScheduleUseCase
+    private val getRaceDetailsUseCase: RaceDetailsUseCase
 ) : ViewModel() {
 
     private val _state1 =
-        MutableStateFlow<Resource<List<RaceScheduleDomain>>>(Resource.Loading(false))
-    val state = _state1.asStateFlow()
+        MutableStateFlow<Resource<List<RaceDomain>>>(Resource.Loading(false))
+    val state1 = _state1.asStateFlow()
+
 
     init {
-        getSchedule()
+        getDetails()
     }
 
-    private fun getSchedule() {
-        getRaceScheduleUseCase().onEach { result ->
+    private fun getDetails() {
+        getRaceDetailsUseCase().onEach { result ->
             when (result) {
                 is Resource.Success -> _state1.value = Resource.Success(result.data)
                 is Resource.Error -> _state1.value = Resource.Error("woops!")

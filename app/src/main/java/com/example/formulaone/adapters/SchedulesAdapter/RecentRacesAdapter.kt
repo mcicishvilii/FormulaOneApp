@@ -1,8 +1,7 @@
-package com.example.formulaone.adapters
+package com.example.formulaone.adapters.SchedulesAdapter
 
 import android.annotation.SuppressLint
 import android.os.Build
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
@@ -11,25 +10,19 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.formulaone.R
 import com.example.formulaone.databinding.SingleRecentRaceBinding
-import com.example.formulaone.databinding.SingleTeamLayoutBinding
-import com.example.formulaone.databinding.SingleUpcomingRaceBinding
-import com.example.formulaone.domain.model.remote.RaceScheduleDomain
-import com.example.formulaone.domain.model.remote.TeamsDomain
-import java.text.SimpleDateFormat
+import com.example.formulaone.domain.model.remote.RaceDomain
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
-import java.time.format.FormatStyle
-import java.util.*
 
 class RecentRacesAdapter :
-    ListAdapter<RaceScheduleDomain, RecentRacesAdapter.RecentRaceViewHolder>(
+    ListAdapter<RaceDomain, RecentRacesAdapter.RecentRaceViewHolder>(
         RecentRacesDiffCallback()
     ) {
 
 
     inner class RecentRaceViewHolder(private val binding: SingleRecentRaceBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        private var model: RaceScheduleDomain? = null
+        private var model: RaceDomain? = null
 
         @RequiresApi(Build.VERSION_CODES.O)
         fun bindData() {
@@ -44,6 +37,10 @@ class RecentRacesAdapter :
             val droppedDays = date.toString().drop(8)
 
             binding.apply {
+//
+                binding.tvFirstPlace.text = model!!.Results[0].Driver.code
+                binding.tvSecondPlace.text = model!!.Results[1].Driver.code
+                binding.tvThirdPlace.text = model!!.Results[2].Driver.code
 
                 tvCountry.text = model?.Circuit?.Location?.country
                 tvDate.text = "$droppedDays\n$accronymDate"
@@ -67,18 +64,18 @@ class RecentRacesAdapter :
     }
 }
 
-class RecentRacesDiffCallback : DiffUtil.ItemCallback<RaceScheduleDomain>() {
+class RecentRacesDiffCallback : DiffUtil.ItemCallback<RaceDomain>() {
     override fun areItemsTheSame(
-        oldItem: RaceScheduleDomain,
-        newItem: RaceScheduleDomain
+        oldItem: RaceDomain,
+        newItem: RaceDomain
     ): Boolean {
         return oldItem.date == newItem.date
     }
 
     @SuppressLint("DiffUtilEquals")
     override fun areContentsTheSame(
-        oldItem: RaceScheduleDomain,
-        newItem: RaceScheduleDomain
+        oldItem: RaceDomain,
+        newItem: RaceDomain
     ): Boolean {
         return oldItem == newItem
     }

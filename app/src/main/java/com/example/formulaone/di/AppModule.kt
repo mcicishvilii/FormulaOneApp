@@ -1,10 +1,7 @@
 package com.example.formulaone.di
 
 import com.example.formulaone.Constants
-import com.example.formulaone.network.apis.ConstructorsApi
-import com.example.formulaone.network.apis.CurrentDriversStandingsApi
-import com.example.formulaone.network.apis.LastRaceAPi
-import com.example.formulaone.network.apis.RaceScheduleApi
+import com.example.formulaone.network.apis.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -52,6 +49,12 @@ object AppModule {
     @Singleton
     fun provideRacesScheduleInfo(retrofit: Retrofit):RaceScheduleApi{
         return retrofit.create(RaceScheduleApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideRacesDetails(retrofit: Retrofit):RaceResultsApi{
+        return retrofit.create(RaceResultsApi::class.java)
     }
 
 }

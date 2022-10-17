@@ -1,13 +1,7 @@
 package com.example.formulaone.di
 
-import com.example.formulaone.domain.repository.remote.CurrentDriversStandingsRepository
-import com.example.formulaone.domain.repository.remote.TeamsRepository
-import com.example.formulaone.data.remote.repository_impl.DriverStandingsRepositoryImpl
-import com.example.formulaone.data.remote.repository_impl.LastRaceImpl
-import com.example.formulaone.data.remote.repository_impl.RaceScheduleRepositoryImpl
-import com.example.formulaone.data.remote.repository_impl.TeamsRepositoryImpl
-import com.example.formulaone.domain.repository.remote.LastRaceRepository
-import com.example.formulaone.domain.repository.remote.RacesSheduleRepository
+import com.example.formulaone.data.remote.repository_impl.*
+import com.example.formulaone.domain.repository.remote.*
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -46,6 +40,12 @@ abstract class RepositoryModule {
     abstract fun bindRaceScheduleRepository(
         raceScheduleRepositoryImpl: RaceScheduleRepositoryImpl
     ): RacesSheduleRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindRaceDetailsRepository(
+        raceDetailsRepositoryImpl: RaceResultsRepositoryImpl
+    ): RaceResultsRepository
 
 
 }

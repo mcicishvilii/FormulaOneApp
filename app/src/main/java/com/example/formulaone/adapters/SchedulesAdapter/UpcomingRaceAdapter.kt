@@ -34,18 +34,6 @@ class UpcomingRaceAdapter :
         fun bindData() {
             model = getItem(bindingAdapterPosition)
 
-            val time = Calendar.getInstance().time
-            val formatterCurrentTime = SimpleDateFormat("yyyy-MM-dd")
-            val formatterNow = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-            val currentTime = formatterCurrentTime.format(time)
-            val dateNow = LocalDate.parse(currentTime, formatterNow)
-
-
-            val dateFromModel = model?.date
-            val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-            val date = LocalDate.parse(dateFromModel, formatter)
-
-            if (date.toEpochDay() > dateNow.toEpochDay()){
                 binding.apply {
                     tvCountry.text = model?.Circuit?.circuitName
                     tvDate.text = model?.date
@@ -53,9 +41,7 @@ class UpcomingRaceAdapter :
                     tvGrandPrixName.text = model?.raceName
                     binding.root.setBackgroundResource(R.drawable.outline)
                 }
-            }else{
-                Log.d("misho","misho")
-            }
+
         }
     }
 

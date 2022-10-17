@@ -71,11 +71,11 @@ class RecentRacesFragment : BaseFragment<FragmentRecentRacesBinding>(FragmentRec
                                 val currentTime = formatterCurrentTime.format(time)
                                 val dateNow = LocalDate.parse(currentTime, formatterNow)
 
-                                val dateFromModel =it.date
+                                val dateFromModel = it.date
                                 val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
                                 val date = LocalDate.parse(dateFromModel, formatter)
 
-                                dateNow > date
+                                dateNow < date
                             }
                             myAdapter.submitList(filteredList)
                         }

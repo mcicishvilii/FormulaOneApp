@@ -18,6 +18,7 @@ import com.example.formulaone.domain.model.remote.TeamsDomain
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
+import java.time.format.FormatStyle
 import java.util.*
 
 class RecentRacesAdapter :
@@ -34,9 +35,18 @@ class RecentRacesAdapter :
         fun bindData() {
             model = getItem(bindingAdapterPosition)
 
+            val dateFromModel = model!!.date
+            val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+            val date = LocalDate.parse(dateFromModel, formatter)
+            val splittedDate = date.month.name.split("")
+            val accronymDate = "${splittedDate[1]}${splittedDate[2]}${splittedDate[3]}"
+
+            val droppedDays = date.toString().drop(8)
+
             binding.apply {
+
                 tvCountry.text = model?.Circuit?.circuitName
-                tvDate.text = model?.date
+                tvDate.text = "$droppedDays\n$accronymDate"
                 tvRound.text = model?.round
                 tvGrandPrixName.text = model?.raceName
                 binding.root.setBackgroundResource(R.drawable.outline)

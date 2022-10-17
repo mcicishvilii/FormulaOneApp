@@ -1,5 +1,6 @@
 package com.example.formulaone.ui.navMenuFragments.schedule.upcoming
 
+import android.os.Build
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.util.Log
@@ -8,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -24,12 +26,17 @@ import com.example.formulaone.ui.navMenuFragments.teams.TeamsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 @AndroidEntryPoint
 class UpcomingRacesFragment : BaseFragment<FragmentUpcomingRacesBinding>(FragmentUpcomingRacesBinding::inflate) {
     private val upcomingRaceAdapter: UpcomingRaceAdapter by lazy { UpcomingRaceAdapter() }
     private val upcomingRacesViewModel: UpcomingRacesViewModel by viewModels()
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun viewCreated() {
         observe()
     }
@@ -49,6 +56,7 @@ class UpcomingRacesFragment : BaseFragment<FragmentUpcomingRacesBinding>(Fragmen
                 )
         }
     }
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun observe() {
         setupRecycler()
         viewLifecycleOwner.lifecycleScope.launch {
@@ -56,13 +64,26 @@ class UpcomingRacesFragment : BaseFragment<FragmentUpcomingRacesBinding>(Fragmen
                 upcomingRacesViewModel.state.collectLatest {
                     when (it) {
                         is Resource.Error -> {
-                            Log.d("misho","misho")
+
                         }
                         is Resource.Loading -> {
 
                         }
                         is Resource.Success -> {
-                            upcomingRaceAdapter.submitList(it.data)
+                            val filteredList = it.data.filter {
+                                val time = Calendar.getInstance().time
+                                val formatterCurrentTime = SimpleDateFormat("yyyy-MM-dd")
+                                val formatterNow = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+                                val currentTime = formatterCurrentTime.format(time)
+                                val dateNow = LocalDate.parse(currentTime, formatterNow)
+
+                                val dateFromModel =it.date
+                                val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+                                val date = LocalDate.parse(dateFromModel, formatter)
+
+                                dateNow > date
+                            }
+                            upcomingRaceAdapter.submitList(filteredList)
                         }
                     }
                 }

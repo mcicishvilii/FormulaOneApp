@@ -68,6 +68,10 @@
             android:id="@+id/action_scheduleFragment_to_upcomingRacesFragment"
             app:destination="@id/upcomingRacesFragment" />
 
+        <action
+            android:id="@+id/action_driversFragment_to_driverDetailsFragment"
+            app:destination="@id/driverDetailsFragment" />
+
 
     </fragment>
 
@@ -83,9 +87,13 @@
 
     <fragment
         android:id="@+id/driversFragment"
-        android:name="com.example.formulaone.ui.navMenuFragments.drivers.DriversFragment"
+        android:name="com.example.formulaone.ui.navMenuFragments.drivers.list.DriversFragment"
         android:label="fragment_drivers"
-        tools:layout="@layout/fragment_drivers"/>
+        tools:layout="@layout/fragment_drivers">
+        <action
+            android:id="@+id/action_driversFragment_to_driverDetailsFragment"
+            app:destination="@id/driverDetailsFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/teamsFragment"
@@ -145,5 +153,21 @@
         android:name="com.example.formulaone.ui.navMenuFragments.schedule.upcoming.UpcomingRacesFragment"
         android:label="fragment_upcoming_races"
         tools:layout="@layout/fragment_upcoming_races" />
+    <fragment
+        android:id="@+id/driverDetailsFragment"
+        android:name="com.example.formulaone.ui.navMenuFragments.drivers.details.DriverDetailsFragment"
+        android:label="fragment_driver_details"
+        tools:layout="@layout/fragment_driver_details" >
+        <argument
+            android:name="details"
+            app:argType="com.example.formulaone.ui.navMenuFragments.drivers.DriversDetails"
+            app:nullable="true"
+            android:defaultValue="@null" />
+        <action
+            android:id="@+id/action_driverDetailsFragment_to_driversFragment"
+            app:popUpTo="@id/driversFragment"
+            app:destination="@id/driversFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 
 </navigation>

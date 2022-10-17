@@ -1,4 +1,4 @@
-package com.example.formulaone.ui.navMenuFragments.drivers
+package com.example.formulaone.ui.navMenuFragments.drivers.list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

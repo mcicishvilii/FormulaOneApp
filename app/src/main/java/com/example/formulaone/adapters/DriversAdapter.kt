@@ -8,9 +8,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.formulaone.data.remote.drivers.drivers_standings.DriverStandingsDto
 import com.example.formulaone.databinding.SingleDriverLayoutBinding
 
-class DriversAdapter: ListAdapter<DriverStandingsDto.MRDataX.StandingsTableX.StandingsListsX.DriverStanding, DriversAdapter.DriversViewHolder>(DriversDiffCallBack()) {
+class DriversAdapter :
+    ListAdapter<DriverStandingsDto.MRDataX.StandingsTableX.StandingsListsX.DriverStanding, DriversAdapter.DriversViewHolder>(
+        DriversDiffCallBack()
+    ) {
 
-//    private lateinit var itemClickListener: (PopularResponse.Result1, Int) -> Unit
+    private lateinit var itemClickListener: (DriverStandingsDto.MRDataX.StandingsTableX.StandingsListsX.DriverStanding, Int) -> Unit
 
     override fun onCreateViewHolder(
         parent: ViewGroup, viewType: Int
@@ -27,7 +30,8 @@ class DriversAdapter: ListAdapter<DriverStandingsDto.MRDataX.StandingsTableX.Sta
 
     inner class DriversViewHolder(private val binding: SingleDriverLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        private var model: DriverStandingsDto.MRDataX.StandingsTableX.StandingsListsX.DriverStanding? = null
+        private var model: DriverStandingsDto.MRDataX.StandingsTableX.StandingsListsX.DriverStanding? =
+            null
 
         fun bindData() {
             model = getItem(bindingAdapterPosition)
@@ -55,24 +59,37 @@ class DriversAdapter: ListAdapter<DriverStandingsDto.MRDataX.StandingsTableX.Sta
                     "Chinese" -> ivTeamIndicator.setImageResource(R.color.Maroon)
                 }
 
-//                binding.root.setBackgroundResource(R.drawable.outline)
 
             }
+            binding.forwardArrow.setOnClickListener {
+                itemClickListener.invoke(model!!, absoluteAdapterPosition)
+            }
+
+
         }
 
-//    fun setOnItemClickListener(clickListener: (PopularResponse.Result1, Int) -> Unit) {
-//        itemClickListener = clickListener
-//    }
+
+    }
+    fun setOnItemClickListener(clickListener: (DriverStandingsDto.MRDataX.StandingsTableX.StandingsListsX.DriverStanding, Int) -> Unit) {
+        itemClickListener = clickListener
     }
 }
-class DriversDiffCallBack : DiffUtil.ItemCallback<DriverStandingsDto.MRDataX.StandingsTableX.StandingsListsX.DriverStanding>() {
-    override fun areItemsTheSame(oldItem: DriverStandingsDto.MRDataX.StandingsTableX.StandingsListsX.DriverStanding, newItem: DriverStandingsDto.MRDataX.StandingsTableX.StandingsListsX.DriverStanding
+
+class DriversDiffCallBack :
+    DiffUtil.ItemCallback<DriverStandingsDto.MRDataX.StandingsTableX.StandingsListsX.DriverStanding>() {
+    override fun areItemsTheSame(
+        oldItem: DriverStandingsDto.MRDataX.StandingsTableX.StandingsListsX.DriverStanding,
+        newItem: DriverStandingsDto.MRDataX.StandingsTableX.StandingsListsX.DriverStanding
     ): Boolean {
         return oldItem.Driver.driverId == newItem.Driver.driverId
     }
 
-    override fun areContentsTheSame(oldItem: DriverStandingsDto.MRDataX.StandingsTableX.StandingsListsX.DriverStanding, newItem: DriverStandingsDto.MRDataX.StandingsTableX.StandingsListsX.DriverStanding
+    override fun areContentsTheSame(
+        oldItem: DriverStandingsDto.MRDataX.StandingsTableX.StandingsListsX.DriverStanding,
+        newItem: DriverStandingsDto.MRDataX.StandingsTableX.StandingsListsX.DriverStanding
     ): Boolean {
         return oldItem == newItem
     }
+
+
 }

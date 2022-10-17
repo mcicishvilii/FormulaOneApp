@@ -54,20 +54,18 @@ class RecentRacesFragment : BaseFragment<FragmentRecentRacesBinding>(FragmentRec
                 recentRacesViewModel.state1.collectLatest {
                     when (it) {
                         is Resource.Error -> {
-                            Toast.makeText(requireContext(),"error",Toast.LENGTH_SHORT).show()
+
                         }
                         is Resource.Loading -> {
 
                         }
                         is Resource.Success -> {
-//                            myAdapter.submitList(it.data)
                             val filteredList = it.data.filter {
                                 val time = Calendar.getInstance().time
                                 val formatterCurrentTime = SimpleDateFormat("yyyy-MM-dd")
                                 val formatterNow = DateTimeFormatter.ofPattern("yyyy-MM-dd")
                                 val currentTime = formatterCurrentTime.format(time)
                                 val dateNow = LocalDate.parse(currentTime, formatterNow)
-
                                 val dateFromModel = it.date
                                 val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
                                 val date = LocalDate.parse(dateFromModel, formatter)

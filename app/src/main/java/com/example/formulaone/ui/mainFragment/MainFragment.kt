@@ -9,7 +9,7 @@ import com.example.formulaone.R
 import com.example.formulaone.Resource
 import com.example.formulaone.databinding.FragmentMainBinding
 import com.example.formulaone.common.bases.BaseFragment
-import com.example.formulaone.ui.navMenuFragments.drivers.DriversFragment
+import com.example.formulaone.ui.navMenuFragments.drivers.list.DriversFragment
 import com.example.formulaone.ui.navMenuFragments.schedule.ScheduleFragment
 import com.example.formulaone.ui.navMenuFragments.settings.SettingsFragment
 import com.example.formulaone.ui.navMenuFragments.teams.TeamsFragment

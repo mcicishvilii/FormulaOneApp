@@ -1,10 +1,13 @@
 package com.example.formulaone.ui.mainFragment
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.formulaone.Resource
+import com.example.formulaone.data.remote.news.NewsDto
 import com.example.formulaone.domain.use_case.last_race.GetLastRaceCircuitUseCase
 import com.example.formulaone.domain.use_case.last_race.GetLastRaceWinnerUseCase
+import com.example.formulaone.domain.use_case.news.NewsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -17,14 +20,39 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val getLastRaceWinnerUseCase: GetLastRaceWinnerUseCase,
-    private val getLastRaceCircuitUseCase: GetLastRaceCircuitUseCase
+    private val getLastRaceCircuitUseCase: GetLastRaceCircuitUseCase,
+    private val newsUseCase: NewsUseCase
 
 ) : ViewModel() {
     private val _state = MutableStateFlow<Resource<UiModel>>(Resource.Loading(false))
     val state = _state.asStateFlow()
 
-//    private val _newsState = MutableStateFlow<Resource<News>>(Resource.Loading(false))
-//    val newsState = _newsState.asStateFlow()
+    private val _newsState = MutableStateFlow<Resource<List<NewsDto>>>(Resource.Loading(false))
+    val newsState = _newsState.asStateFlow()
+
+    fun getNews(){
+        viewModelScope.launch {
+            newsUseCase().onEach { news ->
+                when(news){
+                    is Resource.Success -> {
+                        _newsState.value = Resource.Success(news.data)
+                        Log.d("newsebi","aq unda modiodes sia ${news}")
+                    }
+                    is Resource.Error -> {
+                        _newsState.value = Resource.Error("woops!")
+                        Log.d("newsebi","aq unda modiodes sia ${news}")
+                    }
+                    is Resource.Loading -> {
+                        _newsState.value = Resource.Loading(true)
+                        Log.d("newsebi","aq unda modiodes sia ${news}")
+                    }
+
+                }
+//                Log.d("newsebi","aq unda modiodes sia ${news}")
+            }
+
+        }
+    }
 
 
 

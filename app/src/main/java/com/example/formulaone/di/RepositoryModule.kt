@@ -47,5 +47,12 @@ abstract class RepositoryModule {
         raceDetailsRepositoryImpl: RaceResultsRepositoryImpl
     ): RaceResultsRepository
 
+    @Binds
+    @Singleton
+    abstract fun bindNewsRepository(
+        newsRepositoryImpl: NewsRepositoryImpl
+    ): NewsRepository
+
+
 
 }

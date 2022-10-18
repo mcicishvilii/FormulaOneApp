@@ -40,7 +40,7 @@ class NewsAdapter :
         fun bindData() {
             model = getItem(bindingAdapterPosition)
             binding.apply {
-                tvNewsText.text = model?.content
+                tvNewsText.text = model?.description
                 Glide.with(this.ivNewsImage)
                     .load(model?.urlToImage)
                     .into(ivNewsImage)

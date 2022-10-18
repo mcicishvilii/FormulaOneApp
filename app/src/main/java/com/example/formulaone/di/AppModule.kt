@@ -1,6 +1,7 @@
 package com.example.formulaone.di
 
 import com.example.formulaone.Constants
+import com.example.formulaone.data.remote.news.NewsDto
 import com.example.formulaone.network.apis.*
 import dagger.Module
 import dagger.Provides
@@ -26,35 +27,26 @@ object AppModule {
             .build()
     }
 
-    @Provides
-    @Singleton
-    fun provideConstructorsApi(retrofit: Retrofit):ConstructorsApi{
-        return retrofit.create(ConstructorsApi::class.java)
-    }
+//    @Singleton
+//    @Provides
+//    fun provideRetrofitForNews():Retrofit{
+//        return Retrofit
+//            .Builder()
+//            .baseUrl(Constants.BASE_URL_NEWS)
+//            .addConverterFactory(GsonConverterFactory.create())
+//            .build()
+//    }
 
     @Provides
     @Singleton
-    fun provideStandingsApi(retrofit: Retrofit):CurrentDriversStandingsApi{
-        return retrofit.create(CurrentDriversStandingsApi::class.java)
+    fun provideConstructorsApi(retrofit: Retrofit):RaceApis{
+        return retrofit.create(RaceApis::class.java)
     }
 
-    @Provides
-    @Singleton
-    fun provideLastRaceInfoApi(retrofit: Retrofit):LastRaceAPi{
-        return retrofit.create(LastRaceAPi::class.java)
-    }
-
-
-    @Provides
-    @Singleton
-    fun provideRacesScheduleInfo(retrofit: Retrofit):RaceScheduleApi{
-        return retrofit.create(RaceScheduleApi::class.java)
-    }
-
-    @Provides
-    @Singleton
-    fun provideRacesDetails(retrofit: Retrofit):RaceResultsApi{
-        return retrofit.create(RaceResultsApi::class.java)
-    }
+//    @Provides
+//    @Singleton
+//    fun provideNewsApi(retrofit: Retrofit):NewsApis{
+//        return retrofit.create(NewsApis::class.java)
+//    }
 
 }

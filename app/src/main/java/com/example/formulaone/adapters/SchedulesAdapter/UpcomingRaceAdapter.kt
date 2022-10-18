@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.formulaone.R
+import com.example.formulaone.data.remote.drivers.drivers_standings.DriverStandingsDto
 import com.example.formulaone.databinding.SingleTeamLayoutBinding
 import com.example.formulaone.databinding.SingleUpcomingRaceBinding
 import com.example.formulaone.domain.model.remote.RaceScheduleDomain
@@ -23,6 +24,7 @@ class UpcomingRaceAdapter :
     ListAdapter<RaceScheduleDomain, UpcomingRaceAdapter.UpcomingRaceViewHolder>(
         UpcomingDiffCallBack()
     ) {
+    private lateinit var itemClickListener: (RaceScheduleDomain, Int) -> Unit
 
 
     inner class UpcomingRaceViewHolder(private val binding: SingleUpcomingRaceBinding) :
@@ -42,11 +44,15 @@ class UpcomingRaceAdapter :
             val droppedDays = date.toString().drop(8)
 
             binding.apply {
+                ivTicket.setImageResource(R.drawable.ic_baseline_airplane_ticket_24)
                 tvCountry.text = model?.Circuit?.Location?.country
                 tvDate.text = "$droppedDays\n$accronymDate"
                 tvRound.text = "Round ${model?.round}"
                 tvGrandPrixName.text = model?.raceName
                 binding.root.setBackgroundResource(R.drawable.outline)
+            }
+            binding.ivTicket.setOnClickListener {
+                itemClickListener.invoke(model!!, absoluteAdapterPosition)
             }
         }
     }
@@ -61,7 +67,11 @@ class UpcomingRaceAdapter :
     override fun onBindViewHolder(holder: UpcomingRaceViewHolder, position: Int) {
         holder.bindData()
     }
+    fun setOnItemClickListener(clickListener: (RaceScheduleDomain, Int) -> Unit) {
+        itemClickListener = clickListener
+    }
 }
+
 
 class UpcomingDiffCallBack : DiffUtil.ItemCallback<RaceScheduleDomain>() {
     override fun areItemsTheSame(

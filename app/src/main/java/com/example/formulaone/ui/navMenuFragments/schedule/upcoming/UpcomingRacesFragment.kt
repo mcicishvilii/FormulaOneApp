@@ -22,7 +22,10 @@ import com.example.formulaone.adapters.ConstructorsAdapter
 import com.example.formulaone.adapters.UpcomingRaceAdapter
 import com.example.formulaone.common.bases.BaseFragment
 import com.example.formulaone.databinding.FragmentUpcomingRacesBinding
+import com.example.formulaone.ui.navMenuFragments.drivers.DriversDetails
+import com.example.formulaone.ui.navMenuFragments.drivers.list.DriversFragmentDirections
 import com.example.formulaone.ui.navMenuFragments.teams.TeamsViewModel
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -42,7 +45,17 @@ class UpcomingRacesFragment : BaseFragment<FragmentUpcomingRacesBinding>(Fragmen
     }
 
     override fun listeners() {
+        buyTicket()
+    }
 
+    private fun buyTicket(){
+        upcomingRaceAdapter.apply {
+            setOnItemClickListener{ venue,_ ->
+                Snackbar.make(binding.root,
+                    "you bought ticket for ${venue.raceName}",
+                    Snackbar.LENGTH_SHORT).show()
+            }
+        }
     }
 
     private fun setupRecycler() {

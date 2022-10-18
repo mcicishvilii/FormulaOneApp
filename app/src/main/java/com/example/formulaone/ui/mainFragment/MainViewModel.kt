@@ -23,8 +23,14 @@ class MainViewModel @Inject constructor(
     private val _state = MutableStateFlow<Resource<UiModel>>(Resource.Loading(false))
     val state = _state.asStateFlow()
 
-    var apiCount = 0
+//    private val _newsState = MutableStateFlow<Resource<News>>(Resource.Loading(false))
+//    val newsState = _newsState.asStateFlow()
 
+
+
+
+
+    var apiCount = 0
     val uiModelHashMap = mutableMapOf<Int,String?>()
 
         fun getData(){

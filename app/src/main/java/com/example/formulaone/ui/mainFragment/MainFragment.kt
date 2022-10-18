@@ -7,10 +7,13 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.viewpager2.widget.ViewPager2
 import com.example.formulaone.DriversAdapter
 import com.example.formulaone.R
 import com.example.formulaone.Resource
+import com.example.formulaone.adapters.BottomNavViewPagerAdapter
 import com.example.formulaone.adapters.NewsAdapter
+import com.example.formulaone.adapters.ViewPagerAdapter
 import com.example.formulaone.databinding.FragmentMainBinding
 import com.example.formulaone.common.bases.BaseFragment
 import com.example.formulaone.ui.navMenuFragments.drivers.list.DriversFragment
@@ -18,6 +21,8 @@ import com.example.formulaone.ui.navMenuFragments.schedule.ScheduleFragment
 import com.example.formulaone.ui.navMenuFragments.settings.SettingsFragment
 import com.example.formulaone.ui.navMenuFragments.teams.TeamsFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -27,31 +32,16 @@ import kotlinx.coroutines.launch
 class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::inflate) {
 
     private val mainViewModel: MainViewModel by viewModels()
-    private val newsAdapter: NewsAdapter by lazy { NewsAdapter() }
 
+    private lateinit var viewPager: ViewPager2
+    private lateinit var tabLayout: TabLayout
 
 
     override fun viewCreated() {
 
         mainViewModel.getData()
-        mainViewModel.getNews()
-        observe1()
-        setupRecycler()
+        setupTabLayout()
         observe()
-
-
-        val bottomNav: BottomNavigationView = binding.navbar
-
-        bottomNav.setOnItemSelectedListener {
-            when (it.itemId) {
-                R.id.firstFragment -> replaceFragment(DriversFragment())
-                R.id.secondFragment -> replaceFragment(TeamsFragment())
-                R.id.thirdFragment -> replaceFragment(SettingsFragment())
-                R.id.fourthFragment -> replaceFragment(ScheduleFragment())
-                else -> {}
-            }
-            true
-        }
     }
 
 
@@ -59,25 +49,25 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
 
     }
 
-    private fun replaceFragment(fragment: Fragment) {
-        val fragmentManager = parentFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.mainContainer, fragment)
-        fragmentTransaction.commit()
+    private fun setupTabLayout() {
+        viewPager = binding.viewPager
+        tabLayout = binding.tabLayout
+        viewPager.adapter = BottomNavViewPagerAdapter(requireActivity())
+        TabLayoutMediator(tabLayout,viewPager){tab,index ->
+            tab.text = when(index){
+                0 -> {"Drivers"}
+                1 -> {"Teams"}
+                2 -> {"Settings"}
+                3 -> {"Schedule"}
+                4 -> {"News"}
+                else -> {"Tab Not Found"}
+            }
+        }.attach()
     }
 
 
-    private fun setupRecycler() {
-        binding.rvNews.apply {
-            adapter = newsAdapter
-            layoutManager =
-                LinearLayoutManager(
-                    requireContext(),
-                    LinearLayoutManager.VERTICAL,
-                    false
-                )
-        }
-    }
+
+
 
     private fun observe() {
         viewLifecycleOwner.lifecycleScope.launch {
@@ -101,25 +91,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
         }
     }
 
-    private fun observe1() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                mainViewModel.newsState.collectLatest {
-                    when (it) {
-                        is Resource.Error -> {
 
-                        }
-                        is Resource.Loading -> {
-
-                        }
-                        is Resource.Success -> {
-                            newsAdapter.submitList(it.data)
-                        }
-                    }
-                }
-            }
-        }
-    }
 
 
 }

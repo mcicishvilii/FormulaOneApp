@@ -88,7 +88,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
 
                         }
                         is Resource.Loading -> {
-                            Log.d("newsebi",it.loading.toString())
+
                         }
                         is Resource.Success -> {
                             binding.tv1stDriver.text = it.data.winner
@@ -107,14 +107,13 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
                 mainViewModel.newsState.collectLatest {
                     when (it) {
                         is Resource.Error -> {
-                            Log.d("newsebi","bebiashenisam ${it.error}")
+
                         }
                         is Resource.Loading -> {
-                            Log.d("newsebi",it.loading.toString())
+
                         }
                         is Resource.Success -> {
                             newsAdapter.submitList(it.data)
-                            Log.d("newsebi",it.data.toString())
                         }
                     }
                 }

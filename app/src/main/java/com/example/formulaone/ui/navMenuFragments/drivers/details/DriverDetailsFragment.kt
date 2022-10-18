@@ -24,9 +24,9 @@ class DriverDetailsFragment : BaseFragment<FragmentDriverDetailsBinding>(Fragmen
         val name = args.details
         binding.tvDriverFirstName.text = name?.name
         binding.tvDriverLastName.text = name?.lastName
-        binding.tvDriversTeamAndNumber.text = name?.carNumber
+        binding.tvDriversTeamAndNumber.text = name?.carNumber + "   |   " + name?.team
         binding.tvWins.text = name?.wins
-        binding.textView2.text = name?.team
+//        binding.textView2.text = name?.team
 
         when(name?.lastName){
             "Verstappen" -> binding.appCompatImageView.setImageResource(R.drawable.max_verstappen)

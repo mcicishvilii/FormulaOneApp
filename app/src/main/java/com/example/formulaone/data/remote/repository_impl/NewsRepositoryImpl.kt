@@ -5,7 +5,9 @@ import com.example.formulaone.data.remote.drivers.drivers_standings.DriverStandi
 import com.example.formulaone.data.remote.news.NewsDto
 import com.example.formulaone.data.remote.news.new_api.F1NewsDto
 import com.example.formulaone.data.remote.news.new_api.toArticleDomain
+import com.example.formulaone.data.remote.news.toNewsItemDomain
 import com.example.formulaone.domain.model.remote.ArticleDomain
+import com.example.formulaone.domain.model.remote.NewsDtItemDomain
 import com.example.formulaone.domain.repository.remote.NewsRepository
 import com.example.formulaone.network.apis.NewsApis
 import com.example.formulaone.network.apis.RaceApis
@@ -20,4 +22,6 @@ class NewsRepositoryImpl @Inject constructor(
             "6ce7c585fe714572ad745ea44c378403"
         ).articles.map { it.toArticleDomain() }
     }
+
+
 }

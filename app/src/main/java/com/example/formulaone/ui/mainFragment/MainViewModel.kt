@@ -38,27 +38,22 @@ class MainViewModel @Inject constructor(
                 when(news){
                     is Resource.Success -> {
                         _newsState.value = Resource.Success(news.data)
-                        Log.d("newsebi","aq unda modiodes sia ${news}")
+
                     }
                     is Resource.Error -> {
                         _newsState.value = Resource.Error("woops!")
-                        Log.d("newsebi","aq unda modiodes sia ${news}")
+
                     }
                     is Resource.Loading -> {
                         _newsState.value = Resource.Loading(true)
-                        Log.d("newsebi","aq unda modiodes sia ${news}")
+
                     }
 
                 }
-//                Log.d("newsebi","aq unda modiodes sia ${news}")
             }.launchIn(viewModelScope)
 
         }
     }
-
-
-
-
 
     var apiCount = 0
     val uiModelHashMap = mutableMapOf<Int,String?>()

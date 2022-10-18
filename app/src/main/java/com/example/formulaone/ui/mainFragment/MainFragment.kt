@@ -36,6 +36,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
         mainViewModel.getData()
         mainViewModel.getNews()
         observe1()
+        setupRecycler()
         observe()
 
 
@@ -112,7 +113,6 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
                             Log.d("newsebi",it.loading.toString())
                         }
                         is Resource.Success -> {
-                            setupRecycler()
                             newsAdapter.submitList(it.data)
                             Log.d("newsebi",it.data.toString())
                         }

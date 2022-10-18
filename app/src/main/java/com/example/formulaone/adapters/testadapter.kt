@@ -6,18 +6,12 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.formulaone.R
-import com.example.formulaone.data.remote.drivers.drivers_standings.DriverStandingsDto
 import com.example.formulaone.data.remote.news.NewsDto
-import com.example.formulaone.data.remote.news.new_api.F1NewsDto
-import com.example.formulaone.databinding.SingleDriverLayoutBinding
 import com.example.formulaone.databinding.SingleNewsLayoutBinding
-import com.example.formulaone.domain.model.remote.ArticleDomain
 
-class NewsAdapter :
-    ListAdapter<ArticleDomain, NewsAdapter.NewsViewHolder>(
-        NewsDiffCallBack()
-    ) {
+class Testadapter : ListAdapter<NewsDto, Testadapter.NewsViewHolder>(
+    TestDiffCallBack()
+) {
 
 
     override fun onCreateViewHolder(
@@ -35,33 +29,35 @@ class NewsAdapter :
 
     inner class NewsViewHolder(private val binding: SingleNewsLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        private var model: ArticleDomain? = null
+        private var model: NewsDto? = null
 
         fun bindData() {
             model = getItem(bindingAdapterPosition)
             binding.apply {
-                tvNewsText.text = model?.content
+                tvNewsText.text = model?.newsDtItem!![0].title
+
                 Glide.with(this.ivNewsImage)
-                    .load(model?.urlToImage)
+                    .load(model?.newsDtItem!![0].imgsrc)
                     .into(ivNewsImage)
+
             }
         }
     }
 
 }
 
-class NewsDiffCallBack :
-    DiffUtil.ItemCallback<ArticleDomain>() {
+class TestDiffCallBack :
+    DiffUtil.ItemCallback<NewsDto>() {
     override fun areItemsTheSame(
-        oldItem: ArticleDomain,
-        newItem: ArticleDomain
+        oldItem: NewsDto,
+        newItem: NewsDto
     ): Boolean {
-        return oldItem.content == newItem.content
+        return oldItem.newsDtItem[0].shortdesc == newItem.newsDtItem[0].shortdesc
     }
 
     override fun areContentsTheSame(
-        oldItem: ArticleDomain,
-        newItem: ArticleDomain
+        oldItem: NewsDto,
+        newItem: NewsDto
     ): Boolean {
         return oldItem == newItem
     }

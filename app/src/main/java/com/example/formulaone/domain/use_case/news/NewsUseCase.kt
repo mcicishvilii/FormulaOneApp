@@ -4,6 +4,8 @@ package com.example.formulaone.domain.use_case.news
 import android.util.Log
 import com.example.formulaone.Resource
 import com.example.formulaone.data.remote.news.NewsDto
+import com.example.formulaone.data.remote.news.new_api.F1NewsDto
+import com.example.formulaone.domain.model.remote.ArticleDomain
 import com.example.formulaone.domain.model.remote.TeamsDomain
 import com.example.formulaone.domain.repository.local.TeamsRepositoryLocal
 import com.example.formulaone.domain.repository.remote.NewsRepository
@@ -18,11 +20,10 @@ import javax.inject.Inject
 class NewsUseCase @Inject constructor(
     private val repository: NewsRepository
 ) {
-    suspend operator fun invoke(): Flow<Resource<List<NewsDto>>> = flow{
+    suspend operator fun invoke(): Flow<Resource<List<ArticleDomain>>> = flow{
         try {
             emit(Resource.Loading(true))
             val raceData = repository.getNews()
-            Log.d("siachveni",raceData[0].toString())
             emit(Resource.Success(raceData))
         }
         catch (e: HttpException){

@@ -92,6 +92,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvNews"
             android:layout_width="0dp"
+            android:background="@color/black"
             android:layout_height="0dp"
             android:padding="20dp"
             app:layout_constraintBottom_toBottomOf="parent"

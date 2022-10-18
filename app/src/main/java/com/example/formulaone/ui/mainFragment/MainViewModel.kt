@@ -5,6 +5,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.formulaone.Resource
 import com.example.formulaone.data.remote.news.NewsDto
+import com.example.formulaone.data.remote.news.new_api.F1NewsDto
+import com.example.formulaone.domain.model.remote.ArticleDomain
 import com.example.formulaone.domain.use_case.last_race.GetLastRaceCircuitUseCase
 import com.example.formulaone.domain.use_case.last_race.GetLastRaceWinnerUseCase
 import com.example.formulaone.domain.use_case.news.NewsUseCase
@@ -27,7 +29,7 @@ class MainViewModel @Inject constructor(
     private val _state = MutableStateFlow<Resource<UiModel>>(Resource.Loading(false))
     val state = _state.asStateFlow()
 
-    private val _newsState = MutableStateFlow<Resource<List<NewsDto>>>(Resource.Loading(false))
+    private val _newsState = MutableStateFlow<Resource<List<ArticleDomain>>>(Resource.Loading(false))
     val newsState = _newsState.asStateFlow()
 
     fun getNews(){
@@ -49,7 +51,7 @@ class MainViewModel @Inject constructor(
 
                 }
 //                Log.d("newsebi","aq unda modiodes sia ${news}")
-            }
+            }.launchIn(viewModelScope)
 
         }
     }

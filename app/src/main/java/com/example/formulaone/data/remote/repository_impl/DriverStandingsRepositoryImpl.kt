@@ -11,7 +11,7 @@ class DriverStandingsRepositoryImpl @Inject constructor(
 
 
     override suspend fun getCurrentDriversStanding(): DriverStandingsDto {
-        return api.getCurrentStandings()
+        return api.getCurrentStandings("300")
     }
 
 

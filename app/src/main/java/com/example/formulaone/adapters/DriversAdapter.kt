@@ -41,22 +41,20 @@ class DriversAdapter :
                 tvDriverLastName.text = model?.Driver?.familyName
                 tvPosition.text = "${model?.position}"
                 tvPoints.text = "${model?.points} pts"
+                tvTeam.text = model?.Constructors!![0].name
 
 
-                when (model?.Driver?.nationality) {
-                    "Thai" -> ivTeamIndicator.setImageResource(R.color.Blue)
-                    "German" -> ivTeamIndicator.setImageResource(R.color.black)
-                    "Canadian" -> ivTeamIndicator.setImageResource(R.color.Blue)
-                    "French" -> ivTeamIndicator.setImageResource(R.color.DarkBlue)
-                    "Italian" -> ivTeamIndicator.setImageResource(R.color.green)
-                    "British" -> ivTeamIndicator.setImageResource(R.color.OrangeRed)
-                    "Dutch" -> ivTeamIndicator.setImageResource(R.color.YellowGreen)
-                    "Finnish" -> ivTeamIndicator.setImageResource(R.color.CadetBlue)
-                    "Monegasque" -> ivTeamIndicator.setImageResource(R.color.Bisque)
-                    "Danish" -> ivTeamIndicator.setImageResource(R.color.Chocolate)
-                    "Mexican" -> ivTeamIndicator.setImageResource(R.color.DodgerBlue)
-                    "Australian" -> ivTeamIndicator.setImageResource(R.color.Gold)
-                    "Chinese" -> ivTeamIndicator.setImageResource(R.color.Maroon)
+                when (model?.Constructors!![0].constructorId) {
+                    "red_bull" -> ivTeamIndicator.setImageResource(R.color.Blue)
+                    "ferrari" -> ivTeamIndicator.setImageResource(R.color.Red)
+                    "mercedes" -> ivTeamIndicator.setImageResource(R.color.LightGreen)
+                    "mclaren" -> ivTeamIndicator.setImageResource(R.color.Orange)
+                    "alpine" -> ivTeamIndicator.setImageResource(R.color.HotPink)
+                    "alfa" -> ivTeamIndicator.setImageResource(R.color.DarkRed)
+                    "aston_martin" -> ivTeamIndicator.setImageResource(R.color.green)
+                    "alphatauri" -> ivTeamIndicator.setImageResource(R.color.CadetBlue)
+                    "haas" -> ivTeamIndicator.setImageResource(R.color.gray)
+                    "williams" -> ivTeamIndicator.setImageResource(R.color.Aqua)
                 }
 
 

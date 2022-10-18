@@ -23,12 +23,19 @@ data class DriverStandingsDto(
                 val season: String
             ){
                 data class DriverStanding(
+                    val Constructors: List<Constructor>,
                     val Driver: DriverX,
                     val points: String,
                     val position: String,
                     val positionText: String,
                     val wins: String
                 ){
+                    data class Constructor(
+                        val constructorId: String,
+                        val name: String,
+                        val nationality: String,
+                        val url: String
+                    )
                     data class DriverX(
                         val code: String,
                         val dateOfBirth: String,

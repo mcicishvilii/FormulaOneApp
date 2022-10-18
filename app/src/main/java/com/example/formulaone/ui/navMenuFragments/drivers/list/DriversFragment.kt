@@ -8,6 +8,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.formulaone.DriversAdapter
+import com.example.formulaone.R
 import com.example.formulaone.Resource
 import com.example.formulaone.databinding.FragmentDriversBinding
 import com.example.formulaone.common.bases.BaseFragment
@@ -16,6 +17,7 @@ import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import kotlin.properties.Delegates
 
 @AndroidEntryPoint
 class DriversFragment : BaseFragment<FragmentDriversBinding>(FragmentDriversBinding::inflate) {
@@ -35,10 +37,17 @@ class DriversFragment : BaseFragment<FragmentDriversBinding>(FragmentDriversBind
         driversAdapter.apply {
             setOnItemClickListener{ driver,_ ->
 //                Snackbar.make(binding.root,driver.Driver.familyName,Snackbar.LENGTH_SHORT).show()
+
                 findNavController().navigate(DriversFragmentDirections.actionDriversFragmentToDriverDetailsFragment(
                     DriversDetails(
                         driver.Driver.givenName,
                         driver.Driver.familyName,
+                        driver.wins,
+                        driver.position,
+                        driver.Driver.nationality,
+                        driver.Driver.dateOfBirth,
+                        driver.Driver.permanentNumber,
+                        driver.Constructors[0].name,
                     )
                 ))
             }

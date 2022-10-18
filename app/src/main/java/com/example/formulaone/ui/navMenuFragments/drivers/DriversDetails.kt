@@ -7,5 +7,10 @@ import kotlinx.parcelize.Parcelize
 data class DriversDetails(
     val name:String,
     val lastName:String,
-//    val photo:Int,
+    val wins:String,
+    val currentStanding:String,
+    val nationality:String,
+    val dob:String,
+    val carNumber:String,
+    val team:String
 ):Parcelable

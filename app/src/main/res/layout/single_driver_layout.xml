@@ -23,21 +23,20 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.65" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineFnLn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.33" />
+<!--    <androidx.constraintlayout.widget.Guideline-->
+<!--        android:id="@+id/guidelineFnLn"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="vertical"-->
+<!--        app:layout_constraintGuide_percent="0.38" />-->
 
 
     <ImageView
         android:id="@+id/ivTeamIndicator"
-        android:layout_width="10dp"
-        android:layout_height="40dp"
+        android:layout_width="6dp"
+        android:layout_height="37dp"
         android:src="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/tvDriverName"
         app:layout_constraintStart_toEndOf="@+id/guidelinePosColor"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -58,28 +57,44 @@
 
     <TextView
         android:id="@+id/tvDriverName"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="2dp"
         android:text="driver name"
+        android:textSize="20sp"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/quan_rounded_regular"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guidelineFnLn"
-        app:layout_constraintStart_toEndOf="@+id/ivTeamIndicator"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/tvTeam"
+        app:layout_constraintStart_toEndOf="@+id/guidelinePosColor"
+        app:layout_constraintTop_toTopOf="@+id/ivTeamIndicator" />
 
     <TextView
-        android:textAllCaps="true"
         android:id="@+id/tvDriverLastName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/quan_rounded_bold"
         android:text="last name"
+        android:layout_marginStart="4dp"
+        android:textAllCaps="true"
         android:textColor="@color/black"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/guidelineFnLn"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/tvTeam"
+        app:layout_constraintStart_toEndOf="@+id/tvDriverName"
+        app:layout_constraintTop_toTopOf="@+id/ivTeamIndicator" />
+
+    <TextView
+        android:id="@+id/tvTeam"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Ferrari"
+        android:textSize="12sp"
+        android:layout_marginHorizontal="10dp"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/tvPoints"
+        app:layout_constraintEnd_toStartOf="@+id/guidelinePointLastName"
+        app:layout_constraintStart_toEndOf="@+id/ivTeamIndicator"
+        app:layout_constraintTop_toTopOf="@+id/ivTeamIndicator" />
 
     <TextView
         android:id="@+id/tvPoints"

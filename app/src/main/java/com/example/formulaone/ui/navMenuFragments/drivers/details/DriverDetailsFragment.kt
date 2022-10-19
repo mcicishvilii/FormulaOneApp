@@ -22,11 +22,15 @@ class DriverDetailsFragment : BaseFragment<FragmentDriverDetailsBinding>(Fragmen
     val args: DriverDetailsFragmentArgs by navArgs()
     override fun viewCreated() {
         val name = args.details
-        binding.tvDriverFirstName.text = name?.name
-        binding.tvDriverLastName.text = name?.lastName
-        binding.tvDriversTeamAndNumber.text = name?.carNumber + "   |   " + name?.team
-        binding.tvWins.text = name?.wins
-//        binding.textView2.text = name?.team
+        binding.apply {
+            tvDriverFirstName.text = name?.name
+            tvDriverLastName.text = name?.lastName
+            tvDriversTeamAndNumber.text = name?.carNumber + "   |   " + name?.team
+            tvCurrentPosition.text = name?.currentStanding
+            tvWins.text = name?.wins
+            tvDOBimpl.text = name?.dob
+            tvNationalityImpl.text = name?.nationality
+        }
 
         when(name?.lastName){
             "Verstappen" -> binding.appCompatImageView.setImageResource(R.drawable.max_verstappen)

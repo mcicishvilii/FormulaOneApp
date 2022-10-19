@@ -84,7 +84,6 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
                         is Resource.Success -> {
                             binding.tv1stDriver.text = it.data.winner
                             binding.lastRaceLocation.text = "The winner of the ${it.data.country}"
-
                         }
                     }
                 }

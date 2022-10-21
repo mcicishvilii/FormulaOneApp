@@ -83,6 +83,19 @@ class DriversFragment : BaseFragment<FragmentDriversBinding>(FragmentDriversBind
                         }
                     }
                 }
+//
+//                driversViewModel.detailsState.collectLatest {
+//                    when(it){
+//                        is Resource.Error -> {
+//
+//                        }
+//                        is Resource.Loading -> {
+//                        }
+//                        is Resource.Success -> {
+//                            it.data[0].Results.
+//                        }
+//                    }
+//                }
             }
         }
 

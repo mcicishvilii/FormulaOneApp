@@ -16,7 +16,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-
 @AndroidEntryPoint
 class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::inflate) {
 
@@ -25,14 +24,11 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
     private lateinit var viewPager: ViewPager2
     private lateinit var tabLayout: TabLayout
 
-
     override fun viewCreated() {
-
         mainViewModel.getData()
         setupTabLayout()
         observe()
     }
-
 
     override fun listeners() {
 
@@ -57,7 +53,6 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
         setupTabIcons()
     }
 
-
     private fun setupTabIcons() {
         tabLayout.getTabAt(0)?.setIcon(R.drawable.racing_helmet_svgrepo_com)
         tabLayout.getTabAt(1)?.setIcon(R.drawable.ic_baseline_outlined_flag_24)
@@ -66,9 +61,6 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
         tabLayout.getTabAt(4)?.setIcon(R.drawable.albon)
 
     }
-
-
-
 
     private fun observe() {
         viewLifecycleOwner.lifecycleScope.launch {
@@ -90,9 +82,5 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
             }
         }
     }
-
-
-
-
 }
 

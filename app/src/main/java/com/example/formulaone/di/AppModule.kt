@@ -18,12 +18,9 @@ import javax.inject.Singleton
 object AppModule {
 
 
-
-
-
     @Singleton
     @Provides
-    fun provideRace():RaceApis =
+    fun provideRace(): RaceApis =
         Retrofit.Builder()
             .baseUrl(Constants.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
@@ -33,45 +30,12 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideNews():NewsApis =
+    fun provideNews(): NewsApis =
         Retrofit.Builder()
             .baseUrl(Constants.BASE_URL_NEWS)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(NewsApis::class.java)
 
-
-
-//    @Singleton
-//    @Provides
-//    fun provideRetrofit():Retrofit{
-//        return Retrofit
-//            .Builder()
-//            .baseUrl(Constants.BASE_URL)
-//            .addConverterFactory(GsonConverterFactory.create())
-//            .build()
-//    }
-//
-//    @Singleton
-//    @Provides
-//    fun provideRetrofitForNews():Retrofit{
-//        return Retrofit
-//            .Builder()
-//            .baseUrl(Constants.BASE_URL_NEWS)
-//            .addConverterFactory(GsonConverterFactory.create())
-//            .build()
-//    }
-//
-//    @Provides
-//    @Singleton
-//    fun provideConstructorsApi(retrofit: Retrofit):RaceApis{
-//        return retrofit.create(RaceApis::class.java)
-//    }
-//
-//    @Provides
-//    @Singleton
-//    fun provideNewsApi(retrofit: Retrofit):NewsApis{
-//        return retrofit.create(NewsApis::class.java)
-//    }
 
 }

@@ -37,7 +37,6 @@ class DriversFragment : BaseFragment<FragmentDriversBinding>(FragmentDriversBind
         driversAdapter.apply {
             setOnItemClickListener{ driver,_ ->
 //                Snackbar.make(binding.root,driver.Driver.familyName,Snackbar.LENGTH_SHORT).show()
-
                 findNavController().navigate(DriversFragmentDirections.actionDriversFragmentToDriverDetailsFragment(
                     DriversDetails(
                         driver.Driver.givenName,

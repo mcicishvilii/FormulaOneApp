@@ -130,6 +130,7 @@
         android:fontFamily="@font/quan_rounded_bold"
         android:text="2"
         android:textSize="50sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/startGuideline"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
@@ -164,9 +165,10 @@
         android:id="@+id/tvDOBimpl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="02.02.2222"
         android:fontFamily="@font/quan_rounded_bold"
+        android:text="02.02.2222"
         android:textSize="40sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/centerGuideline"
         app:layout_constraintTop_toBottomOf="@+id/tvDOB" />
 

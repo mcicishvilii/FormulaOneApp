@@ -3,7 +3,8 @@ package com.example.formulaone.di
 import android.content.Context
 import androidx.room.Room
 import com.example.formulaone.data.local.db.DataBase
-import com.example.formulaone.data.local.TeamsDao
+import com.example.formulaone.data.local.daos.TeamsDao
+import com.example.formulaone.data.local.daos.TicketsDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,7 +22,7 @@ object DBModule {
     fun provideDb(@ApplicationContext context: Context):DataBase{
         return Room.databaseBuilder(
             context,
-            DataBase::class.java,"gundebi"
+            DataBase::class.java,"gundebi",
         ).fallbackToDestructiveMigration()
             .build()
 
@@ -31,5 +32,11 @@ object DBModule {
     @Provides
     fun provideTeamsDao(db:DataBase): TeamsDao {
         return db.teamsDao
+    }
+
+    @Singleton
+    @Provides
+    fun provideTicketsDao(db:DataBase): TicketsDao {
+        return db.ticketsDao
     }
 }

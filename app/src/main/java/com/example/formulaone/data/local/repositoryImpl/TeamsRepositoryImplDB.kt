@@ -1,7 +1,7 @@
 package com.example.formulaone.data.local.repositoryImpl
 
 import com.example.formulaone.domain.repository.local.TeamsRepositoryLocal
-import com.example.formulaone.data.local.TeamsDao
+import com.example.formulaone.data.local.daos.TeamsDao
 import com.example.formulaone.data.local.models.TeamsDtoLocal
 import com.example.formulaone.data.local.models.toModel
 import com.example.formulaone.domain.model.remote.TeamsDomain

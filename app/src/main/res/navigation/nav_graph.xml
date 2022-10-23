@@ -41,6 +41,10 @@
         tools:layout="@layout/fragment_main" >
 
         <!--        amis gamo iqrasheboda-->
+
+        <action
+            android:id="@+id/action_upcomingRacesFragment_to_fragmentTickets"
+            app:destination="@id/fragmentTickets" />
         <action
             android:id="@+id/action_settingsFragment_to_welcomeFragment"
             app:destination="@id/welcomeFragment" />
@@ -140,7 +144,11 @@
         android:id="@+id/upcomingRacesFragment"
         android:name="com.example.formulaone.ui.navMenuFragments.schedule.upcoming.UpcomingRacesFragment"
         android:label="fragment_upcoming_races"
-        tools:layout="@layout/fragment_upcoming_races" />
+        tools:layout="@layout/fragment_upcoming_races" >
+        <action
+            android:id="@+id/action_upcomingRacesFragment_to_fragmentTickets"
+            app:destination="@id/fragmentTickets" />
+    </fragment>
     <fragment
         android:id="@+id/driverDetailsFragment"
         android:name="com.example.formulaone.ui.navMenuFragments.drivers.details.DriverDetailsFragment"
@@ -162,5 +170,15 @@
         android:name="com.example.formulaone.ui.navMenuFragments.news.FragmentNews"
         android:label="fragment_fragment_news"
         tools:layout="@layout/fragment_fragment_news" />
+    <fragment
+        android:id="@+id/fragmentTickets"
+        android:name="com.example.formulaone.ui.navMenuFragments.tickets.FragmentTickets"
+        android:label="fragment_fragment_tickets"
+        tools:layout="@layout/fragment_fragment_tickets" >
+        <argument
+            android:name="ticketInfo"
+            app:argType="com.example.formulaone.ui.navMenuFragments.schedule.upcoming.TicketInfo"
+            app:nullable="true" />
+    </fragment>
 
 </navigation>

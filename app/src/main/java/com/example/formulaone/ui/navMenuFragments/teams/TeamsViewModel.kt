@@ -53,11 +53,7 @@ class TeamsViewModel @Inject constructor(
             it.nationality.toString().lowercase().contains(query.lowercase())
         }
         _state.value = Resource.Success(searchedList)
-
     }
-
-
-
 }
 
 

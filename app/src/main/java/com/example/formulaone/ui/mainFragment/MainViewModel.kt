@@ -7,9 +7,11 @@ import com.example.formulaone.Resource
 import com.example.formulaone.data.remote.news.NewsDto
 import com.example.formulaone.data.remote.news.new_api.F1NewsDto
 import com.example.formulaone.domain.model.remote.ArticleDomain
+import com.example.formulaone.domain.model.remote.RaceScheduleDomain
 import com.example.formulaone.domain.use_case.last_race.GetLastRaceCircuitUseCase
 import com.example.formulaone.domain.use_case.last_race.GetLastRaceWinnerUseCase
 import com.example.formulaone.domain.use_case.news.NewsUseCase
+import com.example.formulaone.domain.use_case.schedule.RaceScheduleUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -21,67 +23,22 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val getLastRaceWinnerUseCase: GetLastRaceWinnerUseCase,
-    private val getLastRaceCircuitUseCase: GetLastRaceCircuitUseCase,
+    private val getRaceScheduleUseCase: RaceScheduleUseCase
 ) : ViewModel() {
-    private val _state = MutableStateFlow<Resource<UiModel>>(Resource.Loading(false))
-    val state = _state.asStateFlow()
+
+    private val _state1 =
+        MutableStateFlow<Resource<List<RaceScheduleDomain>>>(Resource.Loading(false))
+    val state = _state1.asStateFlow()
 
 
-
-    var apiCount = 0
-    val uiModelHashMap = mutableMapOf<Int,String?>()
-
-        fun getData(){
-
-            viewModelScope.launch {
-
-                getLastRaceCircuitUseCase().onEach { circuit ->
-                    when (circuit){
-                        is Resource.Success -> {
-                            uiModelHashMap[1] = circuit.data.MRData.RaceTable.Races[0].raceName
-                            apiCount += 1
-                            submitState()
-                        }
-                        is Resource.Error -> {
-                            uiModelHashMap[1] = null
-                            apiCount += 1
-                            submitState()
-
-                        }
-                        is Resource.Loading -> {
-                            _state.value = Resource.Loading(true)
-                        }
-                    }
-                }.launchIn(viewModelScope)
-
-                getLastRaceWinnerUseCase().onEach { winner ->
-                    when (winner){
-                        is Resource.Success -> {
-                            uiModelHashMap[0] = winner.data.MRData.RaceTable.Races[0].Results[0].Driver.givenName + " " +
-                                    winner.data.MRData.RaceTable.Races[0].Results[0].Driver.familyName
-                            apiCount += 1
-                            submitState()
-                        }
-                        is Resource.Error -> {
-                            uiModelHashMap[0] = null
-                            apiCount += 1
-                            submitState()
-                        }
-                        is Resource.Loading -> {
-                            _state.value = Resource.Loading(true)
-                        }
-                    }
-                }.launchIn(viewModelScope)
-
-
+    fun getSchedule() {
+        getRaceScheduleUseCase().onEach { result ->
+            when (result) {
+                is Resource.Success -> _state1.value = Resource.Success(result.data)
+                is Resource.Error -> _state1.value = Resource.Error("woops!")
+                is Resource.Loading -> _state1.value = Resource.Loading(true)
             }
-
+        }.launchIn(viewModelScope)
     }
 
-    private fun submitState(){
-        if(apiCount == 2){
-            _state.value = Resource.Success(UiModel(uiModelHashMap[0],uiModelHashMap[1]))
-        }
-    }
 }

@@ -26,7 +26,7 @@ class FavoritesFragment : BaseFragment<FragmentFavoritesBinding>(FragmentFavorit
 
     }
 
-    fun getTeams(){
+    private fun getTeams(){
         setupRecycler()
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {

@@ -63,6 +63,7 @@ class FragmentNews : BaseFragment<FragmentFragmentNewsBinding>(FragmentFragmentN
 
                         }
                         is Resource.Success -> {
+
                             newsAdapter.submitList(it.data)
                         }
                     }

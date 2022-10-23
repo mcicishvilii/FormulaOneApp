@@ -51,9 +51,15 @@ class UpcomingRacesFragment : BaseFragment<FragmentUpcomingRacesBinding>(Fragmen
     private fun buyTicket(){
         upcomingRaceAdapter.apply {
             setOnItemClickListener{ venue,_ ->
-                Snackbar.make(binding.root,
-                    "you bought ticket for ${venue.raceName}",
-                    Snackbar.LENGTH_SHORT).show()
+                findNavController().navigate(UpcomingRacesFragmentDirections.actionUpcomingRacesFragmentToFragmentTickets(
+                    TicketInfo(
+                        trackName = venue.raceName,
+                        date = venue.date
+                    )
+                ))
+//                Snackbar.make(binding.root,
+//                    "you bought ticket for ${venue.raceName}",
+//                    Snackbar.LENGTH_SHORT).show()
             }
         }
     }

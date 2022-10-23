@@ -1,4 +1,4 @@
-package com.example.formulaone.data.local
+package com.example.formulaone.data.local.daos
 
 import androidx.room.*
 import com.example.formulaone.data.local.models.TeamsDtoLocal

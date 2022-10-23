@@ -20,6 +20,7 @@ class FragmentNewsViewModel  @Inject constructor(
 
 
 
+
     private val _newsState = MutableStateFlow<Resource<List<ArticleDomain>>>(Resource.Loading(false))
     val newsState = _newsState.asStateFlow()
 

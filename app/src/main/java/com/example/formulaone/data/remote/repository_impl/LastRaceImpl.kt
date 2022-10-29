@@ -10,7 +10,7 @@ class LastRaceImpl @Inject constructor(
     private val api: RaceApis
 ): LastRaceRepository {
 
-
+//citcuit miweria circuit unda iyos
     override suspend fun getLastRaceCictuit(): LastRaceDto {
         return api.getLastRaceInfo()
     }

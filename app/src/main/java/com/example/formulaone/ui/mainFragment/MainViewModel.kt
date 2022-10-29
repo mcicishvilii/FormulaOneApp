@@ -13,17 +13,16 @@ import com.example.formulaone.domain.use_case.last_race.GetLastRaceWinnerUseCase
 import com.example.formulaone.domain.use_case.news.NewsUseCase
 import com.example.formulaone.domain.use_case.schedule.RaceScheduleUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val getRaceScheduleUseCase: RaceScheduleUseCase
+    private val getRaceScheduleUseCase: RaceScheduleUseCase,
+    private val getLastRaceCircuitUseCase: GetLastRaceCircuitUseCase,
+    private val getLastRaceWinnerUseCase: GetLastRaceWinnerUseCase,
 ) : ViewModel() {
 
     private val _state1 =
@@ -40,5 +39,9 @@ class MainViewModel @Inject constructor(
             }
         }.launchIn(viewModelScope)
     }
+
+
+
+
 
 }

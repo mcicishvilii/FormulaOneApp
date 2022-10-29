@@ -22,7 +22,8 @@ import java.time.format.DateTimeFormatter
 import java.util.*
 
 @AndroidEntryPoint
-class RecentRacesFragment : BaseFragment<FragmentRecentRacesBinding>(FragmentRecentRacesBinding::inflate) {
+class RecentRacesFragment :
+    BaseFragment<FragmentRecentRacesBinding>(FragmentRecentRacesBinding::inflate) {
     private val myAdapter: RecentRacesAdapter by lazy { RecentRacesAdapter() }
     private val recentRacesViewModel: RecentRacesViewModel by viewModels()
 
@@ -46,6 +47,7 @@ class RecentRacesFragment : BaseFragment<FragmentRecentRacesBinding>(FragmentRec
                 )
         }
     }
+
     @RequiresApi(Build.VERSION_CODES.O)
     private fun observe() {
         setupRecycler()
@@ -60,24 +62,12 @@ class RecentRacesFragment : BaseFragment<FragmentRecentRacesBinding>(FragmentRec
 
                         }
                         is Resource.Success -> {
-                            val filteredList = it.data.filter {
-                                val time = Calendar.getInstance().time
-                                val formatterCurrentTime = SimpleDateFormat("yyyy-MM-dd")
-                                val formatterNow = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-                                val currentTime = formatterCurrentTime.format(time)
-                                val dateNow = LocalDate.parse(currentTime, formatterNow)
-                                val dateFromModel = it.date
-                                val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-                                val date = LocalDate.parse(dateFromModel, formatter)
-
-                                dateNow > date
-                            }
-                            myAdapter.submitList(filteredList)
+                            myAdapter.submitList(it.data)
                         }
+
                     }
                 }
             }
         }
     }
-
 }

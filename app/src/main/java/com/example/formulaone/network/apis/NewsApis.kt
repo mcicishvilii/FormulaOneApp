@@ -7,6 +7,7 @@ import com.example.formulaone.data.remote.news.new_api.F1NewsDto
 import com.example.formulaone.data.remote.raceResults.RaceResultsDto
 import com.example.formulaone.data.remote.raceSchedule.RaceScheduleDto
 import com.example.formulaone.data.remote.teams.Teams
+import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -18,6 +19,6 @@ interface NewsApis {
         q: String,
         @Query("apiKey")
         apiKey: String,
-    ): F1NewsDto
+    ): Response<F1NewsDto>
 
 }

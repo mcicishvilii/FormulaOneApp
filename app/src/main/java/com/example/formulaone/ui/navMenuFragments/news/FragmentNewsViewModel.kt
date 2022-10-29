@@ -14,36 +14,27 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class FragmentNewsViewModel  @Inject constructor(
+class FragmentNewsViewModel @Inject constructor(
     private val newsUseCase: NewsUseCase
-): ViewModel() {
-
-
-
+) : ViewModel() {
 
     private val _newsState = MutableStateFlow<Resource<List<ArticleDomain>>>(Resource.Loading(false))
     val newsState = _newsState.asStateFlow()
 
-    fun getNews(){
+    fun getNews() {
         viewModelScope.launch {
             newsUseCase().onEach { news ->
-                when(news){
-                    is Resource.Success -> {
-                        _newsState.value = Resource.Success(news.data)
-
-                    }
-                    is Resource.Error -> {
-                        _newsState.value = Resource.Error("woops!")
-
-                    }
-                    is Resource.Loading -> {
-                        _newsState.value = Resource.Loading(true)
-
-                    }
+                when (news) {
+                    is Resource.Success -> _newsState.value = Resource.Success(news.data)
+                    is Resource.Error -> _newsState.value = Resource.Error("woops!")
+                    is Resource.Loading -> _newsState.value = Resource.Loading(true)
 
                 }
             }.launchIn(viewModelScope)
 
         }
     }
+
 }
+
+

@@ -1,5 +1,7 @@
 package com.example.formulaone.ui.navMenuFragments.schedule.upcoming
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.formulaone.Resource
@@ -18,8 +20,13 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.util.*
 import javax.inject.Inject
 
+@RequiresApi(Build.VERSION_CODES.O)
 @HiltViewModel
 class UpcomingRacesViewModel @Inject constructor(
     private val getRaceScheduleUseCase: RaceScheduleUseCase
@@ -33,12 +40,33 @@ class UpcomingRacesViewModel @Inject constructor(
         getSchedule()
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun getSchedule() {
         getRaceScheduleUseCase().onEach { result ->
             when (result) {
-                is Resource.Success -> _state1.value = Resource.Success(result.data)
-                is Resource.Error -> _state1.value = Resource.Error("woops!")
-                is Resource.Loading -> _state1.value = Resource.Loading(true)
+                is Resource.Success -> {
+                    val filteredList = result.data.filter {
+                        val time = Calendar.getInstance().time
+                        val formatterCurrentTime = SimpleDateFormat("yyyy-MM-dd")
+                        val formatterNow = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+                        val currentTime = formatterCurrentTime.format(time)
+                        val dateNow = LocalDate.parse(currentTime, formatterNow)
+
+                        val dateFromModel = it.date
+                        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+                        val date = LocalDate.parse(dateFromModel, formatter)
+
+                        dateNow <= date
+                    }
+
+                        _state1.value = Resource.Success(filteredList)
+                    }
+                is Resource.Error -> {
+                    _state1.value = Resource.Error("woops!")
+                }
+                is Resource.Loading -> {
+                    _state1.value = Resource.Loading(true)
+                }
             }
         }.launchIn(viewModelScope)
     }

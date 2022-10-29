@@ -89,20 +89,7 @@ class UpcomingRacesFragment : BaseFragment<FragmentUpcomingRacesBinding>(Fragmen
 
                         }
                         is Resource.Success -> {
-                            val filteredList = it.data.filter {
-                                val time = Calendar.getInstance().time
-                                val formatterCurrentTime = SimpleDateFormat("yyyy-MM-dd")
-                                val formatterNow = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-                                val currentTime = formatterCurrentTime.format(time)
-                                val dateNow = LocalDate.parse(currentTime, formatterNow)
-
-                                val dateFromModel = it.date
-                                val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-                                val date = LocalDate.parse(dateFromModel, formatter)
-
-                                dateNow < date
-                            }
-                            upcomingRaceAdapter.submitList(filteredList)
+                            upcomingRaceAdapter.submitList(it.data)
                         }
                     }
                 }

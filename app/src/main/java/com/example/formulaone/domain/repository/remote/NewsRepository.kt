@@ -5,6 +5,7 @@ import com.example.formulaone.data.remote.news.NewsDto
 import com.example.formulaone.data.remote.news.new_api.F1NewsDto
 import com.example.formulaone.domain.model.remote.ArticleDomain
 import com.example.formulaone.domain.model.remote.NewsDtItemDomain
+import retrofit2.Response
 
 // not using yet. for displaying the full list of current driver standings
 interface NewsRepository {

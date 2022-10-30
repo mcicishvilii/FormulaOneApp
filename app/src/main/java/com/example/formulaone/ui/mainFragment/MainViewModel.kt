@@ -1,6 +1,8 @@
 package com.example.formulaone.ui.mainFragment
 
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.formulaone.Resource
@@ -30,6 +32,7 @@ class MainViewModel @Inject constructor(
     val state = _state1.asStateFlow()
 
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun getSchedule() {
         getRaceScheduleUseCase().onEach { result ->
             when (result) {
@@ -39,9 +42,4 @@ class MainViewModel @Inject constructor(
             }
         }.launchIn(viewModelScope)
     }
-
-
-
-
-
 }

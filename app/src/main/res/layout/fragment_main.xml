@@ -46,21 +46,21 @@
 <!--            app:layout_constraintTop_toTopOf="parent"-->
 <!--            tools:ignore="MissingConstraints" />-->
 
-<!--        <TextView-->
-<!--            android:id="@+id/tv1stDriver"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginHorizontal="40dp"-->
-<!--            android:layout_marginTop="5dp"-->
-<!--            android:background="@drawable/outline"-->
-<!--            android:elevation="10dp"-->
-<!--            android:padding="10dp"-->
-<!--            android:text="last race winner"-->
-<!--            android:textColor="@color/black"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/lastRaceLocation"-->
-<!--            tools:ignore="MissingConstraints" />-->
+        <TextView
+            android:id="@+id/tv1stDriver"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="40dp"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/outline"
+            android:elevation="10dp"
+            android:padding="10dp"
+            android:text="last race winner"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
 
 
 <!--        <TextView-->

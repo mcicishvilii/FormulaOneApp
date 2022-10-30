@@ -31,29 +31,12 @@ class RecentRacesViewModel @Inject constructor(
     val state1 = _state1.asStateFlow()
 
 
-    init {
-        getDetails()
-    }
-
     @RequiresApi(Build.VERSION_CODES.O)
-    private fun getDetails() {
+    fun getDetails() {
         getRaceDetailsUseCase().onEach { result ->
             when (result) {
                 is Resource.Success -> {
-                    val filteredList = result.data.filter {
-                        val time = Calendar.getInstance().time
-                        val formatterCurrentTime = SimpleDateFormat("yyyy-MM-dd")
-                        val formatterNow = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-                        val currentTime = formatterCurrentTime.format(time)
-                        val dateNow = LocalDate.parse(currentTime, formatterNow)
-
-                        val dateFromModel = it.date
-                        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-                        val date = LocalDate.parse(dateFromModel, formatter)
-
-                        dateNow >= date
-                    }
-                    _state1.value = Resource.Success(filteredList)
+                    _state1.value = Resource.Success(result.data)
                 }
                 is Resource.Error -> {
                     _state1.value = Resource.Error("woops!")

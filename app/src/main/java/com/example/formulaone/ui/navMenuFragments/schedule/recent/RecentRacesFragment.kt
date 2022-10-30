@@ -1,6 +1,7 @@
 package com.example.formulaone.ui.navMenuFragments.schedule.recent
 
 import android.os.Build
+import android.util.Log
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.viewModels
@@ -29,7 +30,10 @@ class RecentRacesFragment :
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun viewCreated() {
+        recentRacesViewModel.getDetails()
+        Log.d("misho", recentRacesViewModel.getDetails().toString())
         observe()
+
     }
 
     override fun listeners() {
@@ -51,6 +55,7 @@ class RecentRacesFragment :
     @RequiresApi(Build.VERSION_CODES.O)
     private fun observe() {
         setupRecycler()
+
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 recentRacesViewModel.state1.collectLatest {
@@ -63,6 +68,8 @@ class RecentRacesFragment :
                         }
                         is Resource.Success -> {
                             myAdapter.submitList(it.data)
+
+                            Log.d("sia recent",it.data.last().toString())
                         }
 
                     }

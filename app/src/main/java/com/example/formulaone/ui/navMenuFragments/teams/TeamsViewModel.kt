@@ -24,7 +24,6 @@ class TeamsViewModel @Inject constructor(
     private val _state = MutableStateFlow<Resource<List<TeamsDomain>>>(Resource.Loading(false))
     val state = _state.asStateFlow()
 
-
     init {
         getTeams()
     }

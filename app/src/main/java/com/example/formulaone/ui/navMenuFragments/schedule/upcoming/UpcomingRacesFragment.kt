@@ -90,6 +90,7 @@ class UpcomingRacesFragment : BaseFragment<FragmentUpcomingRacesBinding>(Fragmen
                         }
                         is Resource.Success -> {
                             upcomingRaceAdapter.submitList(it.data)
+                            Log.d("sia",it.data.toString())
                         }
                     }
                 }

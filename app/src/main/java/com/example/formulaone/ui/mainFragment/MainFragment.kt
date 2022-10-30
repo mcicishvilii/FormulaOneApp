@@ -39,7 +39,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
         mainViewModel.getSchedule()
         setupTabLayout()
         observe()
-        timer.start()
+//        timer.start()
     }
 
     override fun listeners() {
@@ -95,16 +95,16 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
     }
 
 
-    val timer = object : CountDownTimer(  100000000, 1000) {
-        override fun onTick(millisUntilFinished: Long) {
-            binding.tv1stDriver.text = (millisUntilFinished / 1000).toString()
-        }
-
-        override fun onFinish() {
-            binding.tv1stDriver.text = "Timer"
-
-        }
-    }
+//    val timer = object : CountDownTimer(  100000000, 1000) {
+//        override fun onTick(millisUntilFinished: Long) {
+//            binding.tv1stDriver.text = (millisUntilFinished / 1000).toString()
+//        }
+//
+//        override fun onFinish() {
+//            binding.tv1stDriver.text = "Timer"
+//
+//        }
+//    }
 }
 
 

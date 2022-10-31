@@ -19,6 +19,7 @@ class TeamsViewModel @Inject constructor(
     private val getTeamsListUseCase: GetTeamsListUseCase,
     private val insertTeamUseCase: InsertTeamUseCase,
 ) : ViewModel() {
+
     private var filteredList = listOf<TeamsDomain>()
 
     private val _state = MutableStateFlow<Resource<List<TeamsDomain>>>(Resource.Loading(false))

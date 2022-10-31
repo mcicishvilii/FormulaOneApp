@@ -13,14 +13,9 @@ import dagger.hilt.android.HiltAndroidApp
 @HiltAndroidApp
 class MyApp:Application (){
 
-
-
-
     override fun onCreate() {
         super.onCreate()
         appContext = this
-
-
 
         FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
             if (!task.isSuccessful) {

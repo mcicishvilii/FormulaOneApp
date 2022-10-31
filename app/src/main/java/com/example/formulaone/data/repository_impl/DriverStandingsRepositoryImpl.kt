@@ -1,4 +1,4 @@
-package com.example.formulaone.data.remote.repository_impl
+package com.example.formulaone.data.repository_impl
 
 import com.example.formulaone.domain.repository.remote.CurrentDriversStandingsRepository
 import com.example.formulaone.data.remote.drivers.drivers_standings.DriverStandingsDto

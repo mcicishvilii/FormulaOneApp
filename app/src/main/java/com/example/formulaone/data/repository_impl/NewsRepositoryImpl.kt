@@ -1,4 +1,4 @@
-package com.example.formulaone.data.remote.repository_impl
+package com.example.formulaone.data.repository_impl
 
 import com.example.formulaone.data.remote.news.new_api.toArticleDomain
 import com.example.formulaone.domain.model.remote.ArticleDomain

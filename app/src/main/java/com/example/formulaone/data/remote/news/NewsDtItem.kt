@@ -8,6 +8,7 @@ data class NewsDtItem(
     val shortdesc: String,
     val title: String
 )
+
 fun NewsDtItem.toNewsItemDomain(): NewsDtItemDomain{
     return NewsDtItemDomain(
         imgsrc, shortdesc, title

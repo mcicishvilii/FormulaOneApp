@@ -6,7 +6,7 @@ plugins {
     id 'dagger.hilt.android.plugin'
     id 'kotlin-parcelize'
     id 'com.google.gms.google-services'
-//    id 'org.jlleitschuh.gradle.ktlint' version "11.0.0"
+    id 'com.google.firebase.crashlytics'
 }
 
 android {
@@ -45,15 +45,8 @@ android {
 
 dependencies {
     implementation 'com.google.firebase:firebase-messaging-ktx:23.0.8'
-//    ktlint{
-//    android = true
-//    ignoreFailures = false
-//    reporters{
-//        reporter "plain"
-//        reporter "checkstyle"
-//        reporter "sarif"
-//    }
-//}
+    implementation 'com.google.firebase:firebase-crashlytics-ktx:18.3.1'
+    implementation 'com.google.firebase:firebase-analytics-ktx:21.2.0'
 
     //room
 
@@ -75,8 +68,8 @@ dependencies {
     implementation "androidx.datastore:datastore-preferences:1.0.0"
     implementation 'androidx.navigation:navigation-fragment-ktx:2.5.2'
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.2'
-    implementation 'com.google.firebase:firebase-auth-ktx:21.0.8'
-    implementation 'com.google.firebase:firebase-auth:19.2.0'
+    implementation 'com.google.firebase:firebase-auth-ktx:21.1.0'
+    implementation 'com.google.firebase:firebase-auth:21.1.0'
     def nav_version = "2.5.0"
 
     kapt "org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.4.2"

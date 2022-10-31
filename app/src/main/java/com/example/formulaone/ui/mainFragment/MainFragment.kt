@@ -1,8 +1,10 @@
 package com.example.formulaone.ui.mainFragment
 
+import android.os.Build
 import android.os.CountDownTimer
 import android.util.Log
 import android.view.View
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -23,14 +25,22 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 @AndroidEntryPoint
+@RequiresApi(Build.VERSION_CODES.O)
 class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::inflate) {
 
     private val mainViewModel: MainViewModel by viewModels()
 
     val races = mutableListOf<RaceScheduleDomain>()
+
+    val time = Calendar.getInstance().time
+    val formatterCurrentTime = SimpleDateFormat("yyyy-MM-dd")
+    val formatterNow = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+    val currentTime = formatterCurrentTime.format(time)
+    val dateNow = LocalDate.parse(currentTime, formatterNow)
 
     private lateinit var viewPager: ViewPager2
     private lateinit var tabLayout: TabLayout
@@ -39,7 +49,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
         mainViewModel.getSchedule()
         setupTabLayout()
         observe()
-//        timer.start()
+        timer.start()
     }
 
     override fun listeners() {
@@ -86,7 +96,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
 
                         }
                         is Resource.Success -> {
-                            if(it.data[0].season == "2023"){
+                            if("2022-10-30" == dateNow.minusDays(1).toString()){
                                 timer.start()
                             }else{
                                 timer.cancel()

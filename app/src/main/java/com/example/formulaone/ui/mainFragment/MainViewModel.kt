@@ -1,6 +1,7 @@
 package com.example.formulaone.ui.mainFragment
 
 import android.os.Build
+import android.os.CountDownTimer
 import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
@@ -42,4 +43,5 @@ class MainViewModel @Inject constructor(
             }
         }.launchIn(viewModelScope)
     }
+
 }

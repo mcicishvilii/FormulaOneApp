@@ -86,6 +86,11 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
 
                         }
                         is Resource.Success -> {
+                            if(it.data[0].season == "2023"){
+                                timer.start()
+                            }else{
+                                timer.cancel()
+                            }
 
                         }
                     }
@@ -95,16 +100,16 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
     }
 
 
-//    val timer = object : CountDownTimer(  100000000, 1000) {
-//        override fun onTick(millisUntilFinished: Long) {
-//            binding.tv1stDriver.text = (millisUntilFinished / 1000).toString()
-//        }
-//
-//        override fun onFinish() {
-//            binding.tv1stDriver.text = "Timer"
-//
-//        }
-//    }
+    val timer = object : CountDownTimer(  100000000, 1000) {
+        override fun onTick(millisUntilFinished: Long) {
+            binding.tv1stDriver.text = (millisUntilFinished / 1000).toString()
+        }
+
+        override fun onFinish() {
+            binding.tv1stDriver.text = "Timer"
+
+        }
+    }
 }
 
 

@@ -180,5 +180,10 @@
             app:argType="com.example.formulaone.ui.navMenuFragments.schedule.upcoming.TicketInfo"
             app:nullable="true" />
     </fragment>
+    <fragment
+        android:id="@+id/ticket"
+        android:name="com.example.formulaone.ticket"
+        android:label="fragment_ticket"
+        tools:layout="@layout/fragment_ticket" />
 
 </navigation>

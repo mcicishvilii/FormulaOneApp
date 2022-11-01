@@ -9,7 +9,7 @@ import javax.inject.Inject
 class GetTicketsListUseCase @Inject constructor(
     private val repository: TicketsRepositoryLocal
 ) {
-    operator fun invoke(): Flow<TicketsEntity> {
+    operator fun invoke(): Flow<List<TicketsEntity>> {
         return repository.getTickets()
     }
 }

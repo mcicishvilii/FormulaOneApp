@@ -8,7 +8,7 @@ import com.example.formulaone.data.local.daos.TicketsDao
 import com.example.formulaone.data.local.models.TeamsDtoLocal
 import com.example.formulaone.data.local.models.TicketsEntity
 
-@Database(entities = [TeamsDtoLocal::class,TicketsEntity::class], version = 7)
+@Database(entities = [TeamsDtoLocal::class,TicketsEntity::class], version = 8)
 
 abstract class DataBase:RoomDatabase() {
     abstract val teamsDao: TeamsDao

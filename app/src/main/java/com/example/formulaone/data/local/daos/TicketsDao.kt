@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface TicketsDao {
     @Query("SELECT * FROM biletebi")
-    fun getAll(): Flow<TicketsEntity>
+    fun getAll(): Flow<List<TicketsEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(ticket: TicketsEntity)

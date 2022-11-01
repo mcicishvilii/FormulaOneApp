@@ -12,7 +12,7 @@ class TicketViewModel @Inject constructor(
     private val getTicketsList: GetTicketsListUseCase,
 ) : ViewModel(){
 
-    suspend fun getTicket(): Flow<TicketsEntity> {
+    suspend fun getTicket(): Flow<List<TicketsEntity>> {
         return getTicketsList()
     }
 }

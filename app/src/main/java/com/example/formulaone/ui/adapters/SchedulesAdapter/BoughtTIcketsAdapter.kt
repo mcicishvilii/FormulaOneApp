@@ -8,13 +8,14 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.formulaone.R
 import com.example.formulaone.data.local.Tickets
+import com.example.formulaone.data.local.models.TicketsEntity
 import com.example.formulaone.databinding.SigleTicketBinding
 import com.example.formulaone.databinding.SingleTeamLayoutBinding
 import com.example.formulaone.domain.model.remote.TeamsDomain
 
 
 class BoughtTIcketsAdapter :
-    ListAdapter<Tickets, BoughtTIcketsAdapter.BoughtTicketsViewHolder>(
+    ListAdapter<TicketsEntity, BoughtTIcketsAdapter.BoughtTicketsViewHolder>(
         TeamsDiffCallBack()
     ) {
 
@@ -33,21 +34,16 @@ class BoughtTIcketsAdapter :
 
     inner class BoughtTicketsViewHolder(private val binding: SigleTicketBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        private var model: Tickets? = null
+        private var model: TicketsEntity? = null
         fun bindData() {
             model = getItem(bindingAdapterPosition)
             binding.apply {
-                tvTrackName.text = model?.ticketType
+                tvTrackName.text = model?.raceName
 
-//                when (model?.nationality) {
-//                    "Swiss" -> ivTeamIndicator.setImageResource(R.color.red)
-//                    "German" -> ivTeamIndicator.setImageResource(R.color.black)
-//                    "American" -> ivTeamIndicator.setImageResource(R.color.Blue)
-//                    "French" -> ivTeamIndicator.setImageResource(R.color.DarkBlue)
-//                    "Italian" -> ivTeamIndicator.setImageResource(R.color.green)
-//                    "British" -> ivTeamIndicator.setImageResource(R.color.OrangeRed)
-//                    "Dutch" -> ivTeamIndicator.setImageResource(R.color.YellowGreen)
-//                }
+                when (model?.raceName) {
+                    "Brazilian Grand Prix" -> ticketcontainer.setImageResource(R.drawable.interlagos)
+                    "Abu Dhabi Grand Prix" -> ticketcontainer.setImageResource(R.drawable.yas_marina)
+                }
 
 
                 binding.root.setBackgroundResource(R.drawable.outline)
@@ -58,18 +54,18 @@ class BoughtTIcketsAdapter :
 
 
 
-class TeamsDiffCallBack : DiffUtil.ItemCallback<Tickets>() {
+class TeamsDiffCallBack : DiffUtil.ItemCallback<TicketsEntity>() {
     override fun areItemsTheSame(
-        oldItem: Tickets,
-        newItem: Tickets
+        oldItem: TicketsEntity,
+        newItem: TicketsEntity
     ): Boolean {
-        return oldItem.ticketID == newItem.ticketID
+        return oldItem.ticketId == newItem.ticketId
     }
 
     @SuppressLint("DiffUtilEquals")
     override fun areContentsTheSame(
-        oldItem: Tickets,
-        newItem: Tickets
+        oldItem: TicketsEntity,
+        newItem: TicketsEntity
     ): Boolean {
         return oldItem == newItem
     }

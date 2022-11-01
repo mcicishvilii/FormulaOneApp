@@ -1,5 +1,7 @@
 package com.example.formulaone.ui.navMenuFragments.tickets
 
+import android.content.Intent
+import android.util.Log
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -28,6 +30,8 @@ class BoughtTicketsFragment : BaseFragment<FragmentTicketBinding>(FragmentTicket
     override fun viewCreated() {
         setupRecycler()
         getTickets()
+
+
     }
 
     override fun listeners() {
@@ -39,7 +43,9 @@ class BoughtTicketsFragment : BaseFragment<FragmentTicketBinding>(FragmentTicket
     private fun getTickets(){
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                ticketsViewModel.getTicket()
+                ticketsViewModel.getTicket().collect {
+                    ticketsAdapter.submitList(it)
+                }
             }
         }
     }

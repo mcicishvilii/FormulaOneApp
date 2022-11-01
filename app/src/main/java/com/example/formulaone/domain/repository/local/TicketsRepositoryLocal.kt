@@ -8,11 +8,11 @@ import kotlinx.coroutines.flow.Flow
 
 interface TicketsRepositoryLocal {
 
-    fun getTickets(): Flow<TicketsEntity>
+    fun getTickets(): Flow<List<TicketsEntity>>
 
-    suspend fun insertTicket(team:TicketsEntity)
+    suspend fun insertTicket(ticket:TicketsEntity)
 
-    suspend fun deleteTicket(team: TicketsEntity)
+    suspend fun deleteTicket(ticket: TicketsEntity)
 
     suspend fun deleteAll()
 }

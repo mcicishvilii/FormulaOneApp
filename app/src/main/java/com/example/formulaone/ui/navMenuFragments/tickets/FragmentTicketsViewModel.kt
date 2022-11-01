@@ -22,14 +22,6 @@ class FragmentTicketsViewModel @Inject constructor(
 
     ) : ViewModel() {
 
-//    private val _state = MutableStateFlow<Resource<TicketsEntity>>(Resource.Loading(false))
-//    val state = _state.asStateFlow()
-
-
-    suspend fun getTicket(): Flow<TicketsEntity> {
-        return getTicketsList()
-    }
-
     fun insertTicket(ticket: TicketsEntity) {
         CoroutineScope(Dispatchers.IO).launch {
             insertTicketUseCase(ticket)

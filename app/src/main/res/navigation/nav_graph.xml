@@ -64,6 +64,11 @@
             android:id="@+id/action_driversFragment_to_driverDetailsFragment"
             app:destination="@id/driverDetailsFragment" />
 
+        <action
+            android:id="@+id/action_upcomingRacesFragment_to_ticket"
+            app:destination="@id/ticket" />
+
+
 
     </fragment>
 
@@ -148,6 +153,9 @@
         <action
             android:id="@+id/action_upcomingRacesFragment_to_fragmentTickets"
             app:destination="@id/fragmentTickets" />
+        <action
+            android:id="@+id/action_upcomingRacesFragment_to_ticket"
+            app:destination="@id/ticket" />
     </fragment>
     <fragment
         android:id="@+id/driverDetailsFragment"
@@ -182,7 +190,7 @@
     </fragment>
     <fragment
         android:id="@+id/ticket"
-        android:name="com.example.formulaone.ticket"
+        android:name="com.example.formulaone.ui.navMenuFragments.tickets.BoughtTickets.ticket"
         android:label="fragment_ticket"
         tools:layout="@layout/fragment_ticket" />
 

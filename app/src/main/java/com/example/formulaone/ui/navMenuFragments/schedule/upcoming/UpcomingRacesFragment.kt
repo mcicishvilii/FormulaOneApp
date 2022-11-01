@@ -29,6 +29,14 @@ class UpcomingRacesFragment : BaseFragment<FragmentUpcomingRacesBinding>(Fragmen
 
     override fun listeners() {
         buyTicket()
+        checkBoughtTickets()
+    }
+
+
+    private fun checkBoughtTickets(){
+        binding.ivCart.setOnClickListener {
+            findNavController().navigate(UpcomingRacesFragmentDirections.actionUpcomingRacesFragmentToTicket())
+        }
     }
 
     private fun buyTicket(){

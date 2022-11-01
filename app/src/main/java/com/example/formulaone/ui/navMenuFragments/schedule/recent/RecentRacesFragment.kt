@@ -68,8 +68,6 @@ class RecentRacesFragment :
                         }
                         is Resource.Success -> {
                             myAdapter.submitList(it.data)
-
-                            Log.d("sia recent",it.data.last().toString())
                         }
 
                     }

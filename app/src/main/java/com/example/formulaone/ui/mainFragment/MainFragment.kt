@@ -2,8 +2,6 @@ package com.example.formulaone.ui.mainFragment
 
 import android.os.Build
 import android.os.CountDownTimer
-import android.util.Log
-import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -11,11 +9,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.viewpager2.widget.ViewPager2
 import com.example.formulaone.R
-import com.example.formulaone.Resource
-import com.example.formulaone.adapters.BottomNavViewPagerAdapter
+import com.example.formulaone.common.Resource
+import com.example.formulaone.ui.adapters.BottomNavViewPagerAdapter
 import com.example.formulaone.common.bases.BaseFragment
-import com.example.formulaone.data.remote.raceSchedule.Circuit
-import com.example.formulaone.data.remote.raceSchedule.Location
 import com.example.formulaone.databinding.FragmentMainBinding
 import com.example.formulaone.domain.model.remote.RaceScheduleDomain
 import com.google.android.material.tabs.TabLayout

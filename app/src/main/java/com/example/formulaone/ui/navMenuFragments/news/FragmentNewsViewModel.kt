@@ -2,7 +2,7 @@ package com.example.formulaone.ui.navMenuFragments.news
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.formulaone.Resource
+import com.example.formulaone.common.Resource
 import com.example.formulaone.domain.model.remote.ArticleDomain
 import com.example.formulaone.domain.use_case.news.NewsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel

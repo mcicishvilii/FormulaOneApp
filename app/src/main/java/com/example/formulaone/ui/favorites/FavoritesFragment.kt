@@ -5,7 +5,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.formulaone.adapters.ConstructorsAdapter
+import com.example.formulaone.ui.adapters.ConstructorsAdapter
 import com.example.formulaone.common.bases.BaseFragment
 import com.example.formulaone.databinding.FragmentFavoritesBinding
 import dagger.hilt.android.AndroidEntryPoint

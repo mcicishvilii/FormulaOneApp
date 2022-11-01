@@ -1,10 +1,8 @@
 package com.example.formulaone.ui.navMenuFragments.teams
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.formulaone.Resource
-import com.example.formulaone.data.remote.teams.Teams
+import com.example.formulaone.common.Resource
 import com.example.formulaone.domain.use_case.teams.*
 import com.example.formulaone.domain.model.remote.TeamsDomain
 import dagger.hilt.android.lifecycle.HiltViewModel

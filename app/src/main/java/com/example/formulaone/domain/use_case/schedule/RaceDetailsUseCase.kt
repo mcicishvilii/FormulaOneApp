@@ -3,11 +3,9 @@ package com.example.formulaone.domain.use_case.schedule
 import android.os.Build
 import android.util.Log
 import androidx.annotation.RequiresApi
-import com.example.formulaone.Resource
+import com.example.formulaone.common.Resource
 import com.example.formulaone.domain.model.remote.RaceDomain
-import com.example.formulaone.domain.model.remote.RaceScheduleDomain
 import com.example.formulaone.domain.repository.remote.RaceResultsRepository
-import com.example.formulaone.domain.repository.remote.RacesSheduleRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException

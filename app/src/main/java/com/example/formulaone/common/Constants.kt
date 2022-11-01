@@ -1,4 +1,4 @@
-package com.example.formulaone
+package com.example.formulaone.common
 
 object Constants {
     const val BASE_URL = "http://ergast.com/api/f1/"

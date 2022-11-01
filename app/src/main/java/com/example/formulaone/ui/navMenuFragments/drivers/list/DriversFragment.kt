@@ -8,16 +8,13 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.formulaone.DriversAdapter
-import com.example.formulaone.R
-import com.example.formulaone.Resource
+import com.example.formulaone.common.Resource
 import com.example.formulaone.databinding.FragmentDriversBinding
 import com.example.formulaone.common.bases.BaseFragment
 import com.example.formulaone.ui.navMenuFragments.drivers.DriversDetails
-import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import kotlin.properties.Delegates
 
 @AndroidEntryPoint
 class DriversFragment : BaseFragment<FragmentDriversBinding>(FragmentDriversBinding::inflate) {

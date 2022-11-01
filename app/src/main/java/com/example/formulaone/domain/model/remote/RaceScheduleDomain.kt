@@ -12,4 +12,5 @@ data class RaceScheduleDomain(
     val round: String,
     val date: String,
     val season: String,
+    val time: String,
 )

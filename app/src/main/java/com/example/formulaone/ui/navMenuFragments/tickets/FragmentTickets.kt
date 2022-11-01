@@ -13,7 +13,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.formulaone.R
-import com.example.formulaone.adapters.TicketsAdapter
+import com.example.formulaone.ui.adapters.TicketsAdapter
 import com.example.formulaone.adapters.UpcomingRaceAdapter
 import com.example.formulaone.common.bases.BaseFragment
 import com.example.formulaone.data.local.Tickets
@@ -39,6 +39,8 @@ class FragmentTickets : BaseFragment<FragmentFragmentTicketsBinding>(FragmentFra
         setupRecycler()
         ticketsAdapter.submitList(ticketsList)
 
+        binding.tvOptionsAvailable.text = "${ticketsList.size} options available"
+
         val ticketInfo = args.ticketInfo
 
         binding.tvRaceDate.text = ticketInfo?.date
@@ -48,9 +50,13 @@ class FragmentTickets : BaseFragment<FragmentFragmentTicketsBinding>(FragmentFra
     }
 
     override fun listeners() {
+
         ticketsAdapter.setOnItemClickListener{ticket,_->
             insertTicket()
         }
+
+        binding
+
     }
 
     private fun insertTicket(){
@@ -90,6 +96,7 @@ class FragmentTickets : BaseFragment<FragmentFragmentTicketsBinding>(FragmentFra
                 true
             )
         )
+
         ticketsList.add(
             Tickets(
                 2,
@@ -106,6 +113,34 @@ class FragmentTickets : BaseFragment<FragmentFragmentTicketsBinding>(FragmentFra
                 false
             )
         )
+
+        ticketsList.add(
+            Tickets(
+                4,
+                "Grandstand 3",
+                "1100 EUR",
+                false
+            )
+        )
+
+        ticketsList.add(
+            Tickets(
+                5,
+                "Grandstand 2",
+                "1000 EUR",
+                true
+            )
+        )
+
+        ticketsList.add(
+            Tickets(
+                6,
+                "Grandstand 1",
+                "700 EUR",
+                true
+            )
+        )
+
 
     }
 

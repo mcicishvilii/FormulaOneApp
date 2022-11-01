@@ -2,14 +2,20 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:background="@drawable/quarter_rectangle_bottom_gray">
 
     <TextView
+        android:fontFamily="@font/quan_rounded_regular"
         android:id="@+id/tvTicketType"
+        android:textSize="24sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ticket type"
+        android:layout_margin="5dp"
         app:layout_constraintStart_toStartOf="parent"
+
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -17,6 +23,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sunday"
+        android:textColor="@color/red"
+        android:layout_margin="5dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvTicketType" />
 
@@ -25,25 +33,33 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="2000eur"
+        android:textColor="@color/black"
+        android:layout_margin="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvRaceDay"/>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/tvPurchaseButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@drawable/button_outline"
         android:text="Checkout"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvPrice"/>
+        app:layout_constraintTop_toBottomOf="@id/tvPrice" />
 
     <TextView
         android:id="@+id/tvSoldOut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="5dp"
         android:text="Sold Out"
+        android:textColor="@color/black"
         android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvPrice"/>
+        app:layout_constraintTop_toBottomOf="@id/tvPrice" />
 
 
 

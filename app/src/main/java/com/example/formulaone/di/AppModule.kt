@@ -1,16 +1,14 @@
 package com.example.formulaone.di
 
-import com.example.formulaone.Constants
-import com.example.formulaone.data.remote.news.NewsDto
-import com.example.formulaone.data.remote.raceResults.Race
-import com.example.formulaone.network.apis.*
+import com.example.formulaone.common.Constants
+import com.example.formulaone.data.services.NewsService
+import com.example.formulaone.data.services.RaceService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 import javax.inject.Singleton
 
 @Module
@@ -20,20 +18,20 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideRace(): RaceApis =
+    fun provideRace(): RaceService =
         Retrofit.Builder()
             .baseUrl(Constants.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-            .create(RaceApis::class.java)
+            .create(RaceService::class.java)
 
 
     @Singleton
     @Provides
-    fun provideNews(): NewsApis =
+    fun provideNews(): NewsService =
         Retrofit.Builder()
             .baseUrl(Constants.BASE_URL_NEWS)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-            .create(NewsApis::class.java)
+            .create(NewsService::class.java)
 }

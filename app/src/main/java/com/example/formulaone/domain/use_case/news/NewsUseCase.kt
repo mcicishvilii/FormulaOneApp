@@ -2,12 +2,8 @@ package com.example.formulaone.domain.use_case.news
 
 
 import android.util.Log
-import com.example.formulaone.Resource
-import com.example.formulaone.data.remote.news.NewsDto
-import com.example.formulaone.data.remote.news.new_api.F1NewsDto
+import com.example.formulaone.common.Resource
 import com.example.formulaone.domain.model.remote.ArticleDomain
-import com.example.formulaone.domain.model.remote.TeamsDomain
-import com.example.formulaone.domain.repository.local.TeamsRepositoryLocal
 import com.example.formulaone.domain.repository.remote.NewsRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

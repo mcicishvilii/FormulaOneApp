@@ -1,4 +1,4 @@
-package com.example.formulaone.network.apis
+package com.example.formulaone.data.services
 
 import com.example.formulaone.data.remote.drivers.drivers_standings.DriverStandingsDto
 import com.example.formulaone.data.remote.drivers.last_race.LastRaceDto
@@ -8,7 +8,7 @@ import com.example.formulaone.data.remote.teams.Teams
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface RaceApis {
+interface RaceService {
     @GET("current.json")
     suspend fun getLastRacesSchedule(
     ): RaceScheduleDto

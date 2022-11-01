@@ -1,4 +1,4 @@
-package com.example.formulaone.adapters
+package com.example.formulaone.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.View

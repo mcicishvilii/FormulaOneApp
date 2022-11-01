@@ -3,11 +3,11 @@ package com.example.formulaone.data.repository_impl
 import com.example.formulaone.data.remote.news.new_api.toArticleDomain
 import com.example.formulaone.domain.model.remote.ArticleDomain
 import com.example.formulaone.domain.repository.remote.NewsRepository
-import com.example.formulaone.network.apis.NewsApis
+import com.example.formulaone.data.services.NewsService
 import javax.inject.Inject
 
 class NewsRepositoryImpl @Inject constructor(
-    private val api: NewsApis
+    private val api: NewsService
 ) : NewsRepository {
 
     override suspend fun getNews(): List<ArticleDomain> {

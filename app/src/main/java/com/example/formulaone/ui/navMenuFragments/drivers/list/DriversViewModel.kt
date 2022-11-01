@@ -2,7 +2,7 @@ package com.example.formulaone.ui.navMenuFragments.drivers.list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.formulaone.Resource
+import com.example.formulaone.common.Resource
 import com.example.formulaone.data.remote.drivers.drivers_standings.DriverStandingsDto
 import com.example.formulaone.domain.model.remote.RaceDomain
 import com.example.formulaone.domain.use_case.drivers.CurrentDriversStandingsUseCase

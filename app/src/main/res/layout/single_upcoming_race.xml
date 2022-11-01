@@ -31,46 +31,54 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.90" />
 
-    <!--    <TextView-->
-    <!--        android:id="@+id/tv_dateDays"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="match_parent"-->
-    <!--        -->
-    <!--    -->
-    <!--    -->
     <TextView
         android:id="@+id/tv_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="oct"
+        android:textColor="@color/black"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guidelinePosColor"
+        app:layout_constraintBottom_toTopOf="@+id/tv_time"
+        app:layout_constraintEnd_toStartOf="@+id/tv_round"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintVertical_bias="0.5"/>
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="12:00"
+        android:textColor="@color/red"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tv_grandPrixName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_date" />
 
     <TextView
         android:id="@+id/tv_grandPrixName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/quan_rounded_bold"
         android:text="bahreingrapri saswaulebii"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:fontFamily="@font/quan_rounded_bold"
         app:layout_constraintStart_toEndOf="@+id/guidelinePosColor"
         app:layout_constraintTop_toBottomOf="@+id/tv_country" />
 
     <TextView
-        android:fontFamily="@font/quan_rounded_bold"
         android:id="@+id/tv_round"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/quan_rounded_bold"
         android:text="raund ragaca"
         android:textAllCaps="true"
-        android:textSize="15sp"
         android:textColor="@color/red"
+        android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@+id/tv_country"
         app:layout_constraintStart_toEndOf="@+id/guidelinePosColor"
         app:layout_constraintTop_toTopOf="parent" />
@@ -79,9 +87,9 @@
         android:id="@+id/tv_country"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
         android:fontFamily="@font/quan_rounded_bold"
         android:text="bahreinif"
+        android:textColor="@color/black"
         android:textSize="40sp"
         app:layout_constraintBottom_toTopOf="@+id/tv_grandPrixName"
         app:layout_constraintStart_toEndOf="@+id/guidelinePosColor"

@@ -17,6 +17,7 @@ import com.example.formulaone.domain.model.remote.RaceScheduleDomain
 import com.example.formulaone.domain.model.remote.TeamsDomain
 import java.text.SimpleDateFormat
 import java.time.LocalDate
+import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
 
@@ -40,8 +41,9 @@ class UpcomingRaceAdapter :
             val date = LocalDate.parse(dateFromModel, formatter)
             val splittedDate = date.month.name.split("")
             val accronymDate = "${splittedDate[1]}${splittedDate[2]}${splittedDate[3]}"
-
             val droppedDays = date.toString().drop(8)
+
+            val timeFromModel = model?.time?.dropLast(4)
 
             binding.apply {
                 ivTicket.setImageResource(R.drawable.ic_baseline_airplane_ticket_24)
@@ -49,6 +51,7 @@ class UpcomingRaceAdapter :
                 tvDate.text = "$droppedDays\n$accronymDate"
                 tvRound.text = "Round ${model?.round}"
                 tvGrandPrixName.text = model?.raceName
+                tvTime.text = timeFromModel
                 binding.root.setBackgroundResource(R.drawable.outline)
             }
             binding.ivTicket.setOnClickListener {

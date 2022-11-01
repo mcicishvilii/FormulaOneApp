@@ -5,7 +5,7 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.formulaone.R
-import com.example.formulaone.adapters.settings.HasButton
+import com.example.formulaone.ui.adapters.settings.HasButton
 import com.example.formulaone.databinding.FragmentSettingsBinding
 import com.example.formulaone.common.bases.BaseFragment
 import com.google.firebase.auth.FirebaseAuth

@@ -1,4 +1,4 @@
-package com.example.formulaone.adapters.SchedulesAdapter
+package com.example.formulaone.ui.adapters.SchedulesAdapter
 
 import android.annotation.SuppressLint
 import android.os.Build

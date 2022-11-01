@@ -1,13 +1,7 @@
 package com.example.formulaone.ui.navMenuFragments.tickets
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.example.formulaone.Resource
 import com.example.formulaone.data.local.models.TicketsEntity
-import com.example.formulaone.domain.model.remote.TeamsDomain
-import com.example.formulaone.domain.use_case.teams.DeleteAllUseCase
-import com.example.formulaone.domain.use_case.teams.GetTeamsListUseCase
-import com.example.formulaone.domain.use_case.teams.InsertTeamUseCase
 import com.example.formulaone.domain.use_case.tickets.DeleteAllTicketsUseCase
 import com.example.formulaone.domain.use_case.tickets.DeleteTicketUseCase
 import com.example.formulaone.domain.use_case.tickets.GetTicketsListUseCase

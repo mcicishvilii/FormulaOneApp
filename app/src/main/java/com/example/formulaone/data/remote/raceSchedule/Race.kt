@@ -20,6 +20,6 @@ data class Race(
 
 fun Race.ToRaceScheduleDomain(): RaceScheduleDomain {
     return RaceScheduleDomain(
-        Circuit,raceName,round,date,season
+        Circuit,raceName,round,date,season,time
     )
 }

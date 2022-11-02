@@ -2,6 +2,7 @@ package com.example.formulaone.ui.navMenuFragments.tickets
 
 import android.content.Intent
 import android.util.Log
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -35,8 +36,22 @@ class BoughtTicketsFragment : BaseFragment<FragmentTicketBinding>(FragmentTicket
     }
 
     override fun listeners() {
+        share()
+    }
 
+    private fun share() {
+        ticketsAdapter.apply {
+            setOnItemClickListener { ticket, _ ->
+                val sendIntent: Intent = Intent().apply {
+                    action = Intent.ACTION_SEND
+                    putExtra(Intent.EXTRA_TEXT, "This is my text to send. ${ticket.ticketId}")
+                    type = "text/plain"
+                }
 
+                val shareIntent = Intent.createChooser(sendIntent, null)
+                startActivity(shareIntent)
+            }
+        }
     }
 
 

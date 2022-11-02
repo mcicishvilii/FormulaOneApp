@@ -19,6 +19,8 @@ class BoughtTIcketsAdapter :
         TeamsDiffCallBack()
     ) {
 
+    private lateinit var itemClickListener: (TicketsEntity, Int) -> Unit
+
     override fun onCreateViewHolder(
         parent: ViewGroup, viewType: Int
     ): BoughtTicketsViewHolder {
@@ -39,19 +41,25 @@ class BoughtTIcketsAdapter :
             model = getItem(bindingAdapterPosition)
             binding.apply {
                 tvTrackName.text = model?.raceName
+                tvRaceTime.text = model?.raceDay
 
                 when (model?.raceName) {
                     "Brazilian Grand Prix" -> ticketcontainer.setImageResource(R.drawable.interlagos)
                     "Abu Dhabi Grand Prix" -> ticketcontainer.setImageResource(R.drawable.yas_marina)
                 }
 
-
                 binding.root.setBackgroundResource(R.drawable.outline)
+            }
+
+            binding.btnShare.setOnClickListener {
+                itemClickListener.invoke(model!!, absoluteAdapterPosition)
             }
         }
     }
+    fun setOnItemClickListener(clickListener: (TicketsEntity, Int) -> Unit) {
+        itemClickListener = clickListener
+    }
 }
-
 
 
 class TeamsDiffCallBack : DiffUtil.ItemCallback<TicketsEntity>() {

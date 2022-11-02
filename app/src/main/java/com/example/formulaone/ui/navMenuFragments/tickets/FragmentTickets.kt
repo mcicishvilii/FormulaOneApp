@@ -20,6 +20,7 @@ import com.example.formulaone.data.local.Tickets
 import com.example.formulaone.data.local.models.TicketsEntity
 import com.example.formulaone.databinding.FragmentFragmentTicketsBinding
 import com.example.formulaone.ui.navMenuFragments.schedule.upcoming.UpcomingRacesViewModel
+import com.example.formulaone.ui.navMenuFragments.tickets.BoughtTickets.CreditCardBottomFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -45,18 +46,14 @@ class FragmentTickets : BaseFragment<FragmentFragmentTicketsBinding>(FragmentFra
 
         binding.tvRaceDate.text = ticketInfo?.date
         binding.tvTrackName.text = ticketInfo?.trackName
-
-
     }
 
     override fun listeners() {
-
         ticketsAdapter.setOnItemClickListener{ticket,_->
-            insertTicket()
+//            insertTicket()
+            val modalBottomSheet = CreditCardBottomFragment()
+            modalBottomSheet.show(parentFragmentManager, CreditCardBottomFragment.TAG)
         }
-
-        binding
-
     }
 
     private fun insertTicket(){

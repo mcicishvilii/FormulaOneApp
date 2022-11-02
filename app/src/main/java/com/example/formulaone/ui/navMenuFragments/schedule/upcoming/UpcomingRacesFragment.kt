@@ -48,9 +48,6 @@ class UpcomingRacesFragment : BaseFragment<FragmentUpcomingRacesBinding>(Fragmen
                         date = venue.date
                     )
                 ))
-//                Snackbar.make(binding.root,
-//                    "you bought ticket for ${venue.raceName}",
-//                    Snackbar.LENGTH_SHORT).show()
             }
         }
     }

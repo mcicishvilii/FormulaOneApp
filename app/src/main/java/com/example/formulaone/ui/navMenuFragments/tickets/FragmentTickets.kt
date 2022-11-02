@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -26,9 +27,10 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class FragmentTickets : BaseFragment<FragmentFragmentTicketsBinding>(FragmentFragmentTicketsBinding::inflate) {
+class FragmentTickets :
+    BaseFragment<FragmentFragmentTicketsBinding>(FragmentFragmentTicketsBinding::inflate) {
 
-    val args:FragmentTicketsArgs by navArgs()
+    val args: FragmentTicketsArgs by navArgs()
 
     private val ticketsAdapter: TicketsAdapter by lazy { TicketsAdapter() }
     private val ticketsViewModel: FragmentTicketsViewModel by viewModels()
@@ -49,19 +51,29 @@ class FragmentTickets : BaseFragment<FragmentFragmentTicketsBinding>(FragmentFra
     }
 
     override fun listeners() {
-        ticketsAdapter.setOnItemClickListener{ticket,_->
-//            insertTicket()
+        ticketsAdapter.setOnItemClickListener { ticket, _ ->
+
+
             val modalBottomSheet = CreditCardBottomFragment()
             modalBottomSheet.show(parentFragmentManager, CreditCardBottomFragment.TAG)
+
+            insertTicket()
+            Toast.makeText(
+                requireContext(),
+                "you succesfuly bought the ticket!",
+                Toast.LENGTH_SHORT
+            ).show()
+
+
         }
     }
 
-    private fun insertTicket(){
+
+    fun insertTicket() {
         val ticket = TicketsEntity(
             0,
             args.ticketInfo!!.date,
             args.ticketInfo!!.trackName
-
         )
 
         viewLifecycleOwner.lifecycleScope.launch {
@@ -84,7 +96,7 @@ class FragmentTickets : BaseFragment<FragmentFragmentTicketsBinding>(FragmentFra
         }
     }
 
-    private fun popTicketsList(){
+    private fun popTicketsList() {
         ticketsList.add(
             Tickets(
                 1,

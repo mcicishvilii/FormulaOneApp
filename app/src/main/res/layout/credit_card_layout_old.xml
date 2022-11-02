@@ -21,12 +21,26 @@
         app:layout_anchor="@+id/standard_bottom_sheet"
         app:layout_anchorGravity="center">
 
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/startGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.12" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/endGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.88" />
+
         <ImageView
             android:id="@+id/line"
             android:layout_width="0dp"
             android:layout_height="3dp"
-            android:layout_marginHorizontal="120dp"
-            android:layout_marginVertical="60dp"
+            android:layout_marginHorizontal="160dp"
+            android:layout_marginVertical="30dp"
             android:background="@color/black"
             app:layout_constraintBottom_toTopOf="@+id/cardNumber"
             app:layout_constraintEnd_toEndOf="parent"
@@ -38,14 +52,30 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
+            android:layout_marginStart="15dp"
             android:text="Card Number"
             android:textSize="25sp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@id/etCardNumber"
             app:layout_constraintTop_toBottomOf="@+id/line" />
+
+        <ImageView
+            android:id="@+id/ivCardType"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:elevation="1dp"
+            android:layout_marginEnd="10dp"
+            android:visibility="gone"
+            app:layout_constraintTop_toTopOf="@id/etCardNumber"
+            app:layout_constraintBottom_toBottomOf="@id/etCardNumber"
+            app:layout_constraintEnd_toEndOf="@id/etCardNumber"/>
+
 
         <EditText
             android:id="@+id/etCardNumber"
             android:layout_width="wrap_content"
+            android:hint="**** **** **** ****"
+            android:paddingHorizontal="20dp"
+            android:textColor="@color/black"
             android:layout_height="wrap_content"
             android:background="@drawable/rectangle_91"
             app:layout_constraintEnd_toEndOf="parent"
@@ -57,18 +87,19 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Expire Date"
-            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:layout_marginHorizontal="20dp"
             app:layout_constraintEnd_toStartOf="@+id/tvcvv"
             app:layout_constraintTop_toBottomOf="@+id/etCardNumber"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="@id/cardNumber"/>
 
         <TextView
             android:id="@+id/tvcvv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Cvv"
-            android:textSize="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:text="cvv code"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="@id/endGuideline"
             app:layout_constraintStart_toEndOf="@+id/tvexpireDate"
             app:layout_constraintTop_toBottomOf="@+id/etCardNumber" />
 
@@ -78,37 +109,36 @@
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toStartOf="@+id/etCvv"
             android:layout_marginHorizontal="20dp"
+            android:textColor="@color/black"
             android:background="@drawable/rectangle_92"
             app:layout_constraintTop_toBottomOf="@+id/tvexpireDate"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="@id/startGuideline"/>
 
         <EditText
             android:id="@+id/etCvv"
             android:layout_width="0dp"
             android:layout_marginHorizontal="20dp"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:background="@drawable/rectangle_92"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/endGuideline"
             app:layout_constraintStart_toEndOf="@+id/etExpireDate"
             app:layout_constraintTop_toBottomOf="@+id/tvexpireDate" />
 
 
-        <Button
-            android:layout_width="wrap_content"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/gobutton"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-
-            android:background="@drawable/rectangle_91"
-            app:layout_constraintTop_toBottomOf="@+id/etCvv"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-
-
-
-
-
-
+            android:layout_marginTop="20dp"
+            android:text="confirm"
+            android:background="@drawable/outline"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="20dp"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="@id/endGuideline"
+            app:layout_constraintStart_toStartOf="@id/startGuideline"
+            app:layout_constraintTop_toBottomOf="@+id/etCvv" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

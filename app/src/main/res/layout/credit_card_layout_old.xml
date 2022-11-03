@@ -26,14 +26,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.12" />
+            app:layout_constraintGuide_percent="0.08" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/endGuideline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.88" />
+            app:layout_constraintGuide_percent="0.92" />
 
         <ImageView
             android:id="@+id/line"
@@ -49,13 +49,12 @@
 
         <TextView
             android:id="@+id/cardNumber"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:layout_marginStart="15dp"
             android:text="Card Number"
             android:textSize="25sp"
-            app:layout_constraintStart_toStartOf="@id/etCardNumber"
+            app:layout_constraintStart_toStartOf="@id/startGuideline"
             app:layout_constraintTop_toBottomOf="@+id/line" />
 
         <ImageView
@@ -72,32 +71,37 @@
 
         <EditText
             android:id="@+id/etCardNumber"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:hint="**** **** **** ****"
             android:paddingHorizontal="20dp"
             android:textColor="@color/black"
+            android:textColorHint="@color/black"
             android:layout_height="wrap_content"
             android:background="@drawable/rectangle_91"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/endGuideline"
+            app:layout_constraintStart_toStartOf="@id/startGuideline"
             app:layout_constraintTop_toBottomOf="@+id/cardNumber" />
 
         <TextView
             android:id="@+id/tvexpireDate"
             android:layout_width="0dp"
+            android:layout_marginTop="10dp"
             android:layout_height="wrap_content"
             android:text="Expire Date"
             android:textColor="@color/black"
-            android:layout_marginHorizontal="20dp"
+            android:textSize="17sp"
+            android:layout_marginEnd="40dp"
             app:layout_constraintEnd_toStartOf="@+id/tvcvv"
             app:layout_constraintTop_toBottomOf="@+id/etCardNumber"
-            app:layout_constraintStart_toStartOf="@id/cardNumber"/>
+            app:layout_constraintStart_toStartOf="@id/startGuideline"/>
 
         <TextView
             android:id="@+id/tvcvv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:text="cvv code"
+            android:textSize="17sp"
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="@id/endGuideline"
             app:layout_constraintStart_toEndOf="@+id/tvexpireDate"
@@ -107,8 +111,9 @@
             android:id="@+id/etExpireDate"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="30dp"
+            android:padding="7dp"
             app:layout_constraintEnd_toStartOf="@+id/etCvv"
-            android:layout_marginHorizontal="20dp"
             android:textColor="@color/black"
             android:background="@drawable/rectangle_92"
             app:layout_constraintTop_toBottomOf="@+id/tvexpireDate"
@@ -117,8 +122,9 @@
         <EditText
             android:id="@+id/etCvv"
             android:layout_width="0dp"
-            android:layout_marginHorizontal="20dp"
             android:layout_height="wrap_content"
+            android:padding="7dp"
+            android:layout_marginStart="30dp"
             android:textColor="@color/black"
             android:background="@drawable/rectangle_92"
             app:layout_constraintEnd_toEndOf="@id/endGuideline"
@@ -130,6 +136,7 @@
             android:id="@+id/gobutton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+
             android:layout_marginTop="20dp"
             android:text="confirm"
             android:background="@drawable/outline"

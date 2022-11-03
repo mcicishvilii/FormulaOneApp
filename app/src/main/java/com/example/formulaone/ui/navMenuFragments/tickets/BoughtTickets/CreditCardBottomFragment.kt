@@ -1,31 +1,22 @@
 package com.example.formulaone.ui.navMenuFragments.tickets.BoughtTickets
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.example.formulaone.R
-import com.example.formulaone.data.local.models.TicketsEntity
+import com.example.formulaone.common.BottomSheetFragmentInterface
 import com.example.formulaone.databinding.CreditCardLayoutOldBinding
-import com.example.formulaone.ui.navMenuFragments.tickets.FragmentTicketsArgs
-import com.example.formulaone.ui.navMenuFragments.tickets.FragmentTicketsViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import kotlinx.coroutines.launch
 
 class CreditCardBottomFragment : BottomSheetDialogFragment() {
 
 
+
     private var _binding: CreditCardLayoutOldBinding? = null
-    private val binding get() = _binding!!
+    val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -59,6 +50,8 @@ class CreditCardBottomFragment : BottomSheetDialogFragment() {
         super.onDestroyView()
         _binding = null
     }
+
+
 
     fun ckeckIfMasterCardOrVisa() {
         binding.etCardNumber.doOnTextChanged { text, _, _, _ ->

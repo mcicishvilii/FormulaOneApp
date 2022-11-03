@@ -1,5 +1,6 @@
 package com.example.formulaone.ui.navMenuFragments.tickets
 
+import android.content.DialogInterface
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,6 +10,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
@@ -16,22 +19,22 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.formulaone.R
 import com.example.formulaone.ui.adapters.TicketsAdapter
 import com.example.formulaone.adapters.UpcomingRaceAdapter
+import com.example.formulaone.common.BottomSheetFragmentInterface
 import com.example.formulaone.common.bases.BaseFragment
 import com.example.formulaone.data.local.Tickets
 import com.example.formulaone.data.local.models.TicketsEntity
 import com.example.formulaone.databinding.FragmentFragmentTicketsBinding
 import com.example.formulaone.ui.navMenuFragments.schedule.upcoming.UpcomingRacesViewModel
 import com.example.formulaone.ui.navMenuFragments.tickets.BoughtTickets.CreditCardBottomFragment
+import com.google.android.material.bottomsheet.BottomSheetBehavior.BottomSheetCallback
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class FragmentTickets :
-    BaseFragment<FragmentFragmentTicketsBinding>(FragmentFragmentTicketsBinding::inflate) {
-
+class FragmentTickets : BaseFragment<FragmentFragmentTicketsBinding>(FragmentFragmentTicketsBinding::inflate) {
     val args: FragmentTicketsArgs by navArgs()
-
+    val modalBottomSheet = CreditCardBottomFragment()
     private val ticketsAdapter: TicketsAdapter by lazy { TicketsAdapter() }
     private val ticketsViewModel: FragmentTicketsViewModel by viewModels()
 
@@ -40,6 +43,7 @@ class FragmentTickets :
     override fun viewCreated() {
         popTicketsList()
         setupRecycler()
+        checkStates()
         ticketsAdapter.submitList(ticketsList)
 
         binding.tvOptionsAvailable.text = "${ticketsList.size} options available"
@@ -52,21 +56,17 @@ class FragmentTickets :
 
     override fun listeners() {
         ticketsAdapter.setOnItemClickListener { ticket, _ ->
-
-
-            val modalBottomSheet = CreditCardBottomFragment()
             modalBottomSheet.show(parentFragmentManager, CreditCardBottomFragment.TAG)
-
-            insertTicket()
-            Toast.makeText(
-                requireContext(),
-                "you succesfuly bought the ticket!",
-                Toast.LENGTH_SHORT
-            ).show()
-
-
         }
     }
+
+
+
+    fun checkStates(){
+
+//            insertTicket()
+    }
+
 
 
     fun insertTicket() {
@@ -75,7 +75,6 @@ class FragmentTickets :
             args.ticketInfo!!.date,
             args.ticketInfo!!.trackName
         )
-
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 ticketsViewModel.insertTicket(ticket)

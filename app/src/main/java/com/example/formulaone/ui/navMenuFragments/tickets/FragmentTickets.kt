@@ -43,7 +43,6 @@ class FragmentTickets : BaseFragment<FragmentFragmentTicketsBinding>(FragmentFra
     override fun viewCreated() {
         popTicketsList()
         setupRecycler()
-        checkStates()
         ticketsAdapter.submitList(ticketsList)
 
         binding.tvOptionsAvailable.text = "${ticketsList.size} options available"
@@ -59,16 +58,6 @@ class FragmentTickets : BaseFragment<FragmentFragmentTicketsBinding>(FragmentFra
             modalBottomSheet.show(parentFragmentManager, CreditCardBottomFragment.TAG)
         }
     }
-
-
-
-    fun checkStates(){
-
-//            insertTicket()
-    }
-
-
-
     fun insertTicket() {
         val ticket = TicketsEntity(
             0,

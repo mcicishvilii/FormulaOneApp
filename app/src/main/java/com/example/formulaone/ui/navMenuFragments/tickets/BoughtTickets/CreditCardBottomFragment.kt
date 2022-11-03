@@ -38,7 +38,6 @@ class CreditCardBottomFragment : BottomSheetDialogFragment() {
                     Toast.makeText(requireContext(), "fill all the fields", Toast.LENGTH_SHORT)
                         .show()
                 } else {
-
                     dismiss()
                 }
 

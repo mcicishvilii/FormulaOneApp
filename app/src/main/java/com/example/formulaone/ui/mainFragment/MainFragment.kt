@@ -101,10 +101,6 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
                             val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
                             val date = LocalDate.parse(dateMogonili, formatter)
 
-
-                            Log.d("mcicishvi",date.toString())
-
-
                             if (dateNow < date && dateNow > date.minusDays(2)){
                                 observeWeather()
                             }

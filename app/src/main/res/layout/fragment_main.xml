@@ -63,7 +63,7 @@
             android:layout_marginStart="40dp"
             android:layout_marginTop="5dp"
             android:elevation="10dp"
-            android:text="The next race will be:"
+            android:text="The next race will be tomorrow:"
             android:textColor="@color/white"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"

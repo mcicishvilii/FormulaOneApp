@@ -3,6 +3,7 @@ package com.example.formulaone.ui.mainFragment
 import android.os.Build
 import android.os.CountDownTimer
 import android.util.Log
+import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -103,6 +104,21 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
 
                             if (dateNow < date && dateNow > date.minusDays(2)){
                                 observeWeather()
+                                binding.apply {
+                                    lastRaceContainer.visibility = View.VISIBLE
+                                    lastRaceLocation.visibility = View.VISIBLE
+                                    tv1stDriver.visibility = View.VISIBLE
+                                    tvWeather.visibility = View.VISIBLE
+                                    ivWeatherIcon.visibility = View.VISIBLE
+                                }
+                            }else{
+                                binding.apply {
+                                    lastRaceContainer.visibility = View.GONE
+                                    lastRaceLocation.visibility = View.GONE
+                                    tv1stDriver.visibility = View.GONE
+                                    tvWeather.visibility = View.GONE
+                                    ivWeatherIcon.visibility = View.GONE
+                                }
                             }
                         }
                     }

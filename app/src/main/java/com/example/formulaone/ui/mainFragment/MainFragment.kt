@@ -2,6 +2,7 @@ package com.example.formulaone.ui.mainFragment
 
 import android.os.Build
 import android.os.CountDownTimer
+import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -13,7 +14,7 @@ import com.example.formulaone.common.Resource
 import com.example.formulaone.ui.adapters.BottomNavViewPagerAdapter
 import com.example.formulaone.common.bases.BaseFragment
 import com.example.formulaone.databinding.FragmentMainBinding
-import com.example.formulaone.domain.model.remote.RaceScheduleDomain
+import com.example.formulaone.domain.model.RaceScheduleDomain
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,18 +26,12 @@ import java.time.format.DateTimeFormatter
 import java.util.*
 
 @AndroidEntryPoint
-@RequiresApi(Build.VERSION_CODES.O)
 class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::inflate) {
 
     private val mainViewModel: MainViewModel by viewModels()
 
-    val races = mutableListOf<RaceScheduleDomain>()
+//    val races = mutableListOf<RaceScheduleDomain>()
 
-    val time = Calendar.getInstance().time
-    val formatterCurrentTime = SimpleDateFormat("yyyy-MM-dd")
-    val formatterNow = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-    val currentTime = formatterCurrentTime.format(time)
-    val dateNow = LocalDate.parse(currentTime, formatterNow)
 
     private lateinit var viewPager: ViewPager2
     private lateinit var tabLayout: TabLayout
@@ -45,7 +40,6 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
         mainViewModel.getSchedule()
         setupTabLayout()
         observe()
-        timer.start()
     }
 
     override fun listeners() {
@@ -92,12 +86,10 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
 
                         }
                         is Resource.Success -> {
-                            if("2022-10-30" == dateNow.minusDays(1).toString()){
-                                timer.start()
-                            }else{
-                                timer.cancel()
-                            }
+                            binding.tv1stDriver.text = "${it.data[0].Circuit.circuitName}"
 
+
+                            Log.d("latlong", "${it.data[0].Circuit.Location.lat} \n ${it.data[0].Circuit.Location.long}")
                         }
                     }
                 }
@@ -106,16 +98,6 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
     }
 
 
-    val timer = object : CountDownTimer(  100000000, 1000) {
-        override fun onTick(millisUntilFinished: Long) {
-            binding.tv1stDriver.text = (millisUntilFinished / 1000).toString()
-        }
-
-        override fun onFinish() {
-            binding.tv1stDriver.text = "Timer"
-
-        }
-    }
 }
 
 

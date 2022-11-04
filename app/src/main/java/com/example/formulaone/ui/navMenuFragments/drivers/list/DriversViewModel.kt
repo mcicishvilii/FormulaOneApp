@@ -3,8 +3,7 @@ package com.example.formulaone.ui.navMenuFragments.drivers.list
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.formulaone.common.Resource
-import com.example.formulaone.data.remote.drivers.drivers_standings.DriverStandingsDto
-import com.example.formulaone.domain.model.remote.RaceDomain
+import com.example.formulaone.domain.model.RaceDomain
 import com.example.formulaone.domain.use_case.drivers.CurrentDriversStandingsUseCase
 import com.example.formulaone.domain.use_case.schedule.RaceDetailsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -20,7 +19,7 @@ class DriversViewModel @Inject constructor(
     private val raceDetailsUseCase: RaceDetailsUseCase
 ) : ViewModel() {
 
-    private val _state = MutableStateFlow<Resource<DriverStandingsDto>>(Resource.Loading(false))
+    private val _state = MutableStateFlow<Resource<com.example.formulaone.data.model.drivers.drivers_standings.DriverStandingsDto>>(Resource.Loading(false))
     val state = _state.asStateFlow()
 
     private val _detailsState = MutableStateFlow<Resource<List<RaceDomain>>>(Resource.Loading(false))

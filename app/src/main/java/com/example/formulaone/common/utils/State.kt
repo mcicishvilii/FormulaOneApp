@@ -1,6 +1,6 @@
 package com.example.formulaone.common.utils
 
-import com.example.formulaone.data.local.models.TeamsDtoLocal
+import com.example.formulaone.data.model.TeamsDtoLocal
 
 
 data class State<T>(

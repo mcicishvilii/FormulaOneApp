@@ -5,7 +5,7 @@ import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.formulaone.common.Resource
-import com.example.formulaone.domain.model.remote.RaceDomain
+import com.example.formulaone.domain.model.RaceDomain
 import com.example.formulaone.domain.use_case.schedule.RaceDetailsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

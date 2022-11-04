@@ -1,34 +1,21 @@
 package com.example.formulaone.ui.navMenuFragments.tickets
 
-import android.content.DialogInterface
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.util.Log
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleEventObserver
-import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.formulaone.R
 import com.example.formulaone.ui.adapters.TicketsAdapter
-import com.example.formulaone.adapters.UpcomingRaceAdapter
-import com.example.formulaone.common.BottomSheetFragmentInterface
 import com.example.formulaone.common.bases.BaseFragment
-import com.example.formulaone.data.local.Tickets
-import com.example.formulaone.data.local.models.TicketsEntity
+import com.example.formulaone.data.model.Tickets
+import com.example.formulaone.data.model.TicketsEntity
 import com.example.formulaone.databinding.FragmentFragmentTicketsBinding
-import com.example.formulaone.ui.navMenuFragments.schedule.upcoming.UpcomingRacesViewModel
 import com.example.formulaone.ui.navMenuFragments.tickets.BoughtTickets.CreditCardBottomFragment
-import com.google.android.material.bottomsheet.BottomSheetBehavior.BottomSheetCallback
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -37,27 +24,34 @@ class FragmentTickets : BaseFragment<FragmentFragmentTicketsBinding>(FragmentFra
     val modalBottomSheet = CreditCardBottomFragment()
     private val ticketsAdapter: TicketsAdapter by lazy { TicketsAdapter() }
     private val ticketsViewModel: FragmentTicketsViewModel by viewModels()
-
     val ticketsList = mutableListOf<Tickets>()
+
 
     override fun viewCreated() {
         popTicketsList()
         setupRecycler()
+
+
+
         ticketsAdapter.submitList(ticketsList)
 
         binding.tvOptionsAvailable.text = "${ticketsList.size} options available"
 
         val ticketInfo = args.ticketInfo
-
         binding.tvRaceDate.text = ticketInfo?.date
         binding.tvTrackName.text = ticketInfo?.trackName
     }
+
 
     override fun listeners() {
         ticketsAdapter.setOnItemClickListener { ticket, _ ->
             modalBottomSheet.show(parentFragmentManager, CreditCardBottomFragment.TAG)
         }
+//        insertTicket()
+
+
     }
+
     fun insertTicket() {
         val ticket = TicketsEntity(
             0,
@@ -67,6 +61,7 @@ class FragmentTickets : BaseFragment<FragmentFragmentTicketsBinding>(FragmentFra
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 ticketsViewModel.insertTicket(ticket)
+                Toast.makeText(requireContext(), "inserted!", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -140,5 +135,4 @@ class FragmentTickets : BaseFragment<FragmentFragmentTicketsBinding>(FragmentFra
 
 
     }
-
 }

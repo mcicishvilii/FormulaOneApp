@@ -7,11 +7,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.formulaone.R
-import com.example.formulaone.data.local.Tickets
-import com.example.formulaone.data.local.models.TicketsEntity
+import com.example.formulaone.data.model.TicketsEntity
 import com.example.formulaone.databinding.SigleTicketBinding
-import com.example.formulaone.databinding.SingleTeamLayoutBinding
-import com.example.formulaone.domain.model.remote.TeamsDomain
 
 
 class BoughtTIcketsAdapter :
@@ -20,6 +17,7 @@ class BoughtTIcketsAdapter :
     ) {
 
     private lateinit var itemClickListener: (TicketsEntity, Int) -> Unit
+    private lateinit var deleteItemClickListener: (TicketsEntity, Int) -> Unit
 
     override fun onCreateViewHolder(
         parent: ViewGroup, viewType: Int
@@ -54,10 +52,18 @@ class BoughtTIcketsAdapter :
             binding.btnShare.setOnClickListener {
                 itemClickListener.invoke(model!!, absoluteAdapterPosition)
             }
+
+            binding.btnDeleteTicket.setOnClickListener {
+                deleteItemClickListener.invoke(model!!, absoluteAdapterPosition)
+            }
+
         }
     }
     fun setOnItemClickListener(clickListener: (TicketsEntity, Int) -> Unit) {
         itemClickListener = clickListener
+    }
+    fun setOnDeleteClickListener(clickListener: (TicketsEntity, Int) -> Unit) {
+        deleteItemClickListener = clickListener
     }
 }
 

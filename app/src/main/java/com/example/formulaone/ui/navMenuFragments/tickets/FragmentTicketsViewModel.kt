@@ -1,7 +1,7 @@
 package com.example.formulaone.ui.navMenuFragments.tickets
 
 import androidx.lifecycle.ViewModel
-import com.example.formulaone.data.local.models.TicketsEntity
+import com.example.formulaone.data.model.TicketsEntity
 import com.example.formulaone.domain.use_case.tickets.DeleteAllTicketsUseCase
 import com.example.formulaone.domain.use_case.tickets.DeleteTicketUseCase
 import com.example.formulaone.domain.use_case.tickets.GetTicketsListUseCase
@@ -9,7 +9,6 @@ import com.example.formulaone.domain.use_case.tickets.InsertTicketUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -28,11 +27,12 @@ class FragmentTicketsViewModel @Inject constructor(
         }
     }
 
+    fun deleteTicket(){
+        CoroutineScope(Dispatchers.IO).launch {
+            deleteAllUseCase.invoke()
+        }
+    }
+
 }
 
 
-//fun listenForMessages() {
-//    merge(userSentMessages, messagesNotifications)
-//        .onEach { displayMessage(it) }
-//        .launchIn(scope)
-//}

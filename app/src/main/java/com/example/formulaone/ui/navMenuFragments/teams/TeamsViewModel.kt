@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.formulaone.common.Resource
 import com.example.formulaone.domain.use_case.teams.*
-import com.example.formulaone.domain.model.remote.TeamsDomain
+import com.example.formulaone.domain.model.TeamsDomain
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

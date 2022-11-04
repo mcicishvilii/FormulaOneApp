@@ -1,7 +1,7 @@
 package com.example.formulaone.ui.favorites
 
 import androidx.lifecycle.ViewModel
-import com.example.formulaone.domain.model.remote.TeamsDomain
+import com.example.formulaone.domain.model.TeamsDomain
 import com.example.formulaone.domain.use_case.favs.GetFavTeamsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow

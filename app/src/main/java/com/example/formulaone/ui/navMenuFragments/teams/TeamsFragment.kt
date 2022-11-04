@@ -14,7 +14,7 @@ import com.example.formulaone.R
 import com.example.formulaone.common.Resource
 import com.example.formulaone.common.bases.BaseFragment
 import com.example.formulaone.databinding.FragmentTeamsBinding
-import com.example.formulaone.domain.model.remote.TeamsDomain
+import com.example.formulaone.domain.model.TeamsDomain
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -49,6 +49,9 @@ class TeamsFragment : BaseFragment<FragmentTeamsBinding>(FragmentTeamsBinding::i
             }
         }
     }
+
+
+
 
     private fun setupRecycler() {
         binding.rvStories.apply {
@@ -86,7 +89,6 @@ class TeamsFragment : BaseFragment<FragmentTeamsBinding>(FragmentTeamsBinding::i
 
     private fun search() {
         binding.searchView.doOnTextChanged { text, _, _, _ ->
-            Log.d("mcicishvili", text.toString())
             if (!text.isNullOrEmpty()) {
                 viewModel.searh(text.toString())
             }

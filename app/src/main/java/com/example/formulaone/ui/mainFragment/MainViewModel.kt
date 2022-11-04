@@ -5,7 +5,7 @@ import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.formulaone.common.Resource
-import com.example.formulaone.domain.model.remote.RaceScheduleDomain
+import com.example.formulaone.domain.model.RaceScheduleDomain
 import com.example.formulaone.domain.use_case.last_race.GetLastRaceCircuitUseCase
 import com.example.formulaone.domain.use_case.last_race.GetLastRaceWinnerUseCase
 import com.example.formulaone.domain.use_case.schedule.RaceScheduleUseCase

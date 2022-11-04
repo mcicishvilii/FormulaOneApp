@@ -4,8 +4,8 @@ import android.os.Build
 import android.util.Log
 import androidx.annotation.RequiresApi
 import com.example.formulaone.common.Resource
-import com.example.formulaone.domain.model.remote.RaceScheduleDomain
-import com.example.formulaone.domain.repository.remote.RacesSheduleRepository
+import com.example.formulaone.domain.model.RaceScheduleDomain
+import com.example.formulaone.domain.repository.RacesSheduleRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException

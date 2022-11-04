@@ -6,17 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.example.formulaone.R
-import com.example.formulaone.data.local.Tickets
-import com.example.formulaone.data.local.models.TicketsEntity
-import com.example.formulaone.data.remote.drivers.drivers_standings.DriverStandingsDto
-import com.example.formulaone.data.remote.news.NewsDto
-import com.example.formulaone.data.remote.news.new_api.F1NewsDto
-import com.example.formulaone.databinding.SingleDriverLayoutBinding
-import com.example.formulaone.databinding.SingleNewsLayoutBinding
+import com.example.formulaone.data.model.Tickets
 import com.example.formulaone.databinding.SingleTicketItemLayoutBinding
-import com.example.formulaone.domain.model.remote.ArticleDomain
 
 class TicketsAdapter :
     ListAdapter<Tickets, TicketsAdapter.TicketsViewHolder>(

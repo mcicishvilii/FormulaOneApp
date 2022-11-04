@@ -31,8 +31,20 @@ class CreditCardBottomFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         ckeckIfMasterCardOrVisa()
-        binding.apply {
+        fieldsChecker()
 
+
+
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+
+    fun fieldsChecker(){
+        binding.apply {
             gobutton.setOnClickListener {
                 if (etCardNumber.text.isEmpty() && etCvv.text.isEmpty() && etExpireDate.text.isEmpty()) {
                     Toast.makeText(requireContext(), "fill all the fields", Toast.LENGTH_SHORT)
@@ -44,13 +56,6 @@ class CreditCardBottomFragment : BottomSheetDialogFragment() {
             }
         }
     }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
-
 
     fun ckeckIfMasterCardOrVisa() {
         binding.etCardNumber.doOnTextChanged { text, _, _, _ ->
@@ -69,6 +74,18 @@ class CreditCardBottomFragment : BottomSheetDialogFragment() {
                 }
             }
         }
+    }
+
+
+
+    fun setOnCreditCardFragment(listener: CreditCardFragmentListener){
+        this.creditCardFragmentListener = listener
+    }
+
+    private var creditCardFragmentListener:CreditCardFragmentListener ?=null
+
+    interface CreditCardFragmentListener{
+        fun onClick(x:Int)
     }
 
 

@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.formulaone.R
 import com.example.formulaone.databinding.SingleRecentRaceBinding
-import com.example.formulaone.domain.model.remote.RaceDomain
+import com.example.formulaone.domain.model.RaceDomain
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -37,7 +37,6 @@ class RecentRacesAdapter :
             val droppedDays = date.toString().drop(8)
 
             binding.apply {
-//
                 binding.tvFirstPlace.text = model!!.Results[0].Driver.code
                 binding.tvSecondPlace.text = model!!.Results[1].Driver.code
                 binding.tvThirdPlace.text = model!!.Results[2].Driver.code

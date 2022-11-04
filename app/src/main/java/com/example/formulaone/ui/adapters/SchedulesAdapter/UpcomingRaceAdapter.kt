@@ -2,7 +2,6 @@ package com.example.formulaone.adapters
 
 import android.annotation.SuppressLint
 import android.os.Build
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
@@ -10,14 +9,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.formulaone.R
-import com.example.formulaone.data.remote.drivers.drivers_standings.DriverStandingsDto
-import com.example.formulaone.databinding.SingleTeamLayoutBinding
 import com.example.formulaone.databinding.SingleUpcomingRaceBinding
-import com.example.formulaone.domain.model.remote.RaceScheduleDomain
-import com.example.formulaone.domain.model.remote.TeamsDomain
-import java.text.SimpleDateFormat
+import com.example.formulaone.domain.model.RaceScheduleDomain
 import java.time.LocalDate
-import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
 

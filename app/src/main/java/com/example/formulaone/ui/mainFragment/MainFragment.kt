@@ -18,6 +18,7 @@ import com.example.formulaone.domain.model.RaceScheduleDomain
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -30,16 +31,18 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
 
     private val mainViewModel: MainViewModel by viewModels()
 
-//    val races = mutableListOf<RaceScheduleDomain>()
-
+    private var lat: Double = 0.00
+    private var long: Double= 0.00
 
     private lateinit var viewPager: ViewPager2
     private lateinit var tabLayout: TabLayout
 
     override fun viewCreated() {
         mainViewModel.getSchedule()
+        mainViewModel.getWeather(lat, long)
         setupTabLayout()
         observe()
+        observeWeather()
     }
 
     override fun listeners() {
@@ -71,13 +74,12 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
         tabLayout.getTabAt(2)?.setIcon(R.drawable.ic_baseline_settings_24)
         tabLayout.getTabAt(3)?.setIcon(R.drawable.ic_baseline_calendar_today_24)
         tabLayout.getTabAt(4)?.setIcon(R.drawable.albon)
-
     }
 
     private fun observe() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                mainViewModel.state.collectLatest {
+                mainViewModel.state.collect() {
                     when (it) {
                         is Resource.Error -> {
 
@@ -87,9 +89,8 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
                         }
                         is Resource.Success -> {
                             binding.tv1stDriver.text = "${it.data[0].Circuit.circuitName}"
-
-
-                            Log.d("latlong", "${it.data[0].Circuit.Location.lat} \n ${it.data[0].Circuit.Location.long}")
+                            lat = it.data[0].Circuit.Location.lat.toDouble()
+                            long = it.data[0].Circuit.Location.long.toDouble()
                         }
                     }
                 }
@@ -97,7 +98,28 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
         }
     }
 
+    private fun observeWeather() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                mainViewModel.weatherState.collect() {
 
+                    when(it){
+                        is Resource.Error -> {
+
+                        }
+                        is Resource.Loading -> {
+
+                        }
+                        is Resource.Success -> {
+
+                            binding.tvWeather.text = it.data.daily.temperature2mMax[0].toString()
+                        }
+                    }
+
+                }
+            }
+        }
+    }
 }
 
 

@@ -35,15 +35,26 @@
         <TextView
             android:id="@+id/tvWeather"
             android:layout_width="0dp"
+            app:layout_constraintDimensionRatio="2"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="40dp"
             android:elevation="10dp"
             android:padding="10dp"
             android:text="40c"
             android:textColor="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv1stDriver" />
+
+        <ImageView
+            android:id="@+id/ivWeatherIcon"
+            android:elevation="11dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@color/black"
+            app:layout_constraintStart_toEndOf="@id/tvWeather"
+            app:layout_constraintTop_toTopOf="@id/tvWeather"
+            app:layout_constraintBottom_toBottomOf="@id/tvWeather"/>
+
 
         <TextView
             android:id="@+id/lastRaceLocation"

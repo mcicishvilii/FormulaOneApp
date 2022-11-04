@@ -26,6 +26,8 @@ data class WeatherDataDto(
     data class Daily(
         @SerializedName("precipitation_sum")
         val precipitationSum: List<Double> = listOf(),
+        @SerializedName("weathercode")
+        val weatherCode: List<Int> = listOf(),
         @SerializedName("temperature_2m_max")
         val temperature2mMax: List<Double> = listOf(),
         @SerializedName("time")

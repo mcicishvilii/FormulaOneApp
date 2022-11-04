@@ -19,8 +19,8 @@ class RaceScheduleRepositoryImpl @Inject constructor(
 
 
     override suspend fun getWeatherData(lat:Double, long:Double): WeatherDataDto {
-        val response =  weatherApi.getForecast(lat,long,listOf("temperature_2m_max","precipitation_sum"),"Africa/Cairo")
-//        val response1 =  weatherApi.getForecast(52.52,13.419,listOf("temperature_2m_max","precipitation_sum"),"Africa/Cairo")
+//        val response =  weatherApi.getForecast(-23.7036,-46.6997,listOf("temperature_2m_max","precipitation_sum"),"Africa/Cairo")
+        val response =  weatherApi.getForecast(lat,long,listOf("temperature_2m_max","precipitation_sum","weathercode"),"Europe/Moscow")
 //        Log.d("erorbodi", response1.body()?.daily.toString())
         try {
             return response.body()!!

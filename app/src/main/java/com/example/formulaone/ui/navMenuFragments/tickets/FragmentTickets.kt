@@ -34,8 +34,6 @@ class FragmentTickets :
         popTicketsList()
         setupRecycler()
 
-
-
         ticketsAdapter.submitList(ticketsList)
 
         binding.tvOptionsAvailable.text = "${ticketsList.size} options available"
@@ -52,6 +50,8 @@ class FragmentTickets :
         }
         insertTicket()
     }
+
+
 
 
     fun insertTicket() {

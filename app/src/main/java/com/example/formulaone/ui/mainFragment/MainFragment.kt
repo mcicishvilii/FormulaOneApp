@@ -11,6 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.viewpager2.widget.ViewPager2
 import com.example.formulaone.R
+import com.example.formulaone.common.MyFirebaseMessagingService
 import com.example.formulaone.common.Resource
 import com.example.formulaone.ui.adapters.BottomNavViewPagerAdapter
 import com.example.formulaone.common.bases.BaseFragment
@@ -33,8 +34,9 @@ import java.util.*
 class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::inflate) {
 
     private val mainViewModel: MainViewModel by viewModels()
+    val service by lazy { context?.let { MyFirebaseMessagingService(it.applicationContext) } }
 
-    private lateinit var locale:Locale
+
     private lateinit var viewPager: ViewPager2
     private lateinit var tabLayout: TabLayout
 
@@ -42,8 +44,6 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
         mainViewModel.getSchedule()
         setupTabLayout()
         observe()
-
-
     }
 
     override fun listeners() {
@@ -96,6 +96,11 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
                             binding.dateContainer.text = it.data[0].date
                             binding.tvLocation.text = it.data[0].Circuit.Location.locality
 
+
+                            val raceDay = "${it.data[0].Circuit.Location.country} on ${it.data[0].date} at ${it.data[0].time.dropLast(4)}"
+
+
+
                             val lat = it.data[0].Circuit.Location.lat.toDouble()
                             val long = it.data[0].Circuit.Location.long.toDouble()
 
@@ -104,12 +109,13 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
                             val dateNow = TimeFormaterIMPL().formatCurrentTime()
 
                             val dateFromModel = it.data[0].date
-                            val dateMogonili = "2022-11-06"
+                            val dateMogonili = "2022-11-07"
                             val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
                             val date = LocalDate.parse(dateMogonili, formatter)
 
                             if (dateNow in date.minusDays(1)..date){
                                 observeWeather()
+                                service?.showNotification(requireContext(),raceDay).toString()
                                 binding.apply {
                                     lastRaceContainer.visibility = View.VISIBLE
                                     lastRaceLocation.visibility = View.VISIBLE

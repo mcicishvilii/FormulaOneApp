@@ -14,44 +14,21 @@ import com.example.formulaone.ui.mainFragment.MainFragment
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 
-class MyFirebaseMessagingService :FirebaseMessagingService(){
+class MyFirebaseMessagingService (
+    context: Context
+){
+    private val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
-    override fun onMessageReceived(message: RemoteMessage) {
-        Log.d("cicisha","$message.data")
+    fun showNotification(myContext:Context,race:String){
+        val noti = NotificationCompat.Builder(myContext, MY_CHANNEL_ID)
+            .setSmallIcon(R.drawable.ic_f1_logo)
+            .setContentTitle("Race For Tomorrow")
+            .setContentText("We are rolling in $race").build()
+
+        notificationManager.notify(1234, noti)
     }
 
-    private fun notificationBuilder() {
-
-        val intent = Intent(this, MainFragment::class.java).apply {
-            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-        }
-        val pendingIntent: PendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE)
-
-        var builder = NotificationCompat.Builder(this, "2")
-            .setSmallIcon(R.drawable.ic_launcher_background)
-            .setContentTitle("Transfer Confirmed")
-            .setContentText("You received 1,000,000 BTC")
-            .setAutoCancel(true)
-            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-
-        createNotificationChannel()
-
-        with(NotificationManagerCompat.from(this)) {
-            notify(2, builder.build())
-        }
-    }
-
-    private fun createNotificationChannel() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val name = getString(R.string.app_name)
-            val descriptionText = getString(R.string.app_name)
-            val importance = NotificationManager.IMPORTANCE_DEFAULT
-            val channel = NotificationChannel("CHANNEL_ID", name, importance).apply {
-                description = descriptionText
-            }
-            val notificationManager: NotificationManager =
-                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            notificationManager.createNotificationChannel(channel)
-        }
+    companion object{
+        const val MY_CHANNEL_ID = "my_channel"
     }
 }

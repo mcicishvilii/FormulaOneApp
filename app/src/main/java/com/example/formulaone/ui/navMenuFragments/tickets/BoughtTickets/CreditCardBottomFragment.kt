@@ -53,7 +53,6 @@ class CreditCardBottomFragment : BottomSheetDialogFragment() {
                 if (etCardNumber.text.isEmpty() && etCvv.text.isEmpty() && etExpireDate.text.isEmpty()) {
                     Toast.makeText(requireContext(), "fill all the fields", Toast.LENGTH_SHORT)
                         .show()
-                    addTicket()
                 } else {
                     dismiss()
                 }

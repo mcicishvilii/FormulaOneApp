@@ -35,7 +35,7 @@ class TeamsFragment : BaseFragment<FragmentTeamsBinding>(FragmentTeamsBinding::i
 
     override fun listeners() {
         addToFavourites()
-        binding.tvTeamListHeader.setOnClickListener {
+        binding.btnFavs.setOnClickListener {
             findNavController().navigate(R.id.favoritesFragment)
         }
     }
@@ -49,9 +49,6 @@ class TeamsFragment : BaseFragment<FragmentTeamsBinding>(FragmentTeamsBinding::i
             }
         }
     }
-
-
-
 
     private fun setupRecycler() {
         binding.rvStories.apply {

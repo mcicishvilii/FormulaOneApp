@@ -17,109 +17,119 @@
         app:layout_constraintTop_toTopOf="parent">
 
 
-
         <View
             android:id="@+id/lastRaceContainer"
-            android:background="@color/DarkCyan"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:background="@color/DarkCyan"
             android:elevation="10dp"
+            android:visibility="gone"
             app:layout_constraintDimensionRatio="3.5"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints"
             />
 
 
         <TextView
             android:id="@+id/tvWeather"
             android:layout_width="0dp"
-            app:layout_constraintDimensionRatio="2"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="40dp"
+            android:layout_marginHorizontal="20dp"
             android:elevation="10dp"
             android:padding="10dp"
             android:text="40c"
             android:textColor="@color/black"
+            android:textSize="23sp"
+            android:visibility="gone"
+            app:layout_constraintDimensionRatio="2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv1stDriver" />
 
         <ImageView
             android:id="@+id/ivWeatherIcon"
-            android:elevation="11dp"
             android:layout_width="40dp"
             android:layout_height="40dp"
+            android:elevation="11dp"
             android:src="@color/black"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/tvWeather"
             app:layout_constraintStart_toEndOf="@id/tvWeather"
-            app:layout_constraintTop_toTopOf="@id/tvWeather"
-            app:layout_constraintBottom_toBottomOf="@id/tvWeather"/>
+            app:layout_constraintTop_toTopOf="@id/tvWeather" />
+
+        <TextView
+            android:id="@+id/dateContainer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:elevation="11dp"
+            android:text="11 OCT 2022"
+            android:textColor="@color/black"
+            android:textSize="27sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/ivWeatherIcon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ivWeatherIcon"
+            app:layout_constraintTop_toBottomOf="@id/tv1stDriver" />
 
 
         <TextView
             android:id="@+id/lastRaceLocation"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
+            android:layout_marginHorizontal="20dp"
             android:layout_marginTop="5dp"
             android:elevation="10dp"
-            android:text="The next race will be tomorrow:"
+            android:paddingHorizontal="10dp"
+            android:text="The next race will be:"
             android:textColor="@color/white"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints" />
+            />
 
         <TextView
             android:id="@+id/tv1stDriver"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="40dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="25dp"
             android:elevation="10dp"
+            android:fontFamily="@font/quan_rounded_bold"
             android:padding="10dp"
             android:text="last race winner"
             android:textColor="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:textSize="22sp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toStartOf="@id/tvLocation"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-
-<!--        <TextView-->
-<!--            android:id="@+id/tvViewResults"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            android:background="#FF0000"-->
-<!--            android:elevation="10dp"-->
-<!--            android:padding="5dp"-->
-<!--            android:text="view results"-->
-<!--            android:textColor="@color/white"-->
-<!--            app:layout_constraintEnd_toStartOf="@+id/tvViewReplay"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/tv1stDriver"-->
-<!--            tools:layout_editor_absoluteY="101dp" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/tvViewReplay"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            android:background="#FF0000"-->
-<!--            android:elevation="10dp"-->
-<!--            android:padding="5dp"-->
-<!--            android:text="view replay"-->
-<!--            android:textColor="@color/white"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toEndOf="@id/tvViewResults"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/tv1stDriver"-->
-<!--            tools:ignore="MissingConstraints"-->
-<!--            tools:layout_editor_absoluteY="101dp" />-->
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvLocation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="50dp"
+            android:drawableStart="@drawable/ic_baseline_location_on_24"
+            android:elevation="11dp"
+            android:fontFamily="@font/quan_rounded_regular"
+            android:padding="10dp"
+            android:text="Mexico"
+            android:textColor="@color/black"
+            android:textSize="22sp"
+            android:visibility="gone"
+            app:layout_constraintDimensionRatio="2.4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv1stDriver"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewPager"
             android:layout_width="0dp"
-            android:background="@color/black"
             android:layout_height="0dp"
+            android:background="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

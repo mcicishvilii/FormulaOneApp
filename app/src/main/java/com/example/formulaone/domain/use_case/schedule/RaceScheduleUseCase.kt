@@ -4,6 +4,7 @@ import android.os.Build
 import android.util.Log
 import androidx.annotation.RequiresApi
 import com.example.formulaone.common.Resource
+import com.example.formulaone.common.utils.TimeFormaterIMPL
 import com.example.formulaone.domain.model.RaceScheduleDomain
 import com.example.formulaone.domain.repository.RacesSheduleRepository
 import kotlinx.coroutines.flow.Flow
@@ -29,11 +30,7 @@ class RaceScheduleUseCase @Inject constructor(
 
 
             val filteredList = raceData.filter {
-                val time = Calendar.getInstance().time
-                val formatterCurrentTime = SimpleDateFormat("yyyy-MM-dd")
-                val formatterNow = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-                val currentTime = formatterCurrentTime.format(time)
-                val dateNow = LocalDate.parse(currentTime, formatterNow)
+                val dateNow = TimeFormaterIMPL().formatCurrentTime()
 
                 val dateFromModel = it.date
                 val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")

@@ -14,6 +14,8 @@ import com.example.formulaone.R
 import com.example.formulaone.common.Resource
 import com.example.formulaone.ui.adapters.BottomNavViewPagerAdapter
 import com.example.formulaone.common.bases.BaseFragment
+import com.example.formulaone.common.utils.TimeFormater
+import com.example.formulaone.common.utils.TimeFormaterIMPL
 import com.example.formulaone.databinding.FragmentMainBinding
 import com.example.formulaone.domain.model.RaceScheduleDomain
 import com.google.android.material.tabs.TabLayout
@@ -85,24 +87,22 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
                         }
                         is Resource.Success -> {
                             binding.tv1stDriver.text = "${it.data[0].Circuit.circuitName}"
+                            binding.dateContainer.text = it.data[0].date
+                            binding.tvLocation.text = it.data[0].Circuit.Location.locality
 
                             val lat = it.data[0].Circuit.Location.lat.toDouble()
                             val long = it.data[0].Circuit.Location.long.toDouble()
 
                             mainViewModel.getWeather(lat, long)
 
-                            val time = Calendar.getInstance().time
-                            val formatterCurrentTime = SimpleDateFormat("yyyy-MM-dd")
-                            val formatterNow = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-                            val currentTime = formatterCurrentTime.format(time)
-                            val dateNow = LocalDate.parse(currentTime, formatterNow)
+                            val dateNow = TimeFormaterIMPL().formatCurrentTime()
 
                             val dateFromModel = it.data[0].date
                             val dateMogonili = "2022-11-06"
                             val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
                             val date = LocalDate.parse(dateMogonili, formatter)
 
-                            if (dateNow < date && dateNow > date.minusDays(2)){
+                            if (dateNow in date.minusDays(1)..date){
                                 observeWeather()
                                 binding.apply {
                                     lastRaceContainer.visibility = View.VISIBLE
@@ -110,14 +110,8 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
                                     tv1stDriver.visibility = View.VISIBLE
                                     tvWeather.visibility = View.VISIBLE
                                     ivWeatherIcon.visibility = View.VISIBLE
-                                }
-                            }else{
-                                binding.apply {
-                                    lastRaceContainer.visibility = View.GONE
-                                    lastRaceLocation.visibility = View.GONE
-                                    tv1stDriver.visibility = View.GONE
-                                    tvWeather.visibility = View.GONE
-                                    ivWeatherIcon.visibility = View.GONE
+                                    tvLocation.visibility = View.VISIBLE
+                                    dateContainer.visibility = View.VISIBLE
                                 }
                             }
                         }
@@ -126,6 +120,12 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
             }
         }
     }
+
+    private fun todaysDateFormater(){
+
+    }
+
+
 
     private fun observeWeather() {
         viewLifecycleOwner.lifecycleScope.launch {
@@ -141,21 +141,26 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
                         }
                         is Resource.Success -> {
                             binding.tvWeather.text = "${it.data.daily.temperature2mMax[1]} C\u00B0"
-                            if ( it.data.daily.weatherCode[1] in 0..3 ){
-                                binding.ivWeatherIcon.setImageResource(R.drawable.sun_svgrepo_com)
-                            }
-                            else if(it.data.daily.weatherCode[1] in 51..67){
-                                binding.ivWeatherIcon.setImageResource(R.drawable.rain_svgrepo_com)
-                            }
-                            else if(it.data.daily.weatherCode[1] in 95..99){
-                                binding.ivWeatherIcon.setImageResource(R.drawable.thunder_svgrepo_com)
-                            }
-
+                            weatherIcon(it.data.daily.weatherCode[1])
                         }
                     }
-
                 }
             }
+        }
+    }
+
+    fun weatherIcon(data:Int){
+        if ( data in 0..3 ){
+            binding.ivWeatherIcon.setImageResource(R.drawable.sun_svgrepo_com)
+        }
+        else if(data in 51..67){
+            binding.ivWeatherIcon.setImageResource(R.drawable.rain_svgrepo_com)
+        }
+        else if(data in 95..99){
+            binding.ivWeatherIcon.setImageResource(R.drawable.thunder_svgrepo_com)
+        }
+        else{
+            binding.ivWeatherIcon.setImageResource(R.drawable.cloudy_svgrepo_com)
         }
     }
 }

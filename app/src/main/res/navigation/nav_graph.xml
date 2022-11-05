@@ -194,5 +194,9 @@
         android:name="com.example.formulaone.ui.navMenuFragments.tickets.BoughtTicketsFragment"
         android:label="fragment_ticket"
         tools:layout="@layout/fragment_ticket" />
+    <fragment
+        android:id="@+id/test"
+        android:name="com.example.formulaone.ui.Test"
+        android:label="Test" />
 
 </navigation>

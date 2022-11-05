@@ -34,6 +34,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
 
     private val mainViewModel: MainViewModel by viewModels()
 
+    private lateinit var locale:Locale
     private lateinit var viewPager: ViewPager2
     private lateinit var tabLayout: TabLayout
 
@@ -41,11 +42,16 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
         mainViewModel.getSchedule()
         setupTabLayout()
         observe()
+
+
     }
 
     override fun listeners() {
 
     }
+
+
+
 
     private fun setupTabLayout() {
         viewPager = binding.viewPager
@@ -120,11 +126,6 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
             }
         }
     }
-
-    private fun todaysDateFormater(){
-
-    }
-
 
 
     private fun observeWeather() {

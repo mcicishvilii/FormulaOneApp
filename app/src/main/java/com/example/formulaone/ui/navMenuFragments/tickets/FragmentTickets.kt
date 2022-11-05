@@ -19,11 +19,14 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class FragmentTickets : BaseFragment<FragmentFragmentTicketsBinding>(FragmentFragmentTicketsBinding::inflate) {
+class FragmentTickets :
+    BaseFragment<FragmentFragmentTicketsBinding>(FragmentFragmentTicketsBinding::inflate) {
     val args: FragmentTicketsArgs by navArgs()
     val modalBottomSheet = CreditCardBottomFragment()
     private val ticketsAdapter: TicketsAdapter by lazy { TicketsAdapter() }
     private val ticketsViewModel: FragmentTicketsViewModel by viewModels()
+
+
     val ticketsList = mutableListOf<Tickets>()
 
 
@@ -47,10 +50,9 @@ class FragmentTickets : BaseFragment<FragmentFragmentTicketsBinding>(FragmentFra
         ticketsAdapter.setOnItemClickListener { ticket, _ ->
             modalBottomSheet.show(parentFragmentManager, CreditCardBottomFragment.TAG)
         }
-//        insertTicket()
-
-
+        insertTicket()
     }
+
 
     fun insertTicket() {
         val ticket = TicketsEntity(
@@ -65,7 +67,6 @@ class FragmentTickets : BaseFragment<FragmentFragmentTicketsBinding>(FragmentFra
             }
         }
     }
-
 
     private fun setupRecycler() {
         binding.rvTickets.apply {

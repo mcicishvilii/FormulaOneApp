@@ -24,7 +24,7 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
         auth = Firebase.auth
         val user = auth.currentUser
         if (user != null) {
-            binding.tvUsersName.text = auth.currentUser?.email.toString()
+            binding.tvUsersName.text = "hello dear \n${auth.currentUser?.email.toString()}"
         }
         changeButton()
     }
@@ -68,7 +68,7 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
             Toast.makeText(requireContext(), "logged out", Toast.LENGTH_SHORT)
                 .show()
         } else {
-            binding.tvUsersName.text = auth.currentUser?.email.toString()
+            binding.tvUsersName.text = "hello  dear" + "  " + auth.currentUser?.email.toString()
             Toast.makeText(requireContext(), "logged in", Toast.LENGTH_SHORT)
                 .show()
         }

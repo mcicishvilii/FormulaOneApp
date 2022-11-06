@@ -63,7 +63,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
             tab.text = when (index) {
                 0 -> "Drivers"
                 1 -> "Teams"
-                2 -> "Settings"
+                2 -> "More"
                 3 -> "Schedule"
                 4 -> "News"
                 else -> "Tab Not Found"
@@ -75,7 +75,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
     private fun setupTabIcons() {
         tabLayout.getTabAt(0)?.setIcon(R.drawable.racing_helmet_svgrepo_com)
         tabLayout.getTabAt(1)?.setIcon(R.drawable.ic_baseline_outlined_flag_24)
-        tabLayout.getTabAt(2)?.setIcon(R.drawable.ic_baseline_settings_24)
+        tabLayout.getTabAt(2)?.setIcon(R.drawable.ic_baseline_more_horiz_24)
         tabLayout.getTabAt(3)?.setIcon(R.drawable.ic_baseline_calendar_today_24)
         tabLayout.getTabAt(4)?.setIcon(R.drawable.albon)
     }

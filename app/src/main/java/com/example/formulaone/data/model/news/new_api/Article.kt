@@ -25,6 +25,6 @@ data class Article(
 
 fun Article.toArticleDomain(): ArticleDomain {
     return ArticleDomain(
-        content, description, publishedAt, title, urlToImage
+        content, description, publishedAt, title, urlToImage,url
     )
 }

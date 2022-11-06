@@ -23,7 +23,7 @@ class MyApp:Application (){
             val channel = NotificationChannel(
                 MyFirebaseMessagingService.MY_CHANNEL_ID,
                 "races",
-                NotificationManager.IMPORTANCE_HIGH
+                NotificationManager.IMPORTANCE_MIN
             )
             channel.description = "tells you when its a race time"
 

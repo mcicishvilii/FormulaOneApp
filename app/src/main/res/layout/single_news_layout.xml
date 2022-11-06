@@ -3,15 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@drawable/outline"
+    android:layout_height="wrap_content"
     android:layout_margin="10dp"
-    android:layout_height="wrap_content">
+    android:background="@drawable/quarter_rectangle_bottom_gray">
 
     <TextView
         android:id="@+id/tvNewsText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="5dp"
+        android:background="@drawable/outline"
         android:text="niusis teqsti"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,12 +23,21 @@
         android:layout_width="0dp"
         android:layout_height="200dp"
         android:layout_margin="10dp"
-        android:src="@color/black"
         android:background="@color/backgroundColor"
+        android:src="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvNewsText" />
+
+    <TextView
+        android:id="@+id/tvDesription"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ivNewsImage" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

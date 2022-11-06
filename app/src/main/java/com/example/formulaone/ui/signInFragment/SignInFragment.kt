@@ -38,7 +38,7 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>(FragmentSignInBinding
         val email = binding.etEmailImpl.text.toString()
         val password = binding.etPasswordImpl.text.toString()
 
-        if(email.isNotEmpty() && password.isNotEmpty()){
+        if(email.isNotEmpty() && password.isNotEmpty() && isValidEmail()){
             CoroutineScope(Dispatchers.IO).launch {
                 try {
                     auth.signInWithEmailAndPassword(email,password).await()
@@ -54,6 +54,10 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>(FragmentSignInBinding
             }
         }
     }
+
+    private fun isValidEmail(): Boolean =
+        android.util.Patterns.EMAIL_ADDRESS.matcher(binding?.etEmailImpl?.text.toString()).matches()
+
 
     private fun checkLoggedInState() {
         val user = auth.currentUser

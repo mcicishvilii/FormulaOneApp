@@ -12,7 +12,7 @@ class NewsRepositoryImpl @Inject constructor(
 
     override suspend fun getNews(): List<ArticleDomain> {
         val response = api.getNews(
-            "formula 1",
+            "formula one",
             "6ce7c585fe714572ad745ea44c378403"
         )
         return if (response.isSuccessful) {

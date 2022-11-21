@@ -97,10 +97,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
                             Log.d("ciciko","$combined amas vawyvdi punqcias")
 
 
-
-
-
-                            binding.dateContainer.text = ans.toString()
+                            binding.dateContainer.text = time.data[0].date + " : " + ans.toString()
                             binding.tv1stDriver.text = time.data[0].circuit.circuitName
                             binding.tvLocation.text = time.data[0].circuit.location.locality
 
@@ -173,12 +170,12 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
             val changed = misho.toString().dropLast(3)
             val backtoMisho = changed.toLong()
 
-
-
             val tb = Instant.ofEpochSecond(backtoMisho)
                 .atZone(ZoneId.systemDefault())
                 .toLocalDateTime()
             Log.d("ciciko","$tb amas mibrunebs punqcia" )
+
+            formattedDate = tb.plusHours(4).toString().drop(11)
 
         } catch (e: ParseException) {
             e.printStackTrace()

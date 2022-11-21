@@ -1,4 +1,4 @@
-package com.example.formulaone.ui.navMenuFragments.tickets
+package com.example.formulaoneapplicationn.ui.navMenuFragments.tickets.BoughtTickets
 
 import android.content.Intent
 import android.widget.Toast
@@ -8,18 +8,15 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.formulaone.common.bases.BaseFragment
 import com.example.formulaone.databinding.FragmentTicketBinding
 import com.example.formulaone.ui.adapters.SchedulesAdapter.BoughtTIcketsAdapter
 import com.example.formulaone.ui.navMenuFragments.tickets.BoughtTickets.TicketViewModel
+import com.example.formulaoneapplicationn.common.bases.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class BoughtTicketsFragment : BaseFragment<FragmentTicketBinding>(FragmentTicketBinding::inflate) {
-
-
     private val ticketsAdapter: BoughtTIcketsAdapter by lazy { BoughtTIcketsAdapter() }
     private val ticketsViewModel: TicketViewModel by viewModels()
 
@@ -61,7 +58,6 @@ class BoughtTicketsFragment : BaseFragment<FragmentTicketBinding>(FragmentTicket
                         }
                     }
                 }
-
                 builder.setNegativeButton(android.R.string.no) { dialog, which ->
                     Toast.makeText(requireContext(), "you kept your ticket!", Toast.LENGTH_SHORT).show()
                 }
@@ -69,12 +65,6 @@ class BoughtTicketsFragment : BaseFragment<FragmentTicketBinding>(FragmentTicket
             }
         }
     }
-
-
-
-
-
-
 
     private fun getTickets() {
         viewLifecycleOwner.lifecycleScope.launch {
@@ -92,10 +82,12 @@ class BoughtTicketsFragment : BaseFragment<FragmentTicketBinding>(FragmentTicket
             layoutManager =
                 LinearLayoutManager(
                     requireContext(),
-                    LinearLayoutManager.HORIZONTAL,
+                    LinearLayoutManager.VERTICAL,
                     false
                 )
         }
     }
+
+
 
 }

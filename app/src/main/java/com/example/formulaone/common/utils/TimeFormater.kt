@@ -1,7 +1,8 @@
-package com.example.formulaone.common.utils
+package com.example.formulaoneapplicationn.common.utils
 
 import android.os.Build
 import androidx.annotation.RequiresApi
+import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -14,6 +15,7 @@ interface TimeFormater {
 }
 
 @RequiresApi(Build.VERSION_CODES.O)
+
 class TimeFormaterIMPL : TimeFormater {
     override fun formatCurrentTime(): LocalDate {
         val time = Calendar.getInstance().time
@@ -23,7 +25,5 @@ class TimeFormaterIMPL : TimeFormater {
         return LocalDate.parse(currentTime, formatterNow)
     }
 }
-
-
 
 

@@ -1,6 +1,6 @@
-package com.example.formulaone.data.services
+package com.example.formulaoneapplicationn.data.services
 
-import com.example.formulaone.data.model.weather.WeatherDataDto
+import com.example.formulaoneapplicationn.data.model.weather.WeatherDataDto
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query

@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.formulaone.R
-import com.example.formulaone.data.model.TicketsEntity
 import com.example.formulaone.databinding.SigleTicketBinding
+import com.example.formulaoneapplicationn.data.model.TicketsEntity
 
 
 class BoughtTIcketsAdapter :

@@ -1,7 +1,7 @@
-package com.example.formulaone.data.repository
+package com.example.formulaoneapplicationn.data.repository
 
-import com.example.formulaone.data.daos.TicketsDao
-import com.example.formulaone.data.model.TicketsEntity
+import com.example.formulaoneapplicationn.data.daos.TicketsDao
+import com.example.formulaoneapplicationn.data.model.TicketsEntity
 import com.example.formulaone.domain.repository.TicketsRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject

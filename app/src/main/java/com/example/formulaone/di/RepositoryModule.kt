@@ -1,7 +1,9 @@
 package com.example.formulaone.di
 
-import com.example.formulaone.data.repository.*
 import com.example.formulaone.domain.repository.*
+import com.example.formulaoneapplicationn.data.repository.*
+import com.example.formulaoneapplicationn.domain.repository.CurrentDriversStandingsRepository
+import com.example.formulaoneapplicationn.domain.repository.LastRaceRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -32,7 +34,7 @@ abstract class RepositoryModule {
     @Singleton
     //using for two usecases
     abstract fun bindCircuitRepository(
-        lastRaceRepoImpl: LastRaceImpl
+        lastRaceInfoRepositoryImpl: LastRaceInfoRepositoryImpl
     ): LastRaceRepository
 
     @Binds

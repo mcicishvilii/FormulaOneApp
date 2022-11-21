@@ -5,17 +5,17 @@ import android.util.Log
 import androidx.navigation.fragment.findNavController
 import com.example.formulaone.R
 import com.example.formulaone.databinding.FragmentWelcomeBinding
-import com.example.formulaone.common.bases.BaseFragment
+import com.example.formulaoneapplicationn.common.bases.BaseFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
 class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>(FragmentWelcomeBinding::inflate) {
-    private lateinit var auth: FirebaseAuth
+    private lateinit var mauth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        auth = Firebase.auth
+        mauth = Firebase.auth
         checkLoggedInState()
     }
 
@@ -40,7 +40,7 @@ class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>(FragmentWelcomeBind
     }
 
     private fun checkLoggedInState() {
-        val user = auth.currentUser
+        val user = mauth.currentUser
         if (user == null) {
             Log.d("mcici","not logged in")
         } else {

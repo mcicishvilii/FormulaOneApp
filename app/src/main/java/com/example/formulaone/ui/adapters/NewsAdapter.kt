@@ -6,9 +6,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.formulaone.data.model.Tickets
 import com.example.formulaone.databinding.SingleNewsLayoutBinding
-import com.example.formulaone.domain.model.ArticleDomain
+import com.example.formulaoneapplicationn.domain.model.ArticleDomain
 
 class NewsAdapter :
     ListAdapter<ArticleDomain, NewsAdapter.NewsViewHolder>(
@@ -39,6 +38,7 @@ class NewsAdapter :
             binding.apply {
                 tvNewsText.text = model?.title
                 tvDesription.text = model?.description
+
                 Glide.with(this.ivNewsImage)
                     .load(model?.urlToImage)
                     .into(ivNewsImage)

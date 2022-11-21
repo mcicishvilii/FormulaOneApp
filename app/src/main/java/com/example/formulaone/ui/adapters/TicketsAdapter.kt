@@ -6,8 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.formulaone.data.model.Tickets
 import com.example.formulaone.databinding.SingleTicketItemLayoutBinding
+import com.example.formulaoneapplicationn.data.model.Tickets
 
 class TicketsAdapter :
     ListAdapter<Tickets, TicketsAdapter.TicketsViewHolder>(

@@ -1,4 +1,4 @@
-package com.example.formulaone.data.model.drivers.drivers_standings
+package com.example.formulaoneapplicationn.data.model.drivers.drivers_standings
 
 data class Driver(
     val code: String,

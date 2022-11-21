@@ -8,10 +8,10 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.formulaone.DriversAdapter
-import com.example.formulaone.common.Resource
 import com.example.formulaone.databinding.FragmentDriversBinding
-import com.example.formulaone.common.bases.BaseFragment
 import com.example.formulaone.ui.navMenuFragments.drivers.DriversDetails
+import com.example.formulaoneapplicationn.common.Resource
+import com.example.formulaoneapplicationn.common.bases.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -33,7 +33,6 @@ class DriversFragment : BaseFragment<FragmentDriversBinding>(FragmentDriversBind
     private fun toDetails(){
         driversAdapter.apply {
             setOnItemClickListener{ driver,_ ->
-//                Snackbar.make(binding.root,driver.Driver.familyName,Snackbar.LENGTH_SHORT).show()
                 findNavController().navigate(DriversFragmentDirections.actionDriversFragmentToDriverDetailsFragment(
                     DriversDetails(
                         driver.Driver.givenName,
@@ -75,24 +74,11 @@ class DriversFragment : BaseFragment<FragmentDriversBinding>(FragmentDriversBind
                             binding.tvNowLoading.visibility = View.VISIBLE
                         }
                         is Resource.Success -> {
-                            driversAdapter.submitList(it.data.MRData.StandingsTable.StandingsLists[0].DriverStandings)
+                            driversAdapter.submitList(it.data)
                             binding.tvNowLoading.visibility = View.INVISIBLE
                         }
                     }
                 }
-//
-//                driversViewModel.detailsState.collectLatest {
-//                    when(it){
-//                        is Resource.Error -> {
-//
-//                        }
-//                        is Resource.Loading -> {
-//                        }
-//                        is Resource.Success -> {
-//                            it.data[0].Results.
-//                        }
-//                    }
-//                }
             }
         }
 

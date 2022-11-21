@@ -17,12 +17,10 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import java.sql.Timestamp
 import java.text.ParseException
 import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.LocalDateTime
-import java.time.ZoneId
-import java.time.ZonedDateTime
+import java.time.*
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
 import java.util.*
@@ -94,10 +92,9 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
 
                             val combined = dateFromData + "T" + timeFromData
 
-                            val ans = convertISOTimeToDate(combined)?.drop(10)
+                            val ans = convertISOTimeToDate(combined)
 
-
-                            Log.d("cicka",ans.toString())
+                            Log.d("ciciko","$combined amas vawyvdi punqcias")
 
 
 
@@ -165,16 +162,27 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
     }
 
     private fun convertISOTimeToDate(isoTime: String): String? {
-        val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss't'z")
+        val sdf = SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss'Z'")
         var convertedDate: Date? = null
         var formattedDate: String? = null
         try {
             convertedDate = sdf.parse(isoTime)
-            formattedDate = SimpleDateFormat("dd-MM-yyyy" + "\n" + " hh:mm:ss a",Locale.getDefault()).format(convertedDate.time)
+
+
+            val misho = convertedDate.time
+            val changed = misho.toString().dropLast(3)
+            val backtoMisho = changed.toLong()
+
+
+
+            val tb = Instant.ofEpochSecond(backtoMisho)
+                .atZone(ZoneId.systemDefault())
+                .toLocalDateTime()
+            Log.d("ciciko","$tb amas mibrunebs punqcia" )
+
         } catch (e: ParseException) {
             e.printStackTrace()
         }
-
         return formattedDate
     }
 
@@ -193,7 +201,6 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
         }
     }
 }
-
 
 
 

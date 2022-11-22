@@ -1,5 +1,7 @@
 package com.example.formulaoneapplicationn.data.repository
 
+import com.example.formulaone.data.model.drivers.quali.toQualiDomain
+import com.example.formulaone.domain.model.QualiDomain
 import com.example.formulaoneapplicationn.common.Resource
 import com.example.formulaoneapplicationn.domain.repository.CurrentDriversStandingsRepository
 import com.example.formulaoneapplicationn.data.services.RaceService
@@ -28,6 +30,24 @@ class DriverStandingsRepositoryImpl @Inject constructor(
         } catch (e: IOException) {
             emit(Resource.Error(e.message.toString()))
         }
+    }
+
+    override suspend fun getQualiData(): Flow<Resource<List<QualiDomain>>> = flow {
+        try {
+            emit(Resource.Loading(true))
+            val response = api.getQualiResults()
+            if (response.isSuccessful) {
+                emit(Resource.Success(response.body()!!.mRData.raceTable.races.map {it.toQualiDomain()}))
+            }
+        } catch (e: HttpException) {
+            emit(Resource.Error(e.localizedMessage ?: "unexpected"))
+        } catch (e: IOException) {
+            emit(Resource.Error(e.message.toString()))
+        }
+    }
+
+    override suspend fun asd(): Flow<Resource<List<QualiDomain>>> {
+        TODO("Not yet implemented")
     }
 
 }

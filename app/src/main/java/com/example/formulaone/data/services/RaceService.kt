@@ -1,5 +1,6 @@
 package com.example.formulaoneapplicationn.data.services
 
+import com.example.formulaone.data.model.drivers.quali.QualiResultDto
 import com.example.formulaone.data.model.raceResults.RaceResultsDto
 import com.example.formulaone.data.model.raceSchedule.RaceScheduleDto
 import com.example.formulaoneapplicationn.data.model.drivers.drivers_standings.RealDriverStandingsDto
@@ -13,6 +14,10 @@ interface RaceService {
     @GET("current.json")
     suspend fun getLastRacesSchedule(
     ): Response<RaceScheduleDto>
+
+    @GET("current/qualifying/1.json")
+    suspend fun getQualiResults(
+    ): Response<QualiResultDto>
 
     @GET("current/last/results.json")
     suspend fun getLastRaceInformation(

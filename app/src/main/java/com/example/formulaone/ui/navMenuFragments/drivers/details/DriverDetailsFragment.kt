@@ -17,8 +17,9 @@ class DriverDetailsFragment : BaseFragment<FragmentDriverDetailsBinding>(Fragmen
             tvDriversTeamAndNumber.text = name?.carNumber + "   |   " + name?.team
             tvCurrentPosition.text = name?.currentStanding
             tvWins.text = name?.wins
-            tvDOBimpl.text = name?.dob
+            tvDOBimpl.text = name?.qualis
             tvNationalityImpl.text = name?.nationality
+
         }
 
         when(name?.lastName){

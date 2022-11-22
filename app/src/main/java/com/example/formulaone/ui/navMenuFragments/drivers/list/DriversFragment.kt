@@ -24,6 +24,7 @@ class DriversFragment : BaseFragment<FragmentDriversBinding>(FragmentDriversBind
     private val driversViewModel: DriversViewModel by viewModels()
     private val driversAdapter: DriversAdapter by lazy { DriversAdapter() }
 
+//    val ma
     val listDriversQuali = mutableListOf<String>()
     var answer = ""
 
@@ -37,35 +38,22 @@ class DriversFragment : BaseFragment<FragmentDriversBinding>(FragmentDriversBind
 
     override fun listeners() {
         toDetails()
-//        Log.d("qualif","$answer answer")
-
     }
 
     private fun toDetails(){
         var qualis = ""
-        /*
-        *
-        *
-        * Aq maqvs ragaceebi sachalicho. anu modis chamonatvali mrbolelebis vin ramdnejer moigo quali magram ver valageb
-        *
-        *
-        *
-        *
-        *
-        * */
+
         driversAdapter.apply {
             setOnItemClickListener{ driver,_ ->
                 val dropppedAnswer = answer.dropLast(3)
+//                Log.d("answe",dropppedAnswer)
+//                Log.d("answe",driver.Driver.driverId)
                 if(driver.Driver.driverId == dropppedAnswer){
-//                    Log.d("qualif","$dropppedAnswer dropped answer")
-//                    Log.d("qualif","$answer answer")
                     qualis = answer.last().toString()
                 }else{
-                    Log.d("qualif","${ answer.last()} last of answer")
-                    Log.d("qualif","$dropppedAnswer dropped answer")
                     qualis = "0"
                 }
-//                Log.d("qualif","$qualis qualis")
+
                 findNavController().navigate(DriversFragmentDirections.actionDriversFragmentToDriverDetailsFragment(
                     DriversDetails(
                         driver.Driver.givenName,
@@ -140,8 +128,8 @@ class DriversFragment : BaseFragment<FragmentDriversBinding>(FragmentDriversBind
                             }
                             for (item in listDriversQuali.distinct()) {
                                 val coll = Collections.frequency(listDriversQuali, item)
-                                answer = "$item: $coll"
-//                                Log.d("qualif",answer)
+
+                                Log.d("answe", answer.length.toString())
                             }
                         }
                     }

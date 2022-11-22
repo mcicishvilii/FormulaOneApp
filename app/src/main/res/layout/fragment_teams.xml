@@ -29,7 +29,7 @@
         android:id="@+id/searchView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="search here"
+        android:hint="@string/search_here"
         android:textColor="@color/black"
         android:textColorHint="@color/black"
         android:background="@drawable/rectangle_91"
@@ -41,22 +41,23 @@
 
     <TextView
         android:id="@+id/tvTeamListHeader"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
+        app:layout_constraintDimensionRatio="7:1"
         android:layout_height="wrap_content"
         android:layout_marginVertical="5dp"
-        android:text="Team Name"
+        android:text="@string/team_name"
         app:layout_constraintBottom_toTopOf="@+id/rvStories"
         app:layout_constraintEnd_toStartOf="@+id/tvTeamCountryHeader"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/searchView" />
 
     <TextView
         android:id="@+id/tvTeamCountryHeader"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
+        app:layout_constraintDimensionRatio="7"
         android:layout_height="wrap_content"
         android:layout_marginVertical="5dp"
-        android:text="Country"
+        android:text="@string/country"
         app:layout_constraintBottom_toTopOf="@+id/rvStories"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

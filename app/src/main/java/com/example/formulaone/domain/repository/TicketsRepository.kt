@@ -1,6 +1,6 @@
 package com.example.formulaone.domain.repository
 
-import com.example.formulaone.data.model.TicketsEntity
+import com.example.formulaoneapplicationn.data.model.TicketsEntity
 import kotlinx.coroutines.flow.Flow
 
 interface TicketsRepository {

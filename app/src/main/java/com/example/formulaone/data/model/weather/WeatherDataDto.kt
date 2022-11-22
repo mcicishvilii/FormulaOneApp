@@ -1,6 +1,7 @@
-package com.example.formulaone.data.model.weather
+package com.example.formulaoneapplicationn.data.model.weather
 
 
+import com.example.formulaoneapplicationn.domain.model.DailyDomain
 import com.google.gson.annotations.SerializedName
 
 data class WeatherDataDto(
@@ -34,6 +35,7 @@ data class WeatherDataDto(
         val time: List<String> = listOf()
     )
 
+
     data class DailyUnits(
         @SerializedName("precipitation_sum")
         val precipitationSum: String = "",
@@ -41,5 +43,12 @@ data class WeatherDataDto(
         val temperature2mMax: String = "",
         @SerializedName("time")
         val time: String = ""
+    )
+
+}
+
+fun WeatherDataDto.Daily.toDomain(): DailyDomain {
+    return DailyDomain(
+        precipitationSum, weatherCode, temperature2mMax, time
     )
 }

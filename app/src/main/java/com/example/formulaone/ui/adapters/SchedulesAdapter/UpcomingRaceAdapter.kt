@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.formulaone.R
 import com.example.formulaone.databinding.SingleUpcomingRaceBinding
-import com.example.formulaone.domain.model.RaceScheduleDomain
+import com.example.formulaoneapplicationn.domain.model.RaceScheduleDomain
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.*

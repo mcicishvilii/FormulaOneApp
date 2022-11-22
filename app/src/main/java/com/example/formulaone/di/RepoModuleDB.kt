@@ -1,7 +1,7 @@
 package com.example.formulaone.di
 
-import com.example.formulaone.data.repository.TicketsRepositoryImpl
 import com.example.formulaone.domain.repository.TicketsRepository
+import com.example.formulaoneapplicationn.data.repository.TicketsRepositoryImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

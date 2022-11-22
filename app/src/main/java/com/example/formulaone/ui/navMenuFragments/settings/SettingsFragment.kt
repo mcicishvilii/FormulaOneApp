@@ -3,11 +3,8 @@ package com.example.formulaone.ui.navMenuFragments.settings
 import android.view.View
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.formulaone.R
-import com.example.formulaone.ui.adapters.settings.HasButton
 import com.example.formulaone.databinding.FragmentSettingsBinding
-import com.example.formulaone.common.bases.BaseFragment
+import com.example.formulaoneapplicationn.common.bases.BaseFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -18,13 +15,13 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
 //    private val settingsAdapter: SettingsAdapter by lazy { SettingsAdapter() }
 
 
-    private lateinit var auth: FirebaseAuth
+    private lateinit var mauth: FirebaseAuth
 
     override fun viewCreated() {
-        auth = Firebase.auth
-        val user = auth.currentUser
+        mauth = Firebase.auth
+        val user = mauth.currentUser
         if (user != null) {
-            binding.tvUsersName.text = "hello dear \n${auth.currentUser?.email.toString()}"
+            binding.tvUsersName.text = "hello dear \n${mauth.currentUser?.email.toString()}"
         }
         changeButton()
     }
@@ -42,7 +39,7 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
     }
 
     private fun changeButton(){
-        val user = auth.currentUser
+        val user = mauth.currentUser
         if (user == null){
             binding.logoutbutton.visibility = View.GONE
             binding.tvLogin.visibility = View.VISIBLE
@@ -55,20 +52,18 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
 
     private fun logOut() {
         binding.logoutbutton.setOnClickListener {
-            auth.signOut()
+            mauth.signOut()
             findNavController().navigate(SettingsFragmentDirections.actionSettingsFragmentToWelcomeFragment())
             checkLoggedInState()
         }
     }
 
     private fun checkLoggedInState() {
-        val user = auth.currentUser
+        val user = mauth.currentUser
         if (user == null) {
             binding.tvUsersName.text = ""
-            Toast.makeText(requireContext(), "logged out", Toast.LENGTH_SHORT)
-                .show()
         } else {
-            binding.tvUsersName.text = "hello  dear" + "  " + auth.currentUser?.email.toString()
+            binding.tvUsersName.text = "hello  dear" + "  " + mauth.currentUser?.email.toString()
             Toast.makeText(requireContext(), "logged in", Toast.LENGTH_SHORT)
                 .show()
         }

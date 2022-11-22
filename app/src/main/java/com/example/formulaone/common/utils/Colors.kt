@@ -1,5 +1,6 @@
-package com.example.formulaone.common.utils
+package com.example.formulaoneapplicationn.common.utils
 
+import android.graphics.Color.red
 import com.example.formulaone.R
 
 enum class Colors(val Country:Int) {

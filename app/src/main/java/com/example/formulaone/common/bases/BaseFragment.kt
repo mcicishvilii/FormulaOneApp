@@ -1,4 +1,4 @@
-package com.example.formulaone.common.bases
+package com.example.formulaoneapplicationn.common.bases
 
 import android.os.Bundle
 import android.view.LayoutInflater

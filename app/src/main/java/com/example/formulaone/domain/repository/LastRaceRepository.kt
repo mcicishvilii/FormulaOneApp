@@ -1,11 +1,14 @@
-package com.example.formulaone.domain.repository
+package com.example.formulaoneapplicationn.domain.repository
 
-import com.example.formulaone.data.model.drivers.last_race.LastRaceDto
+import com.example.formulaoneapplicationn.common.Resource
+import com.example.formulaoneapplicationn.data.model.last_race.LastRaceDto
+import com.example.formulaoneapplicationn.domain.model.LastRaceInfoDomain
+import kotlinx.coroutines.flow.Flow
+
 
 interface LastRaceRepository {
 
-    suspend fun getLastRaceCictuit(): com.example.formulaone.data.model.drivers.last_race.LastRaceDto
+    suspend fun getLastRaceInfo(): Flow<Resource<List<LastRaceInfoDomain>>>
 
-    suspend fun getLastRaceWinner(): com.example.formulaone.data.model.drivers.last_race.LastRaceDto
 
 }

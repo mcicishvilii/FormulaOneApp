@@ -1,8 +1,11 @@
-package com.example.formulaone.domain.repository
+package com.example.formulaoneapplicationn.domain.repository
 
-import com.example.formulaone.data.model.drivers.drivers_standings.DriverStandingsDto
+import com.example.formulaoneapplicationn.common.Resource
+import com.example.formulaoneapplicationn.domain.model.DriverStandingDomain
+import kotlinx.coroutines.flow.Flow
 
 // not using yet. for displaying the full list of current driver standings
+
 interface CurrentDriversStandingsRepository {
-    suspend fun getCurrentDriversStanding(): com.example.formulaone.data.model.drivers.drivers_standings.DriverStandingsDto
+    suspend fun getCurrentDriversStanding(): Flow<Resource<List<DriverStandingDomain>>>
 }

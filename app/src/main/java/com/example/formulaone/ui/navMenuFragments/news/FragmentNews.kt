@@ -2,15 +2,16 @@ package com.example.formulaone.ui.navMenuFragments.news
 
 import android.content.Intent
 import android.net.Uri
+import android.util.Log
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.formulaone.common.Resource
-import com.example.formulaone.common.bases.BaseFragment
 import com.example.formulaone.databinding.FragmentFragmentNewsBinding
 import com.example.formulaone.ui.adapters.NewsAdapter
+import com.example.formulaoneapplicationn.common.Resource
+import com.example.formulaoneapplicationn.common.bases.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -37,7 +38,7 @@ class FragmentNews : BaseFragment<FragmentFragmentNewsBinding>(FragmentFragmentN
         }
     }
 
-        private fun setupRecycler() {
+    private fun setupRecycler() {
         binding.rvNews.apply {
             adapter = newsAdapter
             layoutManager =

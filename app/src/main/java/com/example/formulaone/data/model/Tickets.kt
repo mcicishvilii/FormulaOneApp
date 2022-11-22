@@ -1,4 +1,4 @@
-package com.example.formulaone.data.model
+package com.example.formulaoneapplicationn.data.model
 
 data class Tickets(
     val ticketID:Int,

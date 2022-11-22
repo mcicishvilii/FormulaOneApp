@@ -1,4 +1,4 @@
-package com.example.formulaone.domain.model
+package com.example.formulaoneapplicationn.domain.model
 
 import androidx.room.ColumnInfo
 

@@ -1,5 +1,7 @@
-package com.example.formulaone.data.model.drivers.drivers_standings
+package com.example.formulaoneapplicationn.data.model.drivers.drivers_standings
+
+import com.example.formulaoneapplicationn.data.model.drivers.drivers_standings.MRData
 
 data class RealDriverStandingsDto(
-    val MRData: com.example.formulaone.data.model.drivers.drivers_standings.MRData
+    val MRData: MRData
 )

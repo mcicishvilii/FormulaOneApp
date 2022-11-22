@@ -1,21 +1,10 @@
 package com.example.formulaone.ui.navMenuFragments.drivers.details
 
-import androidx.lifecycle.ViewModelProvider
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.activity.OnBackPressedCallback
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.formulaone.R
-import com.example.formulaone.common.bases.BaseFragment
 import com.example.formulaone.databinding.FragmentDriverDetailsBinding
-import com.example.formulaone.ui.navMenuFragments.drivers.list.DriversFragment
-import com.example.formulaone.ui.navMenuFragments.drivers.list.DriversFragmentDirections
+import com.example.formulaoneapplicationn.common.bases.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
-
 
 @AndroidEntryPoint
 class DriverDetailsFragment : BaseFragment<FragmentDriverDetailsBinding>(FragmentDriverDetailsBinding::inflate){

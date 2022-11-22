@@ -34,4 +34,5 @@ class ScheduleFragment : BaseFragment<FragmentScheduleBinding>(FragmentScheduleB
     }
 
 
+
 }

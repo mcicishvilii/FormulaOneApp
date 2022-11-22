@@ -70,4 +70,6 @@ class FragmentNews : BaseFragment<FragmentFragmentNewsBinding>(FragmentFragmentN
         }
     }
 
+
+
 }

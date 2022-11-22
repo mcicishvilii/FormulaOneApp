@@ -1,6 +1,7 @@
 package com.example.formulaoneapplicationn.common.bases
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,13 +17,17 @@ abstract class BaseFragment<VB: ViewBinding>(private val inflater: Inflater<VB>)
 
     abstract fun viewCreated()
     abstract fun listeners()
+//    abstract fun onCreate()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
+        Log.d("answe","onCreateView")
+//        onCreate()
         _binding = this.inflater.invoke(inflater,container,false)
         return binding.root
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -35,5 +40,6 @@ abstract class BaseFragment<VB: ViewBinding>(private val inflater: Inflater<VB>)
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        Log.d("answe","onDestroyView")
     }
 }

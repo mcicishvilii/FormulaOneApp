@@ -63,6 +63,8 @@ class UpcomingRacesFragment : BaseFragment<FragmentUpcomingRacesBinding>(Fragmen
                 )
         }
     }
+
+
 //    @RequiresApi(Build.VERSION_CODES.O)
 //    private fun observe() {
 //        setupRecycler()

@@ -10,6 +10,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class DriverDetailsFragment : BaseFragment<FragmentDriverDetailsBinding>(FragmentDriverDetailsBinding::inflate){
     val args: DriverDetailsFragmentArgs by navArgs()
     override fun viewCreated() {
+
         val name = args.details
         binding.apply {
             tvDriverFirstName.text = name?.name
@@ -17,10 +18,11 @@ class DriverDetailsFragment : BaseFragment<FragmentDriverDetailsBinding>(Fragmen
             tvDriversTeamAndNumber.text = name?.carNumber + "   |   " + name?.team
             tvCurrentPosition.text = name?.currentStanding
             tvWins.text = name?.wins
-            tvDOBimpl.text = name?.qualis
+            tvDOBimpl.text = name?.dob
             tvNationalityImpl.text = name?.nationality
-
+            tvPoleImpl.text = name?.qualis
         }
+        binding.tvPoleImpl.text = ""
 
         when(name?.lastName){
             "Verstappen" -> binding.appCompatImageView.setImageResource(R.drawable.max_verstappen)
@@ -51,6 +53,5 @@ class DriverDetailsFragment : BaseFragment<FragmentDriverDetailsBinding>(Fragmen
     override fun listeners() {
 
     }
-
 
 }

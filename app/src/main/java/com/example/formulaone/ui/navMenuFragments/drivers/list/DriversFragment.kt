@@ -24,35 +24,35 @@ class DriversFragment : BaseFragment<FragmentDriversBinding>(FragmentDriversBind
     private val driversViewModel: DriversViewModel by viewModels()
     private val driversAdapter: DriversAdapter by lazy { DriversAdapter() }
 
-//    val ma
-    val listDriversQuali = mutableListOf<String>()
-    var answer = ""
+    private val qualificationMap = mutableMapOf<String,Int>()
+    private val listDriversQuali = mutableListOf<String>()
+    private var qualis = ""
+
+
 
     override fun viewCreated() {
         driversViewModel.getDrivers()
         driversViewModel.getQuali()
         observe()
         observeQuali()
-
     }
 
     override fun listeners() {
         toDetails()
+        listDriversQuali.clear()
+        qualificationMap.values.clear()
     }
 
     private fun toDetails(){
-        var qualis = ""
 
         driversAdapter.apply {
             setOnItemClickListener{ driver,_ ->
-                val dropppedAnswer = answer.dropLast(3)
-//                Log.d("answe",dropppedAnswer)
-//                Log.d("answe",driver.Driver.driverId)
-                if(driver.Driver.driverId == dropppedAnswer){
-                    qualis = answer.last().toString()
-                }else{
-                    qualis = "0"
+                for ((keyFromMap,valueFromMap) in qualificationMap){
+                    if(driver.Driver.driverId == keyFromMap){
+                        qualis = valueFromMap.toString()
+                    }
                 }
+
 
                 findNavController().navigate(DriversFragmentDirections.actionDriversFragmentToDriverDetailsFragment(
                     DriversDetails(
@@ -67,6 +67,7 @@ class DriversFragment : BaseFragment<FragmentDriversBinding>(FragmentDriversBind
                         qualis = qualis
                     )
                 ))
+                qualificationMap.values.clear()
             }
         }
     }
@@ -128,8 +129,7 @@ class DriversFragment : BaseFragment<FragmentDriversBinding>(FragmentDriversBind
                             }
                             for (item in listDriversQuali.distinct()) {
                                 val coll = Collections.frequency(listDriversQuali, item)
-
-                                Log.d("answe", answer.length.toString())
+                                qualificationMap[item] = coll
                             }
                         }
                     }
@@ -137,4 +137,30 @@ class DriversFragment : BaseFragment<FragmentDriversBinding>(FragmentDriversBind
             }
         }
     }
+
+
+    override fun onPause() {
+        super.onPause()
+        Log.d("answe","paused")
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Log.d("answe","onStart")
+        listDriversQuali.clear()
+        qualificationMap.clear()
+
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d("answe","stop")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d("answe","resume")
+    }
+
+
 }

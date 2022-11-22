@@ -197,6 +197,8 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
             binding.ivWeatherIcon.setImageResource(R.drawable.clouds)
         }
     }
+
+
 }
 
 

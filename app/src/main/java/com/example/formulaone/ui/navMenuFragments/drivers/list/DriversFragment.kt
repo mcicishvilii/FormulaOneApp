@@ -9,7 +9,6 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.formulaone.DriversAdapter
-import com.example.formulaone.data.model.drivers.quali.Driver
 import com.example.formulaone.databinding.FragmentDriversBinding
 import com.example.formulaone.ui.navMenuFragments.drivers.DriversDetails
 import com.example.formulaoneapplicationn.common.Resource

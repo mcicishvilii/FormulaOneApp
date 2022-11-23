@@ -4,9 +4,7 @@ import com.example.formulaoneapplicationn.data.model.news.toArticleDomain
 import com.example.formulaoneapplicationn.domain.model.ArticleDomain
 import com.example.formulaone.domain.repository.NewsRepository
 import com.example.formulaoneapplicationn.common.Resource
-import com.example.formulaoneapplicationn.data.model.drivers.drivers_standings.toDomain
 import com.example.formulaoneapplicationn.data.services.NewsService
-import com.example.formulaoneapplicationn.domain.model.DriverStandingDomain
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
@@ -14,7 +12,7 @@ import java.io.IOException
 import javax.inject.Inject
 
 class NewsRepositoryImpl @Inject constructor(
-    private val api: NewsService
+    private val api: NewsService,
 ) : NewsRepository {
 
     override suspend fun getNews(): Flow<Resource<List<ArticleDomain>>> = flow {
@@ -30,4 +28,5 @@ class NewsRepositoryImpl @Inject constructor(
             emit(Resource.Error(e.message.toString()))
         }
     }
+
 }

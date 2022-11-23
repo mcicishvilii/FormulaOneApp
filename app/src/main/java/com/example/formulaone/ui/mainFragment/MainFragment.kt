@@ -183,7 +183,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
         return formattedDate
     }
 
-    fun weatherIcon(data:Int){
+    private fun weatherIcon(data:Int){
         if ( data in 0..3 ){
             binding.ivWeatherIcon.setImageResource(R.drawable.sun)
         }
@@ -197,6 +197,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::infl
             binding.ivWeatherIcon.setImageResource(R.drawable.clouds)
         }
     }
+
 
 
 }

@@ -48,8 +48,11 @@ class DriversFragment : BaseFragment<FragmentDriversBinding>(FragmentDriversBind
         driversAdapter.apply {
             setOnItemClickListener{ driver,_ ->
                 for ((keyFromMap,valueFromMap) in qualificationMap){
-                    if(driver.Driver.driverId == keyFromMap){
+                    if(driver.Driver.driverId == keyFromMap && listDriversQuali.contains(driver.Driver.driverId)){
                         qualis = valueFromMap.toString()
+                    }
+                    else{
+                        Log.d("answe","yleee")
                     }
                 }
 

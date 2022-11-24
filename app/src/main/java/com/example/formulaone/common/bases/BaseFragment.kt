@@ -23,8 +23,6 @@ abstract class BaseFragment<VB: ViewBinding>(private val inflater: Inflater<VB>)
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        Log.d("answe","onCreateView")
-//        onCreate()
         _binding = this.inflater.invoke(inflater,container,false)
         return binding.root
 
@@ -40,6 +38,5 @@ abstract class BaseFragment<VB: ViewBinding>(private val inflater: Inflater<VB>)
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-        Log.d("answe","onDestroyView")
     }
 }

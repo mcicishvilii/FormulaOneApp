@@ -13,5 +13,5 @@ data class DriversDetails(
     val dob:String,
     val carNumber:String,
     val team:String,
-    val qualis:String = "0"
+    val qualis:String,
 ):Parcelable

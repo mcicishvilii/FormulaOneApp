@@ -1,5 +1,6 @@
 package com.example.formulaone.ui.navMenuFragments.drivers.details
 
+import android.util.Log
 import androidx.navigation.fragment.navArgs
 import com.example.formulaone.R
 import com.example.formulaone.databinding.FragmentDriverDetailsBinding
@@ -20,10 +21,8 @@ class DriverDetailsFragment : BaseFragment<FragmentDriverDetailsBinding>(Fragmen
             tvWins.text = name?.wins
             tvDOBimpl.text = name?.dob
             tvNationalityImpl.text = name?.nationality
-            tvPoleImpl.text = name?.qualis
+            binding.tvPoleImpl.text = name?.qualis
         }
-        binding.tvPoleImpl.text = ""
-
         when(name?.lastName){
             "Verstappen" -> binding.appCompatImageView.setImageResource(R.drawable.max_verstappen)
             "Pérez" -> binding.appCompatImageView.setImageResource(R.drawable.perez)

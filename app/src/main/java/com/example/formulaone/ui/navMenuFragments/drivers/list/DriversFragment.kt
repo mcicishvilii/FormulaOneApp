@@ -1,5 +1,6 @@
 package com.example.formulaone.ui.navMenuFragments.drivers.list
 
+import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
@@ -10,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.formulaone.DriversAdapter
 import com.example.formulaone.databinding.FragmentDriversBinding
+import com.example.formulaone.domain.model.QualiDomain
 import com.example.formulaone.ui.navMenuFragments.drivers.DriversDetails
 import com.example.formulaoneapplicationn.common.Resource
 import com.example.formulaoneapplicationn.common.bases.BaseFragment
@@ -22,40 +24,45 @@ import java.util.*
 class DriversFragment : BaseFragment<FragmentDriversBinding>(FragmentDriversBinding::inflate) {
     private val driversViewModel: DriversViewModel by viewModels()
     private val driversAdapter: DriversAdapter by lazy { DriversAdapter() }
-
-    private val qualificationMap = mutableMapOf<String,Int>()
-    private val listDriversQuali = mutableListOf<String>()
     private var qualis = ""
 
 
 
     override fun viewCreated() {
         driversViewModel.getDrivers()
-        driversViewModel.getQuali()
+//        driversViewModel.getQuali()
         observe()
-        observeQuali()
+//        observeQuali()
     }
 
     override fun listeners() {
+//        getQualiREsults()
         toDetails()
-        listDriversQuali.clear()
-        qualificationMap.values.clear()
+
     }
 
-    private fun toDetails(){
 
+//    private fun getQualiREsults(){
+//        driversAdapter.apply {
+//            setOnItemClickListener{driver,_->
+//                for ((keyFromMap,valueFromMap) in qualificationMap){
+//                    if(driver.Driver.driverId == keyFromMap){
+//                        qualis = valueFromMap.toString()
+//                        Log.d("answe",valueFromMap.toString())
+//                        Log.d("answe",qualis)
+//
+//                    }
+//                    else{
+//                        Log.d("answe",valueFromMap.toString())
+//                    }
+//                }
+//            }
+//        }
+//    }
+
+    private fun toDetails(){
         driversAdapter.apply {
             setOnItemClickListener{ driver,_ ->
-                for ((keyFromMap,valueFromMap) in qualificationMap){
-                    if(driver.Driver.driverId == keyFromMap && listDriversQuali.contains(driver.Driver.driverId)){
-                        qualis = valueFromMap.toString()
-                    }
-                    else{
-                        Log.d("answe","yleee")
-                    }
-                }
-
-
                 findNavController().navigate(DriversFragmentDirections.actionDriversFragmentToDriverDetailsFragment(
                     DriversDetails(
                         driver.Driver.givenName,
@@ -69,7 +76,6 @@ class DriversFragment : BaseFragment<FragmentDriversBinding>(FragmentDriversBind
                         qualis = qualis
                     )
                 ))
-                qualificationMap.values.clear()
             }
         }
     }
@@ -86,6 +92,7 @@ class DriversFragment : BaseFragment<FragmentDriversBinding>(FragmentDriversBind
         }
     }
 
+
     private fun observe(){
         setupRecycler()
         viewLifecycleOwner.lifecycleScope.launch {
@@ -97,6 +104,7 @@ class DriversFragment : BaseFragment<FragmentDriversBinding>(FragmentDriversBind
                         }
                         is Resource.Loading -> {
                             binding.tvNowLoading.visibility = View.VISIBLE
+
                         }
                         is Resource.Success -> {
                             driversAdapter.submitList(it.data)
@@ -110,59 +118,30 @@ class DriversFragment : BaseFragment<FragmentDriversBinding>(FragmentDriversBind
 
 
 
-    private fun observeQuali(){
-        setupRecycler()
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                driversViewModel.qualiState.collectLatest {
-                    when(it){
-                        is Resource.Error -> {
-
-                        }
-                        is Resource.Loading -> {
-
-                        }
-                        is Resource.Success -> {
-                            it.data.forEach {
-                                it.qualifyingResults.forEach{
-//                                    Log.d("qualif",it.position)
-                                    listDriversQuali.add(it.driver.driverId)
-                                }
-                            }
-                            for (item in listDriversQuali.distinct()) {
-                                val coll = Collections.frequency(listDriversQuali, item)
-                                qualificationMap[item] = coll
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
+//    private fun observeQuali(){
+//        viewLifecycleOwner.lifecycleScope.launch {
+//            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+//                driversViewModel.qualiState.collectLatest {
+//                    when(it){
+//                        is Resource.Error -> {
+//
+//                        }
+//                        is Resource.Loading -> {
+//
+//                        }
+//                        is Resource.Success -> {
+//                            returnQualiResult(it.data)
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
 
 
-    override fun onPause() {
-        super.onPause()
-        Log.d("answe","paused")
-    }
 
-    override fun onStart() {
-        super.onStart()
-        Log.d("answe","onStart")
-        listDriversQuali.clear()
-        qualificationMap.clear()
 
-    }
 
-    override fun onStop() {
-        super.onStop()
-        Log.d("answe","stop")
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Log.d("answe","resume")
-    }
 
 
 }

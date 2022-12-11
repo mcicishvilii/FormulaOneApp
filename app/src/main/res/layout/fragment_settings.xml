@@ -41,15 +41,44 @@
         app:layout_constraintTop_toBottomOf="@+id/tvUsersName" />
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvLinks"
+
+
+    <TextView
+        android:id="@+id/tv_userInfo"
         android:layout_width="0dp"
-        android:layout_marginVertical="40dp"
-        android:layout_height="0dp"
-        android:layout_marginHorizontal="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/logoutbutton"
+        android:layout_height="wrap_content"
+        android:text="USER INFO "
+        android:paddingStart="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvLogin" />
+        app:layout_constraintTop_toBottomOf="@+id/tvLogin" />
+
+    <EditText
+        android:id="@+id/et_UserInfo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="USER INFO dsdadas "
+        android:paddingStart="20dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_userInfo" />
+
+    <Button
+        android:id="@+id/btn_get"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="get"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_UserInfo" />
+
+    <Button
+        android:id="@+id/btn_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="add"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btn_get"
+        app:layout_constraintTop_toBottomOf="@+id/et_UserInfo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

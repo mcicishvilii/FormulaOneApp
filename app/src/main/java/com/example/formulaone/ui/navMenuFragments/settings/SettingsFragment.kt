@@ -22,6 +22,11 @@ import com.example.formulaoneapplicationn.common.Resource
 import com.example.formulaoneapplicationn.common.bases.BaseFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
@@ -42,11 +47,12 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
     private var write = false
     private lateinit var permissonLauncher:ActivityResultLauncher<Array<String>>
 
-
+    // Write a message to the database
+    val database = Firebase.database
     private lateinit var mauth: FirebaseAuth
+    val myRef = database.getReference("max holloway ")
 
     override fun viewCreated() {
-
 
         mauth = Firebase.auth
         val user = mauth.currentUser
@@ -55,13 +61,19 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
         }
         changeButton()
 
-        setupRecycler()
+//        setupRecycler()
         observe()
+// Read from the database
 
 
     }
 
+
+
     override fun listeners() {
+        getFromDataBase()
+
+        insertIntoDatabase()
         logOut()
 //        navigateLogIn()
         gotoLink()
@@ -74,7 +86,30 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
             }
         }
     }
+    private fun insertIntoDatabase(){
+        binding.btnAdd.setOnClickListener {
+            myRef.setValue("alexander the great!")
+        }
+    }
 
+    private fun getFromDataBase(){
+        binding.btnGet.setOnClickListener {
+            myRef.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    // This method is called once with the initial value and again
+                    // whenever data at this location is updated.
+                    val value = dataSnapshot.getValue<String>()
+                    binding.tvUserInfo.text = value
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    // Failed to read value
+                    Log.w(TAG, "Failed to read value.", error.toException())
+                }
+            })
+        }
+
+    }
 
     private fun gotoLink() {
         linksAdapter.setOnItemClickListener { article, _ ->
@@ -121,7 +156,7 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
     }
 
     private fun observe() {
-        setupRecycler()
+//        setupRecycler()
         vm.getTeams()
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -143,17 +178,17 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
         }
     }
 
-    private fun setupRecycler() {
-        binding.rvLinks.apply {
-            adapter = linksAdapter
-            layoutManager =
-                LinearLayoutManager(
-                    requireContext(),
-                    LinearLayoutManager.VERTICAL,
-                    false
-                )
-        }
-    }
+//    private fun setupRecycler() {
+//        binding.rvLinks.apply {
+//            adapter = linksAdapter
+//            layoutManager =
+//                LinearLayoutManager(
+//                    requireContext(),
+//                    LinearLayoutManager.VERTICAL,
+//                    false
+//                )
+//        }
+//    }
 
 
     private fun updateOrRequestPermissions(){

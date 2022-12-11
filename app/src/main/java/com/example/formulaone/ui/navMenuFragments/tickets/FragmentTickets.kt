@@ -21,6 +21,7 @@ import kotlinx.coroutines.launch
 class FragmentTickets :
     BaseFragment<FragmentFragmentTicketsBinding>(FragmentFragmentTicketsBinding::inflate) {
     val args: FragmentTicketsArgs by navArgs()
+
     private val ticketsAdapter: TicketsAdapter by lazy { TicketsAdapter() }
     private val ticketsViewModel: FragmentTicketsViewModel by viewModels()
 
@@ -142,4 +143,5 @@ class FragmentTickets :
 
 
     }
+
 }

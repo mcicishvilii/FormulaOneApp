@@ -1,5 +1,6 @@
 package com.example.formulaoneapplicationn.data.repository
 
+import android.util.Log
 import com.example.formulaoneapplicationn.common.Resource
 import com.example.formulaoneapplicationn.domain.repository.CurrentDriversStandingsRepository
 import com.example.formulaoneapplicationn.data.services.RaceService
@@ -23,6 +24,7 @@ class LastRaceInfoRepositoryImpl @Inject constructor(
             val response = api.getLastRaceInformation()
             if (response.isSuccessful) {
                 emit(Resource.Success(response.body()!!.mRData.raceTable.races.map { it.toLastRaceInfoDomain() }))
+                Log.d("ciciko",response.body().toString())
             }
         } catch (e: HttpException) {
             emit(Resource.Error(e.localizedMessage ?: "unexpected"))

@@ -35,4 +35,5 @@
     <string name="you_bought_ticket">Thanks! you bought ticket! check your cart!</string>
     <string name="canceled">you canceled purchase process</string>
     <string name="check_your_tickets_here">Check Your Tickets Here</string>
+    <string name="poles">Poles</string>
 </resources>

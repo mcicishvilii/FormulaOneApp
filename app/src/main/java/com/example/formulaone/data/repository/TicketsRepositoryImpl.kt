@@ -9,6 +9,7 @@ import javax.inject.Inject
 class TicketsRepositoryImpl @Inject constructor(
     private val ticketsDao: TicketsDao
 ) : TicketsRepository {
+
     override fun getTickets(): Flow<List<TicketsEntity>>{
         return ticketsDao.getAll()
     }

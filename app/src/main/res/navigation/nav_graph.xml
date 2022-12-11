@@ -23,7 +23,7 @@
 
     <fragment
         android:id="@+id/createAccountFragment"
-        android:name="com.example.formulaone.ui.createAccountFragments.firstName.CreateAccountFragment"
+        android:name="com.example.formulaoneapplicationn.ui.createAccountFragments.firstName.CreateAccountFragment"
         android:label="fragment_create_account"
         tools:layout="@layout/fragment_create_account" >
         <action
@@ -187,16 +187,27 @@
             android:name="ticketInfo"
             app:argType="com.example.formulaone.ui.navMenuFragments.schedule.upcoming.TicketInfo"
             app:nullable="true" />
+        <action
+            android:id="@+id/action_fragmentTickets_to_creditCardBottomFragment22"
+            app:destination="@id/creditCardBottomFragment2" />
     </fragment>
 
     <fragment
         android:id="@+id/ticket"
-        android:name="com.example.formulaone.ui.navMenuFragments.tickets.BoughtTicketsFragment"
+        android:name="com.example.formulaoneapplicationn.ui.navMenuFragments.tickets.BoughtTickets.BoughtTicketsFragment"
         android:label="fragment_ticket"
         tools:layout="@layout/fragment_ticket" />
     <fragment
-        android:id="@+id/test"
-        android:name="com.example.formulaone.ui.Test"
-        android:label="Test" />
+        android:id="@+id/creditCardBottomFragment2"
+        android:name="com.example.formulaoneapplicationn.ui.navMenuFragments.tickets.BoughtTickets.credit_card.CreditCardBottomFragment"
+        android:label="CreditCardBottomFragment" >
+        <argument
+            android:name="tickets"
+            app:argType="com.example.formulaone.ui.navMenuFragments.schedule.upcoming.TicketInfo"
+            app:nullable="true" />
+    </fragment>
+
+
+    \\
 
 </navigation>

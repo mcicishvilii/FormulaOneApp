@@ -1,6 +1,6 @@
 package com.example.formulaone.domain.use_case.teams
 
-import com.example.formulaone.domain.model.TeamsDomain
+import com.example.formulaoneapplicationn.domain.model.TeamsDomain
 import com.example.formulaone.domain.repository.TeamsRepository
 import javax.inject.Inject
 

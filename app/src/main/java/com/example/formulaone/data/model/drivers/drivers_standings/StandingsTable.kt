@@ -1,6 +1,8 @@
-package com.example.formulaone.data.model.drivers.drivers_standings
+package com.example.formulaoneapplicationn.data.model.drivers.drivers_standings
+
+import com.example.formulaoneapplicationn.data.model.drivers.drivers_standings.StandingsLists
 
 data class StandingsTable(
-    val StandingsLists: List<com.example.formulaone.data.model.drivers.drivers_standings.StandingsLists>,
+    val StandingsLists: List<StandingsLists>,
     val season: String
 )

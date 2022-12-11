@@ -8,10 +8,10 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.formulaone.common.Resource
-import com.example.formulaone.ui.adapters.SchedulesAdapter.RecentRacesAdapter
-import com.example.formulaone.common.bases.BaseFragment
 import com.example.formulaone.databinding.FragmentRecentRacesBinding
+import com.example.formulaone.ui.adapters.SchedulesAdapter.RecentRacesAdapter
+import com.example.formulaoneapplicationn.common.Resource
+import com.example.formulaoneapplicationn.common.bases.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -69,4 +69,6 @@ class RecentRacesFragment :
             }
         }
     }
+
+
 }

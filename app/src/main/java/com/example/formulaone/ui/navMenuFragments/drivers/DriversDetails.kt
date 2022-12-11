@@ -12,5 +12,6 @@ data class DriversDetails(
     val nationality:String,
     val dob:String,
     val carNumber:String,
-    val team:String
+    val team:String,
+    val qualis:String,
 ):Parcelable

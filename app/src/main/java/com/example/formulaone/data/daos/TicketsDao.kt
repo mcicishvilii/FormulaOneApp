@@ -1,7 +1,7 @@
-package com.example.formulaone.data.daos
+package com.example.formulaoneapplicationn.data.daos
 
 import androidx.room.*
-import com.example.formulaone.data.model.TicketsEntity
+import com.example.formulaoneapplicationn.data.model.TicketsEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao

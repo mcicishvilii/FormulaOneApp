@@ -21,14 +21,13 @@
             android:id="@+id/lastRaceContainer"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@color/DarkCyan"
+            android:background="@color/backgroundColor"
             android:elevation="10dp"
             android:visibility="gone"
             app:layout_constraintDimensionRatio="3.5"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
+            app:layout_constraintTop_toTopOf="parent" />
 
 
         <TextView
@@ -38,7 +37,6 @@
             android:layout_marginHorizontal="20dp"
             android:elevation="10dp"
             android:padding="10dp"
-            android:text="40c"
             android:textColor="@color/black"
             android:textSize="23sp"
             android:visibility="gone"
@@ -63,7 +61,6 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="15dp"
             android:elevation="11dp"
-            android:text="11 OCT 2022"
             android:textColor="@color/black"
             android:textSize="27sp"
             android:visibility="gone"
@@ -81,13 +78,12 @@
             android:layout_marginTop="5dp"
             android:elevation="10dp"
             android:paddingHorizontal="10dp"
-            android:text="The next race will be:"
-            android:textColor="@color/white"
+            android:text="@string/the_next_race_will_be"
+            android:textColor="@color/black"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv1stDriver"
@@ -98,7 +94,6 @@
             android:elevation="10dp"
             android:fontFamily="@font/quan_rounded_bold"
             android:padding="10dp"
-            android:text="last race winner"
             android:textColor="@color/black"
             android:textSize="22sp"
             android:visibility="gone"
@@ -116,7 +111,6 @@
             android:elevation="11dp"
             android:fontFamily="@font/quan_rounded_regular"
             android:padding="10dp"
-            android:text="Mexico"
             android:textColor="@color/black"
             android:textSize="22sp"
             android:visibility="gone"

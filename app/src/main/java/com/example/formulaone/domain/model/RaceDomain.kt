@@ -1,7 +1,6 @@
-package com.example.formulaone.domain.model
+package com.example.formulaoneapplicationn.domain.model
 
 import com.example.formulaone.data.model.raceResults.Circuit
-
 
 data class RaceDomain(
     val Circuit: Circuit,

@@ -4,9 +4,9 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.formulaone.common.Resource
-import com.example.formulaone.domain.model.RaceDomain
-import com.example.formulaone.domain.use_case.schedule.RaceDetailsUseCase
+import com.example.formulaoneapplicationn.domain.use_case.schedule.RaceDetailsUseCase
+import com.example.formulaoneapplicationn.common.Resource
+import com.example.formulaoneapplicationn.domain.model.RaceDomain
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -23,7 +23,6 @@ class RecentRacesViewModel @Inject constructor(
     private val _state1 =
         MutableStateFlow<Resource<List<RaceDomain>>>(Resource.Loading(false))
     val state1 = _state1.asStateFlow()
-
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun getDetails() {

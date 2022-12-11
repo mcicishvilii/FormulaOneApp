@@ -2,9 +2,10 @@ package com.example.formulaone.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.formulaone.data.db.DataBase
-import com.example.formulaone.data.daos.TeamsDao
-import com.example.formulaone.data.daos.TicketsDao
+import com.example.formulaoneapplicationn.data.daos.LinksDao
+import com.example.formulaoneapplicationn.data.daos.TeamsDao
+import com.example.formulaoneapplicationn.data.daos.TicketsDao
+import com.example.formulaoneapplicationn.data.db.DataBase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -38,4 +39,10 @@ object DBModule {
     fun provideTicketsDao(db: DataBase): TicketsDao {
         return db.ticketsDao
     }
+//
+//    @Singleton
+//    @Provides
+//    fun provideLinksDao(db: DataBase): LinksDao {
+//        return db.linksDao
+//    }
 }

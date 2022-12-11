@@ -1,6 +1,6 @@
-package com.example.formulaone.domain.model
+package com.example.formulaoneapplicationn.domain.model
 
-import com.example.formulaone.data.model.TeamsDtoLocal
+import com.example.formulaoneapplicationn.data.model.TeamsEntity
 
 data class TeamsDomain(
     val constructorId: String,
@@ -9,8 +9,8 @@ data class TeamsDomain(
     val url: String?
 )
 
-fun TeamsDomain.toRoomDto(): TeamsDtoLocal {
-    return TeamsDtoLocal(
+fun TeamsDomain.toRoomDto(): TeamsEntity {
+    return TeamsEntity(
         teamId = constructorId,
         teamName = name,
         teamNationality = nationality,

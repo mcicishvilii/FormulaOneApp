@@ -1,6 +1,6 @@
-package com.example.formulaone.data.model.teams
+package com.example.formulaoneapplicationn.data.model.teams
 
-import com.example.formulaone.domain.model.TeamsDomain
+import com.example.formulaoneapplicationn.domain.model.TeamsDomain
 
 data class Teams(
     val MRData: MRdata

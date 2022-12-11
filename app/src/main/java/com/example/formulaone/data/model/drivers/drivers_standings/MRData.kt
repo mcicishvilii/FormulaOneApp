@@ -1,7 +1,7 @@
-package com.example.formulaone.data.model.drivers.drivers_standings
+package com.example.formulaoneapplicationn.data.model.drivers.drivers_standings
 
 data class MRData(
-    val StandingsTable: com.example.formulaone.data.model.drivers.drivers_standings.StandingsTable,
+    val StandingsTable: StandingsTable,
     val limit: String,
     val offset: String,
     val series: String,

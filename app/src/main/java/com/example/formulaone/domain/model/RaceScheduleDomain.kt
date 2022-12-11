@@ -1,4 +1,4 @@
-package com.example.formulaone.domain.model
+package com.example.formulaoneapplicationn.domain.model
 
 import com.example.formulaone.data.model.raceSchedule.Circuit
 

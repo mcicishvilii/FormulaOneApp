@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/quan_rounded_bold"
 
-        android:text="Track name"
+        android:text="@string/track_name"
         android:textSize="50sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,7 +31,6 @@
         android:id="@+id/tvRaceDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="date goes here"
         android:textSize="20sp"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
@@ -43,7 +42,7 @@
         android:id="@+id/tvOptionsAvailable"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="options available"
+        android:text="@string/options_available"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -60,16 +59,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvOptionsAvailable" />
-
-
-    <Button
-        android:id="@+id/delutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="delete"
-        app:layout_constraintTop_toBottomOf="@id/rvTickets"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,26 +1,17 @@
 package com.example.formulaone.ui.navMenuFragments.drivers.details
 
-import androidx.lifecycle.ViewModelProvider
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.activity.OnBackPressedCallback
-import androidx.navigation.fragment.findNavController
+import android.util.Log
 import androidx.navigation.fragment.navArgs
 import com.example.formulaone.R
-import com.example.formulaone.common.bases.BaseFragment
 import com.example.formulaone.databinding.FragmentDriverDetailsBinding
-import com.example.formulaone.ui.navMenuFragments.drivers.list.DriversFragment
-import com.example.formulaone.ui.navMenuFragments.drivers.list.DriversFragmentDirections
+import com.example.formulaoneapplicationn.common.bases.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
-
 
 @AndroidEntryPoint
 class DriverDetailsFragment : BaseFragment<FragmentDriverDetailsBinding>(FragmentDriverDetailsBinding::inflate){
     val args: DriverDetailsFragmentArgs by navArgs()
     override fun viewCreated() {
+
         val name = args.details
         binding.apply {
             tvDriverFirstName.text = name?.name
@@ -30,8 +21,8 @@ class DriverDetailsFragment : BaseFragment<FragmentDriverDetailsBinding>(Fragmen
             tvWins.text = name?.wins
             tvDOBimpl.text = name?.dob
             tvNationalityImpl.text = name?.nationality
+            binding.tvPoleImpl.text = name?.qualis
         }
-
         when(name?.lastName){
             "Verstappen" -> binding.appCompatImageView.setImageResource(R.drawable.max_verstappen)
             "Pérez" -> binding.appCompatImageView.setImageResource(R.drawable.perez)
@@ -61,6 +52,5 @@ class DriverDetailsFragment : BaseFragment<FragmentDriverDetailsBinding>(Fragmen
     override fun listeners() {
 
     }
-
 
 }

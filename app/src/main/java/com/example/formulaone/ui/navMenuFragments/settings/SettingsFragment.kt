@@ -85,6 +85,16 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
 
     }
 
+    private fun deleteAcc(userId: String) {
+        binding.btnDelete.setOnClickListener {
+            database.child("momxmarebelebi").get().addOnSuccessListener {
+                it.value
+                Toast.makeText(requireContext(), it.value, Toast.LENGTH_SHORT).show()
+            }
+
+        }
+    }
+
     fun writeNewUser(userId: String, name: String, email: String) {
 
         val key = database.child("momxmarebelebi").push().key
@@ -106,6 +116,8 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
     }
 
     override fun listeners() {
+
+        deleteAcc("Jimsheri")
 
         insertIntoDatabase()
 

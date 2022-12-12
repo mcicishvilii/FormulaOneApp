@@ -81,4 +81,13 @@
         app:layout_constraintStart_toEndOf="@id/btn_get"
         app:layout_constraintTop_toBottomOf="@+id/et_UserInfo" />
 
+    <Button
+        android:id="@+id/btn_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="delete"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btn_get"
+        app:layout_constraintTop_toBottomOf="@+id/btn_get" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

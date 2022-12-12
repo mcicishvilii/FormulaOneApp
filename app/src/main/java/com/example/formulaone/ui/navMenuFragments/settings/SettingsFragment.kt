@@ -16,6 +16,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.formulaone.data.model.firebase_test.ForTestFireBase
 import com.example.formulaone.databinding.FragmentSettingsBinding
 import com.example.formulaone.ui.adapters.LinksAdatper
 import com.example.formulaoneapplicationn.common.Resource
@@ -46,16 +47,16 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
 
     private var read = false
     private var write = false
-    private lateinit var permissonLauncher:ActivityResultLauncher<Array<String>>
+    private lateinit var permissonLauncher: ActivityResultLauncher<Array<String>>
     private lateinit var database: DatabaseReference
-
 
 
     private lateinit var mauth: FirebaseAuth
 
     override fun viewCreated() {
-        database = Firebase.database.reference
 
+
+        database = Firebase.database.reference
         mauth = Firebase.auth
         val user = mauth.currentUser
         if (user != null) {
@@ -65,12 +66,44 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
 
 //        setupRecycler()
         observe()
-// Read from the database
+        binding.btnAdd.setOnClickListener {
+            writeNewUser("Jimsheri", "oto", "otarbakh@gmail.com")
+
+        }
+        binding.btnGet.setOnClickListener {
+
+
+            database.child("momxmarebelebi").child("Jimsheri").child("username").get()
+                .addOnSuccessListener {
+
+                    binding.tvUserInfo.text = it.value.toString()
+                }.addOnFailureListener {
+                Log.e("firebase", "Error getting data", it)
+            }
+        }
 
 
     }
 
+    fun writeNewUser(userId: String, name: String, email: String) {
 
+        val key = database.child("momxmarebelebi").push().key
+
+        if (key == null){
+            Toast.makeText(requireContext(), "S2", Toast.LENGTH_SHORT).show()
+            return
+        }
+        val forTestFirebase = ForTestFireBase(name,email)
+        val postforTestFirebase = forTestFirebase.toMap()
+
+        val childUpdate = hashMapOf<String,Any>(
+            "/momxmarebelebi/$key" to postforTestFirebase,
+            "/momxmarebelebi/$userId/$key" to postforTestFirebase
+        )
+        database.updateChildren(childUpdate)
+
+
+    }
 
     override fun listeners() {
 
@@ -83,18 +116,19 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
 //        navigateLogIn()
         gotoLink()
 
-        viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO){
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED){
+        viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 binding.tvLogin.setOnClickListener {
 //                    readText()
                 }
             }
         }
     }
-    private fun insertIntoDatabase(){
+
+    private fun insertIntoDatabase() {
     }
 
-    private fun getFromDataBase(){
+    private fun getFromDataBase() {
 
 
     }
@@ -179,7 +213,7 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
 //    }
 
 
-    private fun updateOrRequestPermissions(){
+    private fun updateOrRequestPermissions() {
         val hasRead = ContextCompat.checkSelfPermission(
             requireContext(),
             android.Manifest.permission.READ_EXTERNAL_STORAGE
@@ -196,17 +230,16 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
 
         val permissionsToRequest = mutableListOf<String>()
 
-        if(!write){
+        if (!write) {
             permissionsToRequest.add(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
         }
-        if(!read){
+        if (!read) {
             permissionsToRequest.add(android.Manifest.permission.READ_EXTERNAL_STORAGE)
         }
-        if(permissionsToRequest.isNotEmpty()){
+        if (permissionsToRequest.isNotEmpty()) {
             permissonLauncher.launch(permissionsToRequest.toTypedArray())
         }
     }
-
 
 
 }

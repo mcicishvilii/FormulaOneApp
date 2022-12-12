@@ -51,6 +51,7 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
     private lateinit var database: DatabaseReference
 
 
+
     private lateinit var mauth: FirebaseAuth
 
     override fun viewCreated() {
@@ -60,81 +61,66 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
         mauth = Firebase.auth
         val user = mauth.currentUser
         if (user != null) {
-            binding.tvUsersName.text = "hello dear \n${mauth.currentUser?.email.toString()}"
+            binding.tvUserInfo.text = "hello dear \n${mauth.currentUser?.email.toString()}"
         }
+
+
         changeButton()
+//        observe()
+        deleteAcc()
 
-//        setupRecycler()
-        observe()
         binding.btnAdd.setOnClickListener {
-            writeNewUser("Jimsheri", "oto", "otarbakh@gmail.com")
-
+            writeNewUser()
         }
+
         binding.btnGet.setOnClickListener {
 
-
-            database.child("momxmarebelebi").child("Jimsheri").child("username").get()
+            database.child("momxmareblebi").child("oto001").child("email").get()
                 .addOnSuccessListener {
-
                     binding.tvUserInfo.text = it.value.toString()
                 }.addOnFailureListener {
                 Log.e("firebase", "Error getting data", it)
             }
         }
-
-
     }
 
-    private fun deleteAcc(userId: String) {
+    private fun deleteAcc() {
         binding.btnDelete.setOnClickListener {
-            database.child("momxmarebelebi").get().addOnSuccessListener {
-                it.value
-                Toast.makeText(requireContext(), it.value, Toast.LENGTH_SHORT).show()
-            }
+            val userId = binding.etUserid.text.toString()
+            val momxmareblebisShvili = database.child("users").child(userId)
 
+            momxmareblebisShvili.removeValue()
         }
     }
 
-    fun writeNewUser(userId: String, name: String, email: String) {
+    fun writeNewUser() {
+        binding.btnAdd.setOnClickListener{
+            val name = binding.etName.text.toString()
+            val email = binding.etEmail.text.toString()
+            val userId = binding.etUserid.text.toString()
 
-        val key = database.child("momxmarebelebi").push().key
-
-        if (key == null){
-            Toast.makeText(requireContext(), "S2", Toast.LENGTH_SHORT).show()
-            return
+            val user = ForTestFireBase(name,email)
+            database.child("momxmareblebi").child(userId).setValue(user)
         }
-        val forTestFirebase = ForTestFireBase(name,email)
-        val postforTestFirebase = forTestFirebase.toMap()
-
-        val childUpdate = hashMapOf<String,Any>(
-            "/momxmarebelebi/$key" to postforTestFirebase,
-            "/momxmarebelebi/$userId/$key" to postforTestFirebase
-        )
-        database.updateChildren(childUpdate)
-
-
     }
 
     override fun listeners() {
 
-        deleteAcc("Jimsheri")
-
-        insertIntoDatabase()
-
-        getFromDataBase()
 
 
+//        insertIntoDatabase()
+//        getFromDataBase()
         logOut()
 //        navigateLogIn()
-        gotoLink()
+//        gotoLink()
 
-        viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                binding.tvLogin.setOnClickListener {
-//                    readText()
-                }
-            }
-        }
+//        viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
+//            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+//                binding.tvUserInfo.setOnClickListener {
+////                    readText()
+//                }
+//            }
+//        }
     }
 
     private fun insertIntoDatabase() {
@@ -145,16 +131,16 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
 
     }
 
-    private fun gotoLink() {
-        linksAdapter.setOnItemClickListener { article, _ ->
-            val uri: Uri = Uri.parse(article.link) // missing 'http://' will cause crashed
-            val intent = Intent(Intent.ACTION_VIEW, uri)
-            startActivity(intent)
-        }
-    }
+//    private fun gotoLink() {
+//        linksAdapter.setOnItemClickListener { article, _ ->
+//            val uri: Uri = Uri.parse(article.link) // missing 'http://' will cause crashed
+//            val intent = Intent(Intent.ACTION_VIEW, uri)
+//            startActivity(intent)
+//        }
+//    }
 
     private fun navigateLogIn() {
-        binding.tvLogin.setOnClickListener {
+        binding.tvUserInfo.setOnClickListener {
             findNavController().navigate(SettingsFragmentDirections.actionSettingsFragmentToSignInFragment())
         }
     }
@@ -163,10 +149,10 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
         val user = mauth.currentUser
         if (user == null) {
             binding.logoutbutton.visibility = View.GONE
-            binding.tvLogin.visibility = View.VISIBLE
+            binding.tvUserInfo.visibility = View.VISIBLE
         } else {
             binding.logoutbutton.visibility = View.VISIBLE
-            binding.tvLogin.visibility = View.GONE
+            binding.tvUserInfo.visibility = View.GONE
         }
     }
 
@@ -181,9 +167,9 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
     private fun checkLoggedInState() {
         val user = mauth.currentUser
         if (user == null) {
-            binding.tvUsersName.text = ""
+            binding.tvUserInfo.text = ""
         } else {
-            binding.tvUsersName.text = "hello  dear" + "  " + mauth.currentUser?.email.toString()
+            binding.tvUserInfo.text = "hello  dear" + "  " + mauth.currentUser?.email.toString()
             Toast.makeText(requireContext(), "logged in", Toast.LENGTH_SHORT)
                 .show()
         }

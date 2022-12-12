@@ -18,51 +18,68 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/tvUsersName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginTop="5dp"
-        android:textColor="@color/black"
-        android:textSize="33sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/tvLogin"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:text="@string/login"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvUsersName" />
-
-
+<!--    <androidx.appcompat.widget.AppCompatButton-->
+<!--        android:id="@+id/tvLogin"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginHorizontal="20dp"-->
+<!--        android:text="@string/login"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/tvUsersName" />-->
 
 
     <TextView
+        android:background="@drawable/quarter_rectangle_top_blue"
         android:id="@+id/tv_userInfo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="USER INFO "
+        android:textColor="@color/black"
         android:paddingStart="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvLogin" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="30dp"
+        />
 
     <EditText
-        android:id="@+id/et_UserInfo"
+        android:id="@+id/et_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="USER INFO dsdadas "
+        android:hint="name"
+        android:textColorHint="@color/black"
         android:paddingStart="20dp"
         android:layout_marginTop="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_userInfo" />
+
+    <EditText
+        android:id="@+id/et_Email"
+        android:layout_width="0dp"
+        android:textColorHint="@color/black"
+        android:layout_height="wrap_content"
+        android:hint="email"
+        android:paddingStart="20dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_name" />
+
+
+    <EditText
+        android:id="@+id/et_userid"
+        android:layout_width="0dp"
+        android:textColorHint="@color/black"
+        android:layout_height="wrap_content"
+        android:hint="userId"
+        android:paddingStart="20dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_delete" />
 
     <Button
         android:id="@+id/btn_get"
@@ -70,7 +87,7 @@
         android:layout_height="wrap_content"
         android:text="get"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_UserInfo" />
+        app:layout_constraintTop_toBottomOf="@+id/et_Email" />
 
     <Button
         android:id="@+id/btn_add"
@@ -79,7 +96,7 @@
         android:text="add"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/btn_get"
-        app:layout_constraintTop_toBottomOf="@+id/et_UserInfo" />
+        app:layout_constraintTop_toBottomOf="@+id/et_Email" />
 
     <Button
         android:id="@+id/btn_delete"

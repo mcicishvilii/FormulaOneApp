@@ -68,26 +68,36 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
         changeButton()
 //        observe()
         deleteAcc()
+        writeNewUser()
+        getUser()
 
-        binding.btnAdd.setOnClickListener {
-            writeNewUser()
-        }
+    }
 
+    private fun getUser(){
         binding.btnGet.setOnClickListener {
 
-            database.child("momxmareblebi").child("oto001").child("email").get()
+
+            val name = binding.etName.text.toString()
+            val email = binding.etEmail.text.toString()
+            val userId = binding.etUserid.text.toString()
+            val table = binding.etTable.text.toString()
+
+
+            database.child(table).child(userId).child(name).get()
                 .addOnSuccessListener {
                     binding.tvUserInfo.text = it.value.toString()
                 }.addOnFailureListener {
-                Log.e("firebase", "Error getting data", it)
-            }
+                    Log.e("firebase", "Error getting data", it)
+                }
         }
     }
 
     private fun deleteAcc() {
         binding.btnDelete.setOnClickListener {
             val userId = binding.etUserid.text.toString()
-            val momxmareblebisShvili = database.child("users").child(userId)
+            val table = binding.etTable.text.toString()
+
+            val momxmareblebisShvili = database.child(table).child(userId)
 
             momxmareblebisShvili.removeValue()
         }
@@ -98,9 +108,10 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
             val name = binding.etName.text.toString()
             val email = binding.etEmail.text.toString()
             val userId = binding.etUserid.text.toString()
+            val table = binding.etTable.text.toString()
 
             val user = ForTestFireBase(name,email)
-            database.child("momxmareblebi").child(userId).setValue(user)
+            database.child(table).child(userId).setValue(user)
         }
     }
 

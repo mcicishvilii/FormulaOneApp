@@ -63,6 +63,7 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
     var verificationId = ""
 
 
+
     override fun viewCreated() {
         database = Firebase.database.reference
         mauth = Firebase.auth

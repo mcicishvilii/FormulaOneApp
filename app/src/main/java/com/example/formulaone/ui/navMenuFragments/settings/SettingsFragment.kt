@@ -1,10 +1,7 @@
 package com.example.formulaone.ui.navMenuFragments.settings
 
-import android.content.Intent
 import android.content.pm.PackageManager
-import android.net.Uri
 import android.os.Build
-import android.os.Environment
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -15,29 +12,37 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.formulaone.data.model.firebase_test.ForTestFireBase
 import com.example.formulaone.databinding.FragmentSettingsBinding
 import com.example.formulaone.ui.adapters.LinksAdatper
 import com.example.formulaoneapplicationn.common.Resource
 import com.example.formulaoneapplicationn.common.bases.BaseFragment
+import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.common.api.CommonStatusCodes
+import com.google.android.gms.safetynet.SafetyNet
+import com.google.android.gms.tasks.OnFailureListener
+import com.google.android.gms.tasks.OnSuccessListener
+import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.PhoneAuthCredential
+import com.google.firebase.auth.PhoneAuthOptions
+import com.google.firebase.auth.PhoneAuthProvider
+import com.google.firebase.auth.PhoneAuthProvider.ForceResendingToken
+import com.google.firebase.auth.PhoneAuthProvider.OnVerificationStateChangedCallbacks
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
-import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import java.io.File
-import java.io.InputStream
+import java.util.concurrent.Executor
+import java.util.concurrent.TimeUnit
 
-const val TAG = "misho"
+
+const val TAG = "mcicishvili"
+val siteKey = "6LfRT3cjAAAAAOcUnzmJRpsL3HPqb6vGSa_ip_fH"
+val secretKey = "6LfRT3cjAAAAACrtLyDifiQqw7f4-Wbi3z0n0Cy0"
 
 
 @AndroidEntryPoint
@@ -50,11 +55,14 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
     private lateinit var permissonLauncher: ActivityResultLauncher<Array<String>>
     private lateinit var database: DatabaseReference
 
+    var verificationId = ""
+
 
 
     private lateinit var mauth: FirebaseAuth
 
     override fun viewCreated() {
+
 
 
         database = Firebase.database.reference
@@ -65,6 +73,7 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
         }
 
 
+
         changeButton()
 //        observe()
         deleteAcc()
@@ -73,22 +82,83 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
 
     }
 
+    fun loginWithPhone(){
+        mauth = Firebase.auth
+        val options = PhoneAuthOptions.newBuilder(mauth)
+            .setPhoneNumber("+995551585021")       // Phone number to verify
+            .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
+            .setActivity(requireActivity())                 // Activity (for callback binding)
+            .setCallbacks(mCallBack)
+            .build()
+        PhoneAuthProvider.verifyPhoneNumber(options)
+    }
+
+
+    fun onClick() {
+        SafetyNet.getClient(requireActivity()).verifyWithRecaptcha(siteKey)
+            .addOnSuccessListener(requireActivity(), OnSuccessListener { response ->
+                val userResponseToken = response.tokenResult
+                if (response.tokenResult?.isNotEmpty() == true) {
+                    loginWithPhone()
+                    Log.d(TAG,userResponseToken!!)
+                }
+            })
+            .addOnFailureListener(requireActivity(), OnFailureListener { e ->
+                if (e is ApiException) {
+                    Log.d(TAG, "Error: ${CommonStatusCodes.getStatusCodeString(e.statusCode)}")
+                } else {
+                    Log.d(TAG, "Error: ${e.message}")
+                }
+            })
+    }
+
+
+    private val mCallBack: OnVerificationStateChangedCallbacks =
+        object : OnVerificationStateChangedCallbacks() {
+            override fun onCodeSent(s: String, forceResendingToken: ForceResendingToken) {
+                super.onCodeSent(s, forceResendingToken)
+                verificationId = s
+                Log.d(TAG,verificationId)
+            }
+
+            override fun onVerificationCompleted(phoneAuthCredential: PhoneAuthCredential) {
+                val code = phoneAuthCredential.smsCode
+                if (code != null) {
+                    binding.tvUserInfo.text = code.toString()
+//                    verifyCode(code)
+                }else{
+                    Log.d(TAG,"es")
+                }
+            }
+
+            override fun onVerificationFailed(e: FirebaseException) {
+//                Toast.makeText(requireContext(), e.message, Toast.LENGTH_LONG).show()
+                Log.d(TAG,e.message.toString())
+            }
+        }
+
+//    private fun verifyCode(code: String) {
+//        val credential = PhoneAuthProvider.getCredential(verificationId, code)
+//        signInWithCredential(credential)
+//    }
+
     private fun getUser(){
         binding.btnGet.setOnClickListener {
 
 
-            val name = binding.etName.text.toString()
-            val email = binding.etEmail.text.toString()
-            val userId = binding.etUserid.text.toString()
-            val table = binding.etTable.text.toString()
-
-
-            database.child(table).child(userId).child(name).get()
-                .addOnSuccessListener {
-                    binding.tvUserInfo.text = it.value.toString()
-                }.addOnFailureListener {
-                    Log.e("firebase", "Error getting data", it)
-                }
+            onClick()
+//            val name = binding.etName.text.toString()
+//            val email = binding.etEmail.text.toString()
+//            val userId = binding.etUserid.text.toString()
+//            val table = binding.etTable.text.toString()
+//
+//
+//            database.child(table).child(userId).child(name).get()
+//                .addOnSuccessListener {
+//                    binding.tvUserInfo.text = it.value.toString()
+//                }.addOnFailureListener {
+//                    Log.e("firebase", "Error getting data", it)
+//                }
         }
     }
 

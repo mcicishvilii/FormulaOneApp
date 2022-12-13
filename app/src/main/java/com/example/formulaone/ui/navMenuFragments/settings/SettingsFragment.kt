@@ -103,6 +103,8 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
         }
     }
 
+
+
     private fun sendVerificationCode() {
         val options = PhoneAuthOptions.newBuilder(mauth)
             .setPhoneNumber("+995551585021") // Phone number to verify

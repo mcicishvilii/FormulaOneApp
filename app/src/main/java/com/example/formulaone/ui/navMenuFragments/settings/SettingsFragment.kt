@@ -85,18 +85,13 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
 
     val callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
-        // This method is called when the verification is completed
         override fun onVerificationCompleted(credential: PhoneAuthCredential) {
             Log.d("GFG", "onVerificationCompleted Success")
         }
 
-        // Called when verification is failed add log statement to see the exception
         override fun onVerificationFailed(e: FirebaseException) {
             Log.d("GFG", "onVerificationFailed  $e")
         }
-
-        // On code is sent by the firebase this method is called
-        // in here we start a new activity where user can enter the OTP
         override fun onCodeSent(
             verificationId: String,
             token: PhoneAuthProvider.ForceResendingToken,
@@ -107,16 +102,10 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
         }
     }
 
-
-    private fun login() {
-        val numbertel = "+995551585021"
-        sendVerificationCode(numbertel)
-    }
-
-    private fun sendVerificationCode(number: String) {
+    private fun sendVerificationCode() {
         val options = PhoneAuthOptions.newBuilder(mauth)
-            .setPhoneNumber(number) // Phone number to verify
-            .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
+            .setPhoneNumber("+995551585021") // Phone number to verify
+            .setTimeout(120L, TimeUnit.SECONDS) // Timeout and unit
             .setActivity(requireActivity()) // Activity (for callback binding)
             .setCallbacks(callbacks) // OnVerificationStateChangedCallbacks
             .build()
@@ -126,7 +115,7 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
 
     private fun getUser() {
         binding.btnGet.setOnClickListener {
-            login()
+            sendVerificationCode()
         }
     }
 

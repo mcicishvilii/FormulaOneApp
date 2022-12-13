@@ -80,12 +80,13 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
         writeNewUser()
         getUser()
 
+        onClick()
     }
 
     fun loginWithPhone(){
         mauth = Firebase.auth
         val options = PhoneAuthOptions.newBuilder(mauth)
-            .setPhoneNumber("+995551585021")       // Phone number to verify
+            .setPhoneNumber("+995577404545")       // Phone number to verify
             .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
             .setActivity(requireActivity())                 // Activity (for callback binding)
             .setCallbacks(mCallBack)
@@ -94,12 +95,12 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
     }
 
 
-    fun onClick() {
-        SafetyNet.getClient(requireActivity()).verifyWithRecaptcha(siteKey)
+    private fun onClick() {
+        SafetyNet.getClient(requireContext()).verifyWithRecaptcha(siteKey)
             .addOnSuccessListener(requireActivity(), OnSuccessListener { response ->
                 val userResponseToken = response.tokenResult
                 if (response.tokenResult?.isNotEmpty() == true) {
-                    loginWithPhone()
+
                     Log.d(TAG,userResponseToken!!)
                 }
             })
@@ -144,9 +145,9 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
 
     private fun getUser(){
         binding.btnGet.setOnClickListener {
+            loginWithPhone()
 
 
-            onClick()
 //            val name = binding.etName.text.toString()
 //            val email = binding.etEmail.text.toString()
 //            val userId = binding.etUserid.text.toString()

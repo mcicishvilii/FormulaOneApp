@@ -125,7 +125,7 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
 
     private fun getUser() {
         binding.btnGet.setOnClickListener {
-
+            login()
         }
     }
 

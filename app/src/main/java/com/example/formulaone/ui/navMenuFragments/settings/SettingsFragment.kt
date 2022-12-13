@@ -50,21 +50,20 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
     private val linksAdapter: LinksAdatper by lazy { LinksAdatper() }
     private val vm: SettingsViewModel by viewModels()
 
-    private var read = false
-    private var write = false
     private lateinit var permissonLauncher: ActivityResultLauncher<Array<String>>
     private lateinit var database: DatabaseReference
+    private lateinit var mauth: FirebaseAuth
+
+    lateinit var storedVerificationId: String
+    lateinit var resendToken: PhoneAuthProvider.ForceResendingToken
+
+    private var read = false
+    private var write = false
 
     var verificationId = ""
 
 
-
-    private lateinit var mauth: FirebaseAuth
-
     override fun viewCreated() {
-
-
-
         database = Firebase.database.reference
         mauth = Firebase.auth
         val user = mauth.currentUser
@@ -72,94 +71,61 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
             binding.tvUserInfo.text = "hello dear \n${mauth.currentUser?.email.toString()}"
         }
 
-
-
         changeButton()
-//        observe()
         deleteAcc()
         writeNewUser()
         getUser()
-
-        onClick()
     }
 
-    fun loginWithPhone(){
-        mauth = Firebase.auth
-        val options = PhoneAuthOptions.newBuilder(mauth)
-            .setPhoneNumber("+995577404545")       // Phone number to verify
-            .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
-            .setActivity(requireActivity())                 // Activity (for callback binding)
-            .setCallbacks(mCallBack)
-            .build()
-        PhoneAuthProvider.verifyPhoneNumber(options)
+    override fun listeners() {
+        logOut()
     }
 
 
-    private fun onClick() {
-        SafetyNet.getClient(requireContext()).verifyWithRecaptcha(siteKey)
-            .addOnSuccessListener(requireActivity(), OnSuccessListener { response ->
-                val userResponseToken = response.tokenResult
-                if (response.tokenResult?.isNotEmpty() == true) {
+    val callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
-                    Log.d(TAG,userResponseToken!!)
-                }
-            })
-            .addOnFailureListener(requireActivity(), OnFailureListener { e ->
-                if (e is ApiException) {
-                    Log.d(TAG, "Error: ${CommonStatusCodes.getStatusCodeString(e.statusCode)}")
-                } else {
-                    Log.d(TAG, "Error: ${e.message}")
-                }
-            })
-    }
-
-
-    private val mCallBack: OnVerificationStateChangedCallbacks =
-        object : OnVerificationStateChangedCallbacks() {
-            override fun onCodeSent(s: String, forceResendingToken: ForceResendingToken) {
-                super.onCodeSent(s, forceResendingToken)
-                verificationId = s
-                Log.d(TAG,verificationId)
-            }
-
-            override fun onVerificationCompleted(phoneAuthCredential: PhoneAuthCredential) {
-                val code = phoneAuthCredential.smsCode
-                if (code != null) {
-                    binding.tvUserInfo.text = code.toString()
-//                    verifyCode(code)
-                }else{
-                    Log.d(TAG,"es")
-                }
-            }
-
-            override fun onVerificationFailed(e: FirebaseException) {
-//                Toast.makeText(requireContext(), e.message, Toast.LENGTH_LONG).show()
-                Log.d(TAG,e.message.toString())
-            }
+        // This method is called when the verification is completed
+        override fun onVerificationCompleted(credential: PhoneAuthCredential) {
+            Log.d("GFG", "onVerificationCompleted Success")
         }
 
-//    private fun verifyCode(code: String) {
-//        val credential = PhoneAuthProvider.getCredential(verificationId, code)
-//        signInWithCredential(credential)
-//    }
+        // Called when verification is failed add log statement to see the exception
+        override fun onVerificationFailed(e: FirebaseException) {
+            Log.d("GFG", "onVerificationFailed  $e")
+        }
 
-    private fun getUser(){
+        // On code is sent by the firebase this method is called
+        // in here we start a new activity where user can enter the OTP
+        override fun onCodeSent(
+            verificationId: String,
+            token: PhoneAuthProvider.ForceResendingToken,
+        ) {
+            Log.d("GFG", "onCodeSent: $verificationId")
+            storedVerificationId = verificationId
+            resendToken = token
+        }
+    }
+
+
+    private fun login() {
+        val numbertel = "+995551585021"
+        sendVerificationCode(numbertel)
+    }
+
+    private fun sendVerificationCode(number: String) {
+        val options = PhoneAuthOptions.newBuilder(mauth)
+            .setPhoneNumber(number) // Phone number to verify
+            .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
+            .setActivity(requireActivity()) // Activity (for callback binding)
+            .setCallbacks(callbacks) // OnVerificationStateChangedCallbacks
+            .build()
+        PhoneAuthProvider.verifyPhoneNumber(options)
+        Log.d("GFG" , "Auth started")
+    }
+
+    private fun getUser() {
         binding.btnGet.setOnClickListener {
-            loginWithPhone()
 
-
-//            val name = binding.etName.text.toString()
-//            val email = binding.etEmail.text.toString()
-//            val userId = binding.etUserid.text.toString()
-//            val table = binding.etTable.text.toString()
-//
-//
-//            database.child(table).child(userId).child(name).get()
-//                .addOnSuccessListener {
-//                    binding.tvUserInfo.text = it.value.toString()
-//                }.addOnFailureListener {
-//                    Log.e("firebase", "Error getting data", it)
-//                }
         }
     }
 
@@ -175,51 +141,17 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
     }
 
     fun writeNewUser() {
-        binding.btnAdd.setOnClickListener{
+        binding.btnAdd.setOnClickListener {
             val name = binding.etName.text.toString()
             val email = binding.etEmail.text.toString()
             val userId = binding.etUserid.text.toString()
             val table = binding.etTable.text.toString()
 
-            val user = ForTestFireBase(name,email)
+            val user = ForTestFireBase(name, email)
             database.child(table).child(userId).setValue(user)
         }
     }
 
-    override fun listeners() {
-
-
-
-//        insertIntoDatabase()
-//        getFromDataBase()
-        logOut()
-//        navigateLogIn()
-//        gotoLink()
-
-//        viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
-//            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-//                binding.tvUserInfo.setOnClickListener {
-////                    readText()
-//                }
-//            }
-//        }
-    }
-
-    private fun insertIntoDatabase() {
-    }
-
-    private fun getFromDataBase() {
-
-
-    }
-
-//    private fun gotoLink() {
-//        linksAdapter.setOnItemClickListener { article, _ ->
-//            val uri: Uri = Uri.parse(article.link) // missing 'http://' will cause crashed
-//            val intent = Intent(Intent.ACTION_VIEW, uri)
-//            startActivity(intent)
-//        }
-//    }
 
     private fun navigateLogIn() {
         binding.tvUserInfo.setOnClickListener {
@@ -280,19 +212,6 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
         }
     }
 
-//    private fun setupRecycler() {
-//        binding.rvLinks.apply {
-//            adapter = linksAdapter
-//            layoutManager =
-//                LinearLayoutManager(
-//                    requireContext(),
-//                    LinearLayoutManager.VERTICAL,
-//                    false
-//                )
-//        }
-//    }
-
-
     private fun updateOrRequestPermissions() {
         val hasRead = ContextCompat.checkSelfPermission(
             requireContext(),
@@ -320,6 +239,18 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
             permissonLauncher.launch(permissionsToRequest.toTypedArray())
         }
     }
+
+//    private fun setupRecycler() {
+//        binding.rvLinks.apply {
+//            adapter = linksAdapter
+//            layoutManager =
+//                LinearLayoutManager(
+//                    requireContext(),
+//                    LinearLayoutManager.VERTICAL,
+//                    false
+//                )
+//        }
+//    }
 
 
 }

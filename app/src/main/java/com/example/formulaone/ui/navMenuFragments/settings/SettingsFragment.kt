@@ -73,8 +73,9 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
         }
 
         changeButton()
-        deleteAcc()
-        writeNewUser()
+//        deleteAcc()
+//        writeNewUser()
+
         getUser()
     }
 
@@ -117,6 +118,34 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
         binding.btnGet.setOnClickListener {
             sendVerificationCode()
         }
+    }
+
+    private fun captcha(){
+
+//        fun onClick() {
+//            SafetyNet.getClient(this).verifyWithRecaptcha(YOUR_API_SITE_KEY)
+//                .addOnSuccessListener(this as Executor, OnSuccessListener { response ->
+//                    // Indicates communication with reCAPTCHA service was
+//                    // successful.
+//                    val userResponseToken = response.tokenResult
+//                    if (response.tokenResult?.isNotEmpty() == true) {
+//                        // Validate the user response token using the
+//                        // reCAPTCHA siteverify API.
+//                    }
+//                })
+//                .addOnFailureListener(this as Executor, OnFailureListener { e ->
+//                    if (e is ApiException) {
+//                        // An error occurred when communicating with the
+//                        // reCAPTCHA service. Refer to the status code to
+//                        // handle the error appropriately.
+//                        Log.d(TAG, "Error: ${CommonStatusCodes.getStatusCodeString(e.statusCode)}")
+//                    } else {
+//                        // A different, unknown type of error occurred.
+//                        Log.d(TAG, "Error: ${e.message}")
+//                    }
+//                })
+//        }
+
     }
 
     private fun deleteAcc() {

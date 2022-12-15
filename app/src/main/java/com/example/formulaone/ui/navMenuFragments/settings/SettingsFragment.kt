@@ -1,7 +1,9 @@
 package com.example.formulaone.ui.navMenuFragments.settings
 
+import android.app.Activity
 import android.content.pm.PackageManager
 import android.os.Build
+import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -17,18 +19,8 @@ import com.example.formulaone.databinding.FragmentSettingsBinding
 import com.example.formulaone.ui.adapters.LinksAdatper
 import com.example.formulaoneapplicationn.common.Resource
 import com.example.formulaoneapplicationn.common.bases.BaseFragment
-import com.google.android.gms.common.api.ApiException
-import com.google.android.gms.common.api.CommonStatusCodes
-import com.google.android.gms.safetynet.SafetyNet
-import com.google.android.gms.tasks.OnFailureListener
-import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.FirebaseException
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.PhoneAuthCredential
-import com.google.firebase.auth.PhoneAuthOptions
-import com.google.firebase.auth.PhoneAuthProvider
-import com.google.firebase.auth.PhoneAuthProvider.ForceResendingToken
-import com.google.firebase.auth.PhoneAuthProvider.OnVerificationStateChangedCallbacks
+import com.google.firebase.auth.*
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
@@ -36,7 +28,6 @@ import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import java.util.concurrent.Executor
 import java.util.concurrent.TimeUnit
 
 
@@ -50,18 +41,17 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
     private val linksAdapter: LinksAdatper by lazy { LinksAdatper() }
     private val vm: SettingsViewModel by viewModels()
 
+    private lateinit var mauth: FirebaseAuth
+    lateinit var storedVerificationId: String
+
+    lateinit var resendToken: PhoneAuthProvider.ForceResendingToken
+
     private lateinit var permissonLauncher: ActivityResultLauncher<Array<String>>
     private lateinit var database: DatabaseReference
-    private lateinit var mauth: FirebaseAuth
-
-    lateinit var storedVerificationId: String
-    lateinit var resendToken: PhoneAuthProvider.ForceResendingToken
+    var verificationId = ""
 
     private var read = false
     private var write = false
-
-    var verificationId = ""
-
 
 
     override fun viewCreated() {
@@ -73,82 +63,100 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
         }
 
         changeButton()
-//        deleteAcc()
-//        writeNewUser()
-
         getUser()
+
     }
 
     override fun listeners() {
         logOut()
+        blah()
     }
 
+    private fun getUser() {
+        binding.btnGet.setOnClickListener {
+            val number = binding.etTable.text.toString()
+            sendVerificationCode(number,requireActivity())
+        }
+    }
 
     val callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
         override fun onVerificationCompleted(credential: PhoneAuthCredential) {
-            Log.d("GFG", "onVerificationCompleted Success")
+            Log.d(TAG, credential.toString())
+            val code = credential.smsCode
+            if (code != null) {
+                binding.etEmail.setText(code)
+                verifyCode(code)
+            }
         }
 
         override fun onVerificationFailed(e: FirebaseException) {
-            Log.d("GFG", "onVerificationFailed  $e")
+            Log.d(TAG, "onVerificationFailed  $e")
         }
         override fun onCodeSent(
             verificationId: String,
             token: PhoneAuthProvider.ForceResendingToken,
         ) {
-            Log.d("GFG", "onCodeSent: $verificationId")
+
             storedVerificationId = verificationId
             resendToken = token
+            Log.d(TAG, "onCodeSent: $verificationId")
+            Log.d(TAG, "onCodeSent: $token")
+            Log.d(TAG, "oncode sent")
         }
     }
 
-
-
-    private fun sendVerificationCode() {
+    fun sendVerificationCode(number:String,activity: Activity) {
+        mauth = Firebase.auth
         val options = PhoneAuthOptions.newBuilder(mauth)
-            .setPhoneNumber("+995551585021") // Phone number to verify
+            .setPhoneNumber(number) // Phone number to verify
             .setTimeout(120L, TimeUnit.SECONDS) // Timeout and unit
-            .setActivity(requireActivity()) // Activity (for callback binding)
+            .setActivity(activity) // Activity (for callback binding)
             .setCallbacks(callbacks) // OnVerificationStateChangedCallbacks
             .build()
         PhoneAuthProvider.verifyPhoneNumber(options)
-        Log.d("GFG" , "Auth started")
+        Log.d(TAG , "Auth started")
     }
 
-    private fun getUser() {
-        binding.btnGet.setOnClickListener {
-            sendVerificationCode()
-        }
+    private fun blah(){
+        binding.btnAdd.setOnClickListener(View.OnClickListener {
+            // validating if the OTP text field is empty or not.
+            if (TextUtils.isEmpty(binding.etEmail.text.toString())) {
+                // if the OTP text field is empty display
+                // a message to user to enter OTP
+                Toast.makeText(requireContext(), "Please enter OTP", Toast.LENGTH_SHORT).show()
+            } else {
+                // if OTP field is not empty calling
+                // method to verify the OTP.
+                verifyCode(binding.etEmail.text.toString())
+            }
+        })
     }
 
-    private fun captcha(){
+    fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) {
+        mauth.signInWithCredential(credential).addOnCompleteListener(requireActivity()) { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    Log.d(TAG, "signInWithCredential:success")
+                    val user = task.result?.user
+                    Log.d(TAG, user.toString())
 
-//        fun onClick() {
-//            SafetyNet.getClient(this).verifyWithRecaptcha(YOUR_API_SITE_KEY)
-//                .addOnSuccessListener(this as Executor, OnSuccessListener { response ->
-//                    // Indicates communication with reCAPTCHA service was
-//                    // successful.
-//                    val userResponseToken = response.tokenResult
-//                    if (response.tokenResult?.isNotEmpty() == true) {
-//                        // Validate the user response token using the
-//                        // reCAPTCHA siteverify API.
-//                    }
-//                })
-//                .addOnFailureListener(this as Executor, OnFailureListener { e ->
-//                    if (e is ApiException) {
-//                        // An error occurred when communicating with the
-//                        // reCAPTCHA service. Refer to the status code to
-//                        // handle the error appropriately.
-//                        Log.d(TAG, "Error: ${CommonStatusCodes.getStatusCodeString(e.statusCode)}")
-//                    } else {
-//                        // A different, unknown type of error occurred.
-//                        Log.d(TAG, "Error: ${e.message}")
-//                    }
-//                })
-//        }
-
+                } else {
+                    // Sign in failed, display a message and update the UI
+                    Log.d(TAG, "signInWithCredential:failure", task.exception)
+                    if (task.exception is FirebaseAuthInvalidCredentialsException) {
+                        // The verification code entered was invalid
+                    }
+                    // Update UI
+                }
+            }
     }
+
+    private fun verifyCode(code: String) {
+        val credential = PhoneAuthProvider.getCredential(verificationId, code)
+        signInWithPhoneAuthCredential(credential)
+    }
+
 
     private fun deleteAcc() {
         binding.btnDelete.setOnClickListener {
@@ -161,7 +169,7 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
         }
     }
 
-    fun writeNewUser() {
+    private fun writeNewUser() {
         binding.btnAdd.setOnClickListener {
             val name = binding.etName.text.toString()
             val email = binding.etEmail.text.toString()
@@ -172,7 +180,6 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
             database.child(table).child(userId).setValue(user)
         }
     }
-
 
     private fun navigateLogIn() {
         binding.tvUserInfo.setOnClickListener {

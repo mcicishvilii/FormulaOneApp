@@ -50,6 +50,7 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
     private lateinit var database: DatabaseReference
     var verificationId = ""
 
+
     private var read = false
     private var write = false
 
@@ -63,19 +64,20 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
         }
 
         changeButton()
-        getUser()
+
 
     }
 
     override fun listeners() {
         logOut()
+        getUser()
         blah()
     }
 
     private fun getUser() {
         binding.btnGet.setOnClickListener {
             val number = binding.etTable.text.toString()
-            sendVerificationCode(number,requireActivity())
+            sendVerificationCode(number)
         }
     }
 
@@ -87,69 +89,58 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
             if (code != null) {
                 binding.etEmail.setText(code)
                 verifyCode(code)
+            } else {
+                binding.etEmail.setText("sirooo")
             }
         }
 
         override fun onVerificationFailed(e: FirebaseException) {
-            Log.d(TAG, "onVerificationFailed  $e")
+            Toast.makeText(requireContext(), e.message, Toast.LENGTH_LONG).show();
         }
+
         override fun onCodeSent(
             verificationId: String,
             token: PhoneAuthProvider.ForceResendingToken,
         ) {
-
             storedVerificationId = verificationId
-            resendToken = token
-            Log.d(TAG, "onCodeSent: $verificationId")
-            Log.d(TAG, "onCodeSent: $token")
-            Log.d(TAG, "oncode sent")
         }
     }
 
-    fun sendVerificationCode(number:String,activity: Activity) {
+    fun sendVerificationCode(number: String) {
         mauth = Firebase.auth
         val options = PhoneAuthOptions.newBuilder(mauth)
             .setPhoneNumber(number) // Phone number to verify
             .setTimeout(120L, TimeUnit.SECONDS) // Timeout and unit
-            .setActivity(activity) // Activity (for callback binding)
+            .setActivity(requireActivity()) // Activity (for callback binding)
             .setCallbacks(callbacks) // OnVerificationStateChangedCallbacks
             .build()
         PhoneAuthProvider.verifyPhoneNumber(options)
-        Log.d(TAG , "Auth started")
+        Log.d(TAG, "Auth started")
     }
 
-    private fun blah(){
-        binding.btnAdd.setOnClickListener(View.OnClickListener {
-            // validating if the OTP text field is empty or not.
-            if (TextUtils.isEmpty(binding.etEmail.text.toString())) {
-                // if the OTP text field is empty display
-                // a message to user to enter OTP
+    private fun blah() {
+        binding.btnAdd.setOnClickListener {
+            if (binding.etEmail.text.toString().isEmpty()) {
                 Toast.makeText(requireContext(), "Please enter OTP", Toast.LENGTH_SHORT).show()
             } else {
-                // if OTP field is not empty calling
-                // method to verify the OTP.
                 verifyCode(binding.etEmail.text.toString())
             }
-        })
+        }
     }
 
-    fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) {
+    private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) {
         mauth.signInWithCredential(credential).addOnCompleteListener(requireActivity()) { task ->
-                if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    Log.d(TAG, "signInWithCredential:success")
-                    val user = task.result?.user
-                    Log.d(TAG, user.toString())
-
-                } else {
-                    // Sign in failed, display a message and update the UI
-                    Log.d(TAG, "signInWithCredential:failure", task.exception)
-                    if (task.exception is FirebaseAuthInvalidCredentialsException) {
-                        // The verification code entered was invalid
-                    }
-                    // Update UI
+            if (task.isSuccessful) {
+                Toast.makeText(requireContext(), "success", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(requireContext(), "fail", Toast.LENGTH_SHORT).show()
+                if (task.exception is FirebaseAuthInvalidCredentialsException) {
+                    Toast.makeText(requireContext(),
+                        "The verification code entered was invalid",
+                        Toast.LENGTH_SHORT).show()
                 }
             }
+        }
     }
 
     private fun verifyCode(code: String) {

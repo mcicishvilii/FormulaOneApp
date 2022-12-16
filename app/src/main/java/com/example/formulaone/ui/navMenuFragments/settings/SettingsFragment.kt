@@ -103,9 +103,6 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
             if (code != null) {
                 binding.etEnterCode.setText(code)
                 verifyCode(code)
-
-            } else {
-                binding.etEnterCode.setText("sirooo")
             }
         }
 

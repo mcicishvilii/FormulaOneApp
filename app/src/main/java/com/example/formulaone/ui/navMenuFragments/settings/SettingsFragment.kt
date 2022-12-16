@@ -1,10 +1,9 @@
 package com.example.formulaone.ui.navMenuFragments.settings
 
-import android.content.Intent
+import android.app.Activity
 import android.content.pm.PackageManager
-import android.net.Uri
 import android.os.Build
-import android.os.Environment
+import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -15,29 +14,26 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.formulaone.data.model.firebase_test.ForTestFireBase
 import com.example.formulaone.databinding.FragmentSettingsBinding
 import com.example.formulaone.ui.adapters.LinksAdatper
 import com.example.formulaoneapplicationn.common.Resource
 import com.example.formulaoneapplicationn.common.bases.BaseFragment
-import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.FirebaseException
+import com.google.firebase.auth.*
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
-import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import java.io.File
-import java.io.InputStream
+import java.util.concurrent.TimeUnit
 
-const val TAG = "misho"
+
+const val TAG = "mcicishvili"
+val siteKey = "6LfRT3cjAAAAAOcUnzmJRpsL3HPqb6vGSa_ip_fH"
+val secretKey = "6LfRT3cjAAAAACrtLyDifiQqw7f4-Wbi3z0n0Cy0"
 
 
 @AndroidEntryPoint
@@ -45,128 +41,167 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
     private val linksAdapter: LinksAdatper by lazy { LinksAdatper() }
     private val vm: SettingsViewModel by viewModels()
 
-    private var read = false
-    private var write = false
-    private lateinit var permissonLauncher: ActivityResultLauncher<Array<String>>
-    private lateinit var database: DatabaseReference
-
-
     private lateinit var mauth: FirebaseAuth
 
+    // phone num auth
+    var mVerificationId:String = ""
+    lateinit var mResendToken: PhoneAuthProvider.ForceResendingToken
+    // phone num auth
+
+
+
+    // firebase db
+    private lateinit var permissonLauncher: ActivityResultLauncher<Array<String>>
+    private lateinit var database: DatabaseReference
+    private var read = false
+    private var write = false
+    // firebase db
+
+
     override fun viewCreated() {
-
-
         database = Firebase.database.reference
         mauth = Firebase.auth
         val user = mauth.currentUser
         if (user != null) {
-            binding.tvUsersName.text = "hello dear \n${mauth.currentUser?.email.toString()}"
+            binding.tvUserInfo.text = "hello dear \n${mauth.currentUser?.email.toString()}"
         }
+
         changeButton()
-
-//        setupRecycler()
-        observe()
-        binding.btnAdd.setOnClickListener {
-            writeNewUser("Jimsheri", "oto", "otarbakh@gmail.com")
-
-        }
-        binding.btnGet.setOnClickListener {
-
-
-            database.child("momxmarebelebi").child("Jimsheri").child("username").get()
-                .addOnSuccessListener {
-
-                    binding.tvUserInfo.text = it.value.toString()
-                }.addOnFailureListener {
-                Log.e("firebase", "Error getting data", it)
-            }
-        }
-
-
-    }
-
-    private fun deleteAcc(userId: String) {
-        binding.btnDelete.setOnClickListener {
-            database.child("momxmarebelebi").get().addOnSuccessListener {
-                it.value
-                Toast.makeText(requireContext(), it.value, Toast.LENGTH_SHORT).show()
-            }
-
-        }
-    }
-
-    fun writeNewUser(userId: String, name: String, email: String) {
-
-        val key = database.child("momxmarebelebi").push().key
-
-        if (key == null){
-            Toast.makeText(requireContext(), "S2", Toast.LENGTH_SHORT).show()
-            return
-        }
-        val forTestFirebase = ForTestFireBase(name,email)
-        val postforTestFirebase = forTestFirebase.toMap()
-
-        val childUpdate = hashMapOf<String,Any>(
-            "/momxmarebelebi/$key" to postforTestFirebase,
-            "/momxmarebelebi/$userId/$key" to postforTestFirebase
-        )
-        database.updateChildren(childUpdate)
-
-
     }
 
     override fun listeners() {
-
-        deleteAcc("Jimsheri")
-
-        insertIntoDatabase()
-
-        getFromDataBase()
-
-
         logOut()
-//        navigateLogIn()
-        gotoLink()
+        sendCode()
+        checkVerificationCode()
+    }
 
-        viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                binding.tvLogin.setOnClickListener {
-//                    readText()
+    private fun sendCode() {
+        binding.btnGet.setOnClickListener {
+            val number = binding.etPhoneNum.text.toString()
+            sendVerificationCode(number)
+        }
+    }
+
+    // step 1
+    fun sendVerificationCode(number: String) {
+        mauth = Firebase.auth
+        val options = PhoneAuthOptions.newBuilder(mauth)
+            .setPhoneNumber(number) // Phone number to verify
+            .setTimeout(120L, TimeUnit.SECONDS) // Timeout and unit
+            .setActivity(requireActivity()) // Activity (for callback binding)
+            .setCallbacks(callbacks) // OnVerificationStateChangedCallbacks
+            .build()
+        PhoneAuthProvider.verifyPhoneNumber(options)
+        Log.d(TAG, "Auth started")
+    }
+
+    // step 2
+    val callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+
+        override fun onVerificationCompleted(credential: PhoneAuthCredential) {
+            val code = credential.smsCode
+            if (code != null) {
+                binding.etEnterCode.setText(code)
+                verifyCode(code)
+            }
+        }
+
+        override fun onVerificationFailed(e: FirebaseException) {
+            Toast.makeText(requireContext(), e.message, Toast.LENGTH_LONG).show();
+        }
+
+        override fun onCodeSent(verificationId: String, token: PhoneAuthProvider.ForceResendingToken, ) {
+            super.onCodeSent(verificationId,token)
+            mVerificationId = verificationId
+            mResendToken = token
+        }
+    }
+
+    // step 3
+
+    private fun verifyCode(code: String) {
+
+        try {
+            val credential = PhoneAuthProvider.getCredential(mVerificationId, code)
+            signInWithPhoneAuthCredential(credential)
+            Log.d(TAG,"verifyCode try block ${mauth.currentUser?.phoneNumber}")
+            binding.tvUserInfo.text = mauth.currentUser?.phoneNumber
+        }catch (e:Exception){
+            Log.d(TAG,"verifyCode catch block ${e.message}")
+        }
+
+    }
+
+    // step 4
+
+    private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) {
+        mauth.signInWithCredential(credential).addOnCompleteListener(requireActivity()) { task ->
+            if (task.isSuccessful) {
+                findNavController().navigate(SettingsFragmentDirections.actionSettingsFragmentToWelcomeFragment())
+            } else {
+                Log.d(TAG,"signInWithPhoneAuthCredential else block ${mauth.currentUser}")
+                if (task.exception is FirebaseAuthInvalidCredentialsException) {
+                    Toast.makeText(requireContext(),
+                        "The verification code entered was invalid",
+                        Toast.LENGTH_SHORT).show()
                 }
             }
         }
     }
 
-    private fun insertIntoDatabase() {
-    }
 
-    private fun getFromDataBase() {
-
-
-    }
-
-    private fun gotoLink() {
-        linksAdapter.setOnItemClickListener { article, _ ->
-            val uri: Uri = Uri.parse(article.link) // missing 'http://' will cause crashed
-            val intent = Intent(Intent.ACTION_VIEW, uri)
-            startActivity(intent)
+    // step 5
+    private fun checkVerificationCode() {
+        binding.btnAdd.setOnClickListener {
+            if (binding.etEnterCode.text.toString().isEmpty()) {
+                Toast.makeText(requireContext(), "Please enter OTP", Toast.LENGTH_SHORT).show()
+            } else {
+                verifyCode(binding.etEnterCode.text.toString())
+                Log.d(TAG,"fun blah else block ${mauth.currentUser?.phoneNumber}")
+            }
         }
     }
 
-    private fun navigateLogIn() {
-        binding.tvLogin.setOnClickListener {
-            findNavController().navigate(SettingsFragmentDirections.actionSettingsFragmentToSignInFragment())
-        }
-    }
 
-    private fun changeButton() {
+
+
+//    private fun deleteAcc() {
+//        binding.btnDelete.setOnClickListener {
+//            val userId = binding.etUserid.text.toString()
+//            val table = binding.etTable.text.toString()
+//
+//            val momxmareblebisShvili = database.child(table).child(userId)
+//
+//            momxmareblebisShvili.removeValue()
+//        }
+//    }
+
+//    private fun writeNewUser() {
+//        binding.btnAdd.setOnClickListener {
+//            val name = binding.etName.text.toString()
+//            val email = binding.etEmail.text.toString()
+//            val userId = binding.etUserid.text.toString()
+//            val table = binding.etTable.text.toString()
+//
+//            val user = ForTestFireBase(name, email)
+//            database.child(table).child(userId).setValue(user)
+//        }
+//    }
+
+//    private fun navigateLogIn() {
+//        binding.tvUserInfo.setOnClickListener {
+//            findNavController().navigate(SettingsFragmentDirections.actionSettingsFragmentToSignInFragment())
+//        }
+//    }
+
+    private fun changeButton(){
         val user = mauth.currentUser
         if (user == null) {
             binding.logoutbutton.visibility = View.GONE
-            binding.tvLogin.visibility = View.VISIBLE
+            binding.tvUserInfo.visibility = View.VISIBLE
         } else {
             binding.logoutbutton.visibility = View.VISIBLE
-            binding.tvLogin.visibility = View.GONE
+            binding.tvUserInfo.visibility = View.GONE
         }
     }
 
@@ -181,36 +216,63 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
     private fun checkLoggedInState() {
         val user = mauth.currentUser
         if (user == null) {
-            binding.tvUsersName.text = ""
+            binding.tvUserInfo.text = ""
         } else {
-            binding.tvUsersName.text = "hello  dear" + "  " + mauth.currentUser?.email.toString()
-            Toast.makeText(requireContext(), "logged in", Toast.LENGTH_SHORT)
-                .show()
+            binding.tvUserInfo.text = "hello  dear" + "  " + mauth.currentUser?.phoneNumber
+            Toast.makeText(requireContext(), "logged in", Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun observe() {
-//        setupRecycler()
-        vm.getTeams()
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                vm.state.collectLatest {
-                    when (it) {
-                        is Resource.Error -> {
-
-                        }
-                        is Resource.Loading -> {
-                            Log.d("cicishvili", it.loading.toString())
-                        }
-                        is Resource.Success -> {
-                            linksAdapter.submitList(it.data)
-                            Log.d("cicishvili", it.data.size.toString())
-                        }
-                    }
-                }
-            }
-        }
-    }
+//    private fun observe() {
+////        setupRecycler()
+//        vm.getTeams()
+//        viewLifecycleOwner.lifecycleScope.launch {
+//            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+//                vm.state.collectLatest {
+//                    when (it) {
+//                        is Resource.Error -> {
+//
+//                        }
+//                        is Resource.Loading -> {
+//                            Log.d("cicishvili", it.loading.toString())
+//                        }
+//                        is Resource.Success -> {
+//                            linksAdapter.submitList(it.data)
+//                            Log.d("cicishvili", it.data.size.toString())
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
+//
+//    private fun updateOrRequestPermissions() {
+//        val hasRead = ContextCompat.checkSelfPermission(
+//            requireContext(),
+//            android.Manifest.permission.READ_EXTERNAL_STORAGE
+//        ) == PackageManager.PERMISSION_GRANTED
+//
+//        val hasWrite = ContextCompat.checkSelfPermission(
+//            requireContext(),
+//            android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+//        ) == PackageManager.PERMISSION_GRANTED
+//
+//        val minSdk29 = Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q
+//        read = hasRead
+//        write = hasWrite || minSdk29
+//
+//        val permissionsToRequest = mutableListOf<String>()
+//
+//        if (!write) {
+//            permissionsToRequest.add(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+//        }
+//        if (!read) {
+//            permissionsToRequest.add(android.Manifest.permission.READ_EXTERNAL_STORAGE)
+//        }
+//        if (permissionsToRequest.isNotEmpty()) {
+//            permissonLauncher.launch(permissionsToRequest.toTypedArray())
+//        }
+//    }
 
 //    private fun setupRecycler() {
 //        binding.rvLinks.apply {
@@ -223,35 +285,6 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
 //                )
 //        }
 //    }
-
-
-    private fun updateOrRequestPermissions() {
-        val hasRead = ContextCompat.checkSelfPermission(
-            requireContext(),
-            android.Manifest.permission.READ_EXTERNAL_STORAGE
-        ) == PackageManager.PERMISSION_GRANTED
-
-        val hasWrite = ContextCompat.checkSelfPermission(
-            requireContext(),
-            android.Manifest.permission.WRITE_EXTERNAL_STORAGE
-        ) == PackageManager.PERMISSION_GRANTED
-
-        val minSdk29 = Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q
-        read = hasRead
-        write = hasWrite || minSdk29
-
-        val permissionsToRequest = mutableListOf<String>()
-
-        if (!write) {
-            permissionsToRequest.add(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
-        }
-        if (!read) {
-            permissionsToRequest.add(android.Manifest.permission.READ_EXTERNAL_STORAGE)
-        }
-        if (permissionsToRequest.isNotEmpty()) {
-            permissonLauncher.launch(permissionsToRequest.toTypedArray())
-        }
-    }
 
 
 }

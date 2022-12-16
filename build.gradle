@@ -15,8 +15,11 @@ buildscript {
         classpath 'com.google.dagger:hilt-android-gradle-plugin:2.38.1'
         classpath 'com.android.tools.build:gradle:3.4.0'
         classpath 'com.google.firebase:firebase-crashlytics-gradle:2.9.2'
+
     }
 }
+
+
 
 plugins {
     id 'com.android.application' version '7.2.0' apply false

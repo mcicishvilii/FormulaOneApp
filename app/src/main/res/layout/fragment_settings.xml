@@ -57,11 +57,11 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_userInfo" />
 
     <EditText
-        android:id="@+id/et_Email"
+        android:id="@+id/et_enterCode"
         android:layout_width="0dp"
         android:textColorHint="@color/black"
         android:layout_height="wrap_content"
-        android:hint="email"
+        android:hint="enter code"
         android:paddingStart="20dp"
         android:layout_marginTop="30dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -83,13 +83,13 @@
 
 
     <EditText
-        android:id="@+id/et_table"
+        android:id="@+id/et_phoneNum"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/et_userid"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:hint="teibli"
+        android:hint="phone number"
         android:textColorHint="@color/black"
         android:layout_marginHorizontal="20dp"
         />
@@ -99,16 +99,16 @@
         android:layout_height="wrap_content"
         android:text="get"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_Email" />
+        app:layout_constraintTop_toBottomOf="@+id/et_enterCode" />
 
     <Button
         android:id="@+id/btn_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="add"
+        android:text="verify"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/btn_get"
-        app:layout_constraintTop_toBottomOf="@+id/et_Email" />
+        app:layout_constraintTop_toBottomOf="@+id/et_enterCode" />
 
     <Button
         android:id="@+id/btn_delete"

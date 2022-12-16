@@ -137,7 +137,7 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
     private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) {
         mauth.signInWithCredential(credential).addOnCompleteListener(requireActivity()) { task ->
             if (task.isSuccessful) {
-
+                findNavController().navigate(SettingsFragmentDirections.actionSettingsFragmentToWelcomeFragment())
             } else {
                 Log.d(TAG,"signInWithPhoneAuthCredential else block ${mauth.currentUser}")
                 if (task.exception is FirebaseAuthInvalidCredentialsException) {

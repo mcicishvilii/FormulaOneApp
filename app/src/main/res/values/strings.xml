@@ -36,4 +36,13 @@
     <string name="canceled">you canceled purchase process</string>
     <string name="check_your_tickets_here">Check Your Tickets Here</string>
     <string name="poles">Poles</string>
+
+
+
+    <string-array name="index">
+        <item>+995 GEO</item>
+        <item>+1 USA</item>
+        <item>+123 UKR</item>
+    </string-array>
+
 </resources>

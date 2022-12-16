@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/fragment"
     android:background="@color/backgroundColor">
 
     <androidx.appcompat.widget.AppCompatButton
@@ -19,15 +20,6 @@
         app:layout_constraintStart_toStartOf="parent" />
 
 
-<!--    <androidx.appcompat.widget.AppCompatButton-->
-<!--        android:id="@+id/tvLogin"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginHorizontal="20dp"-->
-<!--        android:text="@string/login"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/tvUsersName" />-->
 
 
     <TextView
@@ -82,17 +74,38 @@
         app:layout_constraintTop_toBottomOf="@+id/btn_delete" />
 
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/spinneri"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/et_phoneNum"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_userid">
+
+        <AutoCompleteTextView
+            android:id="@+id/newspinner"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="none"
+            android:text="All" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
     <EditText
         android:id="@+id/et_phoneNum"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/et_userid"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginHorizontal="20dp"
         android:hint="phone number"
         android:textColorHint="@color/black"
-        android:layout_marginHorizontal="20dp"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/spinneri"
+
+
+        app:layout_constraintTop_toBottomOf="@id/et_userid" />
+
+
     <Button
         android:id="@+id/btn_get"
         android:layout_width="wrap_content"

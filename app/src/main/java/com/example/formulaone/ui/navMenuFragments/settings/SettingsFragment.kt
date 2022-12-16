@@ -3,9 +3,13 @@ package com.example.formulaone.ui.navMenuFragments.settings
 import android.app.Activity
 import android.content.pm.PackageManager
 import android.os.Build
+import android.text.Editable
 import android.text.TextUtils
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.core.content.ContextCompat
@@ -19,6 +23,7 @@ import com.example.formulaone.databinding.FragmentSettingsBinding
 import com.example.formulaone.ui.adapters.LinksAdatper
 import com.example.formulaoneapplicationn.common.Resource
 import com.example.formulaoneapplicationn.common.bases.BaseFragment
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.*
 import com.google.firebase.auth.ktx.auth
@@ -34,10 +39,11 @@ import java.util.concurrent.TimeUnit
 const val TAG = "mcicishvili"
 val siteKey = "6LfRT3cjAAAAAOcUnzmJRpsL3HPqb6vGSa_ip_fH"
 val secretKey = "6LfRT3cjAAAAACrtLyDifiQqw7f4-Wbi3z0n0Cy0"
+var priority = ""
 
 
 @AndroidEntryPoint
-class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsBinding::inflate) {
+class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsBinding::inflate){
     private val linksAdapter: LinksAdatper by lazy { LinksAdatper() }
     private val vm: SettingsViewModel by viewModels()
 
@@ -67,12 +73,14 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
         }
 
         changeButton()
+        setupSpinner()
     }
 
     override fun listeners() {
         logOut()
         sendCode()
         checkVerificationCode()
+        test()
     }
 
     private fun sendCode() {
@@ -192,6 +200,46 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
 //        binding.tvUserInfo.setOnClickListener {
 //            findNavController().navigate(SettingsFragmentDirections.actionSettingsFragmentToSignInFragment())
 //        }
+//    }
+
+    private fun setupSpinner() {
+        val priority = resources.getStringArray(com.example.formulaone.R.array.index)
+        val adapter1 = ArrayAdapter(requireContext(),com.example.formulaone.R.layout.custom_spinner_layout,priority)
+        binding.newspinner.setAdapter(adapter1)
+    }
+
+    private fun test(){
+        binding.newspinner.addTextChangedListener(object: TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+            }
+
+            override fun beforeTextChanged(
+                s: CharSequence?,
+                start: Int,
+                count: Int,
+                after: Int
+            ) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                val splittedS = s?.dropLast(3)
+                binding.etPhoneNum.setText(splittedS)
+            }
+        })
+    }
+
+
+
+//    override fun onNothingSelected(parent: AdapterView<*>?) {
+//
+//    }
+//
+//    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+//        val text: String = parent?.getItemAtPosition(position).toString()
+////        priority = text
+//        Snackbar.make(requireActivity(),binding.fragment,text,Snackbar.LENGTH_LONG).show()
+//        binding.etPhoneNum.setText(text)
+//
 //    }
 
     private fun changeButton(){

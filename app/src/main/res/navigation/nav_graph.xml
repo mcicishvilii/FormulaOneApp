@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_welcomeFragment_to_signInFragment"
             app:destination="@id/signInFragment" />
+        <action
+            android:id="@+id/action_welcomeFragment_to_otpSignInFragment"
+            app:destination="@id/otpSignInFragment" />
     </fragment>
 
     <fragment
@@ -206,8 +209,17 @@
             app:argType="com.example.formulaone.ui.navMenuFragments.schedule.upcoming.TicketInfo"
             app:nullable="true" />
     </fragment>
-
-
-    \\
+    <fragment
+        android:id="@+id/otpSignInFragment"
+        android:name="com.example.formulaone.ui.signInFragment.OtpSignInFragment"
+        android:label="fragment_otp_sign_in"
+        tools:layout="@layout/fragment_otp_sign_in" >
+        <action
+            android:id="@+id/action_otpSignInFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
+        <action
+            android:id="@+id/action_otpSignInFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
 
 </navigation>

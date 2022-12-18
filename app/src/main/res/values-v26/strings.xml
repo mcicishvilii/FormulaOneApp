@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="poles">Poles</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="get_code">Get Code</string>
+    <string name="verify_code">verify code</string>
+    <string name="otp">OTP</string>
 </resources>

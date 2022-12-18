@@ -39,8 +39,6 @@ import java.util.concurrent.TimeUnit
 const val TAG = "mcicishvili"
 
 
-
-
 @AndroidEntryPoint
 class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsBinding::inflate){
     private val linksAdapter: LinksAdatper by lazy { LinksAdatper() }
@@ -99,6 +97,7 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
                 .show()
         }
     }
+
 
 
 }

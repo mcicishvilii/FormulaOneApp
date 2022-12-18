@@ -31,11 +31,11 @@ import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import java.util.concurrent.TimeUnit
 
-const val TAG = "mcicishvili"
+
 
 class OtpSignInFragment : BaseFragment<FragmentOtpSignInBinding>(FragmentOtpSignInBinding::inflate) {
 
-
+    val TAG = "mcicishvili"
     private val vm: OtpSignInViewModel by viewModels()
     private lateinit var mauth: FirebaseAuth
 
@@ -70,32 +70,6 @@ class OtpSignInFragment : BaseFragment<FragmentOtpSignInBinding>(FragmentOtpSign
             findNavController().navigate(OtpSignInFragmentDirections.actionOtpSignInFragmentToSignInFragment())
         }
     }
-
-    private fun registerUser1() {
-        val phoneNum = binding.etPhoneNumImpl.text.toString()
-
-        if (phoneNum.isNotEmpty()) {
-            CoroutineScope(Dispatchers.IO).launch {
-                try {
-//                    auth.createUserWithEmailAndPassword(email).await()
-//                    withContext(Dispatchers.Main) {
-//                        Toast.makeText(requireContext(),
-//                            "registered user: ${auth.currentUser?.email}",
-//                            Toast.LENGTH_SHORT)
-//                            .show()
-//                        findNavController().navigate(CreateAccountFragmentDirections.actionCreateAccountFragmentToMainFragment())
-//                    }
-                } catch (e: Exception) {
-                    Toast.makeText(requireContext(), e.message.toString(), Toast.LENGTH_SHORT)
-                        .show()
-                }
-            }
-        } else {
-            Toast.makeText(requireContext(), "not correct e-mail format!", Toast.LENGTH_SHORT)
-                .show()
-        }
-    }
-
 
 
 

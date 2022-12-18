@@ -36,7 +36,9 @@ class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>(FragmentWelcomeBind
             findNavController().navigate(R.id.action_welcomeFragment_to_mainFragment)
         }
 
-
+        binding.tvSignInWithOtp.setOnClickListener {
+            findNavController().navigate(WelcomeFragmentDirections.actionWelcomeFragmentToOtpSignInFragment())
+        }
     }
 
     private fun checkLoggedInState() {

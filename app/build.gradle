@@ -45,6 +45,11 @@ android {
 
 dependencies {
 
+
+    // paging
+    def paging_version = "3.1.1"
+    implementation "androidx.paging:paging-runtime:$paging_version"
+
     // reCaptha
     implementation 'com.google.android.gms:play-services-safetynet:18.0.1'
 
@@ -155,8 +160,7 @@ dependencies {
     'com.android.support:CardView-v7:28.0.0'
     implementation 'com.squareup.moshi:moshi-kotlin:1.13.0'
     implementation 'com.squareup.retrofit2:converter-moshi:2.9.0'
-    def paging_version = "3.1.1"
-    implementation "androidx.paging:paging-runtime:$paging_version"
+
 
     implementation "com.google.dagger:hilt-android:2.38.1"
     kapt "com.google.dagger:hilt-compiler:2.38.1"

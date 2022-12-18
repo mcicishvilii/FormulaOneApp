@@ -1,4 +1,4 @@
-package com.example.formulaoneapplicationn.data.repository
+package com.example.formulaone.data.repository
 
 import com.example.formulaoneapplicationn.data.model.news.toArticleDomain
 import com.example.formulaoneapplicationn.domain.model.ArticleDomain
@@ -28,5 +28,4 @@ class NewsRepositoryImpl @Inject constructor(
             emit(Resource.Error(e.message.toString()))
         }
     }
-
 }

@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/backgroundColor"
-    >
+    android:background="@color/backgroundColor">
 
     <ImageView
         android:id="@+id/ivF1Logo"
@@ -21,9 +20,9 @@
     <TextView
         android:id="@+id/tvWelcome"
         style="@style/tvWelcomeStyle"
-        android:textColor="@color/black"
         android:fontFamily="@font/quan_rounded_bold"
-        android:text="@string/create_f1_account"
+        android:text="@string/otp_sign_in"
+        android:textColor="@color/black"
         android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,79 +46,132 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
         android:text="@string/have_account_sign_in"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvWelcome"
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/tvEmail"
+        android:id="@+id/tvPhoneNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
-        android:textColor="@color/gray"
         android:fontFamily="@font/quan_rounded_bold"
-        android:text="@string/e_mail"
+        android:text="@string/phone_number"
+        android:textColor="@color/gray"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tvGuideline"
         tools:ignore="MissingConstraints" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/etFirstName"
-        style="@style/RegistrationEditText"
-        android:layout_marginTop="10dp"
-        app:endIconMode="clear_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvEmail">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etEmailImpl"
-            android:layout_width="match_parent"
-            android:inputType="textEmailAddress"
-            android:layout_height="wrap_content"
-            android:background="@drawable/outline"
-            android:textColor="@color/black" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-
-    <TextView
-        android:id="@+id/tvLastName"
-        android:layout_width="wrap_content"
+        android:id="@+id/spinneri"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
-        android:textColor="@color/gray"
-        android:fontFamily="@font/quan_rounded_bold"
-        android:text="@string/password"
-        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/et_phoneNum"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etFirstName"
+        app:layout_constraintEnd_toStartOf="@id/et_phoneNum"
+        app:layout_constraintTop_toBottomOf="@+id/tvPhoneNumber">
+
+        <AutoCompleteTextView
+            android:id="@+id/newspinner"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="none"
+            android:text="All" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/et_phoneNum"
+        style="@style/RegistrationEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:endIconMode="clear_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/spinneri"
+        app:layout_constraintTop_toBottomOf="@+id/tvPhoneNumber">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_phoneNumImpl"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/outline"
+            android:inputType="number"
+            android:textColor="@color/black" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnGetCode"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="100dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/outline"
+        android:text="@string/get_code"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/et_phoneNum"
+
+        />
+
+    <TextView
+
+        android:id="@+id/tv_OTP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/quan_rounded_bold"
+        android:text="@string/otp"
+        android:textColor="@color/gray"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnGetCode"
         tools:ignore="MissingConstraints" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/etLastName"
+        android:id="@+id/etOTP"
         style="@style/RegistrationEditText"
+        android:layout_marginHorizontal="120dp"
         android:layout_marginTop="10dp"
         app:endIconMode="clear_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvLastName">
+        app:layout_constraintTop_toBottomOf="@+id/tv_OTP">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etPasswordImpl"
-            android:inputType="textPassword"
+            android:id="@+id/etOTPimpl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/outline"
+            android:inputType="numberPassword"
             android:textColor="@color/black" />
 
     </com.google.android.material.textfield.TextInputLayout>
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnVerifyCode"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="100dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/outline"
+        android:text="@string/verify_code"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etOTP" />
 
     <Button
         android:id="@+id/btnNext"
@@ -128,7 +180,6 @@
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

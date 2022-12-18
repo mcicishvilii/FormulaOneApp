@@ -33,6 +33,7 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>(FragmentSignInBinding
         binding.btnSignIn.setOnClickListener {
             loginWithUser()
         }
+
     }
     private fun loginWithUser(){
         val email = binding.etEmailImpl.text.toString()

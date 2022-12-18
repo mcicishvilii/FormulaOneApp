@@ -36,4 +36,18 @@
     <string name="canceled">you canceled purchase process</string>
     <string name="check_your_tickets_here">Check Your Tickets Here</string>
     <string name="poles">Poles</string>
+    <string name="or_sign_in_with_otp">or sign in with OTP</string>
+    <string name="otp_sign_in">OTP Sign in</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="get_code">Get Code</string>
+    <string name="verify_code">verify code</string>
+    <string name="otp">OTP</string>
+
+
+    <string-array name="index">
+        <item>+995 GEO</item>
+        <item>+1 USA</item>
+        <item>+123 UKR</item>
+    </string-array>
+
 </resources>

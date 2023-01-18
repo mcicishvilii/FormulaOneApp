@@ -1,5 +1,6 @@
 package com.example.formulaone.ui.adapters
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
@@ -7,17 +8,21 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
 import com.example.formulaone.R
 import com.example.formulaone.databinding.SingleNewsLayoutBinding
 import com.example.formulaone.domain.model.LinksDomain
 import com.example.formulaoneapplicationn.domain.model.ArticleDomain
 
-class NewsAdapter() :
+class NewsAdapter :
     PagingDataAdapter<ArticleDomain, NewsAdapter.PlayersViewHolder>(
         PlayersDiffCallback()
     ) {
 
-    private lateinit var itemClickListener: (ArticleDomain, Int) -> Unit
+
+    private lateinit var itemGotoLinkClickListener: (ArticleDomain, Int) -> Unit
+    private lateinit var itemShareClickListener: (ArticleDomain, Int) -> Unit
 
     override fun onBindViewHolder(holder: PlayersViewHolder, position: Int) {
 
@@ -46,22 +51,37 @@ class NewsAdapter() :
             binding.apply {
                 tvNewsText.text = data?.title
                 tvDesription.text = data?.description
+                tvSource.text = data?.source?.name
+
+
+                binding.ivNewsImage.setOnClickListener {
+                    itemGotoLinkClickListener.invoke(data!!, absoluteAdapterPosition)
+                }
+
+                binding.btnShare.setOnClickListener {
+                    itemShareClickListener.invoke(data!!, absoluteAdapterPosition)
+                }
 
                 Glide.with(this.ivNewsImage)
                     .load(data?.urlToImage)
+                    .apply(RequestOptions.bitmapTransform(RoundedCorners(44)))
                     .into(ivNewsImage)
             }
 
-            binding.tvDesription.setOnClickListener {
-                itemClickListener.invoke(data!!, absoluteAdapterPosition)
-            }
-
         }
 
-        fun setOnItemClickListener(clickListener: (ArticleDomain, Int) -> Unit) {
-            itemClickListener = clickListener
-        }
+
     }
+
+    fun setOnGotoClickListener(clickListener: (ArticleDomain, Int) -> Unit) {
+        itemGotoLinkClickListener = clickListener
+    }
+
+    fun setOnShareClickListener(clickListener: (ArticleDomain, Int) -> Unit) {
+        itemShareClickListener = clickListener
+    }
+
+
 
 
     private class PlayersDiffCallback : DiffUtil.ItemCallback<ArticleDomain>() {

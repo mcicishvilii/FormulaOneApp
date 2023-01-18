@@ -41,6 +41,8 @@
         android:layout_marginHorizontal="2dp"
         android:text="Team name"
         android:textColor="@color/black"
+        android:textSize="20sp"
+        android:fontFamily="@font/quan_rounded_regular"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guidelineFnLn"
         app:layout_constraintStart_toEndOf="@+id/guidelinePosColor"

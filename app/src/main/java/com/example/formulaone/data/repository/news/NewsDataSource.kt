@@ -17,7 +17,7 @@ class NewsDataSource(private val api: NewsService) :
         val page = params.key ?: STARTING_PAGE_INDEX
 
         return try {
-            val response = api.getNews("autosport",page,params.loadSize, API_KEY)
+            val response = api.getNews("formula 1+autosport+FIA",page,params.loadSize, API_KEY)
 
             val articles = response.body()!!.articles.map { it.toArticleDomain() }
 

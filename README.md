@@ -2,7 +2,7 @@
 
 # Petrolheads! Welcome to our Fourmula 1 android app!
 
-This app is a clone (or tries to be) of Official F1 application available on market.
+This app is a clone of official F1 application available on market.
 
 
 # Features
@@ -17,12 +17,12 @@ This app is a clone (or tries to be) of Official F1 application available on mar
 
 
 # The App uses:
-- Firebase Authentication
+- Firebase Authentication (phone / e-mail and password)
 - Retrofit
 - Room Database
-- Dagger Hilt
-- Coroutines
-- RecyclerView
+- Dependency Injection with Dagger Hilt
+- Coroutines and Flows
+- RecyclerView with Pager 3
 - Navigation Component
 - Tab Navigation
 - Launcher Icon

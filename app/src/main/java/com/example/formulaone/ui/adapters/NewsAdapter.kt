@@ -51,6 +51,7 @@ class NewsAdapter :
             binding.apply {
                 tvNewsText.text = data?.title
                 tvDesription.text = data?.description
+                tvSource.text = data?.source?.name
 
 
                 binding.ivNewsImage.setOnClickListener {

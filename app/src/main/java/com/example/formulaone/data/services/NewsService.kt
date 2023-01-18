@@ -10,6 +10,10 @@ interface NewsService {
     suspend fun getNews(
         @Query("q")
         q: String,
+        @Query("page")
+        page:Int,
+        @Query("pageSize")
+        pageSize:Int,
         @Query("apiKey")
         apiKey: String,
     ): Response<F1NewsDto>

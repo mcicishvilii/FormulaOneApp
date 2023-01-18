@@ -1,7 +1,7 @@
 package com.example.formulaone.di
 
 import com.example.formulaone.data.repository.LinksRepositoryImpl
-import com.example.formulaone.data.repository.NewsRepositoryImpl
+import com.example.formulaone.data.repository.news.NewsRepositoryImpl
 import com.example.formulaone.domain.repository.*
 import com.example.formulaoneapplicationn.data.repository.*
 import com.example.formulaoneapplicationn.domain.repository.CurrentDriversStandingsRepository
@@ -17,6 +17,7 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 abstract class RepositoryModule {
+
 
     @Binds
     @Singleton

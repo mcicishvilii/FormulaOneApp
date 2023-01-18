@@ -1,38 +1,34 @@
 package com.example.formulaone.ui.navMenuFragments.news
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.formulaone.domain.use_case.news.NewsUseCase
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
+import com.example.formulaone.data.model.links.Article
+import com.example.formulaone.data.repository.news.NewsRepositoryImpl
+import com.example.formulaone.domain.repository.NewsRepository
 import com.example.formulaoneapplicationn.common.Resource
 import com.example.formulaoneapplicationn.domain.model.ArticleDomain
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class FragmentNewsViewModel @Inject constructor(
-    private val newsUseCase: NewsUseCase
+    private val newsRepo: NewsRepositoryImpl
 ) : ViewModel() {
 
-    private val _newsState = MutableStateFlow<Resource<List<ArticleDomain>>>(Resource.Loading(false))
-    val newsState = _newsState.asStateFlow()
+    private var currentResult: Flow<PagingData<ArticleDomain>>? = null
 
-    fun getNews() {
-        viewModelScope.launch {
-            newsUseCase().onEach { news ->
-                when (news) {
-                    is Resource.Success -> _newsState.value = Resource.Success(news.data)
-                    is Resource.Error -> _newsState.value = Resource.Error("woops!")
-                    is Resource.Loading -> _newsState.value = Resource.Loading(true)
-
-                }
-            }.launchIn(viewModelScope)
-        }
+    suspend fun searchPlayers(): Flow<PagingData<ArticleDomain>> {
+        val newResult: Flow<PagingData<ArticleDomain>> =
+            newsRepo.getNews().cachedIn(viewModelScope)
+        currentResult = newResult
+        return newResult
     }
+
 }
 
 

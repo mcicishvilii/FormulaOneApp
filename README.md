@@ -20,6 +20,8 @@ This app is a clone of official F1 application available on market.
 - Firebase Authentication (phone / e-mail and password)
 - Retrofit
 - Room Database
+- Clean architecture
+- MVVM
 - Dependency Injection with Dagger Hilt
 - Coroutines and Flows
 - RecyclerView with Pager 3

@@ -29,18 +29,17 @@ class FragmentNews :
     private var searchJob: Job? = null
 
     override fun viewCreated() {
-
         observe1()
         setupRecycler()
     }
 
-//    override fun listeners() {
-//        newsAdapter.setOnItemClickListener { article, _ ->
-//            val uri: Uri = Uri.parse(article.url) // missing 'http://' will cause crashed
-//            val intent = Intent(Intent.ACTION_VIEW, uri)
-//            startActivity(intent)
-//        }
-//    }
+    override fun listeners() {
+
+        share()
+        gotoLink()
+
+
+    }
 
     private fun setupRecycler() {
         binding.rvNews.apply {
@@ -54,27 +53,6 @@ class FragmentNews :
         }
     }
 
-//    private fun observe1() {
-//        viewLifecycleOwner.lifecycleScope.launch {
-//            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-//                fragmentNewsViewModel.newsState.collectLatest {
-//                    when (it) {
-//                        is Resource.Error -> {
-//
-//                        }
-//                        is Resource.Loading -> {
-//
-//                        }
-//                        is Resource.Success -> {
-//                            newsAdapter.submitList(it.data)
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//    }
-
-
     private fun observe1() {
         searchJob?.cancel()
         searchJob = lifecycleScope.launch {
@@ -85,6 +63,29 @@ class FragmentNews :
         }
     }
 
-    override fun listeners() {
+
+    private fun share() {
+        newsAdapter.apply {
+            setOnShareClickListener { ticket, _ ->
+                val sendIntent: Intent = Intent().apply {
+                    action = Intent.ACTION_SEND
+                    putExtra(
+                        Intent.EXTRA_TEXT,
+                        "${ticket.url}")
+                    type = "text/plain"
+                }
+                val shareIntent = Intent.createChooser(sendIntent, null)
+                startActivity(shareIntent)
+            }
+        }
     }
+
+    private fun gotoLink(){
+        newsAdapter.setOnGotoClickListener { article, _ ->
+            val uri: Uri = Uri.parse(article.url)
+            val intent = Intent(Intent.ACTION_VIEW, uri)
+            startActivity(intent)
+        }
+    }
+
 }

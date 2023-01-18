@@ -5,7 +5,8 @@
     android:id="@+id/mainLayoutTeams"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/backgroundColor">
+    android:background="@drawable/img"
+    >
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelinePosColor"

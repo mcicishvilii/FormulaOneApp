@@ -183,9 +183,4 @@ class OtpSignInFragment : BaseFragment<FragmentOtpSignInBinding>(FragmentOtpSign
             }
         })
     }
-
-
-
-
-
 }

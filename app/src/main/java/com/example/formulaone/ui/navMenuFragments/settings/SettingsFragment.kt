@@ -104,10 +104,10 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>(FragmentSettingsB
 
     fun popLinksList() {
         linksList.add(
-            LinksDomaini(1, "https://motorsports-stream.com/live-races/")
+            LinksDomaini(1, "https://motorsports-stream.com/live-races/",com.example.formulaone.R.drawable.f1stream)
         )
         linksList.add(
-            LinksDomaini(2, "https://f1box.me/")
+            LinksDomaini(2, "https://f1box.me/",com.example.formulaone.R.drawable.f1stream)
         )
     }
 

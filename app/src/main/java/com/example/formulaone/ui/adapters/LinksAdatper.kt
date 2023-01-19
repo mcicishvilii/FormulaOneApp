@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.formulaone.R
 import com.example.formulaone.databinding.SingleLinkLayoutBinding
 import com.example.formulaone.domain.model.LinksDomaini
 
@@ -36,8 +37,11 @@ class LinksAdatper :
         fun bindData() {
             model = getItem(bindingAdapterPosition)
             binding.apply {
-                tvLink.text = model?.link
-//                binding.root.setBackgroundResource(R.drawable.outline)
+
+                val string = model?.link?.removeRange(0,8)?.dropLast(1)
+
+                tvLink.text = string
+                ivLogo.setImageResource(model!!.image)
             }
 
             binding.tvLink.setOnClickListener {

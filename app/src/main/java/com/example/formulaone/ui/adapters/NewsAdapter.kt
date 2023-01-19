@@ -12,7 +12,6 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.example.formulaone.R
 import com.example.formulaone.databinding.SingleNewsLayoutBinding
-import com.example.formulaone.domain.model.LinksDomain
 import com.example.formulaoneapplicationn.domain.model.ArticleDomain
 
 class NewsAdapter :

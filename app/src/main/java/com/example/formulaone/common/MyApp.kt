@@ -13,6 +13,7 @@ class MyApp:Application (){
         super.onCreate()
         appContext = this
 
+
         FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
             if (!task.isSuccessful) {
                 Log.d("TAG", "Fetching FCM registration token failed", task.exception)
@@ -27,5 +28,7 @@ class MyApp:Application (){
     companion object {
         lateinit var appContext: Application
     }
+
+
 
 }

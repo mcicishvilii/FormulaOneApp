@@ -1,10 +1,9 @@
 package com.example.formulaone.ui.navMenuFragments.drivers.details
 
-import android.util.Log
 import androidx.navigation.fragment.navArgs
 import com.example.formulaone.R
 import com.example.formulaone.databinding.FragmentDriverDetailsBinding
-import com.example.formulaoneapplicationn.common.bases.BaseFragment
+import com.example.formulaone.common.bases.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

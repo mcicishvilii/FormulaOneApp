@@ -1,19 +1,17 @@
 package com.example.formulaone.ui.navMenuFragments.drivers.list
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.formulaone.domain.model.QualiDomain
 import com.example.formulaone.domain.use_case.QualiUseCase
 import com.example.formulaoneapplicationn.domain.use_case.drivers.CurrentDriversStandingsUseCase
-import com.example.formulaoneapplicationn.common.Resource
+import com.example.formulaone.common.Resource
 import com.example.formulaoneapplicationn.domain.model.DriverStandingDomain
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel

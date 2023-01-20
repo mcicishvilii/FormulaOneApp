@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.formulaone.R
 import com.example.formulaone.databinding.FragmentFragmentTicketsBinding
 import com.example.formulaone.ui.adapters.TicketsAdapter
-import com.example.formulaoneapplicationn.common.bases.BaseFragment
+import com.example.formulaone.common.bases.BaseFragment
 import com.example.formulaoneapplicationn.data.model.Tickets
 import com.example.formulaoneapplicationn.data.model.TicketsEntity
 import dagger.hilt.android.AndroidEntryPoint

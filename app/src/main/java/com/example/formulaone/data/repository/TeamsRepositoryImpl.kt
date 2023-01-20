@@ -4,13 +4,10 @@ import com.example.formulaoneapplicationn.data.daos.TeamsDao
 import com.example.formulaoneapplicationn.data.model.teams.ToTeamsDomain
 import com.example.formulaoneapplicationn.data.model.toModel
 import com.example.formulaone.domain.repository.TeamsRepository
-import com.example.formulaoneapplicationn.common.Resource
+import com.example.formulaone.common.Resource
 import com.example.formulaoneapplicationn.data.model.TeamsEntity
-import com.example.formulaoneapplicationn.data.model.news.toArticleDomain
-import com.example.formulaoneapplicationn.data.model.teams.Teams
 import com.example.formulaoneapplicationn.domain.model.TeamsDomain
 import com.example.formulaoneapplicationn.data.services.RaceService
-import com.example.formulaoneapplicationn.domain.model.ArticleDomain
 import com.example.formulaoneapplicationn.domain.model.toRoomDto
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

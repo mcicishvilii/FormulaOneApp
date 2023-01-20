@@ -2,8 +2,8 @@ package com.example.formulaone.data.repository.news
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.example.formulaoneapplicationn.common.Constants.API_KEY
-import com.example.formulaoneapplicationn.common.Constants.STARTING_PAGE_INDEX
+import com.example.formulaone.common.Constants.API_KEY
+import com.example.formulaone.common.Constants.STARTING_PAGE_INDEX
 import com.example.formulaoneapplicationn.data.model.news.toArticleDomain
 import com.example.formulaoneapplicationn.data.services.NewsService
 import com.example.formulaoneapplicationn.domain.model.ArticleDomain

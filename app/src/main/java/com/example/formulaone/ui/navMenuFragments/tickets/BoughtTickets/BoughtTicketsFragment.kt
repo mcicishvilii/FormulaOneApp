@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.formulaone.databinding.FragmentTicketBinding
 import com.example.formulaone.ui.adapters.SchedulesAdapter.BoughtTIcketsAdapter
 import com.example.formulaone.ui.navMenuFragments.tickets.BoughtTickets.TicketViewModel
-import com.example.formulaoneapplicationn.common.bases.BaseFragment
+import com.example.formulaone.common.bases.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

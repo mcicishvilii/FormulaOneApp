@@ -1,6 +1,6 @@
 package com.example.formulaoneapplicationn.domain.use_case.drivers
 
-import com.example.formulaoneapplicationn.common.Resource
+import com.example.formulaone.common.Resource
 import com.example.formulaoneapplicationn.domain.model.DriverStandingDomain
 import com.example.formulaoneapplicationn.domain.repository.CurrentDriversStandingsRepository
 import kotlinx.coroutines.flow.Flow

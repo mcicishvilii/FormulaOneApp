@@ -1,14 +1,8 @@
 package com.example.formulaone.ui.signInFragment
 
-import androidx.lifecycle.ViewModelProvider
-import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
@@ -16,18 +10,11 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.formulaone.R
 import com.example.formulaone.databinding.FragmentOtpSignInBinding
-import com.example.formulaone.ui.navMenuFragments.settings.SettingsFragmentDirections
-import com.example.formulaoneapplicationn.common.bases.BaseFragment
-import com.example.formulaoneapplicationn.ui.createAccountFragments.firstName.CreateAccountFragmentDirections
+import com.example.formulaone.common.bases.BaseFragment
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.*
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.tasks.await
-import kotlinx.coroutines.withContext
 import java.util.concurrent.TimeUnit
 
 const val TAG = "MCICISHVILII"

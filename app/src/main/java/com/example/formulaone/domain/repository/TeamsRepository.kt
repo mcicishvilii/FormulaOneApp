@@ -1,8 +1,7 @@
 package com.example.formulaone.domain.repository
 
-import com.example.formulaoneapplicationn.common.Resource
+import com.example.formulaone.common.Resource
 import com.example.formulaoneapplicationn.data.model.TeamsEntity
-import com.example.formulaoneapplicationn.data.model.teams.Teams
 import com.example.formulaoneapplicationn.domain.model.TeamsDomain
 import kotlinx.coroutines.flow.Flow
 

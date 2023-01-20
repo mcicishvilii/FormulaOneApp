@@ -2,7 +2,7 @@ package com.example.formulaoneapplicationn.data.repository
 
 import com.example.formulaone.data.model.drivers.quali.toQualiDomain
 import com.example.formulaone.domain.model.QualiDomain
-import com.example.formulaoneapplicationn.common.Resource
+import com.example.formulaone.common.Resource
 import com.example.formulaoneapplicationn.domain.repository.CurrentDriversStandingsRepository
 import com.example.formulaoneapplicationn.data.services.RaceService
 import com.example.formulaoneapplicationn.data.model.drivers.drivers_standings.toDomain

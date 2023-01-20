@@ -1,6 +1,5 @@
 package com.example.formulaone.ui.navMenuFragments.teams
 
-import android.util.Log
 import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.viewModels
@@ -12,8 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.formulaone.R
 import com.example.formulaone.databinding.FragmentTeamsBinding
 import com.example.formulaone.ui.adapters.ConstructorsAdapter
-import com.example.formulaoneapplicationn.common.Resource
-import com.example.formulaoneapplicationn.common.bases.BaseFragment
+import com.example.formulaone.common.Resource
+import com.example.formulaone.common.bases.BaseFragment
 import com.example.formulaoneapplicationn.domain.model.TeamsDomain
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest

@@ -2,7 +2,6 @@ package com.example.formulaone.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.formulaoneapplicationn.data.daos.LinksDao
 import com.example.formulaoneapplicationn.data.daos.TeamsDao
 import com.example.formulaoneapplicationn.data.daos.TicketsDao
 import com.example.formulaoneapplicationn.data.db.DataBase
@@ -39,10 +38,5 @@ object DBModule {
     fun provideTicketsDao(db: DataBase): TicketsDao {
         return db.ticketsDao
     }
-//
-//    @Singleton
-//    @Provides
-//    fun provideLinksDao(db: DataBase): LinksDao {
-//        return db.linksDao
-//    }
+
 }

@@ -4,8 +4,8 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import com.example.formulaoneapplicationn.domain.model.RaceDomain
 import com.example.formulaone.domain.repository.RaceResultsRepository
-import com.example.formulaoneapplicationn.common.Resource
-import com.example.formulaoneapplicationn.common.utils.TimeFormaterIMPL
+import com.example.formulaone.common.Resource
+import com.example.formulaone.common.utils.TimeFormaterIMPL
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.channelFlow
 import kotlinx.coroutines.flow.collectLatest

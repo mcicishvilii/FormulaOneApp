@@ -56,13 +56,5 @@ abstract class RepositoryModule {
     abstract fun bindNewsRepository(
         newsRepositoryImpl: NewsRepositoryImpl
     ): NewsRepository
-//
-//    @Binds
-//    @Singleton
-//    abstract fun bindsLinksRepository(
-//        linksRepostitory: LinksRepositoryImpl
-//    ): LinksRepository
-
-
 
 }

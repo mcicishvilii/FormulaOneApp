@@ -1,21 +1,13 @@
 package com.example.formulaone.ui.navMenuFragments.schedule.upcoming
 
 import android.os.Build
-import android.util.Log
 import androidx.annotation.RequiresApi
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.formulaone.adapters.UpcomingRaceAdapter
 import com.example.formulaone.databinding.FragmentUpcomingRacesBinding
-import com.example.formulaoneapplicationn.common.Resource
-import com.example.formulaoneapplicationn.common.bases.BaseFragment
+import com.example.formulaone.common.bases.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class UpcomingRacesFragment : BaseFragment<FragmentUpcomingRacesBinding>(FragmentUpcomingRacesBinding::inflate) {

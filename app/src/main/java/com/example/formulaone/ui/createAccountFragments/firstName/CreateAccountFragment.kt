@@ -5,7 +5,7 @@ import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
 import androidx.navigation.fragment.findNavController
 import com.example.formulaone.databinding.FragmentCreateAccountBinding
-import com.example.formulaoneapplicationn.common.bases.BaseFragment
+import com.example.formulaone.common.bases.BaseFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase

@@ -1,7 +1,7 @@
 package com.example.formulaone.domain.use_case.last_race
 
 
-import com.example.formulaoneapplicationn.common.Resource
+import com.example.formulaone.common.Resource
 import com.example.formulaoneapplicationn.domain.model.LastRaceInfoDomain
 import com.example.formulaoneapplicationn.domain.repository.LastRaceRepository
 import kotlinx.coroutines.flow.Flow

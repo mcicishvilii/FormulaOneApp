@@ -1,18 +1,5 @@
 package com.example.formulaone.ui.navMenuFragments.schedule.upcoming
 
-import android.os.Build
-import androidx.annotation.RequiresApi
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.example.formulaoneapplicationn.common.Resource
-import com.example.formulaoneapplicationn.domain.model.RaceScheduleDomain
-import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
-import javax.inject.Inject
-
 //@RequiresApi(Build.VERSION_CODES.O)
 //@HiltViewModel
 //class UpcomingRacesViewModel @Inject constructor(

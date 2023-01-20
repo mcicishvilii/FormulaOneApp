@@ -1,7 +1,7 @@
 package com.example.formulaone.di
 
 
-import com.example.formulaoneapplicationn.common.Constants
+import com.example.formulaone.common.Constants
 import com.example.formulaoneapplicationn.data.services.NewsService
 import com.example.formulaoneapplicationn.data.services.RaceService
 import com.example.formulaoneapplicationn.data.services.WeatherService
@@ -44,14 +44,4 @@ object AppModule {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(WeatherService::class.java)
-//
-//    @Singleton
-//    @Provides
-//    fun provideLinks(): LinksService =
-//        Retrofit.Builder()
-//            .baseUrl(Constants.BASE_URL_LINKS)
-//            .addConverterFactory(GsonConverterFactory.create())
-//            .build()
-//            .create(LinksService::class.java)
-
 }

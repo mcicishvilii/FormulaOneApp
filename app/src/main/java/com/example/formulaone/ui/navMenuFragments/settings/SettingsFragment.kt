@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.formulaone.databinding.FragmentSettingsBinding
 import com.example.formulaone.domain.model.LinksDomaini
 import com.example.formulaone.ui.adapters.LinksAdatper
-import com.example.formulaoneapplicationn.common.bases.BaseFragment
+import com.example.formulaone.common.bases.BaseFragment
 import com.google.firebase.auth.*
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase

@@ -1,7 +1,5 @@
 package com.example.formulaone.ui.navMenuFragments.drivers.list
 
-import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -11,14 +9,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.formulaone.DriversAdapter
 import com.example.formulaone.databinding.FragmentDriversBinding
-import com.example.formulaone.domain.model.QualiDomain
 import com.example.formulaone.ui.navMenuFragments.drivers.DriversDetails
-import com.example.formulaoneapplicationn.common.Resource
-import com.example.formulaoneapplicationn.common.bases.BaseFragment
+import com.example.formulaone.common.Resource
+import com.example.formulaone.common.bases.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import java.util.*
 
 @AndroidEntryPoint
 class DriversFragment : BaseFragment<FragmentDriversBinding>(FragmentDriversBinding::inflate) {

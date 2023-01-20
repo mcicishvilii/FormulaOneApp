@@ -3,7 +3,7 @@ package com.example.formulaone.ui.navMenuFragments.drivers.details
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.formulaoneapplicationn.domain.use_case.drivers.CurrentDriversStandingsUseCase
-import com.example.formulaoneapplicationn.common.Resource
+import com.example.formulaone.common.Resource
 import com.example.formulaoneapplicationn.domain.model.DriverStandingDomain
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

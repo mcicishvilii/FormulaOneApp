@@ -1,18 +1,11 @@
 package com.example.formulaone.domain.use_case.schedule
 
 import android.os.Build
-import android.util.Log
 import androidx.annotation.RequiresApi
 import com.example.formulaoneapplicationn.domain.model.RaceScheduleDomain
 import com.example.formulaone.domain.repository.RacesSheduleRepository
-import com.example.formulaoneapplicationn.common.Resource
-import com.example.formulaoneapplicationn.common.utils.TimeFormaterIMPL
-import com.example.formulaoneapplicationn.domain.model.RaceDomain
+import com.example.formulaone.common.Resource
 import kotlinx.coroutines.flow.*
-import retrofit2.HttpException
-import java.io.IOException
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 import java.util.*
 import javax.inject.Inject
 

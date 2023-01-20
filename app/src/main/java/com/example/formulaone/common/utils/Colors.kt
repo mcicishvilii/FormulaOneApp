@@ -1,4 +1,4 @@
-package com.example.formulaoneapplicationn.common.utils
+package com.example.formulaone.common.utils
 
 import android.graphics.Color.red
 import com.example.formulaone.R

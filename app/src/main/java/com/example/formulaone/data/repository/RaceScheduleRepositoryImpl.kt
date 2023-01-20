@@ -3,7 +3,7 @@ package com.example.formulaoneapplicationn.data.repository
 import com.example.formulaoneapplicationn.data.model.raceSchedule.ToRaceScheduleDomain
 import com.example.formulaoneapplicationn.domain.model.RaceScheduleDomain
 import com.example.formulaone.domain.repository.RacesSheduleRepository
-import com.example.formulaoneapplicationn.common.Resource
+import com.example.formulaone.common.Resource
 import com.example.formulaoneapplicationn.data.model.weather.toDomain
 import com.example.formulaoneapplicationn.data.services.RaceService
 import com.example.formulaoneapplicationn.data.services.WeatherService

@@ -5,12 +5,10 @@ import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.formulaone.domain.use_case.last_race.GetLastRaceInformationUseCase
-import com.example.formulaone.domain.use_case.schedule.RaceScheduleUseCase
 import com.example.formulaone.domain.use_case.weather.GetWeatherUseCase
-import com.example.formulaoneapplicationn.common.Resource
+import com.example.formulaone.common.Resource
 import com.example.formulaoneapplicationn.domain.model.DailyDomain
 import com.example.formulaoneapplicationn.domain.model.LastRaceInfoDomain
-import com.example.formulaoneapplicationn.domain.model.RaceScheduleDomain
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch

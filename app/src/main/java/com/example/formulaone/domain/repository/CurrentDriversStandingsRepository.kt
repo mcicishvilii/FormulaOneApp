@@ -1,7 +1,7 @@
 package com.example.formulaoneapplicationn.domain.repository
 
 import com.example.formulaone.domain.model.QualiDomain
-import com.example.formulaoneapplicationn.common.Resource
+import com.example.formulaone.common.Resource
 import com.example.formulaoneapplicationn.domain.model.DriverStandingDomain
 import kotlinx.coroutines.flow.Flow
 

@@ -1,17 +1,13 @@
 package com.example.formulaone.ui.navMenuFragments.news
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.example.formulaone.data.repository.news.NewsRepositoryImpl
-import com.example.formulaone.domain.repository.NewsRepository
-import com.example.formulaoneapplicationn.common.Resource
 import com.example.formulaoneapplicationn.domain.model.ArticleDomain
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel

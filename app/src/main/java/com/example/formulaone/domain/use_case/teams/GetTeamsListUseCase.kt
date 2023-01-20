@@ -1,16 +1,11 @@
 package com.example.formulaone.domain.use_case.teams
 
 import com.example.formulaone.domain.repository.TeamsRepository
-import com.example.formulaoneapplicationn.common.Resource
-import com.example.formulaoneapplicationn.data.model.teams.Teams
-import com.example.formulaoneapplicationn.domain.model.ArticleDomain
+import com.example.formulaone.common.Resource
 import com.example.formulaoneapplicationn.domain.model.TeamsDomain
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.channelFlow
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.flow
-import retrofit2.HttpException
-import java.io.IOException
 import javax.inject.Inject
 
 class GetTeamsListUseCase @Inject constructor(

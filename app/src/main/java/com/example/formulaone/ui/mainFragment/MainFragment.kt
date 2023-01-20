@@ -10,22 +10,18 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.formulaone.R
 import com.example.formulaone.databinding.FragmentMainBinding
 import com.example.formulaone.ui.adapters.BottomNavViewPagerAdapter
-import com.example.formulaoneapplicationn.common.Resource
-import com.example.formulaoneapplicationn.common.bases.BaseFragment
-import com.example.formulaoneapplicationn.common.utils.TimeFormaterIMPL
+import com.example.formulaone.common.Resource
+import com.example.formulaone.common.bases.BaseFragment
+import com.example.formulaone.common.utils.TimeFormaterIMPL
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import java.sql.Timestamp
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.time.*
 import java.time.format.DateTimeFormatter
-import java.time.format.FormatStyle
 import java.util.*
-import kotlin.time.Duration.Companion.hours
-import kotlin.time.Duration.Companion.minutes
 
 @AndroidEntryPoint
 class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::inflate) {

@@ -1,8 +1,7 @@
-package com.example.formulaoneapplicationn.common.utils
+package com.example.formulaone.common.utils
 
 import android.os.Build
 import androidx.annotation.RequiresApi
-import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter

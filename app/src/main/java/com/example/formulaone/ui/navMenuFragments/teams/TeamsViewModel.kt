@@ -2,8 +2,12 @@ package com.example.formulaone.ui.navMenuFragments.teams
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
+import com.example.formulaone.data.repository.teams.TeamsRepositoryImpl
 import com.example.formulaone.domain.use_case.teams.*
 import com.example.formulaoneapplicationn.common.Resource
+import com.example.formulaoneapplicationn.domain.model.ArticleDomain
 import com.example.formulaoneapplicationn.domain.model.TeamsDomain
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -14,7 +18,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class TeamsViewModel @Inject constructor(
-    private val getTeamsListUseCase: GetTeamsListUseCase,
+    private val teamsRepositoryImpl: TeamsRepositoryImpl,
     private val insertTeamUseCase: InsertTeamUseCase,
 ) : ViewModel() {
 
@@ -23,27 +27,19 @@ class TeamsViewModel @Inject constructor(
     private val _state = MutableStateFlow<Resource<List<TeamsDomain>>>(Resource.Loading(false))
     val state = _state.asStateFlow()
 
+    private var currentResult: Flow<PagingData<TeamsDomain>>? = null
+
     init {
-        getTeams()
+        viewModelScope.launch {
+            getTeams()
+        }
     }
 
-    fun getTeams() {
-        viewModelScope.launch {
-            getTeamsListUseCase().onEach { news ->
-                when (news) {
-                    is Resource.Success -> {
-                        filteredList = news.data
-                        _state.value = Resource.Success(news.data)
-                    }
-                    is Resource.Error -> {
-                        _state.value = Resource.Error("woops!")
-                    }
-                    is Resource.Loading -> {
-                        _state.value = Resource.Loading(true)
-                    }
-                }
-            }.launchIn(viewModelScope)
-        }
+    suspend fun getTeams():Flow<PagingData<TeamsDomain>> {
+        val newResult: Flow<PagingData<TeamsDomain>> =
+            teamsRepositoryImpl.getTeamsData().cachedIn(viewModelScope)
+        currentResult = newResult
+        return newResult
     }
 
     fun insertTeam(team: TeamsDomain){
@@ -52,12 +48,12 @@ class TeamsViewModel @Inject constructor(
         }
     }
 
-    fun search(query:String) {
-        val searchedList = filteredList.filter {
-            it.nationality.toString().lowercase().contains(query.lowercase())
-        }
-        _state.value = Resource.Success(searchedList)
-    }
+//    fun search(query:String) {
+//        val searchedList = filteredList.filter {
+//            it.nationality.toString().lowercase().contains(query.lowercase())
+//        }
+//        _state.value = Resource.Success(searchedList)
+//    }
 }
 
 

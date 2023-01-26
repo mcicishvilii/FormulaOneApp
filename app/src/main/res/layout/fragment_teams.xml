@@ -67,6 +67,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:scrollbars="vertical"
+        android:scrollbarSize="25dp"
+        android:scrollbarTrackVertical="@color/red"
         android:id="@+id/rvStories"
         android:layout_width="0dp"
         android:layout_height="0dp"

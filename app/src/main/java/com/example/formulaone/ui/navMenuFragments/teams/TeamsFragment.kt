@@ -29,7 +29,7 @@ class TeamsFragment : BaseFragment<FragmentTeamsBinding>(FragmentTeamsBinding::i
 
     override fun viewCreated() {
         observe()
-        search()
+//        search()
     }
 
     override fun listeners() {
@@ -65,34 +65,23 @@ class TeamsFragment : BaseFragment<FragmentTeamsBinding>(FragmentTeamsBinding::i
         setupRecycler()
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.state.collectLatest {
-                    when (it) {
-                        is Resource.Error -> {
-
-                        }
-                        is Resource.Loading -> {
-
-                        }
-                        is Resource.Success -> {
-                            constructorsAdapter.submitList(it.data)
-                            filteredList = it.data.toMutableList()
-                        }
-                    }
+                viewModel.getTeams().collectLatest {
+                    constructorsAdapter.submitData(it)
                 }
             }
         }
     }
 
-    private fun search() {
-        binding.searchView.doOnTextChanged { text, _, _, _ ->
-            if (!text.isNullOrEmpty()) {
-                viewModel.search(text.toString())
-            }
-            else{
-                constructorsAdapter.submitList(filteredList)
-            }
-        }
-    }
+//    private fun search() {
+//        binding.searchView.doOnTextChanged { text, _, _, _ ->
+//            if (!text.isNullOrEmpty()) {
+//                viewModel.search(text.toString())
+//            }
+//            else{
+//                constructorsAdapter.submitList(filteredList)
+//            }
+//        }
+//    }
 
 
 }

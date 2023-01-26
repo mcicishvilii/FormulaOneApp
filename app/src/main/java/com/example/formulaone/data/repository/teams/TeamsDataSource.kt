@@ -1,4 +1,4 @@
-package com.example.formulaone.data.repository.news
+package com.example.formulaone.data.repository.teams
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
@@ -6,18 +6,21 @@ import com.example.formulaoneapplicationn.common.Constants.API_KEY
 import com.example.formulaoneapplicationn.common.Constants.NETWORK_PAGE_SIZE
 import com.example.formulaoneapplicationn.common.Constants.STARTING_PAGE_INDEX
 import com.example.formulaoneapplicationn.data.model.news.toArticleDomain
+import com.example.formulaoneapplicationn.data.model.teams.ToTeamsDomain
 import com.example.formulaoneapplicationn.data.services.NewsService
+import com.example.formulaoneapplicationn.data.services.RaceService
 import com.example.formulaoneapplicationn.domain.model.ArticleDomain
+import com.example.formulaoneapplicationn.domain.model.TeamsDomain
 import java.io.IOException
 
 
-class NewsDataSource(private val api: NewsService) : PagingSource<Int, ArticleDomain>() {
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, ArticleDomain> {
+class TeamsDataSource(private val api: RaceService) : PagingSource<Int, TeamsDomain>() {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, TeamsDomain> {
         val page = params.key ?: STARTING_PAGE_INDEX
 
         return try {
-            val response = api.getNews("formula 1+autosport+FIA",page,1, API_KEY)
-            val articles = response.body()!!.articles.map { it.toArticleDomain() }
+            val response = api.getTeamsPAging(1.toString(),params.loadSize.toString())
+            val articles = response.body()!!.MRData.ConstructorTable.Constructors!!.map { it.ToTeamsDomain()}
 
             val nextKey =
                 if (articles.isEmpty()) {
@@ -25,6 +28,7 @@ class NewsDataSource(private val api: NewsService) : PagingSource<Int, ArticleDo
                 } else {
                     page + (params.loadSize / NETWORK_PAGE_SIZE)
                 }
+
 
             LoadResult.Page(
                 data = articles,
@@ -43,7 +47,7 @@ class NewsDataSource(private val api: NewsService) : PagingSource<Int, ArticleDo
 
     }
 
-    override fun getRefreshKey(state: PagingState<Int, ArticleDomain>): Int? {
+    override fun getRefreshKey(state: PagingState<Int, TeamsDomain>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
             state.closestPageToPosition(anchorPosition)?.prevKey?.plus(1)
                 ?: state.closestPageToPosition(anchorPosition)?.nextKey?.minus(1)

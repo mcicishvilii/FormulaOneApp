@@ -19,24 +19,24 @@ class FavoritesFragment : BaseFragment<FragmentFavoritesBinding>(FragmentFavorit
     private val viewModel: FavoritesViewModel by viewModels()
 
     override fun viewCreated() {
-        getTeams()
+//        getTeams()
     }
 
     override fun listeners() {
 
     }
 
-    private fun getTeams(){
-        setupRecycler()
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.getTeam().collectLatest {
-                    favsAdapter.submitList(it)
-                }
-            }
-        }
-
-    }
+//    private fun getTeams(){
+//        setupRecycler()
+//        viewLifecycleOwner.lifecycleScope.launch {
+//            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+//                viewModel.getTeam().collectLatest {
+//                    favsAdapter.submitList(it)
+//                }
+//            }
+//        }
+//
+//    }
 
     private fun setupRecycler() {
         binding.rvFavTeams.apply {

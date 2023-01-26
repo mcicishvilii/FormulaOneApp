@@ -13,22 +13,22 @@ import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 
-class GetTeamsListUseCase @Inject constructor(
-    private val repository: TeamsRepository
-){
-    operator fun invoke(): Flow<Resource<List<TeamsDomain>>> = channelFlow {
-        repository.getTeamsData().collectLatest {
-            when (it){
-                is Resource.Success -> {
-                    send(Resource.Success(it.data))
-                }
-                is Resource.Error -> {
-                    send(Resource.Error(it.error))
-                }
-                is Resource.Loading -> {
-                    send(Resource.Loading(it.loading))
-                }
-            }
-        }
-    }
-}
+//class GetTeamsListUseCase @Inject constructor(
+//    private val repository: TeamsRepository
+//){
+//    operator fun invoke(): Flow<Resource<List<TeamsDomain>>> = channelFlow {
+//        repository.getTeamsData().collectLatest {
+//            when (it){
+//                is Resource.Success -> {
+//                    send(Resource.Success(it.data))
+//                }
+//                is Resource.Error -> {
+//                    send(Resource.Error(it.error))
+//                }
+//                is Resource.Loading -> {
+//                    send(Resource.Loading(it.loading))
+//                }
+//            }
+//        }
+//    }
+//}

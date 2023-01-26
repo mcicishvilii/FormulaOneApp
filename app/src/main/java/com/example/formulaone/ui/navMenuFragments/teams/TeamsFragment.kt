@@ -30,7 +30,6 @@ class TeamsFragment : BaseFragment<FragmentTeamsBinding>(FragmentTeamsBinding::i
     override fun viewCreated() {
         observe()
         search()
-
     }
 
     override fun listeners() {
@@ -94,8 +93,6 @@ class TeamsFragment : BaseFragment<FragmentTeamsBinding>(FragmentTeamsBinding::i
             }
         }
     }
-
-
 
 
 }

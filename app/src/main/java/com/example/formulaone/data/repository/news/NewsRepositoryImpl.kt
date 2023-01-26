@@ -6,6 +6,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.liveData
 import com.example.formulaone.domain.repository.NewsRepository
+import com.example.formulaoneapplicationn.common.Constants.NETWORK_PAGE_SIZE
 import com.example.formulaoneapplicationn.common.Resource
 import com.example.formulaoneapplicationn.data.services.NewsService
 import com.example.formulaoneapplicationn.domain.model.ArticleDomain
@@ -19,7 +20,6 @@ class NewsRepositoryImpl @Inject constructor(
     private val api: NewsService,
 ):NewsRepository {
 
-
     override suspend fun getNews(): Flow<PagingData<ArticleDomain>> {
         return Pager(
             config = PagingConfig(
@@ -27,10 +27,5 @@ class NewsRepositoryImpl @Inject constructor(
             ),
             pagingSourceFactory = { NewsDataSource(api) }
         ).flow
-    }
-
-
-    companion object {
-        private const val NETWORK_PAGE_SIZE = 5
     }
 }

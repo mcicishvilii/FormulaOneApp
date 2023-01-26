@@ -63,7 +63,6 @@ class FragmentNews :
         }
     }
 
-
     private fun share() {
         newsAdapter.apply {
             setOnShareClickListener { ticket, _ ->

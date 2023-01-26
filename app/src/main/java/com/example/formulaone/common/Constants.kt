@@ -7,4 +7,6 @@ object Constants {
     const val BASE_URL_LINKS = "https://run.mocky.io/v3/"
     const val STARTING_PAGE_INDEX = 1
     const val API_KEY = "6ce7c585fe714572ad745ea44c378403"
+    const val NETWORK_PAGE_SIZE = 5
+
 }

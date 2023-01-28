@@ -29,7 +29,7 @@ interface RaceService {
         limit: String,
     ): Response<RaceResultsDto>
 
-    @GET("constructors.json")
+    @GET("constructors.json?")
     suspend fun getTeamsPAging(
         @Query("limit")
         limit: String,

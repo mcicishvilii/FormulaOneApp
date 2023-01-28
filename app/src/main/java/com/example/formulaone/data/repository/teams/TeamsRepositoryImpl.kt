@@ -29,7 +29,7 @@ class TeamsRepositoryImpl @Inject constructor(
     override suspend fun getTeamsData(): Flow<PagingData<TeamsDomain>> {
         return Pager(
             config = PagingConfig(
-                pageSize = Constants.NETWORK_PAGE_SIZE
+                pageSize = Constants.NETWORK_PAGE_SIZE_TEAMS
             ),
             pagingSourceFactory = { TeamsDataSource(api) }
         ).flow

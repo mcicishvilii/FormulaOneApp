@@ -3,7 +3,6 @@ package com.example.formulaone.data.repository.teams
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.example.formulaone.data.repository.news.NewsDataSource
 import com.example.formulaoneapplicationn.data.daos.TeamsDao
 import com.example.formulaoneapplicationn.data.model.teams.ToTeamsDomain
 import com.example.formulaoneapplicationn.data.model.toModel

@@ -2,12 +2,14 @@ package com.example.formulaone.ui.navMenuFragments.teams
 
 import android.util.Log
 import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import androidx.paging.PagingData
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.formulaone.R
 import com.example.formulaone.databinding.FragmentTeamsBinding
@@ -15,7 +17,9 @@ import com.example.formulaone.ui.adapters.ConstructorsAdapter
 import com.example.formulaoneapplicationn.common.Resource
 import com.example.formulaoneapplicationn.common.bases.BaseFragment
 import com.example.formulaoneapplicationn.domain.model.TeamsDomain
+import com.squareup.moshi.subtypeOf
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -24,7 +28,6 @@ class TeamsFragment : BaseFragment<FragmentTeamsBinding>(FragmentTeamsBinding::i
 
     private val constructorsAdapter: ConstructorsAdapter by lazy { ConstructorsAdapter() }
     private val viewModel: TeamsViewModel by viewModels()
-    private var filteredList = mutableListOf<TeamsDomain>()
 
 
     override fun viewCreated() {
@@ -65,23 +68,11 @@ class TeamsFragment : BaseFragment<FragmentTeamsBinding>(FragmentTeamsBinding::i
         setupRecycler()
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.getTeams().collectLatest {
+                viewModel.getTeams()
+                viewModel.state.collectLatest {
                     constructorsAdapter.submitData(it)
                 }
             }
         }
     }
-
-//    private fun search() {
-//        binding.searchView.doOnTextChanged { text, _, _, _ ->
-//            if (!text.isNullOrEmpty()) {
-//                viewModel.search(text.toString())
-//            }
-//            else{
-//                constructorsAdapter.submitList(filteredList)
-//            }
-//        }
-//    }
-
-
 }

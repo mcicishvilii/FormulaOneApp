@@ -69,7 +69,6 @@ class FragmentTickets :
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 ticketsViewModel.insertTicket(ticket)
-
             }
         }
     }

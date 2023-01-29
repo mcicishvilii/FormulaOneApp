@@ -7,6 +7,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.formulaone.databinding.FragmentFavoritesBinding
 import com.example.formulaone.ui.adapters.ConstructorsAdapter
+import com.example.formulaone.ui.adapters.FavsAdapter
 import com.example.formulaoneapplicationn.common.bases.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -15,7 +16,7 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class FavoritesFragment : BaseFragment<FragmentFavoritesBinding>(FragmentFavoritesBinding::inflate) {
 
-    private val favsAdapter: ConstructorsAdapter by lazy { ConstructorsAdapter() }
+    private val favsAdapter: FavsAdapter by lazy { FavsAdapter() }
     private val viewModel: FavoritesViewModel by viewModels()
 
     override fun viewCreated() {

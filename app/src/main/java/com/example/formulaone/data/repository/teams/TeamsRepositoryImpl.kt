@@ -1,16 +1,17 @@
-package com.example.formulaoneapplicationn.data.repository
+package com.example.formulaone.data.repository.teams
 
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
 import com.example.formulaoneapplicationn.data.daos.TeamsDao
 import com.example.formulaoneapplicationn.data.model.teams.ToTeamsDomain
 import com.example.formulaoneapplicationn.data.model.toModel
 import com.example.formulaone.domain.repository.TeamsRepository
+import com.example.formulaoneapplicationn.common.Constants
 import com.example.formulaoneapplicationn.common.Resource
 import com.example.formulaoneapplicationn.data.model.TeamsEntity
-import com.example.formulaoneapplicationn.data.model.news.toArticleDomain
-import com.example.formulaoneapplicationn.data.model.teams.Teams
 import com.example.formulaoneapplicationn.domain.model.TeamsDomain
 import com.example.formulaoneapplicationn.data.services.RaceService
-import com.example.formulaoneapplicationn.domain.model.ArticleDomain
 import com.example.formulaoneapplicationn.domain.model.toRoomDto
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -24,18 +25,13 @@ class TeamsRepositoryImpl @Inject constructor(
     private val teamsDao: TeamsDao
 ) : TeamsRepository {
 
-    override suspend fun getTeamsData(): Flow<Resource<List<TeamsDomain>>> = flow {
-        try {
-            emit(Resource.Loading(true))
-            val response = api.getTeams()
-            if (response.isSuccessful) {
-                emit(Resource.Success(response.body()!!.MRData.ConstructorTable.Constructors!!.map { it.ToTeamsDomain()}))
-            }
-        } catch (e: HttpException) {
-            emit(Resource.Error(e.localizedMessage ?: "unexpected"))
-        } catch (e: IOException) {
-            emit(Resource.Error(e.message.toString()))
-        }
+    override suspend fun getTeamsData(): Flow<PagingData<TeamsDomain>> {
+        return Pager(
+            config = PagingConfig(
+                pageSize = Constants.NETWORK_PAGE_SIZE_TEAMS
+            ),
+            pagingSourceFactory = { TeamsDataSource(api) }
+        ).flow
     }
 
     override fun getTeams(): Flow<List<TeamsDomain>> {

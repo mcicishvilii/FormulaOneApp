@@ -6,11 +6,10 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.liveData
 import com.example.formulaone.domain.repository.NewsRepository
-import com.example.formulaoneapplicationn.common.Resource
+import com.example.formulaoneapplicationn.common.Constants.NETWORK_PAGE_SIZE
+import com.example.formulaoneapplicationn.data.model.news.Article
 import com.example.formulaoneapplicationn.data.services.NewsService
-import com.example.formulaoneapplicationn.domain.model.ArticleDomain
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -19,18 +18,14 @@ class NewsRepositoryImpl @Inject constructor(
     private val api: NewsService,
 ):NewsRepository {
 
-
-    override suspend fun getNews(): Flow<PagingData<ArticleDomain>> {
+    override fun getNews(q:String): Flow<PagingData<Article>> {
         return Pager(
             config = PagingConfig(
-                pageSize = NETWORK_PAGE_SIZE
+                pageSize = NETWORK_PAGE_SIZE,
+                maxSize = 100,
+                enablePlaceholders = false
             ),
-            pagingSourceFactory = { NewsDataSource(api) }
+            pagingSourceFactory = { NewsDataSource(api,q) }
         ).flow
-    }
-
-
-    companion object {
-        private const val NETWORK_PAGE_SIZE = 5
     }
 }

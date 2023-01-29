@@ -12,9 +12,9 @@ import com.example.formulaone.databinding.SingleTeamLayoutBinding
 import com.example.formulaoneapplicationn.domain.model.TeamsDomain
 
 
-class ConstructorsAdapter :
-    PagingDataAdapter<TeamsDomain, ConstructorsAdapter.ConstructorsViewHolder>(
-        TeamsDiffCallBack()
+class FavsAdapter :
+    ListAdapter<TeamsDomain, FavsAdapter.ConstructorsViewHolder>(
+        FavsDiffCalback()
     ) {
 
     private lateinit var itemClickListener: (TeamsDomain, Int) -> Unit
@@ -70,7 +70,7 @@ class ConstructorsAdapter :
 
 
 
-class TeamsDiffCallBack : DiffUtil.ItemCallback<TeamsDomain>() {
+class FavsDiffCalback : DiffUtil.ItemCallback<TeamsDomain>() {
     override fun areItemsTheSame(
         oldItem: TeamsDomain,
         newItem: TeamsDomain

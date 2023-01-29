@@ -25,21 +25,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-
-    <EditText
-        android:id="@+id/searchView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="@string/search_here"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black"
-        android:background="@drawable/rectangle_91"
-        android:padding="10dp"
-        android:layout_margin="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/tvTeamListHeader"
         android:layout_width="0dp"
@@ -47,10 +32,10 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="5dp"
         android:text="@string/team_name"
-        app:layout_constraintBottom_toTopOf="@+id/rvStories"
         app:layout_constraintEnd_toStartOf="@+id/tvTeamCountryHeader"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/searchView" />
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
     <TextView
         android:id="@+id/tvTeamCountryHeader"
@@ -59,13 +44,15 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="5dp"
         android:text="@string/country"
-        app:layout_constraintBottom_toTopOf="@+id/rvStories"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/tvTeamListHeader"
-        app:layout_constraintTop_toBottomOf="@id/searchView" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:scrollbars="vertical"
+        android:scrollbarSize="25dp"
+        android:scrollbarTrackVertical="@color/red"
         android:id="@+id/rvStories"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -74,7 +61,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchView" />
+        app:layout_constraintTop_toBottomOf="@+id/tvTeamCountryHeader" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

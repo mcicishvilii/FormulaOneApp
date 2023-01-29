@@ -1,6 +1,7 @@
 package com.example.formulaone.di
 
 import com.example.formulaone.data.repository.news.NewsRepositoryImpl
+import com.example.formulaone.data.repository.teams.TeamsRepositoryImpl
 import com.example.formulaone.domain.repository.*
 import com.example.formulaoneapplicationn.data.repository.*
 import com.example.formulaoneapplicationn.domain.repository.CurrentDriversStandingsRepository

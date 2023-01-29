@@ -1,22 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-
     <item
-        android:id="@+id/firstFragment"
-        android:icon="@drawable/racing_helmet_svgrepo_com"
-        android:title="@string/drivers" />
-    <item
-        android:id="@+id/secondFragment"
-        android:icon="@drawable/racing_flag_formula_1_svgrepo_com"
-        android:title="@string/teams" />
-    <item
-        android:id="@+id/thirdFragment"
-        android:icon="@drawable/ic_baseline_settings_24"
-        android:title="@string/settings" />
-    <item
-        android:id="@+id/fourthFragment"
-        android:icon="@drawable/ic_baseline_calendar_today_24"
-        android:title="@string/races" />
-
+        android:id="@+id/searchMenu"
+        android:icon="@drawable/baku"
+        android:title="Search"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="ifRoom|collapseActionView"
+        />
 </menu>

@@ -15,13 +15,13 @@ import com.example.formulaone.databinding.SingleNewsLayoutBinding
 import com.example.formulaoneapplicationn.domain.model.ArticleDomain
 
 class NewsAdapter :
-    PagingDataAdapter<Article, NewsAdapter.PlayersViewHolder>(
+    PagingDataAdapter<ArticleDomain, NewsAdapter.PlayersViewHolder>(
         PlayersDiffCallback()
     ) {
 
 
-    private lateinit var itemGotoLinkClickListener: (Article, Int) -> Unit
-    private lateinit var itemShareClickListener: (Article, Int) -> Unit
+    private lateinit var itemGotoLinkClickListener: (ArticleDomain, Int) -> Unit
+    private lateinit var itemShareClickListener: (ArticleDomain, Int) -> Unit
 
     override fun onBindViewHolder(holder: PlayersViewHolder, position: Int) {
 
@@ -45,7 +45,7 @@ class NewsAdapter :
         private val binding: SingleNewsLayoutBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(data: Article?) {
+        fun bind(data: ArticleDomain?) {
 
             binding.apply {
                 tvNewsText.text = data?.title
@@ -72,23 +72,23 @@ class NewsAdapter :
 
     }
 
-    fun setOnGotoClickListener(clickListener: (Article, Int) -> Unit) {
+    fun setOnGotoClickListener(clickListener: (ArticleDomain, Int) -> Unit) {
         itemGotoLinkClickListener = clickListener
     }
 
-    fun setOnShareClickListener(clickListener: (Article, Int) -> Unit) {
+    fun setOnShareClickListener(clickListener: (ArticleDomain, Int) -> Unit) {
         itemShareClickListener = clickListener
     }
 
 
 
 
-    private class PlayersDiffCallback : DiffUtil.ItemCallback<Article>() {
-        override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean {
+    private class PlayersDiffCallback : DiffUtil.ItemCallback<ArticleDomain>() {
+        override fun areItemsTheSame(oldItem: ArticleDomain, newItem: ArticleDomain): Boolean {
             return oldItem.title == newItem.title
         }
 
-        override fun areContentsTheSame(oldItem: Article, newItem: Article): Boolean {
+        override fun areContentsTheSame(oldItem: ArticleDomain, newItem: ArticleDomain): Boolean {
             return oldItem == newItem
         }
     }

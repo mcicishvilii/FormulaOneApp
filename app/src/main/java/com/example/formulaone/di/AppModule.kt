@@ -44,14 +44,6 @@ object AppModule {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(WeatherService::class.java)
-//
-//    @Singleton
-//    @Provides
-//    fun provideLinks(): LinksService =
-//        Retrofit.Builder()
-//            .baseUrl(Constants.BASE_URL_LINKS)
-//            .addConverterFactory(GsonConverterFactory.create())
-//            .build()
-//            .create(LinksService::class.java)
+
 
 }

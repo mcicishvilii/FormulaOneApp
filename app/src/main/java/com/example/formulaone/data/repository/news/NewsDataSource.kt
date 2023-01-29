@@ -13,8 +13,8 @@ import com.example.formulaoneapplicationn.domain.model.ArticleDomain
 import java.io.IOException
 
 
-class NewsDataSource(private val api: NewsService,private val q:String) : PagingSource<Int, Article>() {
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Article> {
+class NewsDataSource(private val api: NewsService,private val q:String) : PagingSource<Int, ArticleDomain>() {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, ArticleDomain> {
         // ამჟამინდელი გვერდის ნომერი - თუ params.key (ანუ ეხლანდელი გვერდი) ნალია დააბრუნე STARTING_PAGE_INDEX რაც არის 1 (კონსტანტებში)
         val page = params.key ?: STARTING_PAGE_INDEX
 
@@ -26,7 +26,7 @@ class NewsDataSource(private val api: NewsService,private val q:String) : Paging
             //მოგვაქ აპი ქოლი სამი პარამეტრით - 1) დასასერჩი სიტყვა, 2) ერთ გვერდზე ჩასატვირთი ნიუსების რაოდენობა 3) აპი ქი
             val response = api.getNews(q,page, params.loadSize, API_KEY_Oto)
             // ვმაპავთ რესპონსის ბოდის, ანუ უშუალოდ მონაცემებს დომეინ დატაკლასში
-            val articles = response.body()!!.articles/*.map { it.toArticleDomain() }*/
+            val articles = response.body()!!.articles.map { it.toArticleDomain() }
 
             //ვსაზღვრავთ შემდეგი გვერდის გამოთვლის ფორმულას - თუ სია ცარიელია ვაბრუნებთ ნალს.
             // ანუ თუ მივაღწიეთ სიის ბოლოს, ანუ თუ მეტი ნიუსი აღარ გვაქვს.
@@ -69,7 +69,7 @@ class NewsDataSource(private val api: NewsService,private val q:String) : Paging
 
     }
 
-    override fun getRefreshKey(state: PagingState<Int, Article>): Int? {
+    override fun getRefreshKey(state: PagingState<Int, ArticleDomain>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
             state.closestPageToPosition(anchorPosition)?.prevKey?.plus(1)
                 ?: state.closestPageToPosition(anchorPosition)?.nextKey?.minus(1)

@@ -17,7 +17,6 @@ import androidx.navigation.fragment.findNavController
 import com.example.formulaone.R
 import com.example.formulaone.databinding.FragmentOtpSignInBinding
 import com.example.formulaone.ui.navMenuFragments.settings.SettingsFragmentDirections
-import com.example.formulaone.ui.navMenuFragments.settings.SettingsViewModel
 import com.example.formulaoneapplicationn.common.bases.BaseFragment
 import com.example.formulaoneapplicationn.ui.createAccountFragments.firstName.CreateAccountFragmentDirections
 import com.google.firebase.FirebaseException
@@ -31,6 +30,7 @@ import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import java.util.concurrent.TimeUnit
 
+const val TAG = "MCICISHVILII"
 
 
 class OtpSignInFragment : BaseFragment<FragmentOtpSignInBinding>(FragmentOtpSignInBinding::inflate) {
@@ -90,7 +90,6 @@ class OtpSignInFragment : BaseFragment<FragmentOtpSignInBinding>(FragmentOtpSign
             .setCallbacks(callbacks) // OnVerificationStateChangedCallbacks
             .build()
         PhoneAuthProvider.verifyPhoneNumber(options)
-        Log.d(com.example.formulaone.ui.navMenuFragments.settings.TAG, "Auth started")
     }
 
     // step 2
@@ -122,10 +121,8 @@ class OtpSignInFragment : BaseFragment<FragmentOtpSignInBinding>(FragmentOtpSign
         try {
             val credential = PhoneAuthProvider.getCredential(mVerificationId, code)
             signInWithPhoneAuthCredential(credential)
-            Log.d(com.example.formulaone.ui.navMenuFragments.settings.TAG,"verifyCode try block ${mauth.currentUser?.phoneNumber}")
 //            binding.tvUserInfo.text = mauth.currentUser?.phoneNumber
         }catch (e:Exception){
-            Log.d(com.example.formulaone.ui.navMenuFragments.settings.TAG,"verifyCode catch block ${e.message}")
         }
 
     }
@@ -140,7 +137,6 @@ class OtpSignInFragment : BaseFragment<FragmentOtpSignInBinding>(FragmentOtpSign
                     "Logged in with ${mauth.currentUser?.phoneNumber}",
                     Toast.LENGTH_SHORT).show()
             } else {
-                Log.d(com.example.formulaone.ui.navMenuFragments.settings.TAG,"signInWithPhoneAuthCredential else block ${mauth.currentUser}")
                 if (task.exception is FirebaseAuthInvalidCredentialsException) {
                     Toast.makeText(requireContext(),
                         "The verification code entered was invalid",
@@ -158,7 +154,6 @@ class OtpSignInFragment : BaseFragment<FragmentOtpSignInBinding>(FragmentOtpSign
                 Toast.makeText(requireContext(), "Please enter OTP", Toast.LENGTH_SHORT).show()
             } else {
                 verifyCode(binding.etOTPimpl.text.toString())
-                Log.d(com.example.formulaone.ui.navMenuFragments.settings.TAG,"fun blah else block ${mauth.currentUser?.phoneNumber}")
             }
         }
     }
@@ -188,9 +183,4 @@ class OtpSignInFragment : BaseFragment<FragmentOtpSignInBinding>(FragmentOtpSign
             }
         })
     }
-
-
-
-
-
 }

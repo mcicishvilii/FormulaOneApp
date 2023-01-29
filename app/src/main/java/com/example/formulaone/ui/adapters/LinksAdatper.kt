@@ -7,15 +7,15 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.formulaone.databinding.SingleLinkLayoutBinding
-import com.example.formulaone.domain.model.LinksDomain
+import com.example.formulaone.domain.model.LinksDomaini
 
 
 class LinksAdatper :
-    ListAdapter<LinksDomain, LinksAdatper.LinksViewHolder>(
+    ListAdapter<LinksDomaini, LinksAdatper.LinksViewHolder>(
         LinksDiffCallback()
     ) {
 
-    private lateinit var itemClickListener: (LinksDomain, Int) -> Unit
+    private lateinit var itemClickListener: (LinksDomaini, Int) -> Unit
 
     override fun onCreateViewHolder(
         parent: ViewGroup, viewType: Int,
@@ -32,7 +32,7 @@ class LinksAdatper :
 
     inner class LinksViewHolder(private val binding: SingleLinkLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        private var model: LinksDomain? = null
+        private var model: LinksDomaini? = null
         fun bindData() {
             model = getItem(bindingAdapterPosition)
             binding.apply {
@@ -48,24 +48,23 @@ class LinksAdatper :
 
     }
 
-    fun setOnItemClickListener(clickListener: (LinksDomain, Int) -> Unit) {
+    fun setOnItemClickListener(clickListener: (LinksDomaini, Int) -> Unit) {
         itemClickListener = clickListener
     }
 }
 
 
-class LinksDiffCallback : DiffUtil.ItemCallback<LinksDomain>() {
+class LinksDiffCallback : DiffUtil.ItemCallback<LinksDomaini>() {
     override fun areItemsTheSame(
-        oldItem: LinksDomain,
-        newItem: LinksDomain,
+        oldItem: LinksDomaini,
+        newItem: LinksDomaini,
     ): Boolean {
         return oldItem.id == newItem.id
     }
 
-    @SuppressLint("DiffUtilEquals")
     override fun areContentsTheSame(
-        oldItem: LinksDomain,
-        newItem: LinksDomain,
+        oldItem: LinksDomaini,
+        newItem: LinksDomaini,
     ): Boolean {
         return oldItem == newItem
     }

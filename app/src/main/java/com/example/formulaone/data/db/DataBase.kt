@@ -2,7 +2,6 @@ package com.example.formulaoneapplicationn.data.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.example.formulaone.ui.models.Links
 import com.example.formulaoneapplicationn.data.daos.LinksDao
 import com.example.formulaoneapplicationn.data.daos.TeamsDao
 import com.example.formulaoneapplicationn.data.daos.TicketsDao

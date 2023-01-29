@@ -22,11 +22,9 @@ class FragmentNewsViewModel @Inject constructor(
     fun searchNews(query:String){
         _currentQuery.value = query
     }
-
     companion object {
         private const val DEFAULT_QUERY = "Autosport"
     }
-
 }
 
 

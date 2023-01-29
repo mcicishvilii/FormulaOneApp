@@ -93,34 +93,10 @@ class FragmentNews :
     }
 
     private fun search() {
-        binding.etSearch.addTextChangedListener { editable ->
+        binding.etSearchImpl.addTextChangedListener { editable ->
             if (editable!!.toString().isNotEmpty()) {
                 vm.searchNews(editable.toString())
             }
         }
     }
-
-//    @Deprecated("Deprecated in Java")
-//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-//        super.onCreateOptionsMenu(menu, inflater)
-//        inflater.inflate(R.menu.menu,menu)
-//        val searchItem = menu.findItem(R.id.searchView)
-//        val searchView = searchItem.actionView as SearchView
-//        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
-//            override fun onQueryTextSubmit(query: String?): Boolean {
-//                if (query != null) {
-//                    vm.searchNews(query)
-//                }
-//                return true
-//            }
-//
-//            override fun onQueryTextChange(newText: String?): Boolean {
-//
-//                return true
-//            }
-//
-//        })
-//    }
-
-
 }

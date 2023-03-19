@@ -25,7 +25,14 @@ class RaceScheduleUseCase @Inject constructor(
         repository.getRacesShceduleData().collectLatest {
             when (it) {
                 is Resource.Success -> {
-                    send(Resource.Success(it.data))
+                    val filteredList = it.data.filter {
+                        val dateNow = TimeFormaterIMPL().formatCurrentTime()
+                        val dateFromModel = it.date
+                        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+                        val date = LocalDate.parse(dateFromModel, formatter)
+                        dateNow <= date
+                    }
+                    send(Resource.Success(filteredList))
                 }
                 is Resource.Error -> {
                     send(Resource.Error(it.error))
@@ -39,10 +46,3 @@ class RaceScheduleUseCase @Inject constructor(
 }
 
 
-//                    val filteredList = it.data.filter {
-//                        val dateNow = TimeFormaterIMPL().formatCurrentTime()
-//                        val dateFromModel = it.date
-//                        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-//                        val date = LocalDate.parse(dateFromModel, formatter)
-//                        dateNow >= date
-//                    }

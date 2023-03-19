@@ -1,4 +1,4 @@
-package com.example.formulaoneapplicationn.domain.use_case.schedule
+package com.example.formulaone.domain.use_case.schedule
 
 import android.os.Build
 import androidx.annotation.RequiresApi
